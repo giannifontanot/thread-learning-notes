@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cerca, pero no adentro · Marcos 2–3</title>
+<!-- ============================================================
+     CAFÉ CON CLAUDE · Notas de hilo
+     "Cerca, pero no adentro" — la multitud, el muro y la familia
+     Marcos 2 y 3 · Escrituras citadas en DHH (Dios Habla Hoy)
+     Interacción firma: PERSIANAS (secciones que se enrollan)
+     Sin control de tamaño de fuente (a propósito).
+     ============================================================ -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..700&family=Spectral:ital,wght@0,300;0,400;0,500;0,600;1,400;1,500&display=swap" rel="stylesheet">
+<style>
+/* ---- 1. Paleta y tokens ---------------------------------- */
+:root{
+  --cream:#f2e8d6;
+  --cream-deep:#ece0c9;
+  --ink:#2d261d;
+  --ink-soft:#5a4f40;
+  --terracotta:#b04e29;
+  --amber:#cf9136;
+  --olive:#6c7240;
+  --plum:#6c3a4f;
+  --rule:rgba(45,38,29,.16);
+  --rail-w:248px;
+  --slat:rgba(45,38,29,.07);
+}
+
+/* ---- 2. Base --------------------------------------------- */
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;
+  background:var(--cream);
+  color:var(--ink);
+  font-family:"Spectral",Georgia,serif;
+  font-weight:400;
+  line-height:1.72;
+  font-size:1.06rem;
+  -webkit-font-smoothing:antialiased;
+}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *{transition:none!important;animation:none!important}
+}
+
+/* ---- 3. Barra de progreso de lectura --------------------- */
+#progress{
+  position:fixed;top:0;left:0;height:3px;width:0%;
+  background:linear-gradient(90deg,var(--terracotta),var(--amber));
+  z-index:120;transition:width .12s linear;
+}
+
+/* ---- 4. Riel lateral ------------------------------------- */
+.rail{
+  position:fixed;top:0;left:0;width:var(--rail-w);height:100vh;
+  padding:2.4rem 1.5rem 2rem;
+  border-right:1px solid var(--rule);
+  background:var(--cream-deep);
+  display:flex;flex-direction:column;
+  z-index:100;
+}
+.rail .brand{
+  font-family:"Fraunces",serif;
+  font-weight:600;font-size:1.02rem;letter-spacing:.01em;
+  color:var(--terracotta);text-decoration:none;display:block;
+  line-height:1.3;margin-bottom:.2rem;
+}
+.rail .brand span{display:block;font-size:.72rem;letter-spacing:.18em;
+  text-transform:uppercase;color:var(--ink-soft);font-family:"Spectral",serif;
+  font-weight:500;margin-top:.35rem;}
+.rail nav{margin-top:1.8rem;overflow-y:auto;flex:1;-ms-overflow-style:none;scrollbar-width:thin}
+.rail nav::-webkit-scrollbar{width:5px}
+.rail nav::-webkit-scrollbar-thumb{background:var(--rule);border-radius:3px}
+.rail nav a{
+  display:flex;align-items:baseline;gap:.7rem;
+  text-decoration:none;color:var(--ink-soft);
+  padding:.32rem 0;font-size:.92rem;line-height:1.3;
+  border-left:2px solid transparent;padding-left:.7rem;margin-left:-.7rem;
+  transition:color .2s,border-color .2s;
+}
+.rail nav a .num{
+  font-family:"Fraunces",serif;font-weight:600;font-size:.74rem;
+  color:var(--amber);min-width:1.9rem;letter-spacing:.04em;flex-shrink:0;
+}
+.rail nav a:hover{color:var(--ink)}
+.rail nav a.active{color:var(--terracotta);border-color:var(--terracotta)}
+.rail nav a.active .num{color:var(--terracotta)}
+
+.rail .controls{margin-top:1.2rem;padding-top:1.1rem;border-top:1px solid var(--rule)}
+.rail .controls button{
+  font-family:"Spectral",serif;font-size:.8rem;letter-spacing:.04em;
+  background:transparent;border:1px solid var(--rule);color:var(--ink-soft);
+  padding:.4rem .7rem;border-radius:2px;cursor:pointer;margin-right:.4rem;
+  transition:background .2s,color .2s,border-color .2s;
+}
+.rail .controls button:hover{background:var(--terracotta);color:var(--cream);border-color:var(--terracotta)}
+
+/* ---- 5. Hamburguesa móvil -------------------------------- */
+.hamb{
+  position:fixed;top:1rem;left:1rem;z-index:130;
+  width:44px;height:44px;border-radius:3px;
+  background:var(--cream-deep);border:1px solid var(--rule);
+  display:none;align-items:center;justify-content:center;cursor:pointer;
+}
+.hamb span,.hamb span::before,.hamb span::after{
+  content:"";display:block;width:20px;height:2px;background:var(--ink);position:relative;transition:.25s;
+}
+.hamb span::before{position:absolute;top:-6px}
+.hamb span::after{position:absolute;top:6px}
+.hamb.open span{background:transparent}
+.hamb.open span::before{top:0;transform:rotate(45deg)}
+.hamb.open span::after{top:0;transform:rotate(-45deg)}
+.scrim{position:fixed;inset:0;background:rgba(45,38,29,.4);z-index:99;opacity:0;
+  pointer-events:none;transition:opacity .25s}
+.scrim.show{opacity:1;pointer-events:auto}
+
+/* ---- 6. Columna principal -------------------------------- */
+.wrap{margin-left:var(--rail-w);max-width:760px;padding:0 clamp(1.4rem,5vw,4rem)}
+
+header.hero{padding:clamp(4rem,9vw,7rem) 0 2.4rem}
+.eyebrow{
+  font-family:"Spectral",serif;font-style:italic;color:var(--terracotta);
+  font-size:.95rem;letter-spacing:.04em;margin:0 0 1.1rem;
+}
+.eyebrow::before{content:"";display:inline-block;width:28px;height:1px;
+  background:var(--terracotta);vertical-align:middle;margin-right:.6rem}
+h1{
+  font-family:"Fraunces",serif;font-weight:500;
+  font-size:clamp(2.5rem,6.5vw,4.1rem);line-height:1.04;
+  letter-spacing:-.015em;margin:0 0 1.1rem;color:var(--ink);
+}
+h1 em{font-style:italic;color:var(--terracotta)}
+.standfirst{font-size:1.18rem;color:var(--ink-soft);max-width:34em;margin:0}
+.ref-tag{
+  display:inline-block;margin-top:1.6rem;font-size:.8rem;letter-spacing:.16em;
+  text-transform:uppercase;color:var(--olive);font-weight:500;
+  border:1px solid var(--rule);padding:.4rem .8rem;border-radius:2px;
+}
+
+/* ---- 7. Persianas (acordeón) ----------------------------- */
+.panel{border-top:1px solid var(--rule)}
+.panel:last-of-type{border-bottom:1px solid var(--rule)}
+.panel-head{
+  width:100%;text-align:left;cursor:pointer;
+  background:transparent;border:none;color:var(--ink);
+  display:flex;align-items:center;gap:1rem;
+  padding:1.5rem 0;font-family:inherit;
+  position:relative;
+}
+.panel-head .pnum{
+  font-family:"Fraunces",serif;font-weight:600;font-size:.85rem;
+  color:var(--amber);letter-spacing:.06em;min-width:2.2rem;flex-shrink:0;
+}
+.panel-head .ptitle{
+  font-family:"Fraunces",serif;font-weight:500;
+  font-size:clamp(1.3rem,3vw,1.7rem);line-height:1.18;
+  letter-spacing:-.01em;flex:1;color:var(--ink);transition:color .2s;
+}
+.panel-head:hover .ptitle{color:var(--terracotta)}
+/* tirador de persiana: lamas + chevron */
+.pull{flex-shrink:0;width:34px;height:34px;position:relative}
+.pull::before{ /* lamas */
+  content:"";position:absolute;inset:0;border-radius:2px;
+  background:repeating-linear-gradient(var(--slat) 0 2px,transparent 2px 5px);
+  opacity:.9;
+}
+.pull::after{ /* chevron */
+  content:"";position:absolute;top:50%;left:50%;width:9px;height:9px;
+  border-right:2px solid var(--terracotta);border-bottom:2px solid var(--terracotta);
+  transform:translate(-50%,-70%) rotate(45deg);transition:transform .4s cubic-bezier(.4,0,.2,1);
+}
+.panel.open .pull::after{transform:translate(-50%,-30%) rotate(-135deg)}
+
+.panel-body{
+  display:grid;grid-template-rows:0fr;
+  transition:grid-template-rows .45s cubic-bezier(.4,0,.2,1);
+}
+.panel.open .panel-body{grid-template-rows:1fr}
+.panel-body>.inner{overflow:hidden;min-height:0}
+.panel-body .pad{padding:0 0 2rem .2rem}
+
+/* ---- 8. Tipografía interna ------------------------------- */
+.pad p{margin:0 0 1.1rem}
+.pad p:last-child{margin-bottom:0}
+.pad strong{font-weight:600;color:var(--ink)}
+.pad em{font-style:italic}
+.lead{font-size:1.12rem;color:var(--ink)}
+
+.scripture{
+  border-left:3px solid var(--amber);
+  padding:.2rem 0 .2rem 1.3rem;margin:1.4rem 0;
+  font-style:italic;color:var(--ink);font-size:1.08rem;line-height:1.6;
+}
+.scripture cite{display:block;font-style:normal;font-size:.8rem;
+  letter-spacing:.14em;text-transform:uppercase;color:var(--olive);
+  margin-top:.6rem;font-weight:500;}
+
+.tag-list{list-style:none;padding:0;margin:1rem 0 0}
+.tag-list li{position:relative;padding:.5rem 0 .5rem 1.5rem;border-top:1px solid var(--rule)}
+.tag-list li:first-child{border-top:none}
+.tag-list li::before{content:"";position:absolute;left:0;top:1.15rem;
+  width:7px;height:7px;background:var(--terracotta);transform:rotate(45deg)}
+.tag-list li b{font-weight:600;color:var(--plum)}
+
+.illus{margin:1rem 0 0}
+.illus dt{font-family:"Fraunces",serif;font-weight:600;color:var(--plum);
+  font-size:1.02rem;margin-top:1.1rem}
+.illus dd{margin:.25rem 0 0;color:var(--ink-soft)}
+
+/* contraste multitud/familia */
+.split{display:grid;grid-template-columns:1fr 1fr;gap:0;margin:1.3rem 0;border:1px solid var(--rule)}
+.split>div{padding:1.1rem 1.2rem}
+.split>div:first-child{border-right:1px solid var(--rule)}
+.split h4{font-family:"Fraunces",serif;font-weight:600;margin:0 0 .5rem;font-size:1.05rem}
+.split:nth-of-type(1) h4{}
+.split .crowd h4{color:var(--ink-soft)}
+.split .family h4{color:var(--terracotta)}
+.split p{font-size:.98rem;margin:0;color:var(--ink-soft)}
+@media(max-width:520px){.split{grid-template-columns:1fr}
+  .split>div:first-child{border-right:none;border-bottom:1px solid var(--rule)}}
+
+/* ---- 9. Fuentes y pie ------------------------------------ */
+.sources{margin:3rem 0 1rem;padding-top:1.4rem;border-top:1px solid var(--rule)}
+.sources h3{font-family:"Fraunces",serif;font-weight:600;font-size:1rem;
+  letter-spacing:.02em;color:var(--ink-soft);margin:0 0 .7rem}
+.sources ul{list-style:none;padding:0;margin:0;font-size:.92rem}
+.sources li{margin:.35rem 0;color:var(--ink-soft)}
+.sources a{color:var(--terracotta);text-decoration:none;border-bottom:1px solid var(--rule)}
+.sources a:hover{border-color:var(--terracotta)}
+footer{padding:2.5rem 0 4rem;font-size:.85rem;color:var(--ink-soft)}
+footer a{color:var(--terracotta);text-decoration:none}
+.coda{font-family:"Fraunces",serif;font-style:italic;font-size:1.25rem;
+  color:var(--plum);line-height:1.5;margin:0 0 2.4rem;max-width:30em}
+
+/* ---- 10. Responsive -------------------------------------- */
+@media(max-width:880px){
+  .rail{transform:translateX(-100%);transition:transform .3s cubic-bezier(.4,0,.2,1);
+    box-shadow:0 0 40px rgba(0,0,0,.12)}
+  .rail.open{transform:translateX(0)}
+  .hamb{display:flex}
+  .wrap{margin-left:0;max-width:680px;margin-inline:auto}
+  header.hero{padding-top:5rem}
+}
+</style>
+</head>
+<body>
+
+<div id="progress"></div>
+
+<button class="hamb" id="hamb" aria-label="Abrir el índice"><span></span></button>
+<div class="scrim" id="scrim"></div>
+
+<!-- ====== RIEL ====== -->
+<aside class="rail" id="rail">
+  <a class="brand" href="https://giannifontanot.github.io/coffee-with-claude/">
+    Café con Claude
+    <span>Notas de hilo</span>
+  </a>
+  <nav id="nav">
+    <a href="#p1"><span class="num">I</span>Proximidad no es intimidad</a>
+    <a href="#p2"><span class="num">II</span>El imán: por qué viene la gente</a>
+    <a href="#p3"><span class="num">III</span>La multitud como muro</a>
+    <a href="#p4"><span class="num">IV</span>Sanar el alma antes que el cuerpo</a>
+    <a href="#p5"><span class="num">V</span>Cinco choques y la trampa del legalismo</a>
+    <a href="#p6"><span class="num">VI</span>La familia redefinida</a>
+    <a href="#p7"><span class="num">VII</span>La lógica: de afuera hacia adentro</a>
+    <a href="#p8"><span class="num">VIII</span>Los textos (Marcos 2–3)</a>
+    <a href="#p9"><span class="num">IX</span>Ideas que quedan</a>
+    <a href="#p10"><span class="num">X</span>Ilustraciones</a>
+    <a href="#p11"><span class="num">XI</span>Para vivir esta semana</a>
+    <a href="#p12"><span class="num">XII</span>Final abierto</a>
+  </nav>
+</aside>
+
+<!-- ====== COLUMNA PRINCIPAL ====== -->
+<main class="wrap">
+
+  <header class="hero">
+    <p class="eyebrow">Notas de hilo · Evangelio de Marcos</p>
+    <h1>Cerca, pero <em>no adentro</em></h1>
+    <p class="standfirst">La multitud rodea a Jesús y, sin querer, le hace sombra. Marcos 2 y 3 nos enseñan a distinguir entre estar junto a él y estar con él: entre el gentío que mira y la familia que hace la voluntad de Dios.</p>
+    <span class="ref-tag">Marcos 2–3 · Citas en DHH</span>
+  </header>
+
+  <!-- I -->
+  <section class="panel open" id="p1">
+    <button class="panel-head" aria-expanded="true">
+      <span class="pnum">I</span>
+      <span class="ptitle">Proximidad no es intimidad</span>
+      <span class="pull"></span>
+    </button>
+    <div class="panel-body"><div class="inner"><div class="pad">
+      <p class="lead">La tesis es incómoda por lo sencilla: <strong>estar cerca de Jesús no es lo mismo que estar con Jesús.</strong> En Marcos las multitudes funcionan como un revelador fotográfico. Muestran el imán que es Jesús —cómo responde a anhelos que todo ser humano comparte— y, al mismo tiempo, dejan ver el obstáculo. Uno puede formar parte del gentío que rodea a Jesús y ser, exactamente por eso, la pared que impide que otro llegue hasta él.</p>
+      <p>El relato no opone a los «malos» de afuera contra los «buenos» de adentro. Opone dos maneras de acercarse: la <em>curiosidad</em> de la masa que busca espectáculo, y el <em>vínculo</em> de quienes son llamados a «estar con él». La fe verdadera no se mide por la presencia en la muchedumbre ni por el cumplimiento de un código religioso, sino por la humildad de entrar en relación y hacer la voluntad de Dios.</p>
+      <p>El tema importa porque toca la inquietud de fondo del corazón humano: la búsqueda de un hogar. Y deshace un malentendido frecuente —que la actividad religiosa, o el solo hecho de pertenecer a una gran congregación, equivale a seguir a Cristo.</p>
+    </div></div></div>
+  </section>
+
+  <!-- II -->
+  <section class="panel" id="p2">
+    <button class="panel-head" aria-expanded="false">
+      <span class="pnum">II</span>
+      <span class="ptitle">El imán: por qué viene la gente</span>
+      <span class="pull"></span>
+    </button>
+    <div class="panel-body"><div class="inner"><div class="pad">
+      <p>La fama de Jesús crece rápido y arrastra gente desde regiones enormes. ¿Qué los mueve? La hipótesis del maestro es que Jesús <em>destila</em> el fruto del Espíritu —amor, alegría, paz— y eso responde a necesidades que no distinguen raza, clase social ni etnia. Donde hay un ser humano, hay esa hambre.</p>
+      <p>Detrás está la intuición de Agustín: el corazón está inquieto hasta que descansa en Dios. El maestro la ilustra con una imagen biológica —el ave migratoria que, llegada la estación, empuja contra los barrotes de su jaula— para nombrar ese instinto de volver «a casa». La gente no siempre sabe qué busca; busca de todos modos.</p>
+    </div></div></div>
+  </section>
+
+  <!-- III -->
+  <section class="panel" id="p3">
+    <button class="panel-head" aria-expanded="false">
+      <span class="pnum">III</span>
+      <span class="ptitle">La multitud como muro</span>
+      <span class="pull"></span>
+    </button>
+    <div class="panel-body"><div class="inner"><div class="pad">
+      <p>El paralítico de Marcos 2 lo deja a la vista. Para llegar a Jesús, sus amigos no encuentran puerta: la encuentran tapada por la misma gente que vino a ver al maestro. Entonces abren el techo. Es un modelo de fe que se niega a dejarse disuadir por el obstáculo físico o social.</p>
+      <p>El obstáculo, claro, somos a veces nosotros. La <strong>mentalidad de rebaño</strong> empuja a no destacar, a no ser «demasiado espiritual», a alinearse con la temperatura del grupo. Una cultura eclesial tibia puede convertirse, sin proponérselo, en la multitud que estorba el paso a un encuentro radical con Dios.</p>
+      <div class="split crowd">
+        <div class="crowd"><h4>La multitud</h4><p>Mira el espectáculo · se mueve en bloque · marca el nivel espiritual permitido · rodea a Jesús y le hace sombra.</p></div>
+        <div class="family"><h4>La familia</h4><p>Rompe el techo si hace falta · se deja llamar por nombre · hace la voluntad de Dios · entra en relación.</p></div>
+      </div>
+    </div></div></div>
+  </section>
+
+  <!-- IV -->
+  <section class="panel" id="p4">
+    <button class="panel-head" aria-expanded="false">
+      <span class="pnum">IV</span>
+      <span class="ptitle">Sanar el alma antes que el cuerpo</span>
+      <span class="pull"></span>
+    </button>
+    <div class="panel-body"><div class="inner"><div class="pad">
+      <p>Lo primero que Jesús le dice al paralítico no es «levántate», sino que sus pecados quedan perdonados. El orden no es un descuido: atiende primero lo más hondo.</p>
+      <div class="scripture">
+        Cuando Jesús vio la fe que tenían, le dijo al paralítico: «Hijo, tus pecados quedan perdonados.»
+        <cite>Marcos 2:5 · DHH</cite>
+      </div>
+      <p>La lectura es que el hambre espiritual —sentirse amado, valorado, conectado con Dios— es más básica que el alivio físico. En comunidades devastadas, suele pesar más el anhelo de que la propia vida tenga valor y sentido que la falta de una manta o de comida. No es que el cuerpo no importe; es que el alma reclama primero.</p>
+    </div></div></div>
+  </section>
+
+  <!-- V -->
+  <section class="panel" id="p5">
+    <button class="panel-head" aria-expanded="false">
+      <span class="pnum">V</span>
+      <span class="ptitle">Cinco choques y la trampa del legalismo</span>
+      <span class="pull"></span>
+    </button>
+    <div class="panel-body"><div class="inner"><div class="pad">
+      <p>Marcos encadena cinco relatos de controversia: los líderes religiosos critican a Jesús por romper reglas del sábado o tabúes sociales. El maestro nombra la mecánica: el legalismo ofrece seguridad mediante <em>cercas</em>. La religión, en su forma más pobre, es un conjunto de reglas para sentirse a salvo; el cristianismo, en cambio, se define por relaciones.</p>
+      <div class="scripture">
+        Lo que quiero de ustedes es que me amen, y no que me hagan sacrificios; que me reconozcan como Dios, y no que me ofrezcan holocaustos.
+        <cite>Oseas 6:6 · DHH</cite>
+      </div>
+      <p>Esa cita es el cimiento teológico: la misericordia pesa más que el cumplimiento ritual —sin que ello anule la ley. En la sanidad del sábado (Marcos 3:1–6) aparece una de las pocas veces en que se menciona explícitamente la ira de Jesús. Se enciende ante la <strong>dureza de corazón</strong>: ante una estructura religiosa que bloquea a la gente del amor de Dios. Su enojo casi siempre se dispara por lo mismo —cuando alguien le cierra a otro el paso hacia Dios, sea con reglas, sea impidiendo que los niños se acerquen.</p>
+    </div></div></div>
+  </section>
+
+  <!-- VI -->
+  <section class="panel" id="p6">
+    <button class="panel-head" aria-expanded="false">
+      <span class="pnum">VI</span>
+      <span class="ptitle">La familia redefinida</span>
+      <span class="pull"></span>
+    </button>
+    <div class="panel-body"><div class="inner"><div class="pad">
+      <p>Al final de Marcos 3, con su madre y sus hermanos afuera, Jesús redefine «familia» sobre la base del compromiso espiritual y no del lazo biológico.</p>
+      <div class="scripture">
+        Cualquiera que hace la voluntad de Dios, ese es mi hermano, mi hermana y mi madre.
+        <cite>Marcos 3:35 · DHH</cite>
+      </div>
+      <p>No es un rechazo de su madre ni de sus hermanos: es la <em>elevación</em> del vínculo que comparten quienes hacen la voluntad de Dios. Conviene leerlo con cuidado, porque el «familia espiritual» se ha usado para justificar el abandono de la familia de carne. La lectura sana es la inversa: buscar de veras el Reino debería hacer que uno ame <strong>más</strong>, no menos, a su familia física.</p>
+    </div></div></div>
+  </section>
+
+  <!-- VII -->
+  <section class="panel" id="p7">
+    <button class="panel-head" aria-expanded="false">
+      <span class="pnum">VII</span>
+      <span class="ptitle">La lógica: de afuera hacia adentro</span>
+      <span class="pull"></span>
+    </button>
+    <div class="panel-body"><div class="inner"><div class="pad">
+      <p>El argumento avanza del atractivo exterior al compromiso interior, en cinco pasos:</p>
+      <ul class="tag-list">
+        <li><b>Crece la multitud.</b> El dato narrativo: Jesús convoca a masas. Queda establecido el imán.</li>
+        <li><b>¿Por qué vienen?</b> Todos compartimos un instinto «migratorio» hacia Dios.</li>
+        <li><b>El problema aparece.</b> La multitud misma puede tapar el acceso o imponer una tibieza de grupo.</li>
+        <li><b>El contraste religioso.</b> La curiosidad de la masa y la hostilidad de los líderes fallan en lo mismo: no ven la misión de misericordia.</li>
+        <li><b>El llamado.</b> Jesús saca a doce <em>de</em> la multitud para que estén <em>con</em> él. Ahí se define la fe.</li>
+      </ul>
+    </div></div></div>
+  </section>
+
+  <!-- VIII -->
+  <section class="panel" id="p8">
+    <button class="panel-head" aria-expanded="false">
+      <span class="pnum">VIII</span>
+      <span class="ptitle">Los textos (Marcos 2–3)</span>
+      <span class="pull"></span>
+    </button>
+    <div class="panel-body"><div class="inner"><div class="pad">
+      <ul class="tag-list">
+        <li><b>Marcos 2:1–12 — el paralítico.</b> La multitud como barrera; los amigos que rompen el techo como fe que no se deja disuadir. Jesús atiende el pecado primero: el problema más hondo antes que el dolor pasajero.</li>
+        <li><b>Oseas 6:6.</b> «Amor y no sacrificios»: la misericordia por encima del rito, sin abolir la ley.</li>
+        <li><b>Marcos 3:1–6 — sanar en sábado.</b> Una de las pocas menciones explícitas de la ira de Jesús, reacción ante la dureza de corazón que bloquea el amor de Dios.</li>
+        <li><b>Marcos 3:13–15 — los Doce.</b> El modelo del discipulado: primero «para que estuvieran con él», y solo después, enviados.</li>
+        <li><b>Marcos 3:20–35 — la familia.</b> No un desprecio de los suyos, sino la elevación del vínculo de quienes hacen la voluntad de Dios.</li>
+      </ul>
+      <div class="scripture" style="margin-top:1.5rem">
+        Subió Jesús al monte… escogió a doce, para que estuvieran con él y para enviarlos a predicar.
+        <cite>Marcos 3:13–14 · DHH</cite>
+      </div>
+    </div></div></div>
+  </section>
+
+  <!-- IX -->
+  <section class="panel" id="p9">
+    <button class="panel-head" aria-expanded="false">
+      <span class="pnum">IX</span>
+      <span class="ptitle">Ideas que quedan</span>
+      <span class="pull"></span>
+    </button>
+    <div class="panel-body"><div class="inner"><div class="pad">
+      <ul class="tag-list">
+        <li><b>Anhelos universales.</b> Amor, paz, sentido, seguridad: el mismo hambre en toda cultura. Jesús destila su saciedad.</li>
+        <li><b>El corazón inquieto.</b> Como el ave migratoria, el ser humano empuja hacia su «casa» en Dios.</li>
+        <li><b>Mentalidad de rebaño.</b> El grupo genera un pensamiento que vuelve temeroso a destacar.</li>
+        <li><b>Pobreza del alma.</b> En la devastación, suele pesar más sentir que la vida vale que recibir el recurso material.</li>
+        <li><b>La trampa de las reglas.</b> La religión como seguridad; la fe como relación.</li>
+        <li><b>El enojo de Jesús.</b> Se enciende siempre que alguien bloquea a otro del amor de Dios.</li>
+      </ul>
+    </div></div></div>
+  </section>
+
+  <!-- X -->
+  <section class="panel" id="p10">
+    <button class="panel-head" aria-expanded="false">
+      <span class="pnum">X</span>
+      <span class="ptitle">Ilustraciones</span>
+      <span class="pull"></span>
+    </button>
+    <div class="panel-body"><div class="inner"><div class="pad">
+      <dl class="illus">
+        <dt>El ave migratoria</dt>
+        <dd>Un profesor de biología cuenta que las aves migratorias enjauladas se golpean contra los barrotes cuando llega la hora de volar a casa. El instinto innato de volver «a casa» en Dios.</dd>
+        <dt>El experimento del ascensor</dt>
+        <dd>Alguien entra y se queda mirando al fondo; tarde o temprano, los demás se giran para imitarlo. El poder de la mentalidad de rebaño y el deseo de encajar.</dd>
+        <dt>La Virgen en Miami</dt>
+        <dd>Una aparición reportada en una ventana provocó atascos enormes. La atracción de la masa por el espectáculo y lo sobrenatural, más que por el discipulado.</dd>
+        <dt>El director de voluntarios de la ONU</dt>
+        <dd>En Ginebra, un director observa que los voluntarios cristianos son los más felices y confiables, y suelen entregar más de lo prometido. El vínculo y la alegría de la familia espiritual.</dd>
+        <dt>El testimonio de Robert Carrillo</dt>
+        <dd>Cuenta que su propia familia pensó que había «perdido la cabeza» cuando se mudó a México por el ministerio —eco del relato de los parientes de Jesús.</dd>
+      </dl>
+    </div></div></div>
+  </section>
+
+  <!-- XI -->
+  <section class="panel" id="p11">
+    <button class="panel-head" aria-expanded="false">
+      <span class="pnum">XI</span>
+      <span class="ptitle">Para vivir esta semana</span>
+      <span class="pull"></span>
+    </button>
+    <div class="panel-body"><div class="inner"><div class="pad">
+      <ul class="tag-list">
+        <li><b>Examinarse.</b> ¿Soy parte de la multitud —curioso pero sin compromiso— o de la familia que hace la voluntad de Dios?</li>
+        <li><b>Pesar la influencia.</b> ¿Estoy dejando que un grupo tibio o negativo me dicte mi nivel espiritual?</li>
+        <li><b>Priorizar la misericordia.</b> En el conflicto, ¿me pongo de guardián de las reglas o de cauce del amor?</li>
+        <li><b>Cultivar la intimidad.</b> La tarea primera del discípulo es «estar con» Jesús: la relación precede y sostiene al servicio.</li>
+        <li><b>Amar a los de casa.</b> Sin descuidar la familia biológica: buscar el Reino debería hacerme amarla más.</li>
+      </ul>
+    </div></div></div>
+  </section>
+
+  <!-- XII -->
+  <section class="panel" id="p12">
+    <button class="panel-head" aria-expanded="false">
+      <span class="pnum">XII</span>
+      <span class="ptitle">Final abierto</span>
+      <span class="pull"></span>
+    </button>
+    <div class="panel-body"><div class="inner"><div class="pad">
+      <p>Marcos plantea una elección: ¿nos quedamos en la multitud o damos el paso hacia la intimidad del discipulado? El gentío da testimonio del poder de Jesús; también puede cerrarle el paso a otro. Quedan dos tensiones sin resolver del todo, y está bien que queden:</p>
+      <ul class="tag-list">
+        <li><b>El equilibrio de las familias.</b> ¿Cómo navegar en la práctica entre el celo del ministerio y las responsabilidades del hogar?</li>
+        <li><b>La naturaleza del hambre.</b> Si lo espiritual pesa más que lo físico, ¿cómo atiende la iglesia ambos —obra social y anuncio— sin sacrificar ninguno?</li>
+      </ul>
+      <p style="margin-top:1.3rem">La medida del seguidor no es su presencia en la muchedumbre ni su apego al código, sino la humildad de entrar en relación con Jesús y hacer la voluntad de Dios.</p>
+    </div></div></div>
+  </section>
+
+  <!-- FUENTES -->
+  <div class="sources">
+    <h3>Fuentes</h3>
+    <ul>
+      <li>Texto bíblico: <a href="https://www.bible.com/es/bible/52/HOS.6.DHH94I" target="_blank" rel="noopener">Oseas 6 (DHH)</a>, <a href="https://www.bibleref.com/espanol/Marcos/3/Marcos-3-14.html" target="_blank" rel="noopener">Marcos 3 (DHH)</a>.</li>
+      <li>Trasfondo sobre «misericordia quiero y no sacrificio»: <a href="https://www.gotquestions.org/Espanol/misericordia-quiero-no-sacrificio.html" target="_blank" rel="noopener">GotQuestions</a>.</li>
+    </ul>
+  </div>
+
+  <footer>
+    <p class="coda">«Para que estuvieran con él» —el discipulado empieza ahí, no en la multitud.</p>
+    <p>Café con Claude · Notas de hilo · <a href="https://giannifontanot.github.io/coffee-with-claude/">volver a la sala de lectura</a></p>
+  </footer>
+
+</main>
+
+<script>
+/* ---- Persianas ---------------------------------------- */
+document.querySelectorAll('.panel-head').forEach(btn=>{
+  btn.addEventListener('click',()=>{
+    const panel=btn.closest('.panel');
+    const open=panel.classList.toggle('open');
+    btn.setAttribute('aria-expanded',open);
+  });
+});
+
+/* ---- Barra de progreso -------------------------------- */
+const prog=document.getElementById('progress');
+window.addEventListener('scroll',()=>{
+  const h=document.documentElement.scrollHeight-window.innerHeight;
+  prog.style.width=(window.scrollY/h*100)+'%';
+},{passive:true});
+
+/* ---- Scroll-spy --------------------------------------- */
+const links=[...document.querySelectorAll('#nav a')];
+const map=new Map(links.map(a=>[a.getAttribute('href').slice(1),a]));
+const obs=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){
+      links.forEach(l=>l.classList.remove('active'));
+      const a=map.get(e.target.id); if(a)a.classList.add('active');
+    }
+  });
+},{rootMargin:'-20% 0px -70% 0px',threshold:0});
+document.querySelectorAll('.panel').forEach(s=>obs.observe(s));
+
+/* ---- Menú móvil --------------------------------------- */
+const hamb=document.getElementById('hamb'),rail=document.getElementById('rail'),
+      scrim=document.getElementById('scrim');
+function toggleRail(){const o=rail.classList.toggle('open');hamb.classList.toggle('open',o);
+  scrim.classList.toggle('show',o);hamb.setAttribute('aria-label',o?'Cerrar el índice':'Abrir el índice');}
+hamb.addEventListener('click',toggleRail);
+scrim.addEventListener('click',toggleRail);
+document.querySelectorAll('#nav a').forEach(a=>a.addEventListener('click',()=>{
+  if(rail.classList.contains('open'))toggleRail();
+  // abre la persiana destino para que el ancla no caiga en una sección cerrada
+  const t=document.getElementById(a.getAttribute('href').slice(1));
+  if(t&&!t.classList.contains('open')){t.classList.add('open');
+    t.querySelector('.panel-head').setAttribute('aria-expanded',true);}
+}));
+</script>
+</body>
+</html>
