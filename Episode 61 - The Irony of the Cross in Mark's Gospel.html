@@ -1,0 +1,687 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Coronado en la cruz — La ironía de la cruz en el Evangelio de Marcos</title>
+
+<!-- ===================================================================
+  CAFÉ CON CLAUDE · "Coronado en la cruz"
+  La ironía de la cruz en el Evangelio de Marcos (10–16)
+  Página autocontenida · persianas (acordeones) para lectura pausada
+  Tipografía: Fraunces (display) + Spectral (cuerpo)
+  ==================================================================== -->
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400&family=Spectral:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --terracotta:#b04e29;
+  --amber:#cf9136;
+  --olive:#6c7240;
+  --plum:#6c3a4f;
+  --ink:#2d261d;
+  --cream:#f2e8d6;
+  --paper:#f7efe0;
+  --paper-deep:#ece0c9;
+  --rule:#d8c7a6;
+  --ink-soft:#5b5142;
+
+  --fs-base:1.16rem;
+  --display:"Fraunces",Georgia,serif;
+  --body:"Spectral",Georgia,serif;
+}
+
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  font-family:var(--body);
+  font-size:var(--fs-base);
+  line-height:1.72;
+  color:var(--ink);
+  background:var(--cream);
+  -webkit-font-smoothing:antialiased;
+  background-image:
+    radial-gradient(circle at 18% 12%, rgba(176,78,41,.035), transparent 45%),
+    radial-gradient(circle at 85% 78%, rgba(108,114,64,.045), transparent 50%);
+}
+
+/* ---- barra de progreso de lectura ---- */
+#progress{
+  position:fixed;top:0;left:0;height:3px;width:0%;
+  background:linear-gradient(90deg,var(--terracotta),var(--amber));
+  z-index:60;transition:width .12s ease-out;
+}
+
+/* ---- estructura ---- */
+.wrap{
+  display:grid;
+  grid-template-columns:268px minmax(0,1fr);
+  max-width:1180px;margin:0 auto;
+}
+
+/* ---- riel lateral ---- */
+.rail{
+  position:sticky;top:0;align-self:start;height:100vh;
+  padding:2.6rem 1.6rem 2rem 2rem;
+  display:flex;flex-direction:column;
+  border-right:1px solid var(--rule);
+}
+.rail .mark{
+  font-family:var(--display);
+  font-weight:500;font-size:.78rem;letter-spacing:.16em;
+  text-transform:uppercase;color:var(--terracotta);
+  margin-bottom:.2rem;
+}
+.rail .mark-sub{
+  font-size:.82rem;color:var(--ink-soft);font-style:italic;
+  margin-bottom:1.9rem;line-height:1.4;
+}
+nav.toc{flex:1;overflow-y:auto;margin-bottom:1.2rem}
+nav.toc a{
+  display:flex;gap:.7rem;align-items:baseline;
+  text-decoration:none;color:var(--ink-soft);
+  padding:.32rem 0;font-size:.92rem;line-height:1.32;
+  border:none;background:none;cursor:pointer;text-align:left;width:100%;
+  transition:color .2s ease;
+}
+nav.toc a .num{
+  font-family:var(--display);font-variant:small-caps;
+  font-size:.74rem;letter-spacing:.05em;
+  color:var(--amber);min-width:2.1em;flex-shrink:0;
+  font-feature-settings:"smcp";
+}
+nav.toc a:hover{color:var(--ink)}
+nav.toc a.active{color:var(--terracotta)}
+nav.toc a.active .num{color:var(--terracotta)}
+
+.rail-tools{
+  border-top:1px solid var(--rule);padding-top:1.1rem;
+  display:flex;flex-direction:column;gap:.85rem;
+}
+.fontctl{display:flex;align-items:center;gap:.55rem}
+.fontctl span{font-size:.74rem;color:var(--ink-soft);letter-spacing:.08em;text-transform:uppercase}
+.fontctl button{
+  font-family:var(--display);
+  width:30px;height:30px;border:1px solid var(--rule);
+  background:var(--paper);color:var(--ink);border-radius:50%;
+  cursor:pointer;font-size:.9rem;line-height:1;transition:all .18s ease;
+}
+.fontctl button:hover{border-color:var(--terracotta);color:var(--terracotta)}
+.rail-tools a.home{
+  font-size:.82rem;color:var(--ink-soft);text-decoration:none;
+  letter-spacing:.02em;transition:color .2s ease;
+}
+.rail-tools a.home:hover{color:var(--terracotta)}
+
+/* ---- contenido ---- */
+main{padding:3.4rem 4.2rem 6rem;max-width:760px}
+
+.hero{margin-bottom:3rem}
+.hero .eyebrow{
+  font-family:var(--display);font-variant:small-caps;
+  letter-spacing:.13em;color:var(--olive);
+  font-size:.92rem;margin-bottom:.9rem;
+}
+.hero h1{
+  font-family:var(--display);
+  font-weight:400;font-size:clamp(2.5rem,5.5vw,3.7rem);
+  line-height:1.04;letter-spacing:-.015em;color:var(--ink);
+  margin-bottom:1.1rem;
+}
+.hero h1 em{font-style:italic;color:var(--terracotta)}
+.hero .sub{
+  font-size:1.22rem;color:var(--ink-soft);font-style:italic;
+  line-height:1.5;max-width:34em;
+}
+.hero .lede{
+  margin-top:1.7rem;font-size:1.12rem;line-height:1.7;
+  padding-left:1.2rem;border-left:2px solid var(--amber);
+  color:var(--ink);
+}
+
+/* ---- las persianas ---- */
+.slat-rule{
+  display:flex;align-items:center;gap:1rem;
+  margin:0 0 1.6rem;color:var(--ink-soft);
+  font-family:var(--display);font-size:.82rem;
+  letter-spacing:.14em;text-transform:uppercase;
+}
+.slat-rule::before,.slat-rule::after{
+  content:"";flex:1;height:0;border-top:1px solid var(--rule);
+}
+
+.persiana{
+  border-bottom:1px solid var(--rule);
+}
+.persiana:first-of-type{border-top:1px solid var(--rule)}
+
+.persiana > button.lever{
+  width:100%;text-align:left;cursor:pointer;
+  background:none;border:none;color:var(--ink);
+  display:flex;align-items:baseline;gap:1.1rem;
+  padding:1.5rem .3rem 1.5rem 0;
+  font-family:var(--display);transition:color .2s ease;
+}
+.persiana > button.lever:hover{color:var(--terracotta)}
+.persiana > button.lever:focus-visible{
+  outline:2px solid var(--amber);outline-offset:4px;border-radius:3px;
+}
+.lever .roman{
+  font-variant:small-caps;font-feature-settings:"smcp";
+  color:var(--amber);font-size:1rem;letter-spacing:.06em;
+  min-width:2.6em;flex-shrink:0;padding-top:.18em;
+}
+.persiana[data-open="true"] .lever .roman{color:var(--terracotta)}
+.lever .title{
+  flex:1;font-weight:400;font-size:1.42rem;line-height:1.18;
+  letter-spacing:-.01em;
+}
+/* el tirador de la persiana: listones que se pliegan */
+.lever .pull{
+  flex-shrink:0;align-self:center;width:22px;height:14px;
+  position:relative;transition:transform .35s cubic-bezier(.4,0,.2,1);
+}
+.lever .pull span{
+  position:absolute;left:0;right:0;height:2px;border-radius:2px;
+  background:var(--ink-soft);transition:all .35s cubic-bezier(.4,0,.2,1);
+}
+.lever .pull span:nth-child(1){top:0}
+.lever .pull span:nth-child(2){top:6px;opacity:.55}
+.lever .pull span:nth-child(3){top:12px;opacity:.25}
+.persiana[data-open="true"] .lever .pull span{background:var(--terracotta)}
+.persiana[data-open="true"] .lever .pull span:nth-child(1){top:6px;transform:rotate(0)}
+.persiana[data-open="true"] .lever .pull span:nth-child(2){opacity:0;transform:scaleX(.2)}
+.persiana[data-open="true"] .lever .pull span:nth-child(3){top:6px;opacity:1}
+
+/* el cuerpo plegable */
+.persiana .blinds{
+  display:grid;grid-template-rows:0fr;
+  transition:grid-template-rows .42s cubic-bezier(.4,0,.2,1);
+}
+.persiana[data-open="true"] .blinds{grid-template-rows:1fr}
+.persiana .blinds-inner{
+  overflow:hidden;
+  opacity:0;transform:translateY(-4px);
+  transition:opacity .35s ease .05s,transform .35s ease .05s;
+}
+.persiana[data-open="true"] .blinds-inner{opacity:1;transform:none}
+.panel-body{padding:.2rem 0 2.2rem 3.7rem}
+
+@media(max-width:680px){
+  .panel-body{padding-left:0}
+}
+
+.panel-body p{margin-bottom:1.05rem}
+.panel-body p:last-child{margin-bottom:0}
+.panel-body .lead{
+  font-size:1.12rem;color:var(--ink);font-style:italic;
+  color:var(--plum);
+}
+.panel-body strong{font-weight:600;color:var(--ink)}
+.panel-body em{font-style:italic}
+
+/* sub-bloques: las ironías, los pasajes, etc. */
+.facet{
+  margin:1.4rem 0;padding:1rem 1.3rem;
+  background:var(--paper);border-radius:3px;
+  border-left:3px solid var(--olive);
+}
+.facet h4{
+  font-family:var(--display);font-weight:500;font-size:1.06rem;
+  color:var(--ink);margin-bottom:.35rem;letter-spacing:-.005em;
+}
+.facet h4 .kicker{
+  display:block;font-size:.72rem;letter-spacing:.12em;
+  text-transform:uppercase;color:var(--olive);
+  font-variant:normal;margin-bottom:.25rem;
+}
+.facet p{margin-bottom:0;font-size:1.04rem;line-height:1.6}
+.facet.amber{border-left-color:var(--amber)}
+.facet.amber h4 .kicker{color:var(--amber)}
+.facet.plum{border-left-color:var(--plum)}
+.facet.plum h4 .kicker{color:var(--plum)}
+.facet.terra{border-left-color:var(--terracotta)}
+.facet.terra h4 .kicker{color:var(--terracotta)}
+
+ul.clean{list-style:none;margin:1.1rem 0}
+ul.clean li{
+  padding-left:1.5rem;position:relative;margin-bottom:.85rem;line-height:1.6;
+}
+ul.clean li::before{
+  content:"";position:absolute;left:0;top:.62em;
+  width:7px;height:7px;border-radius:50%;
+  background:var(--amber);
+}
+ul.clean li strong{color:var(--terracotta);font-weight:600}
+
+.refs{
+  margin-top:1.5rem;padding-top:.9rem;border-top:1px dotted var(--rule);
+  font-size:.88rem;color:var(--ink-soft);font-style:italic;
+}
+.refs a{color:var(--olive);text-decoration:none;border-bottom:1px solid var(--rule)}
+.refs a:hover{color:var(--terracotta);border-color:var(--terracotta)}
+
+.scripture{
+  font-style:italic;color:var(--plum);
+}
+
+/* cierre */
+.coda{
+  margin-top:3.4rem;padding-top:2rem;border-top:1px solid var(--rule);
+  font-style:italic;color:var(--ink-soft);font-size:1.06rem;line-height:1.7;
+}
+.coda .signoff{
+  display:block;margin-top:1.2rem;font-family:var(--display);
+  font-style:normal;font-size:.86rem;letter-spacing:.1em;
+  text-transform:uppercase;color:var(--terracotta);
+}
+
+/* ---- móvil ---- */
+.hamburger{
+  display:none;position:fixed;top:1rem;left:1rem;z-index:55;
+  width:46px;height:46px;border-radius:50%;
+  background:var(--paper);border:1px solid var(--rule);
+  cursor:pointer;align-items:center;justify-content:center;
+  box-shadow:0 2px 10px rgba(45,38,29,.12);
+}
+.hamburger span{
+  display:block;width:20px;height:2px;background:var(--ink);
+  position:relative;transition:.3s;
+}
+.hamburger span::before,.hamburger span::after{
+  content:"";position:absolute;left:0;width:20px;height:2px;
+  background:var(--ink);transition:.3s;
+}
+.hamburger span::before{top:-6px}
+.hamburger span::after{top:6px}
+body.menu-open .hamburger span{background:transparent}
+body.menu-open .hamburger span::before{top:0;transform:rotate(45deg)}
+body.menu-open .hamburger span::after{top:0;transform:rotate(-45deg)}
+
+.scrim{
+  display:none;position:fixed;inset:0;background:rgba(45,38,29,.4);
+  z-index:48;
+}
+
+@media(max-width:880px){
+  .wrap{grid-template-columns:1fr}
+  .hamburger{display:flex}
+  .rail{
+    position:fixed;top:0;left:0;z-index:50;width:280px;
+    background:var(--cream);
+    transform:translateX(-100%);transition:transform .32s ease;
+    box-shadow:4px 0 24px rgba(45,38,29,.16);
+  }
+  body.menu-open .rail{transform:translateX(0)}
+  body.menu-open .scrim{display:block}
+  main{padding:4.4rem 1.6rem 4rem}
+  .panel-body{padding-left:0}
+  .lever .roman{min-width:2em}
+}
+
+@media(prefers-reduced-motion:reduce){
+  *{transition:none!important;scroll-behavior:auto!important}
+}
+</style>
+</head>
+<body>
+
+<div id="progress"></div>
+
+<button class="hamburger" id="hamburger" aria-label="Abrir índice">
+  <span></span>
+</button>
+<div class="scrim" id="scrim"></div>
+
+<div class="wrap">
+
+  <!-- ===================== RIEL ===================== -->
+  <aside class="rail" id="rail">
+    <div class="mark">Café con Claude</div>
+    <div class="mark-sub">Sala de lectura · Marcos 10–16</div>
+
+    <nav class="toc" id="toc">
+      <a data-target="s1"><span class="num">I</span><span>La tesis: rey en la derrota</span></a>
+      <a data-target="s2"><span class="num">II</span><span>Para qué este recorrido</span></a>
+      <a data-target="s3"><span class="num">III</span><span>Las ironías de Marcos</span></a>
+      <a data-target="s4"><span class="num">IV</span><span>El hilo del argumento</span></a>
+      <a data-target="s5"><span class="num">V</span><span>Lectura del texto</span></a>
+      <a data-target="s6"><span class="num">VI</span><span>Lo que queda grabado</span></a>
+      <a data-target="s7"><span class="num">VII</span><span>Las ilustraciones</span></a>
+      <a data-target="s8"><span class="num">VIII</span><span>Qué hacer con esto</span></a>
+      <a data-target="s9"><span class="num">IX</span><span>Conclusión</span></a>
+      <a data-target="s10"><span class="num">X</span><span>Las preguntas que quedan abiertas</span></a>
+    </nav>
+
+    <div class="rail-tools">
+      <div class="fontctl">
+        <span>Texto</span>
+        <button id="fminus" aria-label="Reducir tamaño de letra">A−</button>
+        <button id="fplus" aria-label="Aumentar tamaño de letra">A+</button>
+      </div>
+      <a class="home" href="index.html">← Volver a la sala</a>
+    </div>
+  </aside>
+
+  <!-- ===================== CONTENIDO ===================== -->
+  <main>
+
+    <header class="hero">
+      <div class="eyebrow">La ironía de la cruz en el Evangelio de Marcos</div>
+      <h1>Coronado <em>en la cruz</em></h1>
+      <p class="sub">Marcos cuenta la historia de Jesús con ironía: el reino de Dios avanza a través de la debilidad, el fracaso y el sufrimiento, no del triunfo. Jesús es más rey justo cuando parece más derrotado.</p>
+      <p class="lede">La ironía abre una grieta entre lo que los personajes esperan y lo que el lector sabe: el reino «al revés» de Dios lo entienden mejor los de afuera que los de adentro. Y todo culmina en la cruz —una coronación paradójica— y en un final tan abrupto que nos obliga a dejar de mirar y a terminar la historia con nuestra propia vida.</p>
+    </header>
+
+    <div class="slat-rule">Abre cada persiana a tu ritmo</div>
+
+    <!-- ===== I ===== -->
+    <section class="persiana" id="s1" data-open="true">
+      <button class="lever" aria-expanded="true">
+        <span class="roman">I</span>
+        <span class="title">La tesis: rey en la derrota</span>
+        <span class="pull"><span></span><span></span><span></span></span>
+      </button>
+      <div class="blinds"><div class="blinds-inner"><div class="panel-body">
+        <p class="lead">El Evangelio de Marcos usa la ironía como su lente literario y teológico principal para revelar la verdadera naturaleza de la mesianidad de Jesús.</p>
+        <p>Esa ironía es una «inversión»: el reino de Dios avanza mediante la debilidad, el fracaso y el sufrimiento aparentes, y no por el triunfo convencional. Una y otra vez, la narración deja al descubierto la grieta entre lo que los personajes esperan o dicen y la realidad de fondo que el lector conoce; y muestra que el <strong>reino «al revés» de Dios</strong> lo comprenden mejor los de afuera y los marginados que quienes están adentro.</p>
+        <p>Todo culmina en la cruz, que funciona como una coronación paradójica: Jesús es más verdaderamente Rey en el momento en que parece más derrotado. Y al terminar el relato original de forma abrupta —con miedo y silencio—, Marcos obliga al lector a salir del papel de espectador y a «terminar la historia» con su propia vida y su propia fe.</p>
+      </div></div></div>
+    </section>
+
+    <!-- ===== II ===== -->
+    <section class="persiana" id="s2" data-open="false">
+      <button class="lever" aria-expanded="false">
+        <span class="roman">II</span>
+        <span class="title">Para qué este recorrido</span>
+        <span class="pull"><span></span><span></span><span></span></span>
+      </button>
+      <div class="blinds"><div class="blinds-inner"><div class="panel-body">
+        <p>El punto de partida es un malentendido extendido: creer que el Mesías tenía que ser un conquistador triunfante y mundano.</p>
+        <p>Importa porque muchos —en el relato bíblico y hoy— cambian su fe de manera veleidosa según Dios cumpla o no sus expectativas de éxito o de liberación. Al poner la ironía en primer plano, el recorrido busca desplazar la espiritualidad hacia el <em>misterio, la paradoja y la fe en medio de la derrota aparente</em>, animando el paso de una lealtad superficial a un discipulado hondo, capaz de negarse a sí mismo.</p>
+      </div></div></div>
+    </section>
+
+    <!-- ===== III ===== -->
+    <section class="persiana" id="s3" data-open="false">
+      <button class="lever" aria-expanded="false">
+        <span class="roman">III</span>
+        <span class="title">Las ironías de Marcos</span>
+        <span class="pull"><span></span><span></span><span></span></span>
+      </button>
+      <div class="blinds"><div class="blinds-inner"><div class="panel-body">
+        <p>La ironía es una grieta entre expectativa y realidad, o entre lo que se dice y lo que se quiere decir. En Marcos se estructura como <strong>«contraste + contexto + sorpresa»</strong>: el público suele saber más que los personajes, y esa tensión saca a la luz realidades espirituales profundas. Estas son sus caras.</p>
+
+        <div class="facet olive">
+          <h4><span class="kicker">La vista</span>Bartimeo y la entrada triunfal</h4>
+          <p>El ciego Bartimeo «ve» la identidad de Jesús como Hijo de David, frente a las multitudes que ven con los ojos pero no comprenden. La ironía: los «Hosanna» —gritos de conquista— se vuelven «¡Crucifícalo!» en pocos días, cuando Jesús no cumple sus expectativas davídicas.</p>
+        </div>
+
+        <div class="facet amber">
+          <h4><span class="kicker">El templo estéril</span>La higuera y el templo</h4>
+          <p>Con una estructura de «sándwich», Marcos hace un paralelo entre la maldición de la higuera sin fruto y la purificación del templo. La ironía: el templo —símbolo de la presencia de Dios— se había vuelto estéril y sin vida, mientras Jesús, que parece maldito en la cruz, es la verdadera fuente de vida.</p>
+        </div>
+
+        <div class="facet plum">
+          <h4><span class="kicker">Devoción y traición</span>La unción y Judas</h4>
+          <p>El acto «derrochador» de una mujer sin nombre que unge a Jesús contrasta con la traición «rentable» de Judas. La ironía: una persona de afuera reconoce la muerte inminente de Jesús mientras el círculo íntimo no capta el momento.</p>
+        </div>
+
+        <div class="facet terra">
+          <h4><span class="kicker">La verdadera grandeza</span>La ofrenda de la viuda</h4>
+          <p>En el tesoro del templo, el pequeñísimo don de una viuda pobre se presenta como mayor que las grandes sumas de los ricos. La ironía: Dios mide la grandeza por el amor que se entrega, no por la apariencia exterior.</p>
+        </div>
+
+        <div class="facet olive">
+          <h4><span class="kicker">Los dos juicios</span>Jesús y Pedro</h4>
+          <p>Mientras Jesús calla, sereno, ante el Sanedrín, Pedro —el discípulo que se proclamaba leal— se derrumba bajo una presión mínima y lo niega tres veces.</p>
+        </div>
+
+        <div class="facet amber">
+          <h4><span class="kicker">Los dos «hijos del padre»</span>Barrabás</h4>
+          <p>En el juicio ante Pilato, la multitud elige liberar a Barrabás —cuyo nombre significa literalmente «hijo del padre»— en lugar de Jesús, el verdadero Hijo del Padre. La ironía: eligen a un revolucionario violento y rechazan al Príncipe de Paz.</p>
+        </div>
+
+        <div class="facet plum">
+          <h4><span class="kicker">La coronación de burla</span>El manto y las espinas</h4>
+          <p>Los soldados romanos visten a Jesús de púrpura y lo coronan de espinas como broma. La ironía suprema: su burla proclama la verdad absoluta —Jesús está siendo entronizado como Rey en la cruz, tal como lo había anunciado.</p>
+        </div>
+
+        <div class="facet terra">
+          <h4><span class="kicker">La confesión</span>El centurión</h4>
+          <p>En el instante de mayor abandono y muerte de Jesús, se rasga el velo del templo y un centurión romano —de afuera y verdugo— es el primer ser humano en Marcos que proclama a Jesús como Hijo de Dios.</p>
+        </div>
+
+        <div class="facet olive">
+          <h4><span class="kicker">El final enigmático</span>Miedo y silencio</h4>
+          <p>El relato original terminaba en 16:8, con las mujeres huyendo con miedo y en silencio. Esa conclusión abierta es la ironía final: el silencio de los personajes obliga al lector a responder.</p>
+        </div>
+      </div></div></div>
+    </section>
+
+    <!-- ===== IV ===== -->
+    <section class="persiana" id="s4" data-open="false">
+      <button class="lever" aria-expanded="false">
+        <span class="roman">IV</span>
+        <span class="title">El hilo del argumento</span>
+        <span class="pull"><span></span><span></span><span></span></span>
+      </button>
+      <div class="blinds"><div class="blinds-inner"><div class="panel-body">
+        <p>El razonamiento parte de la ironía como herramienta literaria que crea tensión al dar al lector más información que a los personajes. De ahí avanza en una progresión con lógica propia.</p>
+        <ul class="clean">
+          <li><strong>De los contrastes menores.</strong> Empieza en las escenas pequeñas —el ciego que «ve»—, donde la ironía es casi doméstica.</li>
+          <li><strong>A las ironías institucionales.</strong> Sube al nivel del sistema: el templo estéril, la religión que perdió su fruto.</li>
+          <li><strong>Hasta la ironía última de la cruz.</strong> El punto al que todo apunta: la coronación en la derrota.</li>
+          <li><strong>El espejo del reino.</strong> El argumento supone que la narración es «al revés» a propósito, para reflejar la naturaleza paradójica del reino de Dios.</li>
+          <li><strong>La pregunta al lector.</strong> Si los de afuera reconocen a Jesús mientras los de adentro fallan, el lector debe revisar su propio estatus de «insider» por si hay ceguera espiritual.</li>
+          <li><strong>Una historia por vivir.</strong> El argumento textual sobre el final (16:8) concluye que el evangelio no es una historia terminada para observar, sino una realidad tipo «elige tu propia aventura» que hay que vivir.</li>
+        </ul>
+      </div></div></div>
+    </section>
+
+    <!-- ===== V ===== -->
+    <section class="persiana" id="s5" data-open="false">
+      <button class="lever" aria-expanded="false">
+        <span class="roman">V</span>
+        <span class="title">Lectura del texto</span>
+        <span class="pull"><span></span><span></span><span></span></span>
+      </button>
+      <div class="blinds"><div class="blinds-inner"><div class="panel-body">
+        <p class="scripture">Marcos ordena el tramo final como una cadena de ironías que sube desde la calle hasta la cruz, y de la cruz al sepulcro vacío.</p>
+
+        <p><strong>Marcos 10 · el ciego Bartimeo.</strong> Un contraste entre la ceguera física y la vista espiritual. Su clamor de «misericordia» al «Hijo de David» subraya la ironía: percibe la identidad del Mesías mejor que las multitudes que sí ven.</p>
+
+        <p><strong>Marcos 11:12–21 · la higuera y el templo.</strong> Se leen como una sola unidad: el árbol seco es la señal física de la esterilidad espiritual del templo.</p>
+
+        <p><strong>Marcos 14:3–11 · la unción y la traición.</strong> El acto de la mujer es intuitivo y profético —prepara a Jesús para la sepultura—, mientras el de Judas es un fracaso del discipulado.</p>
+
+        <div class="facet olive">
+          <h4>La ofrenda de la viuda · Marcos 12</h4>
+          <p>Un «evangelio en miniatura»: la verdadera grandeza se mide por la entrega total de sí, no por la abundancia. El don más pequeño resulta ser el mayor.</p>
+        </div>
+
+        <p><strong>Marcos 15:16–20 · la coronación de burla.</strong> Se interpreta como una entronización real: el manto de púrpura, las espinas y la rodilla doblada son reconocimientos involuntarios, por parte de los romanos, de la verdadera identidad de Jesús como Rey sufriente.</p>
+
+        <p><strong>Marcos 15:31 · la burla de los sacerdotes.</strong> Su pulla —«Salvó a otros, y a sí mismo no puede salvarse»— es la cumbre de la ironía: es precisamente al <em>no</em> salvarse a sí mismo como salva a otros.</p>
+
+        <p><strong>Marcos 16:1–8 · el sepulcro vacío.</strong> El miedo y el silencio de las mujeres no son un fracaso del evangelio, sino una decisión literaria deliberada: la resurrección queda «implícita, no narrada», para que el lector la lleve adelante.</p>
+
+        <div class="refs">
+          Pasajes (DHH):
+          <a href="https://www.biblegateway.com/passage/?search=Marcos+10&version=DHH" target="_blank" rel="noopener">Marcos 10</a>,
+          <a href="https://www.biblegateway.com/passage/?search=Marcos+11&version=DHH" target="_blank" rel="noopener">Marcos 11</a>,
+          <a href="https://www.biblegateway.com/passage/?search=Marcos+12&version=DHH" target="_blank" rel="noopener">Marcos 12</a>,
+          <a href="https://www.biblegateway.com/passage/?search=Marcos+14&version=DHH" target="_blank" rel="noopener">Marcos 14</a>,
+          <a href="https://www.biblegateway.com/passage/?search=Marcos+15&version=DHH" target="_blank" rel="noopener">Marcos 15</a>,
+          <a href="https://www.biblegateway.com/passage/?search=Marcos+16%3A1-8&version=DHH" target="_blank" rel="noopener">Marcos 16:1–8</a>.
+        </div>
+      </div></div></div>
+    </section>
+
+    <!-- ===== VI ===== -->
+    <section class="persiana" id="s6" data-open="false">
+      <button class="lever" aria-expanded="false">
+        <span class="roman">VI</span>
+        <span class="title">Lo que queda grabado</span>
+        <span class="pull"><span></span><span></span><span></span></span>
+      </button>
+      <div class="blinds"><div class="blinds-inner"><div class="panel-body">
+        <ul class="clean">
+          <li><strong>La fórmula de la ironía.</strong> «Contraste + contexto + sorpresa».</li>
+          <li><strong>El tema del de afuera.</strong> Marcos muestra sin parar que los de los márgenes —mujeres, pobres, extranjeros, ciegos— suelen tener una vista espiritual más clara que la élite religiosa o los doce.</li>
+          <li><strong>El juego de palabras Bar-Abbá.</strong> Barrabás significa «hijo del padre»: una elección cargada de ironía entre un falso «hijo del padre» —hombre de violencia— y el verdadero Hijo del Padre —el hombre de paz—.</li>
+          <li><strong>La primera confesión humana.</strong> Es un centurión romano, no un discípulo, el primero en declarar a Jesús «Hijo de Dios» en el relato.</li>
+          <li><strong>Gracia en el fracaso.</strong> El fracaso persistente de los discípulos para entender es señal de la gracia de Dios: sugiere que Dios obra a través de seguidores lentos y que batallan.</li>
+        </ul>
+      </div></div></div>
+    </section>
+
+    <!-- ===== VII ===== -->
+    <section class="persiana" id="s7" data-open="false">
+      <button class="lever" aria-expanded="false">
+        <span class="roman">VII</span>
+        <span class="title">Las ilustraciones</span>
+        <span class="pull"><span></span><span></span><span></span></span>
+      </button>
+      <div class="blinds"><div class="blinds-inner"><div class="panel-body">
+        <div class="facet olive">
+          <h4>La cara quemada por el sol</h4>
+          <p>El maestro cuenta que fue a pescar y se olvidó el protector solar en la cara, lo que produjo una ironía de «cara roja / pez rojo». Ilustra la grieta entre la expectativa (estar protegido) y la realidad (terminar quemado).</p>
+        </div>
+        <div class="facet amber">
+          <h4>Alanis Morissette</h4>
+          <p>Su canción «Ironic» aparece para ayudar a definir la idea común de ironía.</p>
+        </div>
+        <div class="facet plum">
+          <h4>El monstruo detrás de la puerta</h4>
+          <p>Una analogía de cine explica la «ironía dramática»: el público siente tensión porque sabe que el monstruo está ahí, mientras el personaje no.</p>
+        </div>
+        <div class="facet terra">
+          <h4>Los libros «Elige tu propia aventura»</h4>
+          <p>Sirven para describir el final de Marcos: se invita al lector a llenar el «hueco» del final de la historia con su propio recorrido de fe.</p>
+        </div>
+      </div></div></div>
+    </section>
+
+    <!-- ===== VIII ===== -->
+    <section class="persiana" id="s8" data-open="false">
+      <button class="lever" aria-expanded="false">
+        <span class="roman">VIII</span>
+        <span class="title">Qué hacer con esto</span>
+        <span class="pull"><span></span><span></span><span></span></span>
+      </button>
+      <div class="blinds"><div class="blinds-inner"><div class="panel-body">
+        <ul class="clean">
+          <li><strong>Examinar la propia fe.</strong> Preguntarse si es «veleidosa», si oscila entre la alabanza y el rechazo según Dios haga o no lo que uno espera.</li>
+          <li><strong>Redefinir la devoción.</strong> La mujer que unge invita a pensar cómo es una «devoción derrochadora»: dar de forma espontánea, desde el corazón, y no según objeciones pragmáticas.</li>
+          <li><strong>Abrazar la debilidad.</strong> La espiritualidad debería arraigarse en que el poder de Dios se revela en la debilidad y el sufrimiento, no solo en los momentos de triunfo.</li>
+          <li><strong>Participación activa.</strong> Como el evangelio termina de golpe, el discipulado es algo que se «vive hacia adentro», no solo algo que se lee.</li>
+        </ul>
+      </div></div></div>
+    </section>
+
+    <!-- ===== IX ===== -->
+    <section class="persiana" id="s9" data-open="false">
+      <button class="lever" aria-expanded="false">
+        <span class="roman">IX</span>
+        <span class="title">Conclusión</span>
+        <span class="pull"><span></span><span></span><span></span></span>
+      </button>
+      <div class="blinds"><div class="blinds-inner"><div class="panel-body">
+        <p>El Evangelio de Marcos es una historia de <strong>victoria paradójica</strong>. El «fracaso» de los personajes y el «silencio» del final no detienen el evangelio: son, más bien, el mecanismo por el que el reino avanza.</p>
+        <p>Toda la lección converge en una toma de conciencia: el lector es quien ahora debe «hablar» donde las mujeres del relato callaron, convirtiéndose de hecho en la continuación de la narración de Marcos en el mundo.</p>
+      </div></div></div>
+    </section>
+
+    <!-- ===== X ===== -->
+    <section class="persiana" id="s10" data-open="false">
+      <button class="lever" aria-expanded="false">
+        <span class="roman">X</span>
+        <span class="title">Las preguntas que quedan abiertas</span>
+        <span class="pull"><span></span><span></span><span></span></span>
+      </button>
+      <div class="blinds"><div class="blinds-inner"><div class="panel-body">
+        <ul class="clean">
+          <li><strong>El final «perdido».</strong> Queda el debate sobre si el final original de Marcos se perdió o si el corte abrupto en el versículo 8 fue intencional.</li>
+          <li><strong>La respuesta del lector.</strong> Citando a N. T. Wright, el texto nos deja con preguntas: «¿Damos por sentada la Pascua?» y «¿Qué tareas nos ha dejado para emprender hoy?».</li>
+        </ul>
+      </div></div></div>
+    </section>
+
+    <div class="coda">
+      La burla lo dijo sin saberlo: es Rey. Marcos entrega la corona en el peor momento —púrpura de sarcasmo, espinas por diadema, una cruz por trono— y luego calla, a propósito, para que la última palabra la digamos nosotros.
+      <span class="signoff">Café con Claude · Marcos 10–16</span>
+    </div>
+
+  </main>
+</div>
+
+<script>
+/* ---- 1 · persianas (acordeón con grid-rows) ---- */
+document.querySelectorAll('.persiana > .lever').forEach(function(lever){
+  lever.addEventListener('click', function(){
+    var p = lever.closest('.persiana');
+    var open = p.getAttribute('data-open') === 'true';
+    p.setAttribute('data-open', String(!open));
+    lever.setAttribute('aria-expanded', String(!open));
+  });
+});
+
+/* ---- 2 · índice: abre la persiana y baja a ella ---- */
+document.querySelectorAll('#toc a').forEach(function(link){
+  link.addEventListener('click', function(){
+    var id = link.getAttribute('data-target');
+    var p = document.getElementById(id);
+    if(p){
+      p.setAttribute('data-open','true');
+      p.querySelector('.lever').setAttribute('aria-expanded','true');
+      p.scrollIntoView({behavior:'smooth', block:'start'});
+    }
+    document.body.classList.remove('menu-open'); /* cierra menú móvil */
+  });
+});
+
+/* ---- 3 · scroll-spy del riel ---- */
+var links = Array.prototype.slice.call(document.querySelectorAll('#toc a'));
+var spy = new IntersectionObserver(function(entries){
+  entries.forEach(function(e){
+    if(e.isIntersecting){
+      var id = e.target.id;
+      links.forEach(function(l){
+        l.classList.toggle('active', l.getAttribute('data-target') === id);
+      });
+    }
+  });
+},{rootMargin:'-15% 0px -70% 0px', threshold:0});
+document.querySelectorAll('.persiana').forEach(function(s){spy.observe(s);});
+
+/* ---- 4 · barra de progreso ---- */
+var bar = document.getElementById('progress');
+function onScroll(){
+  var h = document.documentElement;
+  var scrolled = h.scrollTop / (h.scrollHeight - h.clientHeight);
+  bar.style.width = (scrolled*100) + '%';
+}
+window.addEventListener('scroll', onScroll, {passive:true});
+onScroll();
+
+/* ---- 5 · tamaño de letra ---- */
+var size = 1.16, root = document.documentElement;
+document.getElementById('fplus').addEventListener('click',function(){
+  size = Math.min(size + .06, 1.44); root.style.setProperty('--fs-base', size+'rem');
+});
+document.getElementById('fminus').addEventListener('click',function(){
+  size = Math.max(size - .06, 0.98); root.style.setProperty('--fs-base', size+'rem');
+});
+
+/* ---- 6 · menú móvil ---- */
+var ham = document.getElementById('hamburger');
+var scrim = document.getElementById('scrim');
+ham.addEventListener('click', function(){ document.body.classList.toggle('menu-open'); });
+scrim.addEventListener('click', function(){ document.body.classList.remove('menu-open'); });
+</script>
+</body>
+</html>
