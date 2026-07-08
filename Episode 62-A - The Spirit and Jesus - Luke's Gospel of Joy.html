@@ -1,0 +1,741 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>El Espíritu y Jesús — El evangelio de la alegría (Lucas 1–4)</title>
+
+<!-- ===================================================================
+  CAFÉ CON CLAUDE · "El Espíritu y Jesús"
+  El evangelio de la alegría · Lucas 1–4 (reconstrucción del episodio 62)
+  Página autocontenida · persianas (acordeones) para lectura pausada
+  Tipografía: Fraunces (display) + Spectral (cuerpo)
+  ==================================================================== -->
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400&family=Spectral:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --terracotta:#b04e29;
+  --amber:#cf9136;
+  --olive:#6c7240;
+  --plum:#6c3a4f;
+  --ink:#2d261d;
+  --cream:#f2e8d6;
+  --paper:#f7efe0;
+  --paper-deep:#ece0c9;
+  --rule:#d8c7a6;
+  --ink-soft:#5b5142;
+
+  --fs-base:1.16rem;
+  --display:"Fraunces",Georgia,serif;
+  --body:"Spectral",Georgia,serif;
+}
+
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  font-family:var(--body);
+  font-size:var(--fs-base);
+  line-height:1.72;
+  color:var(--ink);
+  background:var(--cream);
+  -webkit-font-smoothing:antialiased;
+  background-image:
+    radial-gradient(circle at 18% 12%, rgba(176,78,41,.035), transparent 45%),
+    radial-gradient(circle at 85% 78%, rgba(108,114,64,.045), transparent 50%);
+}
+
+/* ---- barra de progreso de lectura ---- */
+#progress{
+  position:fixed;top:0;left:0;height:3px;width:0%;
+  background:linear-gradient(90deg,var(--terracotta),var(--amber));
+  z-index:60;transition:width .12s ease-out;
+}
+
+/* ---- estructura ---- */
+.wrap{
+  display:grid;
+  grid-template-columns:268px minmax(0,1fr);
+  max-width:1180px;margin:0 auto;
+}
+
+/* ---- riel lateral ---- */
+.rail{
+  position:sticky;top:0;align-self:start;height:100vh;
+  padding:2.6rem 1.6rem 2rem 2rem;
+  display:flex;flex-direction:column;
+  border-right:1px solid var(--rule);
+}
+.rail .mark{
+  font-family:var(--display);
+  font-weight:500;font-size:.78rem;letter-spacing:.16em;
+  text-transform:uppercase;color:var(--terracotta);
+  margin-bottom:.2rem;
+}
+.rail .mark-sub{
+  font-size:.82rem;color:var(--ink-soft);font-style:italic;
+  margin-bottom:1.9rem;line-height:1.4;
+}
+nav.toc{flex:1;overflow-y:auto;margin-bottom:1.2rem}
+nav.toc a{
+  display:flex;gap:.7rem;align-items:baseline;
+  text-decoration:none;color:var(--ink-soft);
+  padding:.32rem 0;font-size:.92rem;line-height:1.32;
+  border:none;background:none;cursor:pointer;text-align:left;width:100%;
+  transition:color .2s ease;
+}
+nav.toc a .num{
+  font-family:var(--display);font-variant:small-caps;
+  font-size:.74rem;letter-spacing:.05em;
+  color:var(--amber);min-width:2.1em;flex-shrink:0;
+  font-feature-settings:"smcp";
+}
+nav.toc a:hover{color:var(--ink)}
+nav.toc a.active{color:var(--terracotta)}
+nav.toc a.active .num{color:var(--terracotta)}
+
+.rail-tools{
+  border-top:1px solid var(--rule);padding-top:1.1rem;
+  display:flex;flex-direction:column;gap:.85rem;
+}
+.fontctl{display:flex;align-items:center;gap:.55rem}
+.fontctl span{font-size:.74rem;color:var(--ink-soft);letter-spacing:.08em;text-transform:uppercase}
+.fontctl button{
+  font-family:var(--display);
+  width:30px;height:30px;border:1px solid var(--rule);
+  background:var(--paper);color:var(--ink);border-radius:50%;
+  cursor:pointer;font-size:.9rem;line-height:1;transition:all .18s ease;
+}
+.fontctl button:hover{border-color:var(--terracotta);color:var(--terracotta)}
+.rail-tools a.home{
+  font-size:.82rem;color:var(--ink-soft);text-decoration:none;
+  letter-spacing:.02em;transition:color .2s ease;
+}
+.rail-tools a.home:hover{color:var(--terracotta)}
+
+/* ---- contenido ---- */
+main{padding:3.4rem 4.2rem 6rem;max-width:760px}
+
+.hero{margin-bottom:3rem}
+.hero .eyebrow{
+  font-family:var(--display);font-variant:small-caps;
+  letter-spacing:.13em;color:var(--olive);
+  font-size:.92rem;margin-bottom:.9rem;
+}
+.hero h1{
+  font-family:var(--display);
+  font-weight:400;font-size:clamp(2.5rem,5.5vw,3.7rem);
+  line-height:1.04;letter-spacing:-.015em;color:var(--ink);
+  margin-bottom:1.1rem;
+}
+.hero h1 em{font-style:italic;color:var(--terracotta)}
+.hero .sub{
+  font-size:1.22rem;color:var(--ink-soft);font-style:italic;
+  line-height:1.5;max-width:34em;
+}
+.hero .lede{
+  margin-top:1.7rem;font-size:1.12rem;line-height:1.7;
+  padding-left:1.2rem;border-left:2px solid var(--amber);
+  color:var(--ink);
+}
+
+/* ---- las persianas ---- */
+.slat-rule{
+  display:flex;align-items:center;gap:1rem;
+  margin:0 0 1.6rem;color:var(--ink-soft);
+  font-family:var(--display);font-size:.82rem;
+  letter-spacing:.14em;text-transform:uppercase;
+}
+.slat-rule::before,.slat-rule::after{
+  content:"";flex:1;height:0;border-top:1px solid var(--rule);
+}
+
+.persiana{
+  border-bottom:1px solid var(--rule);
+}
+.persiana:first-of-type{border-top:1px solid var(--rule)}
+
+.persiana > button.lever{
+  width:100%;text-align:left;cursor:pointer;
+  background:none;border:none;color:var(--ink);
+  display:flex;align-items:baseline;gap:1.1rem;
+  padding:1.5rem .3rem 1.5rem 0;
+  font-family:var(--display);transition:color .2s ease;
+}
+.persiana > button.lever:hover{color:var(--terracotta)}
+.persiana > button.lever:focus-visible{
+  outline:2px solid var(--amber);outline-offset:4px;border-radius:3px;
+}
+.lever .roman{
+  font-variant:small-caps;font-feature-settings:"smcp";
+  color:var(--amber);font-size:1rem;letter-spacing:.06em;
+  min-width:2.6em;flex-shrink:0;padding-top:.18em;
+}
+.persiana[data-open="true"] .lever .roman{color:var(--terracotta)}
+.lever .title{
+  flex:1;font-weight:400;font-size:1.42rem;line-height:1.18;
+  letter-spacing:-.01em;
+}
+/* el tirador de la persiana: listones que se pliegan */
+.lever .pull{
+  flex-shrink:0;align-self:center;width:22px;height:14px;
+  position:relative;transition:transform .35s cubic-bezier(.4,0,.2,1);
+}
+.lever .pull span{
+  position:absolute;left:0;right:0;height:2px;border-radius:2px;
+  background:var(--ink-soft);transition:all .35s cubic-bezier(.4,0,.2,1);
+}
+.lever .pull span:nth-child(1){top:0}
+.lever .pull span:nth-child(2){top:6px;opacity:.55}
+.lever .pull span:nth-child(3){top:12px;opacity:.25}
+.persiana[data-open="true"] .lever .pull span{background:var(--terracotta)}
+.persiana[data-open="true"] .lever .pull span:nth-child(1){top:6px;transform:rotate(0)}
+.persiana[data-open="true"] .lever .pull span:nth-child(2){opacity:0;transform:scaleX(.2)}
+.persiana[data-open="true"] .lever .pull span:nth-child(3){top:6px;opacity:1}
+
+/* el cuerpo plegable */
+.persiana .blinds{
+  display:grid;grid-template-rows:0fr;
+  transition:grid-template-rows .42s cubic-bezier(.4,0,.2,1);
+}
+.persiana[data-open="true"] .blinds{grid-template-rows:1fr}
+.persiana .blinds-inner{
+  overflow:hidden;
+  opacity:0;transform:translateY(-4px);
+  transition:opacity .35s ease .05s,transform .35s ease .05s;
+}
+.persiana[data-open="true"] .blinds-inner{opacity:1;transform:none}
+.panel-body{padding:.2rem 0 2.2rem 3.7rem}
+
+@media(max-width:680px){
+  .panel-body{padding-left:0}
+}
+
+.panel-body p{margin-bottom:1.05rem}
+.panel-body p:last-child{margin-bottom:0}
+.panel-body .lead{
+  font-size:1.12rem;color:var(--ink);font-style:italic;
+  color:var(--plum);
+}
+.panel-body strong{font-weight:600;color:var(--ink)}
+.panel-body em{font-style:italic}
+
+/* sub-bloques: singularidades, rasgos, pasajes, etc. */
+.facet{
+  margin:1.4rem 0;padding:1rem 1.3rem;
+  background:var(--paper);border-radius:3px;
+  border-left:3px solid var(--olive);
+}
+.facet h4{
+  font-family:var(--display);font-weight:500;font-size:1.06rem;
+  color:var(--ink);margin-bottom:.35rem;letter-spacing:-.005em;
+}
+.facet h4 .kicker{
+  display:block;font-size:.72rem;letter-spacing:.12em;
+  text-transform:uppercase;color:var(--olive);
+  font-variant:normal;margin-bottom:.25rem;
+}
+.facet p{margin-bottom:0;font-size:1.04rem;line-height:1.6}
+.facet p+p{margin-top:.7rem}
+.facet.amber{border-left-color:var(--amber)}
+.facet.amber h4 .kicker{color:var(--amber)}
+.facet.plum{border-left-color:var(--plum)}
+.facet.plum h4 .kicker{color:var(--plum)}
+.facet.terra{border-left-color:var(--terracotta)}
+.facet.terra h4 .kicker{color:var(--terracotta)}
+
+ul.clean{list-style:none;margin:1.1rem 0}
+ul.clean li{
+  padding-left:1.5rem;position:relative;margin-bottom:.85rem;line-height:1.6;
+}
+ul.clean li::before{
+  content:"";position:absolute;left:0;top:.62em;
+  width:7px;height:7px;border-radius:50%;
+  background:var(--amber);
+}
+ul.clean li strong{color:var(--terracotta);font-weight:600}
+
+.refs{
+  margin-top:1.5rem;padding-top:.9rem;border-top:1px dotted var(--rule);
+  font-size:.88rem;color:var(--ink-soft);font-style:italic;
+}
+.refs a{color:var(--olive);text-decoration:none;border-bottom:1px solid var(--rule)}
+.refs a:hover{color:var(--terracotta);border-color:var(--terracotta)}
+
+.scripture{
+  font-style:italic;color:var(--plum);
+}
+
+/* cierre */
+.coda{
+  margin-top:3.4rem;padding-top:2rem;border-top:1px solid var(--rule);
+  font-style:italic;color:var(--ink-soft);font-size:1.06rem;line-height:1.7;
+}
+.coda .signoff{
+  display:block;margin-top:1.2rem;font-family:var(--display);
+  font-style:normal;font-size:.86rem;letter-spacing:.1em;
+  text-transform:uppercase;color:var(--terracotta);
+}
+
+/* ---- móvil ---- */
+.hamburger{
+  display:none;position:fixed;top:1rem;left:1rem;z-index:55;
+  width:46px;height:46px;border-radius:50%;
+  background:var(--paper);border:1px solid var(--rule);
+  cursor:pointer;align-items:center;justify-content:center;
+  box-shadow:0 2px 10px rgba(45,38,29,.12);
+}
+.hamburger span{
+  display:block;width:20px;height:2px;background:var(--ink);
+  position:relative;transition:.3s;
+}
+.hamburger span::before,.hamburger span::after{
+  content:"";position:absolute;left:0;width:20px;height:2px;
+  background:var(--ink);transition:.3s;
+}
+.hamburger span::before{top:-6px}
+.hamburger span::after{top:6px}
+body.menu-open .hamburger span{background:transparent}
+body.menu-open .hamburger span::before{top:0;transform:rotate(45deg)}
+body.menu-open .hamburger span::after{top:0;transform:rotate(-45deg)}
+
+.scrim{
+  display:none;position:fixed;inset:0;background:rgba(45,38,29,.4);
+  z-index:48;
+}
+
+@media(max-width:880px){
+  .wrap{grid-template-columns:1fr}
+  .hamburger{display:flex}
+  .rail{
+    position:fixed;top:0;left:0;z-index:50;width:280px;
+    background:var(--cream);
+    transform:translateX(-100%);transition:transform .32s ease;
+    box-shadow:4px 0 24px rgba(45,38,29,.16);
+  }
+  body.menu-open .rail{transform:translateX(0)}
+  body.menu-open .scrim{display:block}
+  main{padding:4.4rem 1.6rem 4rem}
+  .panel-body{padding-left:0}
+  .lever .roman{min-width:2em}
+}
+
+@media(prefers-reduced-motion:reduce){
+  *{transition:none!important;scroll-behavior:auto!important}
+}
+</style>
+</head>
+<body>
+
+<div id="progress"></div>
+
+<button class="hamburger" id="hamburger" aria-label="Abrir índice">
+  <span></span>
+</button>
+<div class="scrim" id="scrim"></div>
+
+<div class="wrap">
+
+  <!-- ===================== RIEL ===================== -->
+  <aside class="rail" id="rail">
+    <div class="mark">Café con Claude</div>
+    <div class="mark-sub">Sala de lectura · Lucas 1–4</div>
+
+    <nav class="toc" id="toc">
+      <a data-target="s1"><span class="num">I</span><span>La tesis: el Dios que se inclina</span></a>
+      <a data-target="s2"><span class="num">II</span><span>Para qué este recorrido</span></a>
+      <a data-target="s3"><span class="num">III</span><span>Las siete singularidades de Lucas</span></a>
+      <a data-target="s4"><span class="num">IV</span><span>El Espíritu y Jesús (Lucas 1–4)</span></a>
+      <a data-target="s5"><span class="num">V</span><span>La espiritualidad de Lucas: siete rasgos</span></a>
+      <a data-target="s6"><span class="num">VI</span><span>El hilo del argumento</span></a>
+      <a data-target="s7"><span class="num">VII</span><span>Lo que queda grabado</span></a>
+      <a data-target="s8"><span class="num">VIII</span><span>Las ilustraciones</span></a>
+      <a data-target="s9"><span class="num">IX</span><span>Qué hacer con esto</span></a>
+      <a data-target="s10"><span class="num">X</span><span>Conclusión y preguntas abiertas</span></a>
+    </nav>
+
+    <div class="rail-tools">
+      <div class="fontctl">
+        <span>Texto</span>
+        <button id="fminus" aria-label="Reducir tamaño de letra">A−</button>
+        <button id="fplus" aria-label="Aumentar tamaño de letra">A+</button>
+      </div>
+      <a class="home" href="index.html">← Volver a la sala</a>
+    </div>
+  </aside>
+
+  <!-- ===================== CONTENIDO ===================== -->
+  <main>
+
+    <header class="hero">
+      <div class="eyebrow">El evangelio de la alegría · Lucas 1–4</div>
+      <h1>El Espíritu <em>y Jesús</em></h1>
+      <p class="sub">Lucas abre su evangelio con ángeles que anuncian y un Espíritu que concibe, llena, conduce y reviste de poder. Es la historia «ordenada por Dios, querida por Dios y facilitada por Dios» — y la respuesta que pide es una vida de alegría.</p>
+      <p class="lede">Tres movimientos: qué hace único a Lucas entre los evangelios (siete cosas), cómo retratan los capítulos 1–4 la conexión entre el Espíritu y Jesús, y qué espiritualidad —siete rasgos— brota de ese relato para quien quiera vivirlo hoy.</p>
+    </header>
+
+    <div class="slat-rule">Abre cada persiana a tu ritmo</div>
+
+    <!-- ===== I ===== -->
+    <section class="persiana" id="s1" data-open="true">
+      <button class="lever" aria-expanded="true">
+        <span class="roman">I</span>
+        <span class="title">La tesis: el Dios que se inclina</span>
+        <span class="pull"><span></span><span></span><span></span></span>
+      </button>
+      <div class="blinds"><div class="blinds-inner"><div class="panel-body">
+        <p class="lead">Lucas quiere que veamos el aspecto sobrenatural de la historia de Jesús: un relato ordenado por Dios, querido por Dios y facilitado por Dios, en el que Dios baja y conecta.</p>
+        <p>El Evangelio de Lucas es la primera parte de una obra en dos tomos —Lucas–Hechos— que cuenta la historia de Dios en tres periodos: el periodo de <strong>Israel</strong> (el relato del Antiguo Testamento), el periodo de <strong>Jesús</strong> (el evangelio) y el periodo de la <strong>Iglesia</strong> (el libro de los Hechos). Todo es continuidad: Lucas ata su relato a la narrativa original de Israel, lo sitúa en su propio tiempo y lo proyecta hacia la iglesia.</p>
+        <p>Los comienzos de los evangelios anuncian la dirección de cada autor. Mateo abre con una genealogía para establecer la continuidad con Israel y dibujar a un nuevo Moisés; Marcos revela a un salvador en misión de rescate, un nuevo Éxodo. Lucas abre con <em>ángeles y Espíritu Santo</em>: la venida de Jesús como un acontecimiento divinamente orquestado, contado a través de mensajeros celestes y de la presencia y el poder del Espíritu.</p>
+        <p>Es la <strong>inmanencia</strong> de Dios —su inmediatez, su presencia entre nosotros— puesta en primer plano. Y de esa historia brota una espiritualidad con siete rasgos: la alegría, el arrepentimiento, la fe, la oración, la presencia de Dios, el testimonio y el camino.</p>
+      </div></div></div>
+    </section>
+
+    <!-- ===== II ===== -->
+    <section class="persiana" id="s2" data-open="false">
+      <button class="lever" aria-expanded="false">
+        <span class="roman">II</span>
+        <span class="title">Para qué este recorrido</span>
+        <span class="pull"><span></span><span></span><span></span></span>
+      </button>
+      <div class="blinds"><div class="blinds-inner"><div class="panel-body">
+        <p>La pregunta grande, la de siempre: ¿qué implicaciones tiene esta historia para cómo vivimos? ¿Qué significa, según Lucas, seguir a Jesús?</p>
+        <p>Por el camino, el recorrido corrige varios malentendidos. Que la esterilidad o la espera larga sean castigo: Zacarías y Elisabet eran «justos e intachables ante Dios», y aun así no tenían hijos. Que el desierto sea solo obra de Satanás: fue el <em>Espíritu</em> quien llevó a Jesús allí. Que la alegría dependa de las circunstancias: la alegría de Lucas es más honda que la felicidad.</p>
+        <p>Y una distinción de fondo: al pensar en la presencia de Dios hay dos categorías. La <strong>trascendencia</strong> —Dios más allá de nosotros, hacia quien nos estiramos— y la <strong>inmanencia</strong> —Dios inmediato, presente entre su pueblo—. Lucas retrata sobre todo la segunda, y los ángeles y el Espíritu son su prueba principal.</p>
+      </div></div></div>
+    </section>
+
+    <!-- ===== III ===== -->
+    <section class="persiana" id="s3" data-open="false">
+      <button class="lever" aria-expanded="false">
+        <span class="roman">III</span>
+        <span class="title">Las siete singularidades de Lucas</span>
+        <span class="pull"><span></span><span></span><span></span></span>
+      </button>
+      <div class="blinds"><div class="blinds-inner"><div class="panel-body">
+        <p>Siete cosas hacen único a Lucas entre los evangelios.</p>
+
+        <div class="facet olive">
+          <h4><span class="kicker">Uno</span>Una historia en dos tomos</h4>
+          <p>Lucas es Lucas–Hechos: al leer el evangelio leemos la primera parte de un relato doble, cuya «secuela» es el libro de los Hechos. Todo el proyecto es de continuidad, de Israel a la Iglesia.</p>
+        </div>
+
+        <div class="facet amber">
+          <h4><span class="kicker">Dos</span>Conciencia histórica y pluma culta</h4>
+          <p>Abre con un prólogo formal tras una investigación histórica cuidadosa, y sitúa el relato dentro de los acontecimientos del Imperio romano —César Augusto, Herodes—, mostrando el lugar del cristianismo en el mundo. Su estilo es pulido y educado —era médico— y se le suele llamar el más literario de los evangelios.</p>
+        </div>
+
+        <div class="facet plum">
+          <h4><span class="kicker">Tres</span>Una visión universal de la salvación</h4>
+          <p>Dios es un Dios de salvación primero a través de Israel y ahora a través del Hijo, con la intención de alcanzar a toda la humanidad. La misión de Jesús desborda las fronteras tradicionales: incluye a todas las naciones, a los marginados y a los de afuera.</p>
+        </div>
+
+        <div class="facet terra">
+          <h4><span class="kicker">Cuatro</span>Atención especial a los márgenes</h4>
+          <p>Lucas eleva a grupos que el mundo antiguo solía pasar por alto: los pobres, las mujeres, los oprimidos. El Magníficat de María (cap. 1), la profetisa Ana (cap. 2), María y Marta (cap. 10). Sus bienaventuranzas bendicen a «los pobres» —no a los «pobres en espíritu» de Mateo—; la parábola de Lázaro y el rico (cap. 16) advierte contra la riqueza sin compasión; y Jesús come con recaudadores y pecadores, como Zaqueo (cap. 19). En los sinópticos, más o menos uno de cada diez versículos habla de ricos y pobres; en Lucas, uno de cada siete.</p>
+        </div>
+
+        <div class="facet olive">
+          <h4><span class="kicker">Cinco</span>Parábolas irrepetibles</h4>
+          <p>Aquí viven el hijo pródigo, el buen samaritano, el rico insensato, el fariseo y el recaudador de impuestos: la misericordia de Dios, el arrepentimiento humano y el llamado a la compasión en formas narrativas vívidas.</p>
+        </div>
+
+        <div class="facet amber">
+          <h4><span class="kicker">Seis</span>El motivo del viaje</h4>
+          <p>Una de las secciones centrales del evangelio abarca diez capítulos: el viaje de Jesús a Jerusalén. El camino no es telón de fondo: es teología.</p>
+        </div>
+
+        <div class="facet plum">
+          <h4><span class="kicker">Siete</span>Oración, alegría y Espíritu Santo</h4>
+          <p>Lucas muestra a Jesús orando más que ningún otro evangelio —once veces, frente a las cinco de Mateo y las cuatro de Marcos y de Juan—. Los temas de la alegría y la alabanza saturan el libro. Y el Espíritu Santo está activo desde el primer capítulo… y seguirá moviéndose con poder en la secuela, los Hechos.</p>
+        </div>
+      </div></div></div>
+    </section>
+
+    <!-- ===== IV ===== -->
+    <section class="persiana" id="s4" data-open="false">
+      <button class="lever" aria-expanded="false">
+        <span class="roman">IV</span>
+        <span class="title">El Espíritu y Jesús (Lucas 1–4)</span>
+        <span class="pull"><span></span><span></span><span></span></span>
+      </button>
+      <div class="blinds"><div class="blinds-inner"><div class="panel-body">
+        <p class="scripture">En los primeros cuatro capítulos el Espíritu está en todas partes: concibe, llena, impulsa la alabanza, desciende, conduce al desierto y reviste de poder. Lucas lo cuenta con una arquitectura de relatos paralelos: anuncios, nacimientos y celebraciones de Juan y de Jesús, en espejo.</p>
+
+        <p><strong>Zacarías y Elisabet.</strong> «Ambos eran justos ante Dios, y vivían intachablemente según los mandamientos del Señor… pero no tenían hijos, porque Elisabet era estéril, y los dos eran de edad avanzada.» Es una sola línea, pero quien haya anhelado hijos sin poder tenerlos entiende su peso. Y el texto insiste: su esterilidad no era reflejo de su carácter ni de cómo Dios los veía —eran intachables—. En una situación sin esperanza es tentador leer la espera como castigo (la propia Elisabet dirá después: «el Señor ha quitado mi desgracia»), pero Dios estaba usando la temporada estéril para un propósito especial. A Dios le encanta usar las situaciones sin salida, porque requieren su intervención —y la del Espíritu— para producir el milagro. Gabriel anuncia a Juan: «tendrás gozo y alegría, y muchos se regocijarán de su nacimiento… quedará lleno del Espíritu Santo aun antes de nacer» (1:14–15). El gozo es mayor precisamente por la temporada que lo precedió.</p>
+
+        <p><strong>La anunciación a María.</strong> Seis meses después, Gabriel visita Nazaret. «¿Cómo será esto, pues no conozco varón?» «El Espíritu Santo vendrá sobre ti, y el poder del Altísimo te cubrirá con su sombra; por eso, el que va a nacer será santo y será llamado Hijo de Dios» (1:34–35). Gabriel aparece en ambas visiones; el Espíritu obra en ambas situaciones: llena a Juan antes de nacer y hace concebir a María milagrosamente. Desde el arranque, la presencia de Dios está ahí mismo.</p>
+
+        <p><strong>La alabanza inspirada por el Espíritu.</strong> Los milagros llevan a la adoración. Cuando María entra en casa de Elisabet: «la criatura saltó de alegría en mi vientre», y Elisabet —movida por el Espíritu— exclama: «Bendita tú entre las mujeres, y bendito el fruto de tu vientre». Zacarías, mudo hasta escribir «su nombre es Juan», recupera el habla, queda lleno del Espíritu y profetiza: «Bendito sea el Señor, Dios de Israel, porque ha visitado y redimido a su pueblo, y nos ha levantado un poderoso Salvador en la casa de David, su siervo». El Espíritu revela los propósitos de Dios y mueve a las personas a la alabanza.</p>
+
+        <p><strong>Los pastores (cap. 2).</strong> Jesús nace lejos de casa —el censo, el pesebre, sin lugar en la posada— y el ángel se planta junto a unos pastores en el campo: «la gloria del Señor los envolvió en su luz, y tuvieron mucho miedo. Pero el ángel les dijo: “No teman: les traigo una buena noticia de gran alegría para todo el pueblo. Hoy les ha nacido, en la ciudad de David, un Salvador, que es el Mesías, el Señor”». El anuncio no va a la alta sociedad, sino a trabajadores pobres en los bordes de la ciudad. Encaja con todo el relato de Lucas: los de los márgenes no son olvidados; son <em>buscados</em> por el ángel.</p>
+
+        <p><strong>Simeón y Ana.</strong> Cuando llevan a Jesús al templo para dedicarlo, el Espíritu —que le había prometido a Simeón que vería al Mesías antes de morir— lo guía hasta María y José. Simeón toma al niño en brazos y alaba a Dios: «Ahora, Señor, despides a tu siervo en paz, conforme a tu palabra, porque mis ojos han visto tu salvación». Y la profetisa Ana, una viuda de ochenta y cuatro años cuya vida entera era orar en el templo, se acerca también a alabar a Dios y a hablar del niño. No se nos cuenta mucho de ellos, pero su caminar cercano con Dios los hizo sensibles a los impulsos del Espíritu — y ese instante los dejó inmortalizados en la Escritura.</p>
+
+        <div class="facet olive">
+          <h4>El bautismo · Lucas 3</h4>
+          <p>Juan lo anuncia: «viene uno más poderoso que yo, a quien no merezco desatarle la correa de sus sandalias; él los bautizará con Espíritu Santo y fuego». El bautismo en el Espíritu habla de renovación interior, de unión con Dios, del poder que se derrama; la imagen del fuego, de un proceso de purificación —y del juicio— que el ministerio de Jesús también traerá. Ambas cosas se verán.</p>
+          <p>Y en el bautismo mismo: «mientras oraba, el cielo se abrió y el Espíritu Santo descendió sobre él en forma corporal, como una paloma, y vino una voz del cielo: “Tú eres mi Hijo amado; en ti me complazco”». Un momento trinitario: el Padre que habla, el Espíritu que desciende, el Hijo encarnado — juntos en un mismo espacio.</p>
+        </div>
+
+        <div class="facet terra">
+          <h4>El desierto · Lucas 4</h4>
+          <p>«Jesús, lleno del Espíritu Santo, volvió del Jordán y fue llevado por el Espíritu al desierto.» No fue solo, y no lo llevó Satanás: lo llevó el <strong>Espíritu</strong>. Dios hace su mejor obra —su obra de formación— en el desierto: nos lleva allí para formarnos, prepararnos, ayudarnos a verlo, despojarnos de lo que estorba, hacer que escuchemos de nuevo. Satanás jugó su papel en la historia, pero la intención era de Dios: Jesús necesitaba esa formación. Hebreos lo confirma: también él «aprendió la obediencia por lo que padeció» — a veces olvidamos que Jesús tuvo que ser formado igual que nosotros.</p>
+          <p>Y tras los cuarenta días y las batallas con Satanás: «Jesús volvió a Galilea <em>en el poder del Espíritu</em>, y su fama se extendió por toda la región; enseñaba en las sinagogas y todos lo alababan». El Espíritu lo lleva, lo forma, lo purifica — y lo devuelve revestido de poder.</p>
+        </div>
+
+        <div class="refs">
+          Pasajes (DHH):
+          <a href="https://www.biblegateway.com/passage/?search=Lucas+1&version=DHH" target="_blank" rel="noopener">Lucas 1</a>,
+          <a href="https://www.biblegateway.com/passage/?search=Lucas+2&version=DHH" target="_blank" rel="noopener">Lucas 2</a>,
+          <a href="https://www.biblegateway.com/passage/?search=Lucas+3&version=DHH" target="_blank" rel="noopener">Lucas 3</a>,
+          <a href="https://www.biblegateway.com/passage/?search=Lucas+4&version=DHH" target="_blank" rel="noopener">Lucas 4</a>,
+          <a href="https://www.biblegateway.com/passage/?search=Hebreos+5%3A8&version=DHH" target="_blank" rel="noopener">Hebreos 5:8</a>.
+        </div>
+      </div></div></div>
+    </section>
+
+    <!-- ===== V ===== -->
+    <section class="persiana" id="s5" data-open="false">
+      <button class="lever" aria-expanded="false">
+        <span class="roman">V</span>
+        <span class="title">La espiritualidad de Lucas: siete rasgos</span>
+        <span class="pull"><span></span><span></span><span></span></span>
+      </button>
+      <div class="blinds"><div class="blinds-inner"><div class="panel-body">
+        <p>¿Qué nos enseña Lucas sobre cómo vivir en respuesta a su historia? Siete rasgos prominentes.</p>
+
+        <div class="facet olive">
+          <h4><span class="kicker">Rasgo 1</span>La alegría</h4>
+          <p>Es el ánimo dominante; a Lucas se le llama a veces «el evangelio de la alegría». De las 326 veces que el Nuevo Testamento usa la palabra, 53 están en Lucas — casi una sexta parte. La alegría domina los dos relatos de nacimiento; la criatura salta de gozo en el vientre; el ángel trae a los pastores «una gran alegría»; los cantos de Zacarías y el Magníficat son alabanza pura. Habrá gozo en el cielo por un pecador que se arrepiente (cap. 15: la oveja, la moneda, el hijo); las multitudes se alegran cuando el cojo camina y el oprimido queda libre; los setenta y dos vuelven de la misión con gozo. Y lo más desafiante: «cuando los persigan por mi causa… alégrense y salten de gozo, porque su recompensa es grande en el cielo; así trataron sus antepasados a los profetas». La alegría no es la felicidad de las circunstancias: es más honda. Nace de la conexión con el Espíritu y con la historia de Dios — hasta la persecución te inscribe en esa realidad espiritual histórica que debería alegrarte.</p>
+        </div>
+
+        <div class="facet amber">
+          <h4><span class="kicker">Rasgo 2</span>El arrepentimiento</h4>
+          <p>Los otros evangelios lo mencionan, pero aquí es prominentísimo: <em>metanoia</em> entra catorce veces en Lucas, casi siempre unida al perdón. Juntos, arrepentimiento y perdón son «la suma de la buena noticia». Se ve en las historias de conversión —la pecadora que unge a Jesús, el hijo perdido, Zaqueo— y hasta en la cruz: los cuatro evangelios mencionan a los crucificados junto a Jesús, pero solo Lucas cuenta que uno de ellos se arrepintió y recibió perdón. El final del libro lo sella (24:47): «que se predique en su nombre el arrepentimiento y el perdón de pecados a todas las naciones, comenzando desde Jerusalén».</p>
+        </div>
+
+        <div class="facet plum">
+          <h4><span class="kicker">Rasgo 3</span>La fe</h4>
+          <p>Opera en dos espacios. <strong>Fe para la salvación</strong>, en la conversión: en el sembrador de Lucas, el diablo quita la semilla «para que no crean y se salven»; a la mujer que sangraba: «tu fe te ha sanado»; ante la hija muerta del jefe de la sinagoga: «no temas; cree solamente, y será salva»; al leproso agradecido: «tu fe te ha sanado». Y el reverso, camino de Emaús: «¡qué torpes son ustedes y qué lentos de corazón para creer todo lo que dijeron los profetas!». Y <strong>fe para continuar el camino</strong>: en los suelos de Lucas la fe atraviesa cada etapa — los de la roca «creen por un tiempo, pero en la hora de la prueba se apartan»; en los espinos la fe sigue su marcha hasta que la ahogan; la buena tierra «retiene la palabra con un corazón bueno y da fruto con perseverancia». Por eso Jesús preguntará: «cuando venga el Hijo del hombre, ¿encontrará fe en la tierra?» — justo después de enseñar que «debían orar siempre, sin desanimarse».</p>
+        </div>
+
+        <div class="facet terra">
+          <h4><span class="kicker">Rasgo 4</span>La oración</h4>
+          <p>Jesús es hombre de oración en Lucas más que en ningún otro evangelio, y ora antes de cada momento decisivo: en su bautismo, mientras el Espíritu desciende; toda una noche antes de elegir a los doce (cap. 6); a solas antes de la confesión de Pedro (cap. 9); en el monte de la Transfiguración, cuando la gloria se revela; los discípulos lo ven orar y le piden «Señor, enséñanos a orar» (cap. 11); en Getsemaní, la agonía con el sudor «como gotas de sangre» — detalle exclusivo de Lucas, donde quizá asoma su ojo de médico—; y en la cruz: «Padre, perdónalos». Once escenas de oración: el doble que en cualquier otro evangelio.</p>
+        </div>
+
+        <div class="facet olive">
+          <h4><span class="kicker">Rasgo 5</span>La presencia de Dios</h4>
+          <p>La inmanencia —Dios con y entre su pueblo— se demuestra por la obra del Espíritu; por el <em>nombre</em> de Jesús: en Lucas y Hechos, sanidades, exorcismos y la salvación misma se dan «en el nombre de Jesús» («Señor, hasta los demonios se nos someten en tu nombre», dicen los setenta y dos al volver con gozo); por la predicación; y por la vida de los seguidores de Jesús, que hacen visible esa presencia.</p>
+        </div>
+
+        <div class="facet amber">
+          <h4><span class="kicker">Rasgo 6</span>El testimonio</h4>
+          <p>Lucas y Hechos están escritos <em>como testimonio</em>, y el prólogo lo declara: «me ha parecido bien escribirte un relato ordenado, excelentísimo Teófilo, para que conozcas bien la verdad de lo que te han enseñado». Hay veinte relatos de milagros en Lucas y otros veinte en Hechos. La misión es central al testimonio: Jesús envía a los doce (cap. 9) y luego a los setenta y dos (cap. 10). Y el libro de los Hechos entero es el testimonio de Jesús extendiéndose por el mundo antiguo.</p>
+        </div>
+
+        <div class="facet plum">
+          <h4><span class="kicker">Rasgo 7</span>El camino</h4>
+          <p>El viaje está en todas partes en Lucas–Hechos — el camino era un motivo incluso de la literatura griega, la Odisea—. Discípulos camino de Emaús, el etíope camino de Gaza, Pablo camino de Damasco. En Hechos, al movimiento cristiano primitivo se le llama «el Camino» seis veces. Y el corazón del evangelio son diez capítulos de Jesús de camino a Jerusalén, que arrancan en 9:51: «cuando se acercaba el tiempo en que había de ser llevado, afirmó su rostro para ir a Jerusalén». Afirmar el rostro es determinación: fijar el rumbo, volverse hacia, poner los ojos. Jesús va a Jerusalén — y sabe por qué.</p>
+        </div>
+
+        <div class="refs">
+          Pasajes (DHH):
+          <a href="https://www.biblegateway.com/passage/?search=Lucas+8%3A4-15&version=DHH" target="_blank" rel="noopener">Lucas 8:4–15</a>,
+          <a href="https://www.biblegateway.com/passage/?search=Lucas+9%3A51&version=DHH" target="_blank" rel="noopener">Lucas 9:51</a>,
+          <a href="https://www.biblegateway.com/passage/?search=Lucas+15&version=DHH" target="_blank" rel="noopener">Lucas 15</a>,
+          <a href="https://www.biblegateway.com/passage/?search=Lucas+18%3A1-8&version=DHH" target="_blank" rel="noopener">Lucas 18:1–8</a>,
+          <a href="https://www.biblegateway.com/passage/?search=Lucas+24&version=DHH" target="_blank" rel="noopener">Lucas 24</a>.
+        </div>
+      </div></div></div>
+    </section>
+
+    <!-- ===== VI ===== -->
+    <section class="persiana" id="s6" data-open="false">
+      <button class="lever" aria-expanded="false">
+        <span class="roman">VI</span>
+        <span class="title">El hilo del argumento</span>
+        <span class="pull"><span></span><span></span><span></span></span>
+      </button>
+      <div class="blinds"><div class="blinds-inner"><div class="panel-body">
+        <p>El razonamiento avanza del marco a la agencia, y de la agencia a la respuesta.</p>
+        <ul class="clean">
+          <li><strong>Los comienzos anuncian la dirección.</strong> Mateo abre con la genealogía (continuidad de Israel, nuevo Moisés); Marcos, con un rescate (nuevo Éxodo); Lucas abre con ángeles y Espíritu: su tema será la mano sobrenatural de Dios en la historia.</li>
+          <li><strong>Del marco a la agencia.</strong> Establecido el marco —tres periodos, Imperio romano, prólogo de historiador—, el relato muestra quién lo impulsa: en los capítulos 1–4, cada giro decisivo —concepción, nacimiento, alabanza, bautismo, desierto, regreso en poder— lo facilita el Espíritu.</li>
+          <li><strong>El supuesto de fondo: Dios usa lo imposible.</strong> De la esterilidad de Elisabet a la virginidad de María y al desierto de Jesús, el relato asume que Dios escoge situaciones sin salida porque exigen su intervención — y la revelan.</li>
+          <li><strong>La inmanencia pide respuesta.</strong> Si Dios está activamente presente —ángeles que anuncian, Espíritu que concibe y conduce—, el lector no puede quedarse de espectador.</li>
+          <li><strong>La respuesta es una espiritualidad.</strong> De ahí los siete rasgos —alegría, arrepentimiento, fe, oración, presencia, testimonio y camino—: no son ideas sueltas, sino el retrato de la vida que sigue a este Jesús.</li>
+        </ul>
+      </div></div></div>
+    </section>
+
+    <!-- ===== VII ===== -->
+    <section class="persiana" id="s7" data-open="false">
+      <button class="lever" aria-expanded="false">
+        <span class="roman">VII</span>
+        <span class="title">Lo que queda grabado</span>
+        <span class="pull"><span></span><span></span><span></span></span>
+      </button>
+      <div class="blinds"><div class="blinds-inner"><div class="panel-body">
+        <ul class="clean">
+          <li><strong>Uno de cada siete.</strong> En los sinópticos, cerca de uno de cada diez versículos habla de ricos y pobres; en Lucas, uno de cada siete (Jim Wallis, <em>The Call to Conversion</em>). Si recortaras del evangelio las secciones sobre los pobres, el libro se caería a pedazos.</li>
+          <li><strong>53 de 326.</strong> Casi una sexta parte de las menciones de la alegría en todo el Nuevo Testamento están en Lucas: «el evangelio de la alegría».</li>
+          <li><strong>Once oraciones.</strong> Jesús ora once veces en Lucas — Mateo registra cinco; Marcos y Juan, cuatro cada uno.</li>
+          <li><strong>Metanoia, catorce veces.</strong> Y solo Lucas registra al ladrón arrepentido y perdonado en la cruz.</li>
+          <li><strong>«El Camino», seis veces.</strong> Así llama Hechos al movimiento cristiano primitivo: la fe como viaje, no como llegada.</li>
+          <li><strong>El Espíritu, no Satanás.</strong> Fue el Espíritu quien llevó a Jesús al desierto: la formación fue intención de Dios.</li>
+          <li><strong>Bienaventurados «los pobres».</strong> Lucas bendice a los pobres a secas — no «pobres en espíritu», como Mateo.</li>
+          <li><strong>Teófilo, doble sentido.</strong> El nombre significa «amigo de Dios». Tras dos mil años de debate, la mayoría de los estudiosos ve una persona concreta —el «excelentísimo» sugiere un oficial—, pero el nombre funciona en ambos registros: el libro se dirige también a todo el que desee ser amigo de Dios.</li>
+          <li><strong>Comienzos y finales.</strong> En los evangelios, los comienzos y los finales dicen algo: la gran comisión de Mateo 28, el «no-final» de Marcos, y el final de Lucas — arrepentimiento y perdón a todas las naciones.</li>
+          <li><strong>Hasta Jesús fue formado.</strong> «Aprendió la obediencia por lo que padeció» (Hebreos): la formación en el sufrimiento no es la excepción, ni siquiera para él.</li>
+        </ul>
+      </div></div></div>
+    </section>
+
+    <!-- ===== VIII ===== -->
+    <section class="persiana" id="s8" data-open="false">
+      <button class="lever" aria-expanded="false">
+        <span class="roman">VIII</span>
+        <span class="title">Las ilustraciones</span>
+        <span class="pull"><span></span><span></span><span></span></span>
+      </button>
+      <div class="blinds"><div class="blinds-inner"><div class="panel-body">
+        <div class="facet olive">
+          <h4>La planta del nuevo pacto</h4>
+          <p>Gilgamesh —la planta «del Antiguo Testamento» que acompañaba el set del pódcast— se quedó atrás en una mudanza de Harvard a San Antonio, y ahora se busca una sustituta con nombre neotestamentario. Una pequeña parábola doméstica del paso del Antiguo al Nuevo Testamento con que se abre la temporada de Lucas.</p>
+        </div>
+        <div class="facet amber">
+          <h4>La canción de Eden</h4>
+          <p>Una nieta de cuatro años, hija de un músico, compuso una canción sobre el buen samaritano: percute dos barras de pegamento mientras su papá toca la guitarra, y canta que «esta gente no lo ayudó, y vino el buen samaritano y lo puso en el hotel. ¡Hurra!». Las parábolas de Lucas son tan vívidas que hasta una niña pequeña las convierte en canción.</p>
+        </div>
+        <div class="facet plum">
+          <h4>Linus y Charlie Brown</h4>
+          <p>El especial navideño de Peanuts —Linus recitando el anuncio del ángel a los pastores— muestra el poder cultural de Lucas 2: «la gloria del Señor los envolvió en su luz… no teman: les traigo una buena noticia de gran alegría».</p>
+        </div>
+        <div class="facet terra">
+          <h4>El ojo del médico</h4>
+          <p>Solo Lucas registra en Getsemaní el sudor de Jesús «como gotas de sangre»: el detalle clínico y emocional que delata el oficio del autor.</p>
+        </div>
+        <div class="facet olive">
+          <h4>El camino de la Odisea</h4>
+          <p>El viaje era un motivo mayor de la literatura griega —la Odisea— y de su modo de contar la historia. Lucas lo hace suyo: caminos a Emaús, a Gaza, a Damasco… y diez capítulos de camino a Jerusalén.</p>
+        </div>
+      </div></div></div>
+    </section>
+
+    <!-- ===== IX ===== -->
+    <section class="persiana" id="s9" data-open="false">
+      <button class="lever" aria-expanded="false">
+        <span class="roman">IX</span>
+        <span class="title">Qué hacer con esto</span>
+        <span class="pull"><span></span><span></span><span></span></span>
+      </button>
+      <div class="blinds"><div class="blinds-inner"><div class="panel-body">
+        <ul class="clean">
+          <li><strong>Releer la espera.</strong> La esterilidad de una temporada no dice nada del carácter ni del favor de Dios: Zacarías y Elisabet eran intachables. La espera puede estar preparando un propósito especial.</li>
+          <li><strong>Dejarse llevar al desierto.</strong> No todo sufrimiento es obra del enemigo: el Espíritu también conduce a espacios de formación. Entrar en ellos dispuestos a que Dios despoje, prepare y enseñe a escuchar de nuevo.</li>
+          <li><strong>Elegir la alegría honda.</strong> Distinguirla de la felicidad: anclarla en la conexión con el Espíritu y con la historia de Dios, hasta el punto de «saltar de gozo» aun en la persecución.</li>
+          <li><strong>Orar como Jesús.</strong> Antes de las decisiones grandes —una noche entera antes de elegir a los doce— y «siempre, sin desanimarse», porque la oración sostiene la fe del camino.</li>
+          <li><strong>Cultivar la sensibilidad de Simeón y Ana.</strong> El caminar cercano con Dios afina el oído a los impulsos del Espíritu.</li>
+          <li><strong>Retener con corazón bueno.</strong> Como la buena tierra del sembrador: aferrarse a la palabra y dar fruto con perseverancia.</li>
+          <li><strong>Ser testigos.</strong> Como Lucas con Teófilo: contar el relato ordenado para que otros «conozcan bien la verdad» de lo que se les ha enseñado.</li>
+        </ul>
+      </div></div></div>
+    </section>
+
+    <!-- ===== X ===== -->
+    <section class="persiana" id="s10" data-open="false">
+      <button class="lever" aria-expanded="false">
+        <span class="roman">X</span>
+        <span class="title">Conclusión y preguntas abiertas</span>
+        <span class="pull"><span></span><span></span><span></span></span>
+      </button>
+      <div class="blinds"><div class="blinds-inner"><div class="panel-body">
+        <p>Lucas presenta la venida de Jesús como la obra inmediata de Dios: ángeles que anuncian, un Espíritu que concibe, llena, impulsa la alabanza, desciende como paloma, conduce al desierto y reviste de poder. Y la vida que responde a esa historia tiene rasgos concretos: alegría, arrepentimiento, fe, oración, presencia, testimonio y camino. Es un evangelio que empieza con dos nacimientos imposibles y termina enviando «el arrepentimiento y el perdón de pecados a todas las naciones».</p>
+        <p>Quedan puertas abiertas, a propósito:</p>
+        <ul class="clean">
+          <li><strong>Teófilo.</strong> ¿Una persona concreta o todos los «amigos de Dios»? La mayoría de los estudiosos dice que una persona, pero el doble sentido sigue vivo después de dos mil años — y quizá sea deliberado.</li>
+          <li><strong>El viaje.</strong> Los diez capítulos del camino a Jerusalén quedan por recorrer — tres lecciones enteras los esperan; y antes, la misión: el envío de los doce y de los setenta y dos.</li>
+          <li><strong>El desierto de hoy.</strong> ¿Qué papel juega el Espíritu en llevarnos a nosotros a temporadas de desierto? La pregunta queda planteada para su propia conversación.</li>
+        </ul>
+      </div></div></div>
+    </section>
+
+    <div class="coda">
+      El Dios de Lucas no espera a que subamos: baja él. Y a los que va encontrando —una estéril, una virgen, unos pastores, una viuda de ochenta y cuatro años, un ladrón en una cruz— los deja a todos cantando.
+      <span class="signoff">Café con Claude · Lucas 1–4</span>
+    </div>
+
+  </main>
+</div>
+
+<script>
+/* ---- 1 · persianas (acordeón con grid-rows) ---- */
+document.querySelectorAll('.persiana > .lever').forEach(function(lever){
+  lever.addEventListener('click', function(){
+    var p = lever.closest('.persiana');
+    var open = p.getAttribute('data-open') === 'true';
+    p.setAttribute('data-open', String(!open));
+    lever.setAttribute('aria-expanded', String(!open));
+  });
+});
+
+/* ---- 2 · índice: abre la persiana y baja a ella ---- */
+document.querySelectorAll('#toc a').forEach(function(link){
+  link.addEventListener('click', function(){
+    var id = link.getAttribute('data-target');
+    var p = document.getElementById(id);
+    if(p){
+      p.setAttribute('data-open','true');
+      p.querySelector('.lever').setAttribute('aria-expanded','true');
+      p.scrollIntoView({behavior:'smooth', block:'start'});
+    }
+    document.body.classList.remove('menu-open'); /* cierra menú móvil */
+  });
+});
+
+/* ---- 3 · scroll-spy del riel ---- */
+var links = Array.prototype.slice.call(document.querySelectorAll('#toc a'));
+var spy = new IntersectionObserver(function(entries){
+  entries.forEach(function(e){
+    if(e.isIntersecting){
+      var id = e.target.id;
+      links.forEach(function(l){
+        l.classList.toggle('active', l.getAttribute('data-target') === id);
+      });
+    }
+  });
+},{rootMargin:'-15% 0px -70% 0px', threshold:0});
+document.querySelectorAll('.persiana').forEach(function(s){spy.observe(s);});
+
+/* ---- 4 · barra de progreso ---- */
+var bar = document.getElementById('progress');
+function onScroll(){
+  var h = document.documentElement;
+  var scrolled = h.scrollTop / (h.scrollHeight - h.clientHeight);
+  bar.style.width = (scrolled*100) + '%';
+}
+window.addEventListener('scroll', onScroll, {passive:true});
+onScroll();
+
+/* ---- 5 · tamaño de letra ---- */
+var size = 1.16, root = document.documentElement;
+document.getElementById('fplus').addEventListener('click',function(){
+  size = Math.min(size + .06, 1.44); root.style.setProperty('--fs-base', size+'rem');
+});
+document.getElementById('fminus').addEventListener('click',function(){
+  size = Math.max(size - .06, 0.98); root.style.setProperty('--fs-base', size+'rem');
+});
+
+/* ---- 6 · menú móvil ---- */
+var ham = document.getElementById('hamburger');
+var scrim = document.getElementById('scrim');
+ham.addEventListener('click', function(){ document.body.classList.toggle('menu-open'); });
+scrim.addEventListener('click', function(){ document.body.classList.remove('menu-open'); });
+</script>
+</body>
+</html>
