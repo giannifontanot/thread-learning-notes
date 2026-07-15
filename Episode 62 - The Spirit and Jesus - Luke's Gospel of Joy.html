@@ -64,7 +64,7 @@ body{
 
 /* ---- riel lateral ---- */
 .rail{
-  position:sticky;top:0;align-self:start;height:100vh;
+  position:sticky;top:0;align-self:start;
   padding:2.6rem 1.6rem 2rem 2rem;
   display:flex;flex-direction:column;
   border-right:1px solid var(--rule);
@@ -79,7 +79,7 @@ body{
   font-size:.82rem;color:var(--ink-soft);font-style:italic;
   margin-bottom:1.9rem;line-height:1.4;
 }
-nav.toc{flex:1;overflow-y:auto;margin-bottom:1.2rem}
+nav.toc{margin-bottom:1.2rem}
 nav.toc a{
   display:flex;gap:.7rem;align-items:baseline;
   text-decoration:none;color:var(--ink-soft);
@@ -301,7 +301,7 @@ body.menu-open .hamburger span::after{top:0;transform:rotate(-45deg)}
   .wrap{grid-template-columns:1fr}
   .hamburger{display:flex}
   .rail{
-    position:fixed;top:0;left:0;z-index:50;width:280px;
+    position:fixed;top:0;left:0;z-index:50;width:280px;height:100vh;overflow-y:auto;
     background:var(--cream);
     transform:translateX(-100%);transition:transform .32s ease;
     box-shadow:4px 0 24px rgba(45,38,29,.16);
