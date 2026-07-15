@@ -101,15 +101,6 @@ nav.toc a.active .num{color:var(--terracotta)}
   border-top:1px solid var(--rule);padding-top:1.1rem;
   display:flex;flex-direction:column;gap:.85rem;
 }
-.fontctl{display:flex;align-items:center;gap:.55rem}
-.fontctl span{font-size:.74rem;color:var(--ink-soft);letter-spacing:.08em;text-transform:uppercase}
-.fontctl button{
-  font-family:var(--display);
-  width:30px;height:30px;border:1px solid var(--rule);
-  background:var(--paper);color:var(--ink);border-radius:50%;
-  cursor:pointer;font-size:.9rem;line-height:1;transition:all .18s ease;
-}
-.fontctl button:hover{border-color:var(--terracotta);color:var(--terracotta)}
 .rail-tools a.home{
   font-size:.82rem;color:var(--ink-soft);text-decoration:none;
   letter-spacing:.02em;transition:color .2s ease;
@@ -357,11 +348,6 @@ body.menu-open .hamburger span::after{top:0;transform:rotate(-45deg)}
     </nav>
 
     <div class="rail-tools">
-      <div class="fontctl">
-        <span>Texto</span>
-        <button id="fminus" aria-label="Reducir tamaño de letra">A−</button>
-        <button id="fplus" aria-label="Aumentar tamaño de letra">A+</button>
-      </div>
       <a class="home" href="index.html">← Volver a la sala</a>
     </div>
   </aside>
@@ -668,16 +654,7 @@ function onScroll(){
 window.addEventListener('scroll', onScroll, {passive:true});
 onScroll();
 
-/* ---- 5 · tamaño de letra ---- */
-var size = 1.16, root = document.documentElement;
-document.getElementById('fplus').addEventListener('click',function(){
-  size = Math.min(size + .06, 1.44); root.style.setProperty('--fs-base', size+'rem');
-});
-document.getElementById('fminus').addEventListener('click',function(){
-  size = Math.max(size - .06, 0.98); root.style.setProperty('--fs-base', size+'rem');
-});
-
-/* ---- 6 · menú móvil ---- */
+/* ---- 5 · menú móvil ---- */
 var ham = document.getElementById('hamburger');
 var scrim = document.getElementById('scrim');
 ham.addEventListener('click', function(){ document.body.classList.toggle('menu-open'); });
