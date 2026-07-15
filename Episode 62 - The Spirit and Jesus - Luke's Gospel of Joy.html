@@ -64,10 +64,13 @@ body{
 
 /* ---- riel lateral ---- */
 .rail{
+  position:sticky;top:0;align-self:start;
+  height:100vh;overflow-y:auto;scrollbar-width:none;
   padding:2.6rem 1.6rem 2rem 2rem;
   display:flex;flex-direction:column;
   border-right:1px solid var(--rule);
 }
+.rail::-webkit-scrollbar{display:none}
 .rail .mark{
   font-family:var(--display);
   font-weight:500;font-size:.78rem;letter-spacing:.16em;
