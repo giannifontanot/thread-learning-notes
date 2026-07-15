@@ -1,0 +1,694 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Un reino sin bordes — La misión de Jesús en el Evangelio de Lucas</title>
+
+<!-- ===================================================================
+  CAFÉ CON CLAUDE · "Un reino sin bordes"
+  La misión de Jesús · Lucas 4–8 · el episodio contado desde su centro
+  Página autocontenida · persianas (acordeones) para lectura pausada
+  Tipografía: Fraunces (display) + Spectral (cuerpo)
+  ==================================================================== -->
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400&family=Spectral:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --terracotta:#b04e29;
+  --amber:#cf9136;
+  --olive:#6c7240;
+  --plum:#6c3a4f;
+  --ink:#2d261d;
+  --cream:#f2e8d6;
+  --paper:#f7efe0;
+  --paper-deep:#ece0c9;
+  --rule:#d8c7a6;
+  --ink-soft:#5b5142;
+
+  --fs-base:1.16rem;
+  --display:"Fraunces",Georgia,serif;
+  --body:"Spectral",Georgia,serif;
+}
+
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  font-family:var(--body);
+  font-size:var(--fs-base);
+  line-height:1.72;
+  color:var(--ink);
+  background:var(--cream);
+  -webkit-font-smoothing:antialiased;
+  background-image:
+    radial-gradient(circle at 18% 12%, rgba(176,78,41,.035), transparent 45%),
+    radial-gradient(circle at 85% 78%, rgba(108,114,64,.045), transparent 50%);
+}
+
+/* ---- barra de progreso de lectura ---- */
+#progress{
+  position:fixed;top:0;left:0;height:3px;width:0%;
+  background:linear-gradient(90deg,var(--terracotta),var(--amber));
+  z-index:60;transition:width .12s ease-out;
+}
+
+/* ---- estructura ---- */
+.wrap{
+  display:grid;
+  grid-template-columns:268px minmax(0,1fr);
+  max-width:1180px;margin:0 auto;
+}
+
+/* ---- riel lateral ---- */
+.rail{
+  position:sticky;top:0;align-self:start;height:100vh;
+  padding:2.6rem 1.6rem 2rem 2rem;
+  display:flex;flex-direction:column;
+  border-right:1px solid var(--rule);
+}
+.rail .mark{
+  font-family:var(--display);
+  font-weight:500;font-size:.78rem;letter-spacing:.16em;
+  text-transform:uppercase;color:var(--terracotta);
+  margin-bottom:.2rem;
+}
+.rail .mark-sub{
+  font-size:.82rem;color:var(--ink-soft);font-style:italic;
+  margin-bottom:1.9rem;line-height:1.4;
+}
+nav.toc{flex:1;overflow-y:auto;margin-bottom:1.2rem}
+nav.toc a{
+  display:flex;gap:.7rem;align-items:baseline;
+  text-decoration:none;color:var(--ink-soft);
+  padding:.32rem 0;font-size:.92rem;line-height:1.32;
+  border:none;background:none;cursor:pointer;text-align:left;width:100%;
+  transition:color .2s ease;
+}
+nav.toc a .num{
+  font-family:var(--display);font-variant:small-caps;
+  font-size:.74rem;letter-spacing:.05em;
+  color:var(--amber);min-width:2.1em;flex-shrink:0;
+  font-feature-settings:"smcp";
+}
+nav.toc a:hover{color:var(--ink)}
+nav.toc a.active{color:var(--terracotta)}
+nav.toc a.active .num{color:var(--terracotta)}
+
+.rail-tools{
+  border-top:1px solid var(--rule);padding-top:1.1rem;
+  display:flex;flex-direction:column;gap:.85rem;
+}
+.fontctl{display:flex;align-items:center;gap:.55rem}
+.fontctl span{font-size:.74rem;color:var(--ink-soft);letter-spacing:.08em;text-transform:uppercase}
+.fontctl button{
+  font-family:var(--display);
+  width:30px;height:30px;border:1px solid var(--rule);
+  background:var(--paper);color:var(--ink);border-radius:50%;
+  cursor:pointer;font-size:.9rem;line-height:1;transition:all .18s ease;
+}
+.fontctl button:hover{border-color:var(--terracotta);color:var(--terracotta)}
+.rail-tools a.home{
+  font-size:.82rem;color:var(--ink-soft);text-decoration:none;
+  letter-spacing:.02em;transition:color .2s ease;
+}
+.rail-tools a.home:hover{color:var(--terracotta)}
+
+/* ---- contenido ---- */
+main{padding:3.4rem 4.2rem 6rem;max-width:760px}
+
+.hero{margin-bottom:3rem}
+.hero .eyebrow{
+  font-family:var(--display);font-variant:small-caps;
+  letter-spacing:.13em;color:var(--olive);
+  font-size:.92rem;margin-bottom:.9rem;
+}
+.hero h1{
+  font-family:var(--display);
+  font-weight:400;font-size:clamp(2.5rem,5.5vw,3.7rem);
+  line-height:1.04;letter-spacing:-.015em;color:var(--ink);
+  margin-bottom:1.1rem;
+}
+.hero h1 em{font-style:italic;color:var(--terracotta)}
+.hero .sub{
+  font-size:1.22rem;color:var(--ink-soft);font-style:italic;
+  line-height:1.5;max-width:34em;
+}
+.hero .lede{
+  margin-top:1.7rem;font-size:1.12rem;line-height:1.7;
+  padding-left:1.2rem;border-left:2px solid var(--amber);
+  color:var(--ink);
+}
+
+/* ---- las persianas ---- */
+.slat-rule{
+  display:flex;align-items:center;gap:1rem;
+  margin:0 0 1.6rem;color:var(--ink-soft);
+  font-family:var(--display);font-size:.82rem;
+  letter-spacing:.14em;text-transform:uppercase;
+}
+.slat-rule::before,.slat-rule::after{
+  content:"";flex:1;height:0;border-top:1px solid var(--rule);
+}
+
+.persiana{
+  border-bottom:1px solid var(--rule);
+}
+.persiana:first-of-type{border-top:1px solid var(--rule)}
+
+.persiana > button.lever{
+  width:100%;text-align:left;cursor:pointer;
+  background:none;border:none;color:var(--ink);
+  display:flex;align-items:baseline;gap:1.1rem;
+  padding:1.5rem .3rem 1.5rem 0;
+  font-family:var(--display);transition:color .2s ease;
+}
+.persiana > button.lever:hover{color:var(--terracotta)}
+.persiana > button.lever:focus-visible{
+  outline:2px solid var(--amber);outline-offset:4px;border-radius:3px;
+}
+.lever .roman{
+  font-variant:small-caps;font-feature-settings:"smcp";
+  color:var(--amber);font-size:1rem;letter-spacing:.06em;
+  min-width:2.6em;flex-shrink:0;padding-top:.18em;
+}
+.persiana[data-open="true"] .lever .roman{color:var(--terracotta)}
+.lever .title{
+  flex:1;font-weight:400;font-size:1.42rem;line-height:1.18;
+  letter-spacing:-.01em;
+}
+/* el tirador de la persiana: listones que se pliegan */
+.lever .pull{
+  flex-shrink:0;align-self:center;width:22px;height:14px;
+  position:relative;transition:transform .35s cubic-bezier(.4,0,.2,1);
+}
+.lever .pull span{
+  position:absolute;left:0;right:0;height:2px;border-radius:2px;
+  background:var(--ink-soft);transition:all .35s cubic-bezier(.4,0,.2,1);
+}
+.lever .pull span:nth-child(1){top:0}
+.lever .pull span:nth-child(2){top:6px;opacity:.55}
+.lever .pull span:nth-child(3){top:12px;opacity:.25}
+.persiana[data-open="true"] .lever .pull span{background:var(--terracotta)}
+.persiana[data-open="true"] .lever .pull span:nth-child(1){top:6px;transform:rotate(0)}
+.persiana[data-open="true"] .lever .pull span:nth-child(2){opacity:0;transform:scaleX(.2)}
+.persiana[data-open="true"] .lever .pull span:nth-child(3){top:6px;opacity:1}
+
+/* el cuerpo plegable */
+.persiana .blinds{
+  display:grid;grid-template-rows:0fr;
+  transition:grid-template-rows .42s cubic-bezier(.4,0,.2,1);
+}
+.persiana[data-open="true"] .blinds{grid-template-rows:1fr}
+.persiana .blinds-inner{
+  overflow:hidden;
+  opacity:0;transform:translateY(-4px);
+  transition:opacity .35s ease .05s,transform .35s ease .05s;
+}
+.persiana[data-open="true"] .blinds-inner{opacity:1;transform:none}
+.panel-body{padding:.2rem 0 2.2rem 3.7rem}
+
+@media(max-width:680px){
+  .panel-body{padding-left:0}
+}
+
+.panel-body p{margin-bottom:1.05rem}
+.panel-body p:last-child{margin-bottom:0}
+.panel-body .lead{
+  font-size:1.12rem;color:var(--ink);font-style:italic;
+  color:var(--plum);
+}
+.panel-body strong{font-weight:600;color:var(--ink)}
+.panel-body em{font-style:italic}
+
+/* sub-bloques */
+.facet{
+  margin:1.4rem 0;padding:1rem 1.3rem;
+  background:var(--paper);border-radius:3px;
+  border-left:3px solid var(--olive);
+}
+.facet h4{
+  font-family:var(--display);font-weight:500;font-size:1.06rem;
+  color:var(--ink);margin-bottom:.35rem;letter-spacing:-.005em;
+}
+.facet h4 .kicker{
+  display:block;font-size:.72rem;letter-spacing:.12em;
+  text-transform:uppercase;color:var(--olive);
+  font-variant:normal;margin-bottom:.25rem;
+}
+.facet p{margin-bottom:0;font-size:1.04rem;line-height:1.6}
+.facet p+p{margin-top:.7rem}
+.facet.amber{border-left-color:var(--amber)}
+.facet.amber h4 .kicker{color:var(--amber)}
+.facet.plum{border-left-color:var(--plum)}
+.facet.plum h4 .kicker{color:var(--plum)}
+.facet.terra{border-left-color:var(--terracotta)}
+.facet.terra h4 .kicker{color:var(--terracotta)}
+
+ul.clean{list-style:none;margin:1.1rem 0}
+ul.clean li{
+  padding-left:1.5rem;position:relative;margin-bottom:.85rem;line-height:1.6;
+}
+ul.clean li::before{
+  content:"";position:absolute;left:0;top:.62em;
+  width:7px;height:7px;border-radius:50%;
+  background:var(--amber);
+}
+ul.clean li strong{color:var(--terracotta);font-weight:600}
+
+.refs{
+  margin-top:1.5rem;padding-top:.9rem;border-top:1px dotted var(--rule);
+  font-size:.88rem;color:var(--ink-soft);font-style:italic;
+}
+.refs a{color:var(--olive);text-decoration:none;border-bottom:1px solid var(--rule)}
+.refs a:hover{color:var(--terracotta);border-color:var(--terracotta)}
+
+.scripture{
+  font-style:italic;color:var(--plum);
+}
+
+/* cierre */
+.coda{
+  margin-top:3.4rem;padding-top:2rem;border-top:1px solid var(--rule);
+  font-style:italic;color:var(--ink-soft);font-size:1.06rem;line-height:1.7;
+}
+.coda .signoff{
+  display:block;margin-top:1.2rem;font-family:var(--display);
+  font-style:normal;font-size:.86rem;letter-spacing:.1em;
+  text-transform:uppercase;color:var(--terracotta);
+}
+
+/* ---- móvil ---- */
+.hamburger{
+  display:none;position:fixed;top:1rem;left:1rem;z-index:55;
+  width:46px;height:46px;border-radius:50%;
+  background:var(--paper);border:1px solid var(--rule);
+  cursor:pointer;align-items:center;justify-content:center;
+  box-shadow:0 2px 10px rgba(45,38,29,.12);
+}
+.hamburger span{
+  display:block;width:20px;height:2px;background:var(--ink);
+  position:relative;transition:.3s;
+}
+.hamburger span::before,.hamburger span::after{
+  content:"";position:absolute;left:0;width:20px;height:2px;
+  background:var(--ink);transition:.3s;
+}
+.hamburger span::before{top:-6px}
+.hamburger span::after{top:6px}
+body.menu-open .hamburger span{background:transparent}
+body.menu-open .hamburger span::before{top:0;transform:rotate(45deg)}
+body.menu-open .hamburger span::after{top:0;transform:rotate(-45deg)}
+
+.scrim{
+  display:none;position:fixed;inset:0;background:rgba(45,38,29,.4);
+  z-index:48;
+}
+
+@media(max-width:880px){
+  .wrap{grid-template-columns:1fr}
+  .hamburger{display:flex}
+  .rail{
+    position:fixed;top:0;left:0;z-index:50;width:280px;
+    background:var(--cream);
+    transform:translateX(-100%);transition:transform .32s ease;
+    box-shadow:4px 0 24px rgba(45,38,29,.16);
+  }
+  body.menu-open .rail{transform:translateX(0)}
+  body.menu-open .scrim{display:block}
+  main{padding:4.4rem 1.6rem 4rem}
+  .panel-body{padding-left:0}
+  .lever .roman{min-width:2em}
+}
+
+@media(prefers-reduced-motion:reduce){
+  *{transition:none!important;scroll-behavior:auto!important}
+}
+</style>
+</head>
+<body>
+
+<div id="progress"></div>
+
+<button class="hamburger" id="hamburger" aria-label="Abrir índice">
+  <span></span>
+</button>
+<div class="scrim" id="scrim"></div>
+
+<div class="wrap">
+
+  <!-- ===================== RIEL ===================== -->
+  <aside class="rail" id="rail">
+    <div class="mark">Café con Claude</div>
+    <div class="mark-sub">Sala de lectura · Lucas 4–8</div>
+
+    <nav class="toc" id="toc">
+      <a data-target="s1"><span class="num">I</span><span>La tesis: un reino sin bordes</span></a>
+      <a data-target="s2"><span class="num">II</span><span>Para qué este recorrido</span></a>
+      <a data-target="s3"><span class="num">III</span><span>La fuerza de los comienzos</span></a>
+      <a data-target="s4"><span class="num">IV</span><span>El manifiesto de Nazaret</span></a>
+      <a data-target="s5"><span class="num">V</span><span>El escándalo de la gracia</span></a>
+      <a data-target="s6"><span class="num">VI</span><span>La misión que toca cuerpos</span></a>
+      <a data-target="s7"><span class="num">VII</span><span>Los que se saben indignos</span></a>
+      <a data-target="s8"><span class="num">VIII</span><span>Un círculo más ancho</span></a>
+      <a data-target="s9"><span class="num">IX</span><span>Lo que queda grabado</span></a>
+      <a data-target="s10"><span class="num">X</span><span>Las ilustraciones</span></a>
+      <a data-target="s11"><span class="num">XI</span><span>Qué hacer con esto</span></a>
+      <a data-target="s12"><span class="num">XII</span><span>Conclusión y preguntas abiertas</span></a>
+    </nav>
+
+    <div class="rail-tools">
+      <div class="fontctl">
+        <span>Texto</span>
+        <button id="fminus" aria-label="Reducir tamaño de letra">A−</button>
+        <button id="fplus" aria-label="Aumentar tamaño de letra">A+</button>
+      </div>
+      <a class="home" href="index.html">← Volver a la sala</a>
+    </div>
+  </aside>
+
+  <!-- ===================== CONTENIDO ===================== -->
+  <main>
+
+    <header class="hero">
+      <div class="eyebrow">La misión de Jesús · Lucas 4–8</div>
+      <h1>Un reino <em>sin bordes</em></h1>
+      <p class="sub">La misión de Jesús en Lucas es un movimiento guiado por el Espíritu que cruza fronteras: toca a los intocables, perdona a los imperdonables, levanta a los indignos. No viene a confirmar el sistema religioso — viene a desbordarlo.</p>
+      <p class="lede">El corazón del episodio se puede decir en una línea: el Reino de Dios no funciona por mérito ni por herencia, sino por gracia — y una vez que la gracia empieza a repartirse desde los márgenes, el Reino sigue creciendo hasta no tener bordes. Esta página está construida entera alrededor de esa idea.</p>
+    </header>
+
+    <div class="slat-rule">Abre cada persiana a tu ritmo</div>
+
+    <!-- ===== I ===== -->
+    <section class="persiana" id="s1" data-open="true">
+      <button class="lever" aria-expanded="true">
+        <span class="roman">I</span>
+        <span class="title">La tesis: un reino sin bordes</span>
+        <span class="pull"><span></span><span></span><span></span></span>
+      </button>
+      <div class="blinds"><div class="blinds-inner"><div class="panel-body">
+        <p class="lead">En Lucas, la misión de Jesús no es una colección de buenas obras: es una reorientación del Reino — de un sistema de mérito y privilegio religioso a uno definido por la gracia que transforma.</p>
+        <p>El movimiento es del Espíritu, y su dirección es siempre la misma: hacia afuera, hacia los que quedaron en la orilla. Jesús cruza a propósito las fronteras sociales y religiosas — <strong>toca lo intocable, perdona lo imperdonable, eleva lo indigno</strong> — para demostrar que la misericordia de Dios llega mucho más lejos de lo que nadie esperaba. Y donde toca, no deja limosna: deja una comunidad nueva, arraigada en la humildad y la gratitud, no en el estatus moral o social.</p>
+        <p>El argumento del episodio avanza en una cadena limpia. El Espíritu es el agente de la obra de Jesús. Si el Espíritu lo conduce, su misión tiene que alinearse con la visión de Isaías — liberación y restauración. Esa misión choca inevitablemente con los «de adentro», porque desafía su reclamo exclusivo sobre la misericordia de Dios. Las historias que siguen — sanidades, perdones, inclusiones — prueban que Jesús no habla de la misión: la <em>encarna</em>. Y la conclusión es un reino con «no edges», sin bordes, donde la fe no se mide por el pedigrí sino por la respuesta humilde a la gracia.</p>
+        <p>Por eso la tesis se puede resumir así: <strong>Jesús no vino a ratificar quién está dentro, sino a ir a buscar a quien lo necesita hasta los rincones más lejanos.</strong> El Reino no tiene una frontera que defender; tiene una orilla que sigue corriéndose.</p>
+      </div></div></div>
+    </section>
+
+    <!-- ===== II ===== -->
+    <section class="persiana" id="s2" data-open="false">
+      <button class="lever" aria-expanded="false">
+        <span class="roman">II</span>
+        <span class="title">Para qué este recorrido</span>
+        <span class="pull"><span></span><span></span><span></span></span>
+      </button>
+      <div class="blinds"><div class="blinds-inner"><div class="panel-body">
+        <p>El peligro que este recorrido quiere nombrar es sutil: el creyente de muchos años se distancia poco a poco del poder crudo y transformador del evangelio. Es fácil acomodarse dentro del propio círculo de «los de adentro» — la iglesia como club de conocidos — y perder de vista para qué existía la misión en primer lugar: alcanzar los márgenes.</p>
+        <p>De ahí que los que hablan vuelvan a los «comienzos» del ministerio de Jesús. Ir al principio de la historia es una forma de recuperar su intención original, antes de que la costumbre la limara. Y con ella viene una pregunta incómoda sobre qué significa «compartir la fe».</p>
+        <p>La meta, entonces, es reubicar esa práctica: mover el «compartir la fe» de repartir invitaciones a la iglesia o enlaces a un sitio web, hacia algo mucho más costoso — <strong>compartir la propia vida</strong>, meterse en los espacios desordenados e incómodos donde la gente está herida. El recorrido existe para desafiar la zona de confort del que ya se cree instalado.</p>
+      </div></div></div>
+    </section>
+
+    <!-- ===== III ===== -->
+    <section class="persiana" id="s3" data-open="false">
+      <button class="lever" aria-expanded="false">
+        <span class="roman">III</span>
+        <span class="title">La fuerza de los comienzos</span>
+        <span class="pull"><span></span><span></span><span></span></span>
+      </button>
+      <div class="blinds"><div class="blinds-inner"><div class="panel-body">
+        <p>En la literatura y en la Escritura, el comienzo de una historia suele delatar la fuerza que la mueve. Por eso vale la pena mirar cómo empieza cada evangelista — y qué eligió Lucas poner primero.</p>
+        <p><em>Orgullo y prejuicio</em> abre con una sola frase — «es una verdad universalmente reconocida que un hombre soltero, poseedor de una gran fortuna, necesita una esposa» — y en esa línea ya están la riqueza y el matrimonio que gobernarán toda la novela. Igual pasa con una buena serie de streaming: en la primera escena un hombre aparece borracho y deprimido, pero harán falta varios episodios para explicar por qué. Los buenos narradores revelan el carácter y el propósito a ritmos distintos — pero lo siembran desde el principio.</p>
+        <p>Lucas hace exactamente eso: usa las <strong>primeras palabras públicas</strong> de Jesús para fijar el tono de todo su evangelio. Y su elección lo distingue. Mateo y Marcos subrayan el arrepentimiento y la inminencia del Reino; Juan, los encuentros personales y relacionales. Lucas pone en el centro al <strong>Espíritu Santo</strong> como el catalizador de la misión de Jesús.</p>
+        <p>Y hay un matiz de tiempo que lo cambia todo. El ministerio de Jesús no es un punto más en la línea del <em>chronos</em> — el tiempo que corre — sino un momento de <em>kairós</em>: un instante cumplido, «preñado», en el que algo prometido por fin llega a término. Cuando Jesús abre la boca en Nazaret, no está inaugurando otra jornada del calendario: está declarando que el momento ha madurado.</p>
+      </div></div></div>
+    </section>
+
+    <!-- ===== IV ===== -->
+    <section class="persiana" id="s4" data-open="false">
+      <button class="lever" aria-expanded="false">
+        <span class="roman">IV</span>
+        <span class="title">El manifiesto de Nazaret</span>
+        <span class="pull"><span></span><span></span><span></span></span>
+      </button>
+      <div class="blinds"><div class="blinds-inner"><div class="panel-body">
+        <p class="scripture">El ministerio público de Jesús en Lucas empieza, oficialmente, en la sinagoga de su pueblo. Le entregan el rollo de Isaías, y lo que lee funciona como su declaración de misión.</p>
+        <p>«El Espíritu del Señor está sobre mí, porque me ha ungido para anunciar buenas nuevas a los <strong>pobres</strong>… para proclamar libertad a los <strong>cautivos</strong> y vista a los <strong>ciegos</strong>, para poner en libertad a los <strong>oprimidos</strong>.» Al leerlo, Jesús se identifica como el Mesías ungido por el Espíritu, y define el papel del Mesías como uno de liberación. Después enrolla el libro, se sienta, y con todos los ojos fijos en él declara: «Hoy se ha cumplido esta Escritura que acaban de oír».</p>
+        <p>Ese «hoy» abre el <strong>año del favor del Señor</strong> — el lenguaje del jubileo: el tiempo de la restauración total, de las deudas canceladas y los cautivos libres. No es una promesa para algún futuro lejano; es un tiempo que se inaugura en su presencia. El manifiesto de Nazaret no describe un programa social entre otros: define quién es el Mesías y hacia quién va dirigida, desde el primer día, su obra.</p>
+        <div class="refs">
+          Pasajes (DHH):
+          <a href="https://www.biblegateway.com/passage/?search=Lucas+4%3A16-21&version=DHH" target="_blank" rel="noopener">Lucas 4:16–21</a>,
+          <a href="https://www.biblegateway.com/passage/?search=Isa%C3%ADas+61&version=DHH" target="_blank" rel="noopener">Isaías 61</a>.
+        </div>
+      </div></div></div>
+    </section>
+
+    <!-- ===== V ===== -->
+    <section class="persiana" id="s5" data-open="false">
+      <button class="lever" aria-expanded="false">
+        <span class="roman">V</span>
+        <span class="title">El escándalo de la gracia</span>
+        <span class="pull"><span></span><span></span><span></span></span>
+      </button>
+      <div class="blinds"><div class="blinds-inner"><div class="panel-body">
+        <p>La admiración de Nazaret dura poco. En cuanto Jesús toca el nervio del favoritismo, el aplauso se vuelve hostilidad — y el giro enseña algo sobre cómo funciona de verdad la gracia.</p>
+        <p>Jesús trae a la memoria dos historias del Antiguo Testamento. En tiempos de Elías, cuando había muchas viudas en Israel, el profeta fue enviado a una viuda extranjera de Sarepta. En tiempos de Eliseo, había muchos leprosos en Israel, pero el que quedó limpio fue <strong>Naamán, el sirio</strong>. En ambos casos la misericordia de Dios se derramó sobre los de afuera mientras muchos de adentro seguían en necesidad. El mensaje es un aviso contra el <em>derecho</em> religioso: Dios a menudo pasa de largo a los «elegidos» — cuando se vuelven indiferentes o se creen con derecho — para bendecir al extranjero.</p>
+        <p>Con eso Jesús señala hacia dónde irá su misión: <strong>priorizará a los de los márgenes por encima de quienes suponen tener un «derecho» al favor de Dios por su herencia.</strong> Y aquí aparece una ley que recorrerá todo el evangelio: el conflicto es <em>inevitable</em>. Cuando una misión prioriza a los marginados, a los que están en el poder les sabe a reversión, a que les quitan algo — y reaccionan.</p>
+        <p>Debajo del escándalo late una verdad más honda: la gracia es <em>aterradora</em>. Aceptarla obliga a reconocer que no tenemos el control y que no merecemos lo que recibimos; que podría retenerse — y sin embargo se da, gratis. Precisamente por eso ofende a quien había apostado su seguridad a merecerla.</p>
+        <div class="refs">
+          Pasajes (DHH):
+          <a href="https://www.biblegateway.com/passage/?search=Lucas+4%3A24-27&version=DHH" target="_blank" rel="noopener">Lucas 4:24–27</a>,
+          <a href="https://www.biblegateway.com/passage/?search=1+Reyes+17&version=DHH" target="_blank" rel="noopener">1 Reyes 17</a>,
+          <a href="https://www.biblegateway.com/passage/?search=2+Reyes+5&version=DHH" target="_blank" rel="noopener">2 Reyes 5</a>.
+        </div>
+      </div></div></div>
+    </section>
+
+    <!-- ===== VI ===== -->
+    <section class="persiana" id="s6" data-open="false">
+      <button class="lever" aria-expanded="false">
+        <span class="roman">VI</span>
+        <span class="title">La misión que toca cuerpos</span>
+        <span class="pull"><span></span><span></span><span></span></span>
+      </button>
+      <div class="blinds"><div class="blinds-inner"><div class="panel-body">
+        <p>De la declaración, Jesús pasa a la demostración. A lo largo de los capítulos 5, 7 y 8, la misión deja de ser discurso y se vuelve encuentro con personas reales. Y lo primero que salta es su <strong>fisicalidad</strong>: Jesús no sana desde lejos — toca cuerpos, redefine pertenencias, come y bebe con los excluidos.</p>
+        <div class="facet olive">
+          <h4><span class="kicker">La pesca milagrosa · Lucas 5:1–11</span>El temor que reorienta</h4>
+          <p>La red se llena hasta romperse y Pedro, en vez de festejar, cae de rodillas: «Apártate de mí, Señor, que soy un pecador». El poder de Jesús no produce entusiasmo sino un temor lleno de asombro — y de ese temor nace una reorientación total de la vida: lo dejan todo y lo siguen.</p>
+        </div>
+        <div class="facet amber">
+          <h4><span class="kicker">El leproso · Lucas 5:12–16</span>Tocar antes de hablar</h4>
+          <p>Aquí el detalle lo es todo: Jesús <em>toca</em> al hombre <strong>antes</strong> de pronunciar la sanidad. Al intocable, primero le devuelve la dignidad humana con un gesto que nadie se atrevía a hacer; la limpieza física viene después. La restauración empieza por el contacto.</p>
+        </div>
+        <div class="facet plum">
+          <h4><span class="kicker">El paralítico · Lucas 5:17–26</span>La sanidad real</h4>
+          <p>Lo bajan por el techo para que camine, y Jesús empieza por otra cosa: «Tus pecados te son perdonados». Ve que la sanidad de fondo que ese hombre necesita es la restauración de su relación con Dios. El cuerpo se levanta al final; lo primero que se repara es el vínculo.</p>
+        </div>
+        <div class="facet terra">
+          <h4><span class="kicker">El llamado de Leví · Lucas 5:27–32</span>Médico de enfermos</h4>
+          <p>Jesús llama a un recaudador de impuestos y se sienta a su mesa. Ante la queja, responde: «No son los sanos los que necesitan médico, sino los enfermos; no he venido a llamar a justos, sino a pecadores». La misión difumina a propósito la línea entre lo limpio y lo inmundo.</p>
+        </div>
+        <p>Sumadas, estas escenas dicen una sola cosa: la misión no consiste solo en arreglar dolencias físicas, sino en <strong>reorientar a la persona entera</strong> hacia la plenitud, la dignidad y la pertenencia a una comunidad.</p>
+        <div class="refs">
+          Pasajes (DHH):
+          <a href="https://www.biblegateway.com/passage/?search=Lucas+5&version=DHH" target="_blank" rel="noopener">Lucas 5</a>.
+        </div>
+      </div></div></div>
+    </section>
+
+    <!-- ===== VII ===== -->
+    <section class="persiana" id="s7" data-open="false">
+      <button class="lever" aria-expanded="false">
+        <span class="roman">VII</span>
+        <span class="title">Los que se saben indignos</span>
+        <span class="pull"><span></span><span></span><span></span></span>
+      </button>
+      <div class="blinds"><div class="blinds-inner"><div class="panel-body">
+        <p>Lucas hace algo llamativo: para mostrar qué es la fe, pone en el centro a dos «de afuera» — un centurión romano y una mujer «pecadora». En ambos, la clave es la misma: quien reconoce su propia indignidad suele tener la mayor capacidad de fe y de amor.</p>
+        <p><strong>El centurión</strong> (7:1–10) manda decir que no es digno de que Jesús entre bajo su techo — le basta una palabra, porque él entiende de autoridad. Jesús se maravilla de su fe justamente porque el hombre capta la gracia como algo <em>inmerecido</em>, al revés que los ancianos judíos, que habían ido a argumentar que «era digno», que se lo había ganado. La fe no dice «me corresponde»; dice «una palabra tuya bastará».</p>
+        <p><strong>La mujer pecadora</strong> (7:36–50) irrumpe en la cena, llora sobre los pies de Jesús y los unge con perfume. Su gesto extravagante y «derrochador» es la respuesta natural de quien sabe que ha sido perdonada mucho — y contrasta con el anfitrión, que ni siquiera cumplió con la hospitalidad básica. «Sus muchos pecados le han sido perdonados, y por eso ama mucho; pero al que poco se le perdona, poco ama.»</p>
+        <p>La postura de los dos — humildad, conciencia honda de haber sido perdonados — se opone a la de los líderes «respetables», que descansan en su logro moral y su estatus social. En este evangelio, la <strong>gratitud por la gracia</strong> reemplaza a la «dignidad» como medida de la fe.</p>
+        <div class="refs">
+          Pasajes (DHH):
+          <a href="https://www.biblegateway.com/passage/?search=Lucas+7&version=DHH" target="_blank" rel="noopener">Lucas 7</a>.
+        </div>
+      </div></div></div>
+    </section>
+
+    <!-- ===== VIII ===== -->
+    <section class="persiana" id="s8" data-open="false">
+      <button class="lever" aria-expanded="false">
+        <span class="roman">VIII</span>
+        <span class="title">Un círculo más ancho</span>
+        <span class="pull"><span></span><span></span><span></span></span>
+      </button>
+      <div class="blinds"><div class="blinds-inner"><div class="panel-body">
+        <p>La misión de Jesús la sostiene y la lleva adelante un círculo más ancho que los doce apóstoles. Lucas — y solo Lucas — se detiene a nombrarlo: junto a Jesús viajaban también varias <strong>mujeres</strong> que lo habían seguido y que sostenían el ministerio con sus propios recursos (8:1–3).</p>
+        <p>El apunte es más importante de lo que parece. Muestra la realidad económica y tangible de la misión — alguien pagaba el camino — y, al mismo tiempo, redefine las fronteras de quién puede participar en la obra de Dios. Al establecer a estas mujeres como parte del grupo, Lucas las presenta como <strong>testigos creíbles</strong> de lo que Jesús hizo — y prepara al lector para verlas, más adelante, como las primeras testigos de la resurrección.</p>
+        <p>Si el Reino no tiene bordes, tampoco los tiene el equipo que lo anuncia: el discipulado, en Lucas, ya empieza a ensancharse más allá de lo que la costumbre permitía.</p>
+        <div class="refs">
+          Pasajes (DHH):
+          <a href="https://www.biblegateway.com/passage/?search=Lucas+8%3A1-3&version=DHH" target="_blank" rel="noopener">Lucas 8:1–3</a>.
+        </div>
+      </div></div></div>
+    </section>
+
+    <!-- ===== IX ===== -->
+    <section class="persiana" id="s9" data-open="false">
+      <button class="lever" aria-expanded="false">
+        <span class="roman">IX</span>
+        <span class="title">Lo que queda grabado</span>
+        <span class="pull"><span></span><span></span><span></span></span>
+      </button>
+      <div class="blinds"><div class="blinds-inner"><div class="panel-body">
+        <ul class="clean">
+          <li><strong>Kairós, no chronos.</strong> El ministerio de Jesús no es un punto más en la línea del tiempo, sino un momento cumplido y «preñado»: lo prometido llega por fin a término.</li>
+          <li><strong>El conflicto es inevitable.</strong> Cuando una misión prioriza a los marginados, a los que están en el poder les sabe a reversión — y reaccionan. No es un accidente del camino: es una consecuencia del rumbo.</li>
+          <li><strong>La gracia es aterradora.</strong> Aceptarla obliga a admitir que no tenemos el control y que no merecemos nuestras bendiciones; podrían retenerse, y aun así se dan gratis.</li>
+          <li><strong>Un reino sin bordes.</strong> La inclusión de gentiles, mujeres y «pecadores» implica que el Reino de Dios sigue expandiéndose hasta no tener orillas que defender.</li>
+          <li><strong>La misión es física.</strong> Jesús no sana a distancia: toca cuerpos, redefine la pertenencia, come y bebe con los excluidos. La restauración pasa por el contacto.</li>
+        </ul>
+      </div></div></div>
+    </section>
+
+    <!-- ===== X ===== -->
+    <section class="persiana" id="s10" data-open="false">
+      <button class="lever" aria-expanded="false">
+        <span class="roman">X</span>
+        <span class="title">Las ilustraciones</span>
+        <span class="pull"><span></span><span></span><span></span></span>
+      </button>
+      <div class="blinds"><div class="blinds-inner"><div class="panel-body">
+        <div class="facet olive">
+          <h4>La conversión del Dr. Paka</h4>
+          <p>Recuerda haber sido «un alma perdida» a los veinte años, y que en dos semanas lo invitaron a la iglesia tres veces. Su propia historia refuerza la idea del episodio: Jesús «se interpone» en las vidas caóticas a través de otras personas.</p>
+        </div>
+        <div class="facet amber">
+          <h4>El mohicano verde y dorado</h4>
+          <p>El mismo Dr. Paka cuenta que en la secundaria llevaba un mohicano verde y dorado y la cara pintada. No había ninguna razón lógica ni «religiosa» para que aquel adolescente terminara siendo teólogo — salvo el alcance inesperado de la gracia, que va a buscar donde nadie la espera.</p>
+        </div>
+        <div class="facet plum">
+          <h4>Twin Village</h4>
+          <p>Un ejemplo moderno de «cruzar el margen»: la esposa del Dr. Paka trabaja con personas mayores, sin hogar crónico y con discapacidades mentales o físicas. Ilustra la incomodidad y el reto real de entrar en los mundos «desordenados» — no como idea, sino como práctica.</p>
+        </div>
+        <div class="facet terra">
+          <h4>El Camino de Santiago</h4>
+          <p>Hannah Douza describe la «Misa del Peregrino» en España, donde todavía hoy se usan en la liturgia las palabras del centurión — «Señor, no soy digno de que entres en mi casa». Dos mil años después, la postura humilde de aquel «de afuera» sigue prestando su voz a la oración.</p>
+        </div>
+        <div class="facet olive">
+          <h4>El borracho del primer capítulo</h4>
+          <p>En una serie de streaming, el protagonista aparece ebrio y deprimido en la escena inicial, pero hacen falta episodios para entender por qué. Un recordatorio de que los buenos narradores — como Lucas — siembran el propósito al principio y lo revelan a su ritmo.</p>
+        </div>
+      </div></div></div>
+    </section>
+
+    <!-- ===== XI ===== -->
+    <section class="persiana" id="s11" data-open="false">
+      <button class="lever" aria-expanded="false">
+        <span class="roman">XI</span>
+        <span class="title">Qué hacer con esto</span>
+        <span class="pull"><span></span><span></span><span></span></span>
+      </button>
+      <div class="blinds"><div class="blinds-inner"><div class="panel-body">
+        <ul class="clean">
+          <li><strong>Compartir la vida, no tarjetas.</strong> Pasar de repartir invitaciones o enlaces a un sitio web, a meterse de verdad en el «desorden» del mundo del otro.</li>
+          <li><strong>Identificar los propios márgenes.</strong> Nombrar a las «personas de la frontera» o los barrios que a uno lo incomodan — y buscar a propósito amar a la gente en esos espacios.</li>
+          <li><strong>Mantener una postura de humildad.</strong> Como el centurión y la mujer que ungió a Jesús: vivir con una conciencia honda de haber sido perdonados, que desemboca naturalmente en un amor hondo por los demás.</li>
+          <li><strong>Resistir la comodidad.</strong> La «necesidad constante de incomodarse» es un requisito para seguir hoy el ministerio de Jesús, no un extra opcional.</li>
+        </ul>
+      </div></div></div>
+    </section>
+
+    <!-- ===== XII ===== -->
+    <section class="persiana" id="s12" data-open="false">
+      <button class="lever" aria-expanded="false">
+        <span class="roman">XII</span>
+        <span class="title">Conclusión y preguntas abiertas</span>
+        <span class="pull"><span></span><span></span><span></span></span>
+      </button>
+      <div class="blinds"><div class="blinds-inner"><div class="panel-body">
+        <p>La misión de Jesús es un movimiento continuo de cruce de fronteras guiado por el Espíritu — una misión que reemplaza la «dignidad» social por la gratitud por la gracia. Todo el recorrido construye hacia una misma conclusión: Jesús no vino a confirmar las estructuras religiosas existentes, sino a interrumpirlas, buscando a los que «lo necesitaban» en los rincones más lejanos.</p>
+        <p>Y termina, a propósito, dejando dos puertas abiertas:</p>
+        <ul class="clean">
+          <li><strong>Las fronteras de hoy.</strong> ¿Dónde vemos a Jesús cruzando nuestros propios límites de comodidad y control, aquí y ahora?</li>
+          <li><strong>Mis márgenes concretos.</strong> ¿Cómo se ven «los márgenes» para cada uno de nosotros, en nuestro contexto específico?</li>
+        </ul>
+      </div></div></div>
+    </section>
+
+    <div class="coda">
+      Sigue el rastro de la misión en Lucas —un manifiesto leído en Nazaret, una mano que toca al leproso antes de hablar, un centurión que se sabe indigno, una mujer que derrama su perfume, unas mujeres que sostienen el camino con lo suyo— y al final del rastro encontrarás siempre lo mismo: un Reino que se niega a tener bordes, y un Espíritu que ya cruzó la frontera primero.
+      <span class="signoff">Café con Claude · Lucas 4–8</span>
+    </div>
+
+  </main>
+</div>
+
+<script>
+/* ---- 1 · persianas (acordeón con grid-rows) ---- */
+document.querySelectorAll('.persiana > .lever').forEach(function(lever){
+  lever.addEventListener('click', function(){
+    var p = lever.closest('.persiana');
+    var open = p.getAttribute('data-open') === 'true';
+    p.setAttribute('data-open', String(!open));
+    lever.setAttribute('aria-expanded', String(!open));
+  });
+});
+
+/* ---- 2 · índice: abre la persiana y baja a ella ---- */
+document.querySelectorAll('#toc a').forEach(function(link){
+  link.addEventListener('click', function(){
+    var id = link.getAttribute('data-target');
+    var p = document.getElementById(id);
+    if(p){
+      p.setAttribute('data-open','true');
+      p.querySelector('.lever').setAttribute('aria-expanded','true');
+      p.scrollIntoView({behavior:'smooth', block:'start'});
+    }
+    document.body.classList.remove('menu-open'); /* cierra menú móvil */
+  });
+});
+
+/* ---- 3 · scroll-spy del riel ---- */
+var links = Array.prototype.slice.call(document.querySelectorAll('#toc a'));
+var spy = new IntersectionObserver(function(entries){
+  entries.forEach(function(e){
+    if(e.isIntersecting){
+      var id = e.target.id;
+      links.forEach(function(l){
+        l.classList.toggle('active', l.getAttribute('data-target') === id);
+      });
+    }
+  });
+},{rootMargin:'-15% 0px -70% 0px', threshold:0});
+document.querySelectorAll('.persiana').forEach(function(s){spy.observe(s);});
+
+/* ---- 4 · barra de progreso ---- */
+var bar = document.getElementById('progress');
+function onScroll(){
+  var h = document.documentElement;
+  var scrolled = h.scrollTop / (h.scrollHeight - h.clientHeight);
+  bar.style.width = (scrolled*100) + '%';
+}
+window.addEventListener('scroll', onScroll, {passive:true});
+onScroll();
+
+/* ---- 5 · tamaño de letra ---- */
+var size = 1.16, root = document.documentElement;
+document.getElementById('fplus').addEventListener('click',function(){
+  size = Math.min(size + .06, 1.44); root.style.setProperty('--fs-base', size+'rem');
+});
+document.getElementById('fminus').addEventListener('click',function(){
+  size = Math.max(size - .06, 0.98); root.style.setProperty('--fs-base', size+'rem');
+});
+
+/* ---- 6 · menú móvil ---- */
+var ham = document.getElementById('hamburger');
+var scrim = document.getElementById('scrim');
+ham.addEventListener('click', function(){ document.body.classList.toggle('menu-open'); });
+scrim.addEventListener('click', function(){ document.body.classList.remove('menu-open'); });
+</script>
+</body>
+</html>
