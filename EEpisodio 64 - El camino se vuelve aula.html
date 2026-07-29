@@ -1,0 +1,1441 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Clase interactiva basada en la conversación de Thread, episodio 64, sobre Lucas 9–13 y el viaje de Jesús a Jerusalén.">
+  <title>El camino se vuelve aula | Lucas 9–13</title>
+  <style>
+    :root {
+      --paper: #f7f2e8;
+      --paper-deep: #ece3d3;
+      --ink: #24312d;
+      --muted: #66716c;
+      --green: #24594b;
+      --green-2: #387565;
+      --green-soft: #dce9e2;
+      --gold: #b98537;
+      --gold-soft: #f4e6c9;
+      --clay: #985d45;
+      --white: #fffdf8;
+      --line: #d8cebd;
+      --shadow: 0 18px 50px rgba(52, 48, 39, .10);
+      --sidebar: 292px;
+      --reading-scale: 1;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; scroll-padding-top: 28px; }
+    body {
+      margin: 0;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at 78% 8%, rgba(185, 133, 55, .09), transparent 22rem),
+        linear-gradient(90deg, rgba(36, 89, 75, .035) 1px, transparent 1px),
+        var(--paper);
+      background-size: auto, 32px 32px, auto;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: calc(18px * var(--reading-scale));
+      line-height: 1.72;
+    }
+
+    button, input { font: inherit; }
+    button, a, summary { -webkit-tap-highlight-color: transparent; }
+    a { color: inherit; }
+    :focus-visible { outline: 3px solid #d59b43; outline-offset: 3px; }
+
+    .progress {
+      position: fixed;
+      inset: 0 0 auto 0;
+      height: 5px;
+      z-index: 100;
+      background: rgba(36, 89, 75, .12);
+    }
+    .progress > span {
+      display: block;
+      width: 0;
+      height: 100%;
+      background: linear-gradient(90deg, var(--gold), var(--green-2));
+      transition: width .15s linear;
+    }
+
+    .sidebar {
+      position: fixed;
+      inset: 5px auto 0 0;
+      z-index: 50;
+      width: var(--sidebar);
+      height: calc(100vh - 5px);
+      padding: 28px 20px 24px;
+      overflow-y: auto;
+      color: #f7f2e8;
+      background: linear-gradient(160deg, #173f36, #24594b 60%, #1d4b40);
+      box-shadow: 10px 0 38px rgba(21, 53, 45, .16);
+      transition: transform .25s ease;
+    }
+    .sidebar-brand {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+      margin-bottom: 22px;
+    }
+    .brand-mark {
+      display: grid;
+      place-items: center;
+      flex: 0 0 44px;
+      height: 44px;
+      border: 1px solid rgba(255,255,255,.28);
+      border-radius: 50%;
+      color: #ffdda5;
+      background: rgba(255,255,255,.08);
+      font: 700 20px/1 system-ui, sans-serif;
+    }
+    .sidebar-brand strong {
+      display: block;
+      font: 700 15px/1.25 system-ui, sans-serif;
+      letter-spacing: .04em;
+    }
+    .sidebar-brand span {
+      display: block;
+      margin-top: 3px;
+      color: #bfd3ca;
+      font: 12px/1.3 system-ui, sans-serif;
+    }
+    .sidebar-controls {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+      margin-bottom: 18px;
+    }
+    .sidebar button, .mobile-menu {
+      border: 1px solid rgba(255,255,255,.22);
+      border-radius: 10px;
+      color: #fffdf8;
+      background: rgba(255,255,255,.08);
+      cursor: pointer;
+    }
+    .sidebar button {
+      min-height: 38px;
+      padding: 7px 9px;
+      font: 650 12px/1.2 system-ui, sans-serif;
+    }
+    .sidebar button:hover { background: rgba(255,255,255,.16); }
+    .search-wrap {
+      position: relative;
+      margin-bottom: 8px;
+    }
+    .search-wrap input {
+      width: 100%;
+      height: 42px;
+      padding: 0 12px 0 38px;
+      border: 1px solid rgba(255,255,255,.24);
+      border-radius: 12px;
+      color: #fff;
+      background: rgba(6, 30, 25, .28);
+    }
+    .search-wrap input::placeholder { color: #bcd0c7; }
+    .search-wrap::before {
+      content: "⌕";
+      position: absolute;
+      left: 12px;
+      top: 5px;
+      color: #f1d39f;
+      font: 24px/1 system-ui, sans-serif;
+    }
+    .search-status {
+      min-height: 20px;
+      margin: 0 3px 16px;
+      color: #c5d8d0;
+      font: 12px/1.35 system-ui, sans-serif;
+    }
+    .toc-label {
+      margin: 16px 8px 8px;
+      color: #e9c98e;
+      font: 700 11px/1.3 system-ui, sans-serif;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+    }
+    .toc { display: grid; gap: 3px; }
+    .toc a {
+      display: block;
+      padding: 8px 10px;
+      border-left: 2px solid transparent;
+      border-radius: 0 8px 8px 0;
+      color: #d7e3de;
+      text-decoration: none;
+      font: 500 13px/1.35 system-ui, sans-serif;
+      transition: .18s ease;
+    }
+    .toc a:hover { color: #fff; background: rgba(255,255,255,.08); }
+    .toc a.active {
+      border-left-color: #f1c97e;
+      color: #fff;
+      background: rgba(255,255,255,.12);
+    }
+    .sidebar-foot {
+      margin: 22px 8px 0;
+      color: #a9c2b8;
+      font: 11px/1.5 system-ui, sans-serif;
+    }
+
+    .page {
+      margin-left: var(--sidebar);
+      min-height: 100vh;
+      transition: margin-left .25s ease;
+    }
+    body.nav-collapsed .sidebar { transform: translateX(calc(-1 * var(--sidebar))); }
+    body.nav-collapsed .page { margin-left: 0; }
+    .reopen-nav {
+      position: fixed;
+      z-index: 45;
+      top: 18px;
+      left: 18px;
+      display: none;
+      width: 44px;
+      height: 44px;
+      border: 0;
+      border-radius: 50%;
+      color: white;
+      background: var(--green);
+      box-shadow: var(--shadow);
+      cursor: pointer;
+    }
+    body.nav-collapsed .reopen-nav { display: grid; place-items: center; }
+
+    .hero {
+      position: relative;
+      min-height: 92vh;
+      display: grid;
+      align-items: center;
+      overflow: hidden;
+      padding: 72px clamp(26px, 7vw, 100px);
+      color: #fffaf0;
+      background:
+        linear-gradient(110deg, rgba(18, 59, 49, .98), rgba(36, 89, 75, .92) 58%, rgba(57, 76, 61, .86)),
+        var(--green);
+    }
+    .hero::before {
+      content: "";
+      position: absolute;
+      width: 620px;
+      height: 620px;
+      right: -260px;
+      top: -170px;
+      border: 1px solid rgba(255,255,255,.16);
+      border-radius: 50%;
+      box-shadow: 0 0 0 70px rgba(255,255,255,.035), 0 0 0 145px rgba(255,255,255,.025);
+    }
+    .hero::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      height: 110px;
+      opacity: .42;
+      background: linear-gradient(170deg, transparent 49%, #caa56b 50% 52%, transparent 53%);
+      transform: skewY(-2deg);
+    }
+    .hero-inner { position: relative; z-index: 2; max-width: 980px; }
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      margin: 0 0 24px;
+      color: #f4d79f;
+      font: 750 13px/1.2 system-ui, sans-serif;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+    }
+    .eyebrow::before { content: ""; width: 34px; height: 1px; background: currentColor; }
+    h1 {
+      max-width: 880px;
+      margin: 0;
+      font-size: clamp(54px, 8vw, 112px);
+      font-weight: 500;
+      line-height: .93;
+      letter-spacing: -.055em;
+    }
+    .hero-sub {
+      max-width: 760px;
+      margin: 30px 0 0;
+      color: #d9e6e0;
+      font-size: clamp(20px, 2.1vw, 28px);
+      line-height: 1.45;
+    }
+    .hero-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 34px;
+    }
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      min-height: 34px;
+      padding: 6px 13px;
+      border: 1px solid rgba(255,255,255,.24);
+      border-radius: 999px;
+      color: #f7ead2;
+      background: rgba(255,255,255,.08);
+      font: 650 13px/1.2 system-ui, sans-serif;
+    }
+    .hero-claim {
+      max-width: 760px;
+      margin-top: 42px;
+      padding-left: 20px;
+      border-left: 3px solid #e2b867;
+      color: #fff;
+      font-size: clamp(20px, 2.1vw, 26px);
+      font-style: italic;
+      line-height: 1.45;
+    }
+
+    .content {
+      width: min(100% - 42px, 1040px);
+      margin: 0 auto;
+      padding: 80px 0 130px;
+    }
+    .study-section {
+      position: relative;
+      margin: 0 0 90px;
+      scroll-margin-top: 26px;
+    }
+    .study-section.search-hit::before {
+      content: "";
+      position: absolute;
+      inset: -16px;
+      z-index: -1;
+      border: 2px solid rgba(185, 133, 55, .6);
+      border-radius: 28px;
+      background: rgba(255, 251, 238, .5);
+    }
+    .section-kicker {
+      margin: 0 0 8px;
+      color: var(--clay);
+      font: 750 12px/1.2 system-ui, sans-serif;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+    }
+    h2 {
+      max-width: 820px;
+      margin: 0 0 22px;
+      color: var(--green);
+      font-size: clamp(35px, 5vw, 58px);
+      font-weight: 500;
+      line-height: 1.04;
+      letter-spacing: -.035em;
+    }
+    h3 {
+      margin: 0 0 13px;
+      color: var(--green);
+      font-size: 25px;
+      font-weight: 600;
+      line-height: 1.2;
+    }
+    h4 {
+      margin: 0 0 8px;
+      color: var(--green);
+      font: 750 14px/1.3 system-ui, sans-serif;
+      letter-spacing: .05em;
+      text-transform: uppercase;
+    }
+    p { margin: 0 0 1em; }
+    .lead {
+      max-width: 860px;
+      margin-bottom: 34px;
+      color: #4d5b55;
+      font-size: 1.16em;
+      line-height: 1.72;
+    }
+    .grid-2, .grid-3 {
+      display: grid;
+      gap: 18px;
+    }
+    .grid-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .grid-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    .card {
+      padding: 24px;
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      background: rgba(255, 253, 248, .78);
+      box-shadow: 0 8px 28px rgba(61, 54, 41, .055);
+    }
+    .card p:last-child, .callout p:last-child { margin-bottom: 0; }
+    .number {
+      display: grid;
+      place-items: center;
+      width: 38px;
+      height: 38px;
+      margin-bottom: 15px;
+      border-radius: 50%;
+      color: #fff;
+      background: var(--green);
+      font: 750 14px/1 system-ui, sans-serif;
+    }
+    .objectives {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+    .objectives li {
+      position: relative;
+      padding: 16px 18px 16px 50px;
+      border-bottom: 1px solid var(--line);
+    }
+    .objectives li::before {
+      content: "✓";
+      position: absolute;
+      left: 14px;
+      top: 14px;
+      color: var(--green-2);
+      font: 800 19px/1.4 system-ui, sans-serif;
+    }
+    .objectives li:last-child { border-bottom: 0; }
+
+    .journey {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 0;
+      margin: 30px 0;
+      padding: 28px 20px;
+      border: 1px solid var(--line);
+      border-radius: 20px;
+      background: var(--white);
+    }
+    .journey-step {
+      position: relative;
+      padding: 48px 12px 0;
+      text-align: center;
+      font: 650 13px/1.45 system-ui, sans-serif;
+    }
+    .journey-step::before {
+      content: "";
+      position: absolute;
+      top: 17px;
+      left: 50%;
+      z-index: 2;
+      width: 14px;
+      height: 14px;
+      border: 4px solid var(--white);
+      border-radius: 50%;
+      background: var(--gold);
+      box-shadow: 0 0 0 2px var(--gold);
+      transform: translateX(-50%);
+    }
+    .journey-step:not(:last-child)::after {
+      content: "";
+      position: absolute;
+      top: 23px;
+      left: 56%;
+      width: 88%;
+      border-top: 2px dashed #c8ad7e;
+    }
+    .journey-step span {
+      display: block;
+      margin-top: 4px;
+      color: var(--muted);
+      font-size: 11px;
+      font-weight: 500;
+    }
+
+    .callout {
+      margin: 25px 0;
+      padding: 24px 26px;
+      border-left: 5px solid var(--gold);
+      border-radius: 0 16px 16px 0;
+      background: var(--gold-soft);
+    }
+    .callout.green { border-left-color: var(--green); background: var(--green-soft); }
+    .callout.clay { border-left-color: var(--clay); background: #f1dfd7; }
+    .callout strong {
+      color: var(--green);
+      font-family: system-ui, sans-serif;
+      font-size: .83em;
+      letter-spacing: .04em;
+      text-transform: uppercase;
+    }
+    .time {
+      display: inline-block;
+      margin-left: 5px;
+      color: var(--clay);
+      font: 700 11px/1.3 system-ui, sans-serif;
+      white-space: nowrap;
+    }
+
+    details {
+      margin: 12px 0;
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      overflow: clip;
+      background: rgba(255, 253, 248, .88);
+    }
+    summary {
+      position: relative;
+      display: flex;
+      align-items: center;
+      min-height: 58px;
+      padding: 14px 52px 14px 18px;
+      color: var(--green);
+      cursor: pointer;
+      font: 720 15px/1.4 system-ui, sans-serif;
+      list-style: none;
+    }
+    summary::-webkit-details-marker { display: none; }
+    summary::after {
+      content: "+";
+      position: absolute;
+      right: 18px;
+      top: 50%;
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      color: var(--green);
+      background: var(--green-soft);
+      text-align: center;
+      font: 700 20px/27px system-ui, sans-serif;
+      transform: translateY(-50%);
+    }
+    details[open] summary { background: var(--green-soft); }
+    details[open] summary::after { content: "−"; }
+    .details-body { padding: 20px 22px 22px; }
+    .details-body > :last-child { margin-bottom: 0; }
+
+    .unit {
+      margin: 38px 0;
+      padding: clamp(24px, 4vw, 42px);
+      border: 1px solid var(--line);
+      border-radius: 24px;
+      background: rgba(255, 253, 248, .72);
+      box-shadow: var(--shadow);
+    }
+    .unit-head {
+      display: flex;
+      gap: 18px;
+      align-items: flex-start;
+      margin-bottom: 22px;
+    }
+    .unit-index {
+      display: grid;
+      place-items: center;
+      flex: 0 0 48px;
+      height: 48px;
+      border-radius: 15px;
+      color: #fff;
+      background: var(--green);
+      font: 800 16px/1 system-ui, sans-serif;
+    }
+    .unit-head h3 { margin-bottom: 4px; font-size: clamp(26px, 3.4vw, 36px); }
+    .reference { color: var(--clay); font: 700 13px/1.4 system-ui, sans-serif; }
+    .contrast {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1px;
+      margin: 25px 0;
+      overflow: hidden;
+      border: 1px solid var(--line);
+      border-radius: 17px;
+      background: var(--line);
+    }
+    .contrast > div { padding: 22px; background: var(--white); }
+    .contrast strong {
+      display: block;
+      margin-bottom: 8px;
+      color: var(--green);
+      font: 750 13px/1.3 system-ui, sans-serif;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+    }
+
+    .glossary {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+    }
+    .term {
+      padding: 20px;
+      border: 1px solid var(--line);
+      border-radius: 15px;
+      background: rgba(255,253,248,.76);
+    }
+    .term dt {
+      margin-bottom: 6px;
+      color: var(--green);
+      font: 780 16px/1.3 system-ui, sans-serif;
+    }
+    .term dd { margin: 0; color: #53605b; font-size: .94em; }
+
+    .passage-list { display: grid; gap: 12px; }
+    .passage {
+      display: grid;
+      grid-template-columns: 120px 1fr;
+      gap: 22px;
+      padding: 20px 22px;
+      border: 1px solid var(--line);
+      border-radius: 15px;
+      background: rgba(255,253,248,.72);
+    }
+    .passage-ref {
+      color: var(--clay);
+      font: 800 14px/1.4 system-ui, sans-serif;
+    }
+    .passage p { margin: 0; }
+
+    .memory-list { counter-reset: memory; display: grid; gap: 16px; }
+    .memory {
+      position: relative;
+      padding: 25px 25px 25px 76px;
+      border: 1px solid var(--line);
+      border-radius: 17px;
+      background: var(--white);
+    }
+    .memory::before {
+      counter-increment: memory;
+      content: counter(memory);
+      position: absolute;
+      left: 22px;
+      top: 22px;
+      display: grid;
+      place-items: center;
+      width: 37px;
+      height: 37px;
+      border-radius: 50%;
+      color: #fff;
+      background: var(--gold);
+      font: 800 14px/1 system-ui, sans-serif;
+    }
+    .memory h3 { font-size: 21px; }
+
+    .practice-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 15px;
+      margin: 24px 0;
+    }
+    .practice-card {
+      padding: 22px;
+      border-radius: 16px;
+      background: var(--green-soft);
+    }
+    .practice-card:nth-child(2) { background: var(--gold-soft); }
+    .practice-card:nth-child(3) { background: #efddd5; }
+    .practice-card span {
+      display: block;
+      margin-bottom: 8px;
+      color: var(--green);
+      font: 800 12px/1.2 system-ui, sans-serif;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+    }
+
+    .quiz-item { margin: 15px 0; }
+    .quiz-item summary { font-size: 16px; }
+    .answer {
+      margin: 0;
+      padding: 18px 20px;
+      border-left: 4px solid var(--green-2);
+      background: #edf4f0;
+    }
+    .answer strong { color: var(--green); }
+    .option-list { margin: 10px 0 0; padding-left: 22px; }
+
+    .finale {
+      padding: clamp(30px, 6vw, 60px);
+      border-radius: 28px;
+      color: #f8f3e9;
+      background: linear-gradient(145deg, #1d4a3f, #2d6758);
+      box-shadow: var(--shadow);
+    }
+    .finale h2 { color: white; }
+    .finale .section-kicker { color: #f0cc8b; }
+    .finale p { color: #dce9e3; }
+    .finale .big-line {
+      margin: 28px 0;
+      padding: 22px 0;
+      border-top: 1px solid rgba(255,255,255,.22);
+      border-bottom: 1px solid rgba(255,255,255,.22);
+      color: white;
+      font-size: clamp(24px, 3.4vw, 38px);
+      line-height: 1.35;
+    }
+
+    .source-note {
+      padding: 24px;
+      border: 1px dashed #b9aa91;
+      border-radius: 16px;
+      color: #59635f;
+      background: rgba(255,255,255,.35);
+      font-size: .9em;
+    }
+    .source-note strong { color: var(--green); }
+    .back-top {
+      position: fixed;
+      z-index: 40;
+      right: 22px;
+      bottom: 22px;
+      display: grid;
+      place-items: center;
+      width: 48px;
+      height: 48px;
+      border: 0;
+      border-radius: 50%;
+      opacity: 0;
+      color: #fff;
+      background: var(--green);
+      box-shadow: var(--shadow);
+      cursor: pointer;
+      transform: translateY(12px);
+      transition: .2s ease;
+      pointer-events: none;
+    }
+    .back-top.show { opacity: 1; transform: translateY(0); pointer-events: auto; }
+    .mobile-menu { display: none; }
+
+    @media (max-width: 920px) {
+      .sidebar { transform: translateX(-105%); }
+      .sidebar.mobile-open { transform: translateX(0); }
+      .page, body.nav-collapsed .page { margin-left: 0; }
+      body.nav-collapsed .reopen-nav, .reopen-nav { display: none; }
+      .mobile-menu {
+        position: fixed;
+        z-index: 46;
+        top: 16px;
+        left: 16px;
+        display: grid;
+        place-items: center;
+        width: 46px;
+        height: 46px;
+        border: 0;
+        color: #fff;
+        background: var(--green);
+        box-shadow: var(--shadow);
+        font-size: 21px;
+      }
+      .scrim {
+        position: fixed;
+        inset: 0;
+        z-index: 45;
+        display: none;
+        background: rgba(14, 35, 30, .44);
+      }
+      .scrim.show { display: block; }
+      .hero { min-height: 84vh; padding-top: 100px; }
+      .grid-3, .practice-grid { grid-template-columns: 1fr; }
+    }
+
+    @media (max-width: 680px) {
+      body { font-size: calc(17px * var(--reading-scale)); }
+      .content { width: min(100% - 28px, 1040px); padding-top: 56px; }
+      .study-section { margin-bottom: 68px; }
+      .hero { padding-inline: 22px; }
+      h1 { font-size: clamp(48px, 17vw, 72px); }
+      .grid-2, .glossary, .contrast { grid-template-columns: 1fr; }
+      .journey { grid-template-columns: 1fr; padding: 18px; }
+      .journey-step { padding: 10px 10px 10px 46px; text-align: left; }
+      .journey-step::before { left: 18px; top: 14px; transform: none; }
+      .journey-step:not(:last-child)::after {
+        left: 24px; top: 31px; width: 0; height: calc(100% - 10px);
+        border-top: 0; border-left: 2px dashed #c8ad7e;
+      }
+      .passage { grid-template-columns: 1fr; gap: 6px; }
+      .memory { padding-left: 66px; }
+      .unit { padding: 22px 18px; }
+      .unit-head { gap: 12px; }
+      .unit-index { flex-basis: 42px; height: 42px; }
+    }
+
+    @media print {
+      @page { margin: 17mm; }
+      body { background: white; color: #111; font-size: 11pt; }
+      .sidebar, .mobile-menu, .reopen-nav, .back-top, .progress, .accordion-toolbar { display: none !important; }
+      .page { margin: 0 !important; }
+      .hero { min-height: auto; padding: 30px; color: #111; background: white; border-bottom: 2px solid #24594b; }
+      .hero::before, .hero::after { display: none; }
+      .hero h1, .hero-sub, .hero-claim { color: #111; }
+      .pill { color: #111; border-color: #777; }
+      .content { width: 100%; padding: 28px 0; }
+      .study-section { margin-bottom: 38px; break-inside: avoid-page; }
+      .unit, .card, .memory, .finale { box-shadow: none; break-inside: avoid; }
+      .finale { color: #111; background: white; border: 2px solid #24594b; }
+      .finale h2, .finale p, .finale .big-line { color: #111; }
+      details { break-inside: avoid; }
+      details:not([open]) > .details-body { display: block; }
+      summary::after { display: none; }
+      a { text-decoration: none; }
+    }
+  </style>
+</head>
+<body>
+  <div class="progress" aria-hidden="true"><span id="progressBar"></span></div>
+  <button class="mobile-menu" id="mobileMenu" aria-label="Abrir menú de contenidos" aria-expanded="false">☰</button>
+  <div class="scrim" id="scrim"></div>
+  <button class="reopen-nav" id="reopenNav" aria-label="Mostrar menú">☰</button>
+
+  <aside class="sidebar" id="sidebar" aria-label="Contenido de la clase">
+    <div class="sidebar-brand">
+      <div class="brand-mark">L</div>
+      <div><strong>El viaje a Jerusalén</strong><span>Lucas 9–13 · Guía de estudio</span></div>
+    </div>
+
+    <div class="sidebar-controls">
+      <button id="smallerText" type="button" aria-label="Disminuir texto">A− Texto</button>
+      <button id="largerText" type="button" aria-label="Aumentar texto">A+ Texto</button>
+      <button id="printPage" type="button">Imprimir</button>
+      <button id="collapseNav" type="button">Ocultar menú</button>
+    </div>
+
+    <label class="search-wrap">
+      <span class="visually-hidden" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)">Buscar en la clase</span>
+      <input id="searchInput" type="search" placeholder="Buscar tema o palabra…" autocomplete="off">
+    </label>
+    <p class="search-status" id="searchStatus" aria-live="polite">Escribe al menos 3 letras para buscar.</p>
+
+    <p class="toc-label">En esta clase</p>
+    <nav class="toc" id="toc">
+      <a href="#inicio">Inicio</a>
+      <a href="#objetivos">Objetivos</a>
+      <a href="#panorama">Panorama general</a>
+      <a href="#ruta">Ruta de estudio</a>
+      <a href="#clase">Desarrollo de la clase</a>
+      <a href="#preguntas">Preguntas importantes</a>
+      <a href="#glosario">Personas y conceptos</a>
+      <a href="#pasajes">Pasajes centrales</a>
+      <a href="#recordar">Ideas para recordar</a>
+      <a href="#aplicacion">Aplicación personal</a>
+      <a href="#repaso">Repaso interactivo</a>
+      <a href="#resumen">Resumen final</a>
+      <a href="#fuente">Fuente y transparencia</a>
+    </nav>
+    <p class="sidebar-foot">Tu mayor avance de lectura queda guardado en este dispositivo.</p>
+  </aside>
+
+  <main class="page" id="mainContent">
+    <header class="hero study-section" id="inicio">
+      <div class="hero-inner">
+        <p class="eyebrow">Thread · Episodio 64</p>
+        <h1>El camino se vuelve aula</h1>
+        <p class="hero-sub">El viaje de Jesús a Jerusalén forma discípulos capaces de caminar hacia afuera con misericordia y hacia adentro con integridad.</p>
+        <div class="hero-meta">
+          <span class="pill">Lucas 9:51–13:35</span>
+          <span class="pill">38 minutos de conversación</span>
+          <span class="pill">Viaje exterior + viaje interior</span>
+        </div>
+        <p class="hero-claim">“La firmeza del amor se convierte en el dolor del amor”: el rostro decidido hacia Jerusalén termina lleno de compasión por Jerusalén.</p>
+      </div>
+    </header>
+
+    <div class="content">
+      <section class="study-section" id="objetivos">
+        <p class="section-kicker">01 · Punto de partida</p>
+        <h2>Lo que aprenderás</h2>
+        <p class="lead">La conversación recorre Lucas 9–13 como una sola experiencia formativa. Al terminar podrás explicar no solo qué enseñó Jesús en el camino, sino qué clase de persona intenta formar.</p>
+        <div class="card">
+          <ul class="objectives">
+            <li>Reconocer Lucas 9:51 como el gran giro narrativo que orienta los siguientes capítulos hacia Jerusalén.</li>
+            <li>Explicar por qué el camino importa tanto como el destino en la formación de los discípulos.</li>
+            <li>Relacionar el rechazo samaritano, el envío de los setenta o setenta y dos y el buen samaritano con una misión que cruza fronteras.</li>
+            <li>Comprender la “gran inversión” de Lucas: el enemigo puede convertirse en prójimo y el rechazado puede ser honrado.</li>
+            <li>Integrar la acción del buen samaritano con la escucha de María, sin enfrentar servicio y contemplación.</li>
+            <li>Examinar la vida interior a la luz de la oración, las posesiones, la integridad y el arrepentimiento.</li>
+            <li>Mantener juntas firmeza y ternura, juicio y misericordia, como aparecen en el lamento de Jesús por Jerusalén.</li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="study-section" id="panorama">
+        <p class="section-kicker">02 · El hilo conductor</p>
+        <h2>Un viaje en dos direcciones</h2>
+        <p class="lead">En Lucas 9:51 Jesús “afirma el rostro” hacia Jerusalén. Desde allí, el trayecto deja de ser simple geografía: la carretera se convierte en salón de clases. Jesús avanza hacia la cruz mientras enseña a sus seguidores a vivir con propósito, misericordia, oración, generosidad e integridad.</p>
+
+        <div class="contrast">
+          <div>
+            <strong>Viaje exterior</strong>
+            Jesús cruza fronteras, envía mensajeros, redefine al prójimo y lleva la misión más allá de los círculos cómodos.
+          </div>
+          <div>
+            <strong>Viaje interior</strong>
+            Jesús forma el corazón: escuchar antes de actuar, perseverar en oración, soltar falsas seguridades y ser iguales por dentro y por fuera.
+          </div>
+        </div>
+
+        <div class="callout green">
+          <strong>Idea central de la conversación</strong>
+          <p>La madurez cristiana no elige entre misión o formación espiritual, acción o contemplación, firmeza o compasión. Aprende a discernir cómo sostener ambas cosas y cuándo corresponde enfatizar cada una.</p>
+        </div>
+
+        <details>
+          <summary>¿Por qué se le llama “narrativa del viaje”?</summary>
+          <div class="details-body">
+            <p>La conversación explica que muchos estudiosos llaman así a la extensa sección que comienza en Lucas 9:51. Ocupa más de una tercera parte del Evangelio y organiza enseñanzas, parábolas y encuentros alrededor del avance hacia Jerusalén. El itinerario exacto pierde protagonismo; lo esencial es la instrucción que ocurre en el camino. <span class="time">04:30–05:45</span></p>
+            <p>Uno de los autores citados compara esta marcha lenta con Israel en el desierto: el tiempo prolongado no es un retraso inútil, sino una temporada favorable para aprender a ser discípulo “bajo la sombra de la cruz”.</p>
+          </div>
+        </details>
+      </section>
+
+      <section class="study-section" id="ruta">
+        <p class="section-kicker">03 · Orientación</p>
+        <h2>Ruta recomendada</h2>
+        <p class="lead">Sigue la clase en cinco movimientos. Cada paso amplía el anterior: primero la dirección de Jesús, luego el alcance de su misión, después la formación interior, la tensión entre juicio y misericordia y, finalmente, la madurez que integra todo.</p>
+        <div class="journey" aria-label="Ruta conceptual de la clase">
+          <div class="journey-step">Dirección<span>Lucas 9:51</span></div>
+          <div class="journey-step">Misión<span>Lucas 9–10</span></div>
+          <div class="journey-step">Interioridad<span>Lucas 10–12</span></div>
+          <div class="journey-step">Urgencia<span>Lucas 12–13</span></div>
+          <div class="journey-step">Amor maduro<span>Lucas 13:34–35</span></div>
+        </div>
+        <div class="grid-3">
+          <div class="card"><div class="number">1</div><h3>Lee el panorama</h3><p>Primero capta la tesis: el camino forma tanto la misión como el corazón.</p></div>
+          <div class="card"><div class="number">2</div><h3>Abre las persianas</h3><p>Profundiza en contexto, conexiones y aplicaciones solo cuando las necesites.</p></div>
+          <div class="card"><div class="number">3</div><h3>Responde y aplica</h3><p>Usa el repaso final para comprobar comprensión y llevar la enseñanza a la práctica.</p></div>
+        </div>
+      </section>
+
+      <section class="study-section" id="clase">
+        <p class="section-kicker">04 · Desarrollo</p>
+        <h2>La clase, paso a paso</h2>
+        <p class="lead">Las siguientes unidades reorganizan pedagógicamente la conversación, pero conservan sus argumentos, ejemplos y referencias de tiempo.</p>
+
+        <div class="accordion-toolbar sidebar-controls" style="max-width:360px;margin:0 0 24px">
+          <button id="openAll" type="button" style="color:var(--green);border-color:var(--line);background:var(--white)">Abrir persianas</button>
+          <button id="closeAll" type="button" style="color:var(--green);border-color:var(--line);background:var(--white)">Cerrar persianas</button>
+        </div>
+
+        <article class="unit">
+          <div class="unit-head">
+            <div class="unit-index">01</div>
+            <div><h3>Jesús fija el rumbo</h3><p class="reference">Lucas 9:51 · 02:24–08:39</p></div>
+          </div>
+          <p>Hasta aquí Jesús ha ministrado principalmente en Galilea: sana, enseña y revela el reino. Lucas 9:51 cambia el tono. Jesús sabe que el camino conduce al sufrimiento, a la muerte y, finalmente, a su exaltación; aun así, decide avanzar.</p>
+          <div class="callout"><strong>La imagen decisiva</strong><p>“Puso su rostro para ir a Jerusalén” comunica concentración y determinación. La conversación la relaciona con Isaías 50:7, donde el siervo afirma su rostro “como pedernal”.</p></div>
+          <p>Desde este momento, cada encuentro ocurre “de camino”. Las parábolas enseñan, la comunidad aprende junta y la perseverancia se vuelve parte del currículo. El proceso importa: el discípulo no solo llega a un destino; es transformado mientras camina.</p>
+          <details>
+            <summary>La expresión “ser llevado arriba”</summary>
+            <div class="details-body">
+              <p>La transcripción propone varias resonancias para la expresión de Lucas 9:51: subir geográficamente a Jerusalén, ser levantado en la cruz y ascender al cielo. La idea principal no depende de escoger una sola resonancia; el relato mira hacia la culminación completa de la misión de Jesús. <span class="time">02:45–03:34</span></p>
+              <p class="source-note"><strong>Nota de cautela:</strong> la pronunciación y escritura de los términos griegos quedó deformada en la transcripción automática. Por eso esta clase conserva el sentido discutido, pero no reproduce aquella transliteración como si fuera segura.</p>
+            </div>
+          </details>
+          <details>
+            <summary>Pregunta para reflexionar</summary>
+            <div class="details-body"><p>¿Qué llamado o responsabilidad necesita hoy menos distracción y un rostro más decidido, aun sabiendo que tendrá un costo?</p></div>
+          </details>
+        </article>
+
+        <article class="unit">
+          <div class="unit-head">
+            <div class="unit-index">02</div>
+            <div><h3>El rechazo no autoriza la violencia</h3><p class="reference">Lucas 9:52–56 · 08:46–12:18</p></div>
+          </div>
+          <p>Una aldea samaritana no recibe a Jesús porque se dirige a Jerusalén. Santiago y Juan responden al rechazo con enojo: quieren hacer descender fuego. Jesús, en cambio, los reprende y continúa hacia otra aldea.</p>
+          <div class="contrast">
+            <div><strong>Respuesta de los discípulos</strong>Interpretan el rechazo como una ofensa que merece destrucción.</div>
+            <div><strong>Respuesta de Jesús</strong>Respeta la decisión ajena, se niega a demonizar y sigue adelante sin abandonar su misión.</div>
+          </div>
+          <p>La conversación ve aquí una lección urgente para tiempos polarizados: amar incluye respetar la capacidad de otros para decir “no”. La gracia de Jesús no consiste en aprobar el rechazo, sino en no convertirlo en permiso para deshumanizar al que piensa distinto.</p>
+          <details>
+            <summary>El trasfondo samaritano</summary>
+            <div class="details-body">
+              <p>Judíos y samaritanos sostenían una antigua tensión religiosa y social. La dirección hacia Jerusalén hacía visible esa diferencia. El episodio muestra hostilidad en ambos sentidos: la aldea rechaza; los discípulos desean castigar. Jesús interrumpe esa espiral.</p>
+              <p>Este comienzo prepara al lector para el buen samaritano de Lucas 10: el grupo rechazado en el capítulo 9 proporcionará, poco después, el personaje que encarna la misericordia.</p>
+            </div>
+          </details>
+          <details>
+            <summary>Aplicación</summary>
+            <div class="details-body"><p>Cuando alguien rechace mi mensaje, mi grupo o mi manera de pensar, ¿buscaré destruir su reputación o podré seguir adelante con la libertad y la gracia de Jesús?</p></div>
+          </details>
+        </article>
+
+        <article class="unit">
+          <div class="unit-head">
+            <div class="unit-index">03</div>
+            <div><h3>Una misión más grande que los Doce</h3><p class="reference">Lucas 10:1–16 · 12:22–14:37</p></div>
+          </div>
+          <p>Jesús envía a un grupo amplio —setenta o setenta y dos, según la tradición textual reflejada por distintas traducciones— de dos en dos. Deben preparar las localidades que él visitará, ofrecer paz, depender de la hospitalidad y viajar ligeros.</p>
+          <p>El episodio subraya dos enseñanzas: Jesús tenía más seguidores que los Doce, y la vida cristiana no fue diseñada como un proyecto solitario. Ir en parejas permite apoyo, ánimo y testimonio compartido.</p>
+          <div class="callout green"><strong>Alcance universal</strong><p>La conversación relaciona el número setenta con la “tabla de las naciones” y lo entiende simbólicamente: el mensaje se está extendiendo hacia todos los pueblos. La misión comienza en Israel, pero no termina allí.</p></div>
+          <details>
+            <summary>¿Por qué algunas Biblias dicen 70 y otras 72?</summary>
+            <div class="details-body">
+              <p>La conversación reconoce la diferencia, pero se concentra en su significado misional, no en resolver el problema textual. Por transparencia, esta clase mantiene ambas cifras. La enseñanza presentada es que la misión se expande y necesita muchos obreros. <span class="time">13:47–14:37</span></p>
+            </div>
+          </details>
+          <details>
+            <summary>Aplicación</summary>
+            <div class="details-body"><p>¿Con quién estoy caminando y sirviendo? ¿Qué carga innecesaria —material, emocional o de control— dificulta que viaje ligero?</p></div>
+          </details>
+        </article>
+
+        <article class="unit">
+          <div class="unit-head">
+            <div class="unit-index">04</div>
+            <div><h3>El prójimo se reconoce por la misericordia</h3><p class="reference">Lucas 10:25–37 · 14:47–20:13</p></div>
+          </div>
+          <p>Un experto en la Ley conoce la respuesta correcta: amar a Dios con todo el ser y al prójimo como a uno mismo. Pero, queriendo justificarse, pregunta: “¿Y quién es mi prójimo?”. Busca un límite práctico para una verdad que ya domina en teoría.</p>
+          <p>Jesús cuenta la historia del hombre golpeado en el camino de Jerusalén a Jericó. Un sacerdote y un levita pasan de largo; un samaritano se acerca, cura, transporta, paga y promete regresar. Jesús desplaza la pregunta de “¿quién merece ser mi prójimo?” a “¿quién actuó como prójimo?”.</p>
+          <div class="callout clay"><strong>La inversión incómoda</strong><p>Las figuras asociadas con la respetabilidad religiosa quedan en una luz negativa; el enemigo cultural queda en una luz positiva. La diferencia no es la etiqueta, sino la conducta: misericordia y amor.</p></div>
+          <p>La compasión verdadera es incómoda. El herido está ensangrentado; ayudar da miedo, interrumpe planes y cuesta dinero. Precisamente allí, fuera del círculo familiar y religioso, Jesús dice: “Ve y haz tú lo mismo”.</p>
+          <details>
+            <summary>Conexión con Natán y David</summary>
+            <div class="details-body">
+              <p>La conversación compara el método de Jesús con la historia que el profeta Natán cuenta a David: una narración acerca de “otro” permite que la persona pronuncie el juicio correcto antes de reconocer que la enseñanza también la alcanza. Aquí, el experto debe admitir que el misericordioso fue el verdadero prójimo.</p>
+            </div>
+          </details>
+          <details>
+            <summary>Pregunta para reflexionar</summary>
+            <div class="details-body"><p>¿A quién puedo amar fácilmente porque pertenece a “los míos”, y quién representa para mí al herido incómodo o incluso al samaritano que rompe mis categorías?</p></div>
+          </details>
+        </article>
+
+        <article class="unit">
+          <div class="unit-head">
+            <div class="unit-index">05</div>
+            <div><h3>La gran inversión de Lucas</h3><p class="reference">Tema transversal · 20:13–21:18</p></div>
+          </div>
+          <p>La conversación llama “gran inversión” al patrón por el cual la comunidad de Jesús trastoca los valores acostumbrados: el extraño y el enemigo son llamados prójimos; los últimos pasan primero; lo escondido sale a la luz; personas rechazadas reciben honor.</p>
+          <p>No se trata de invertir privilegios para crear otra superioridad. Se trata de desmontar la confianza en etiquetas y devolver el peso moral a la misericordia, la humildad, la generosidad y la fe.</p>
+          <details>
+            <summary>Por qué esta idea importa</summary>
+            <div class="details-body"><p>Podemos usar identidad religiosa, conocimiento o pertenencia grupal para sentirnos seguros sin obedecer. Lucas obliga a preguntar no solo “¿con quién me identifico?”, sino “¿qué fruto produce mi vida?”.</p></div>
+          </details>
+        </article>
+
+        <article class="unit">
+          <div class="unit-head">
+            <div class="unit-index">06</div>
+            <div><h3>María y Marta: escuchar para servir</h3><p class="reference">Lucas 10:38–42 · 21:25–25:22</p></div>
+          </div>
+          <p>Marta recibe a Jesús y trabaja; María se sienta a sus pies y escucha. Marta termina “preocupada y distraída por muchas cosas”. Jesús repite su nombre con ternura —“Marta, Marta”— y afirma que María escogió la mejor parte.</p>
+          <p>La conversación rechaza una lectura simplista que desprecie el servicio. Lucas acaba de narrar al buen samaritano, cuyo amor se expresa en acción. Ahora muestra que la acción necesita raíces: servimos porque primero escuchamos; actuamos desde la presencia de Jesús.</p>
+          <div class="contrast">
+            <div><strong>Acción sin contemplación</strong>Puede volverse ciega, ansiosa, resentida y desconectada del propósito.</div>
+            <div><strong>Contemplación sin acción</strong>Puede volverse estéril si nunca se transforma en amor concreto al prójimo.</div>
+          </div>
+          <div class="callout"><strong>Integración</strong><p>Hay un tiempo para “ir y hacer” y un tiempo para “sentarse y escuchar”. Reconocer cuál corresponde ahora es asunto de discernimiento espiritual.</p></div>
+          <details>
+            <summary>¿Está Jesús condenando a Marta?</summary>
+            <div class="details-body">
+              <p>Según la conversación, no conviene censurar a Marta hasta que abandone el servicio ni elogiar a María como si debiera permanecer sentada para siempre. El problema no es trabajar, sino perder el centro por preocupación y distracción.</p>
+            </div>
+          </details>
+          <details>
+            <summary>Aplicación</summary>
+            <div class="details-body"><p>¿Mi servicio nace de haber escuchado a Jesús o intento compensar con actividad una vida interior descuidada? En sentido contrario: ¿mi reflexión se convierte en misericordia visible?</p></div>
+          </details>
+        </article>
+
+        <article class="unit">
+          <div class="unit-head">
+            <div class="unit-index">07</div>
+            <div><h3>La vida interior también viaja</h3><p class="reference">Lucas 11–12 · 25:30–28:48</p></div>
+          </div>
+          <p>El camino no forma solamente mensajeros activos. Forma personas que oran, perseveran, dependen de Dios, viajan sin cargas falsas y alinean su interior con su exterior.</p>
+          <div class="grid-2">
+            <div class="card"><h3>Oración perseverante</h3><p>Lucas 11 presenta una versión breve del Padre Nuestro y la historia del amigo que llega a medianoche. La conversación las vincula con una oración sencilla para el camino y con la persistencia.</p></div>
+            <div class="card"><h3>Posesiones sin idolatría</h3><p>El rico insensato de Lucas 12 no es llamado necio por producir con éxito, sino por acumular y depositar su confianza en los bienes.</p></div>
+          </div>
+          <p>En la mesa de un fariseo, Jesús denuncia la obsesión por limpiar lo exterior mientras dentro permanecen codicia y maldad. También cuestiona el diezmo minucioso que descuida la justicia y el amor de Dios, y la búsqueda de honor público.</p>
+          <div class="callout green"><strong>Integridad</strong><p>Ser la misma persona por dentro y por fuera: en casa y en la iglesia, en privado y en el espacio público. Jesús no descarta las prácticas religiosas; denuncia practicarlas mientras se omite lo esencial.</p></div>
+          <details>
+            <summary>El detalle sorprendente de la cena</summary>
+            <div class="details-body"><p>La conversación recalca que, en Lucas, Jesús pronuncia estas palabras estando a la mesa de un fariseo. Un experto en la Ley incluso protesta: “al decir esto, también nos insultas”. Jesús no suaviza el diagnóstico. <span class="time">26:53–28:48</span></p></div>
+          </details>
+        </article>
+
+        <article class="unit">
+          <div class="unit-head">
+            <div class="unit-index">08</div>
+            <div><h3>La paz de Jesús también provoca decisión</h3><p class="reference">Lucas 12:49–53; 13 · 28:49–32:45</p></div>
+          </div>
+          <p>Lucas 12 contiene palabras difíciles: Jesús habla de fuego, de un bautismo pendiente y de división en las familias. La conversación las interpreta a la luz del giro de 9:51. Al acercarse la cruz, el lenguaje se llena de urgencia y llama a responder.</p>
+          <p>Esto debe mantenerse en tensión con otras palabras de paz. Jesús ofrece paz, pero su mensaje también descubre lealtades y exige decisiones que pueden dividir. No toda tensión es el objetivo de Jesús; algunas divisiones son consecuencia de la respuesta humana a su llamado.</p>
+          <div class="grid-3">
+            <div class="card"><h3>Arrepentimiento</h3><p>Lucas 13 insiste en la urgencia de cambiar de rumbo.</p></div>
+            <div class="card"><h3>Paciencia</h3><p>La higuera estéril recibe tiempo y cuidado, aunque el juicio no desaparece.</p></div>
+            <div class="card"><h3>Misericordia</h3><p>La mujer encorvada por dieciocho años es sanada en sábado: la compasión pesa más que preservar el orden.</p></div>
+          </div>
+          <details>
+            <summary>¿Juicio o misericordia?</summary>
+            <div class="details-body"><p>La conversación responde nuevamente: ambos. En la higuera hay paciencia, pero también expectativa de fruto. En la sanidad sabática hay orden religioso, pero Jesús muestra que ese orden nunca debe sofocar la misericordia. La madurez evita borrar uno de los polos.</p></div>
+          </details>
+          <details>
+            <summary>La respuesta a Herodes</summary>
+            <div class="details-body"><p>En Lucas 13:32 Jesús llama “zorro” a Herodes y declara que continuará expulsando demonios y sanando hasta completar su obra. La conversación escucha aquí la voz desafiante de un profeta que no permite que el poder político lo desvíe de la misión. <span class="time">32:18–32:45</span></p></div>
+          </details>
+        </article>
+
+        <article class="unit">
+          <div class="unit-head">
+            <div class="unit-index">09</div>
+            <div><h3>El rostro firme se llena de lágrimas</h3><p class="reference">Lucas 13:34–35 · 32:56–36:25</p></div>
+          </div>
+          <p>Jesús lamenta: “Jerusalén, Jerusalén”. Desea reunir a sus hijos como la gallina protege a sus polluelos, pero ellos no quieren. La repetición del nombre, como “Marta, Marta”, comunica afecto. La imagen materna presenta una fuerza protectora, cercana y tierna.</p>
+          <div class="callout clay"><strong>El arco completo</strong><p>El rostro que en Lucas 9 se afirmó como pedernal hacia Jerusalén aparece ahora conmovido por Jerusalén. La firmeza del amor se vuelve dolor; la obediencia que avanza hacia adelante conserva un corazón capaz de llorar.</p></div>
+          <p>La respuesta de Jesús al rechazo no es resentimiento. Es amor que llama al arrepentimiento y, al mismo tiempo, lamenta la negativa. La conversación compara esta tensión con el amor de una madre o un padre que mantiene expectativas altas, desea profundamente la relación y sigue mostrando compasión cuando un hijo elige mal.</p>
+          <details>
+            <summary>Fuerza y ternura</summary>
+            <div class="details-body"><p>La espiritualidad del viaje consiste en avanzar con resolución santa sin endurecer el corazón. El amor de Jesús es firme y tierno, perseverante y abierto, capaz de confrontar y de proteger.</p></div>
+          </details>
+        </article>
+
+        <article class="unit">
+          <div class="unit-head">
+            <div class="unit-index">10</div>
+            <div><h3>La madurez sostiene las tensiones</h3><p class="reference">Conclusión del episodio · 36:33–37:57</p></div>
+          </div>
+          <p>La conversación termina preguntando cómo luce la madurez. No consiste en escoger un “lado” en cada aparente contradicción, sino en integrar correctamente lo que Jesús mantiene unido.</p>
+          <div class="contrast">
+            <div><strong>Quien enfatiza la vida interior</strong>Debe preguntar si su formación produce compasión en lugares incómodos y participación real en la misión.</div>
+            <div><strong>Quien enfatiza la misión</strong>Debe preguntar si también cultiva su propio corazón y ayuda a otros creyentes a madurar.</div>
+          </div>
+          <p>El viaje hacia afuera necesita un viaje hacia adentro. La escucha sin obediencia queda incompleta; la actividad sin presencia pierde dirección. El discípulo maduro aprende a caminar con ambas.</p>
+        </article>
+      </section>
+
+      <section class="study-section" id="preguntas">
+        <p class="section-kicker">05 · Las dudas que movieron la conversación</p>
+        <h2>Preguntas importantes</h2>
+        <p class="lead">Estas son las preguntas que los participantes plantearon explícita o implícitamente y las respuestas que construyeron juntos.</p>
+        <details open>
+          <summary>¿Es más importante llegar a Jerusalén o lo que sucede en el camino?</summary>
+          <div class="details-body"><p>El destino da dirección, pero el camino forma al discípulo. Lucas ralentiza la llegada para que la enseñanza, la práctica comunitaria y los encuentros moldeen a quienes siguen a Jesús.</p></div>
+        </details>
+        <details>
+          <summary>¿Cómo responder cuando alguien nos rechaza?</summary>
+          <div class="details-body"><p>No con el fuego de Santiago y Juan. Jesús respeta la decisión de la aldea, reprende la violencia de los suyos y continúa amando hacia afuera.</p></div>
+        </details>
+        <details>
+          <summary>¿Quién es mi prójimo?</summary>
+          <div class="details-body"><p>Jesús no ofrece una lista de personas que califican. Cuenta una historia que obliga a convertirse en prójimo por medio de la misericordia, incluso frente a quien está fuera del círculo seguro.</p></div>
+        </details>
+        <details>
+          <summary>¿María tiene razón y Marta está equivocada?</summary>
+          <div class="details-body"><p>La conversación responde que Lucas integra ambas posturas. El buen samaritano enseña a actuar; María enseña a escuchar. El servicio necesita presencia, y la contemplación necesita dar fruto.</p></div>
+        </details>
+        <details>
+          <summary>¿Jesús trae paz o división?</summary>
+          <div class="details-body"><p>La paz caracteriza su don, pero la verdad de su llamado exige respuestas y puede exponer divisiones. La conversación recomienda no usar un texto para borrar el otro, sino discernir el contexto.</p></div>
+        </details>
+        <details>
+          <summary>¿Cómo pueden coexistir juicio y misericordia?</summary>
+          <div class="details-body"><p>La higuera recibe paciencia y también una expectativa de fruto. Jerusalén recibe un llamado serio y también el lamento amoroso de Jesús. Misericordia no significa indiferencia; juicio no significa ausencia de amor.</p></div>
+        </details>
+        <details>
+          <summary>¿Qué aspecto tiene la madurez espiritual?</summary>
+          <div class="details-body"><p>Integra misión y vida interior, acción y contemplación, valentía y ternura. Además, reconoce la propia tendencia: quien se refugia en la interioridad debe salir; quien se pierde en la actividad debe volver a escuchar.</p></div>
+        </details>
+      </section>
+
+      <section class="study-section" id="glosario">
+        <p class="section-kicker">06 · Consulta rápida</p>
+        <h2>Personas, lugares y conceptos</h2>
+        <dl class="glossary">
+          <div class="term"><dt>Jerusalén</dt><dd>Destino narrativo y teológico del viaje. Allí culminará la misión de Jesús en sufrimiento, muerte, resurrección y exaltación.</dd></div>
+          <div class="term"><dt>Galilea</dt><dd>Región donde se concentra la primera parte del ministerio de Jesús antes del giro de Lucas 9:51.</dd></div>
+          <div class="term"><dt>Samaritanos</dt><dd>Comunidad vecina de los judíos con una relación histórica marcada por desacuerdos religiosos y hostilidad. Lucas usa esa tensión para revelar el alcance radical de la misericordia.</dd></div>
+          <div class="term"><dt>Santiago y Juan</dt><dd>Discípulos llamados “hijos del trueno” en Marcos. En Lucas 9 quieren responder al rechazo samaritano con fuego; Jesús los corrige.</dd></div>
+          <div class="term"><dt>Los 70 o 72</dt><dd>Grupo amplio de seguidores enviados en parejas. La diferencia numérica aparece en distintas tradiciones textuales; la conversación enfatiza el alcance universal de la misión.</dd></div>
+          <div class="term"><dt>Experto en la Ley</dt><dd>Intérprete de la Ley de Moisés que conoce la respuesta teórica sobre el amor, pero pregunta por los límites del término “prójimo”.</dd></div>
+          <div class="term"><dt>Sacerdote y levita</dt><dd>Figuras religiosas respetadas que, en la parábola, ven al herido y pasan de largo. Su posición no sustituye la misericordia.</dd></div>
+          <div class="term"><dt>María y Marta</dt><dd>Hermanas que representan, en esta conversación, la escucha atenta y el servicio activo que necesitan integrarse.</dd></div>
+          <div class="term"><dt>Fariseos</dt><dd>Movimiento judío comprometido con la observancia religiosa. Jesús confronta en Lucas 11 la distancia entre apariencia exterior y realidad interior.</dd></div>
+          <div class="term"><dt>Herodes</dt><dd>Gobernante cuya amenaza no desvía a Jesús. Este lo llama “zorro” y reafirma que terminará su obra.</dd></div>
+          <div class="term"><dt>Narrativa del viaje</dt><dd>Nombre dado a la extensa sección de Lucas que organiza enseñanzas y encuentros alrededor del avance de Jesús hacia Jerusalén.</dd></div>
+          <div class="term"><dt>Gran inversión</dt><dd>Patrón de Lucas en el que los valores comunes son trastocados: el enemigo muestra misericordia, el rechazado recibe honor y los últimos llegan primero.</dd></div>
+          <div class="term"><dt>Contemplación</dt><dd>Escucha, oración y atención a la presencia de Jesús. No es pasividad permanente, sino raíz de una acción bien orientada.</dd></div>
+          <div class="term"><dt>Integridad</dt><dd>Unidad entre lo interior y lo exterior: ser en casa la misma persona que se presenta en la iglesia o en público.</dd></div>
+        </dl>
+      </section>
+
+      <section class="study-section" id="pasajes">
+        <p class="section-kicker">07 · Mapa bíblico</p>
+        <h2>Pasajes centrales por capítulo</h2>
+        <div class="passage-list">
+          <div class="passage"><div class="passage-ref">Lucas 9:51</div><p>Jesús afirma el rostro hacia Jerusalén. Es el giro que da dirección y urgencia al resto de la conversación.</p></div>
+          <div class="passage"><div class="passage-ref">Lucas 9:52–56</div><p>Una aldea samaritana rechaza a Jesús; él rechaza, a su vez, la reacción violenta de Santiago y Juan.</p></div>
+          <div class="passage"><div class="passage-ref">Lucas 10:1–16</div><p>Jesús envía a setenta o setenta y dos seguidores de dos en dos, ligeros y portadores de paz.</p></div>
+          <div class="passage"><div class="passage-ref">Lucas 10:25–37</div><p>El buen samaritano redefine al prójimo mediante la misericordia costosa, no mediante la pertenencia.</p></div>
+          <div class="passage"><div class="passage-ref">Lucas 10:38–42</div><p>María escucha; Marta sirve preocupada y distraída. La escena completa la acción del samaritano con atención interior.</p></div>
+          <div class="passage"><div class="passage-ref">Lucas 11</div><p>Oración, perseverancia y confrontación a una religión exterior que descuida justicia, amor e integridad.</p></div>
+          <div class="passage"><div class="passage-ref">Lucas 12:13–21</div><p>El rico insensato deposita su confianza en lo acumulado y pierde de vista la fragilidad de su vida.</p></div>
+          <div class="passage"><div class="passage-ref">Lucas 12:49–53</div><p>El lenguaje de fuego y división expresa la urgencia del camino hacia la cruz y la necesidad de responder.</p></div>
+          <div class="passage"><div class="passage-ref">Lucas 13</div><p>Arrepentimiento urgente, paciencia con la higuera, misericordia sabática y determinación frente a Herodes.</p></div>
+          <div class="passage"><div class="passage-ref">Lucas 13:34–35</div><p>Jesús lamenta sobre Jerusalén como quien desea proteger bajo sus alas: amor tierno que no elimina el llamado serio.</p></div>
+        </div>
+      </section>
+
+      <section class="study-section" id="recordar">
+        <p class="section-kicker">08 · Memoria</p>
+        <h2>Diez ideas para llevar contigo</h2>
+        <div class="memory-list">
+          <article class="memory"><h3>La claridad del destino ordena el camino</h3><p>Jesús sabe hacia dónde va y qué costará. Esa orientación atraviesa distracciones y cambia el tono de su enseñanza.</p></article>
+          <article class="memory"><h3>El camino no retrasa la formación; es la formación</h3><p>El tiempo de viaje permite practicar, equivocarse, recibir corrección y aprender en comunidad.</p></article>
+          <article class="memory"><h3>El rechazo ajeno no justifica mi violencia</h3><p>Jesús no deja que la hostilidad samaritana determine su carácter ni el de su misión.</p></article>
+          <article class="memory"><h3>La fe cristiana no se camina a solas</h3><p>El envío en parejas recuerda que necesitamos apoyo, ánimo y compañeros de misión.</p></article>
+          <article class="memory"><h3>El prójimo no es una categoría; es una práctica</h3><p>La pregunta madura no es únicamente quién merece mi amor, sino cómo puedo hacerme prójimo mediante la misericordia.</p></article>
+          <article class="memory"><h3>Las etiquetas pesan menos que el fruto</h3><p>El sacerdote y el levita poseen respetabilidad; el samaritano demuestra amor. Jesús mira lo que la vida produce.</p></article>
+          <article class="memory"><h3>Escuchamos para poder servir bien</h3><p>María no cancela al buen samaritano. La presencia ante Jesús da dirección a la acción.</p></article>
+          <article class="memory"><h3>La integridad une el interior y el exterior</h3><p>Prácticas visibles no compensan codicia, injusticia ni búsqueda de prestigio.</p></article>
+          <article class="memory"><h3>La misericordia puede ser firme</h3><p>La paciencia de Dios espera fruto; el llamado al arrepentimiento nace de un amor que desea restaurar.</p></article>
+          <article class="memory"><h3>Un corazón decidido no tiene que ser duro</h3><p>Jesús camina hacia Jerusalén con rostro firme y llora por ella con ternura protectora.</p></article>
+        </div>
+      </section>
+
+      <section class="study-section" id="aplicacion">
+        <p class="section-kicker">09 · Del texto a la vida</p>
+        <h2>Aplicación personal</h2>
+        <p class="lead">No intentes responder todo hoy. Escoge una pregunta de cada columna y conviértela en una acción pequeña, visible y concreta.</p>
+        <div class="practice-grid">
+          <div class="practice-card"><span>Mi manera de pensar</span><p>¿A quién reduzco a una etiqueta? ¿Qué persona o grupo considero demasiado distante para tratarlo como prójimo?</p></div>
+          <div class="practice-card"><span>Mi manera de vivir</span><p>¿Estoy más cerca de la distracción de Marta, de la inmovilidad contemplativa o de una integración saludable?</p></div>
+          <div class="practice-card"><span>Mi siguiente paso</span><p>¿Qué acto de misericordia incómodo, qué tiempo de escucha o qué conversación íntegra realizaré esta semana?</p></div>
+        </div>
+        <details>
+          <summary>Examen de la vida interior</summary>
+          <div class="details-body">
+            <ul>
+              <li>¿Soy la misma persona en casa, en la iglesia y en público?</li>
+              <li>¿Mi actividad espiritual nace de la paz o de la ansiedad?</li>
+              <li>¿En qué posesión, éxito o imagen deposito una seguridad que corresponde a Dios?</li>
+              <li>¿Mi oración persevera cuando la respuesta tarda?</li>
+            </ul>
+          </div>
+        </details>
+        <details>
+          <summary>Examen de la misión</summary>
+          <div class="details-body">
+            <ul>
+              <li>¿Sirvo solamente a quienes me resultan familiares?</li>
+              <li>¿Cómo reacciono cuando mi ayuda, opinión o fe es rechazada?</li>
+              <li>¿Tengo compañeros de camino o intento hacerlo todo solo?</li>
+              <li>¿Mi conocimiento bíblico se convierte en misericordia costosa?</li>
+            </ul>
+          </div>
+        </details>
+        <div class="callout green"><strong>Práctica de siete días</strong><p>Reserva diez minutos diarios para sentarte y escuchar —como María— y elige durante la semana una acción concreta que interrumpa tu comodidad —como el samaritano—. Al final, pregunta: ¿cómo cambió mi servicio cuando nació de la escucha?</p></div>
+      </section>
+
+      <section class="study-section" id="repaso">
+        <p class="section-kicker">10 · Comprueba lo aprendido</p>
+        <h2>Repaso interactivo</h2>
+        <p class="lead">Responde antes de abrir cada persiana. La explicación importa tanto como la respuesta.</p>
+
+        <details class="quiz-item">
+          <summary>1. ¿Qué versículo marca el giro hacia la narrativa del viaje?</summary>
+          <div class="answer"><strong>Lucas 9:51.</strong> Jesús afirma el rostro hacia Jerusalén; a partir de allí, el destino da forma a los siguientes capítulos.</div>
+        </details>
+        <details class="quiz-item">
+          <summary>2. Verdadero o falso: la conversación considera irrelevante el destino mientras el proceso sea bueno.</summary>
+          <div class="answer"><strong>Falso.</strong> Jerusalén da dirección y urgencia. La idea es que el proceso también tiene valor formativo, no que el destino desaparezca.</div>
+        </details>
+        <details class="quiz-item">
+          <summary>3. ¿Qué revela la respuesta de Jesús a la aldea samaritana?</summary>
+          <div class="answer"><strong>Que el rechazo no autoriza la violencia.</strong> Jesús respeta la decisión, reprende a sus discípulos y continúa su misión sin deshumanizar.</div>
+        </details>
+        <details class="quiz-item">
+          <summary>4. ¿Qué dos aspectos destaca el envío de los 70 o 72?</summary>
+          <div class="answer"><strong>Expansión y compañía.</strong> La misión alcanza más allá de un pequeño círculo y se realiza en parejas, no en aislamiento.</div>
+        </details>
+        <details class="quiz-item">
+          <summary>5. En el buen samaritano, ¿qué pesa más: identidad o comportamiento?</summary>
+          <div class="answer"><strong>El comportamiento misericordioso.</strong> El personaje culturalmente rechazado es quien se convierte en prójimo por lo que hace.</div>
+        </details>
+        <details class="quiz-item">
+          <summary>6. ¿Por qué el experto en la Ley pregunta “quién es mi prójimo”?</summary>
+          <div class="answer"><strong>Quiere justificarse.</strong> Conoce el mandamiento, pero busca delimitar a quién debe amar. Jesús rompe ese límite con una historia incómoda.</div>
+        </details>
+        <details class="quiz-item">
+          <summary>7. ¿Cuál es la relación correcta entre María y el buen samaritano?</summary>
+          <div class="answer"><strong>Integración.</strong> María representa la escucha que enraíza el servicio; el samaritano representa la acción en que esa escucha debe fructificar.</div>
+        </details>
+        <details class="quiz-item">
+          <summary>8. ¿Por qué se llama insensato al hombre de los graneros?</summary>
+          <div class="answer"><strong>Por acumular y confiar mal.</strong> La conversación aclara que el problema no es simplemente su éxito, sino el acaparamiento y la confianza depositada en posesiones frágiles.</div>
+        </details>
+        <details class="quiz-item">
+          <summary>9. ¿Qué significa integridad en la discusión sobre los fariseos?</summary>
+          <div class="answer"><strong>Coherencia interior y exterior.</strong> Ser en casa quien se afirma ser en la iglesia, y no usar prácticas visibles para ocultar codicia o injusticia.</div>
+        </details>
+        <details class="quiz-item">
+          <summary>10. ¿Cómo sostiene la conversación la paz y la división?</summary>
+          <div class="answer"><strong>Como una tensión contextual.</strong> Jesús da paz, pero su llamado también obliga a decidir y puede revelar divisiones. Un texto no debe borrar al otro.</div>
+        </details>
+        <details class="quiz-item">
+          <summary>11. ¿Qué comunica la imagen de la gallina sobre Dios?</summary>
+          <div class="answer"><strong>Amor protector y tierno.</strong> Jesús desea reunir a Jerusalén aun mientras confronta su rechazo; la fuerza divina no excluye la ternura.</div>
+        </details>
+        <details class="quiz-item">
+          <summary>12. Respuesta personal: ¿qué polo necesitas recuperar ahora?</summary>
+          <div class="answer"><strong>No existe una respuesta única.</strong> Si tu énfasis es la interioridad, quizá necesites una misericordia más activa. Si es la misión, quizá necesites volver a escuchar, orar y formar el corazón.</div>
+        </details>
+      </section>
+
+      <section class="study-section finale" id="resumen">
+        <p class="section-kicker">11 · Síntesis</p>
+        <h2>El propósito del camino</h2>
+        <p>Jesús no solo se dirige a Jerusalén. Mientras avanza, crea una comunidad capaz de amar más allá de sus fronteras y de cuidar su mundo interior. Cada escena corrige una espiritualidad incompleta.</p>
+        <p class="big-line">El discípulo maduro escucha como María, actúa como el samaritano y avanza como Jesús: con el rostro firme y el corazón tierno.</p>
+        <div class="grid-3">
+          <div><h3 style="color:#f3d59e">Dirección</h3><p>La misión necesita un rumbo que sobreviva al costo y a la distracción.</p></div>
+          <div><h3 style="color:#f3d59e">Integración</h3><p>La acción y la contemplación se corrigen y fecundan mutuamente.</p></div>
+          <div><h3 style="color:#f3d59e">Compasión</h3><p>El amor de Jesús confronta, espera fruto, respeta y aun llora por quien lo rechaza.</p></div>
+        </div>
+      </section>
+
+      <section class="study-section" id="fuente" style="margin-top:80px">
+        <p class="section-kicker">12 · Transparencia</p>
+        <h2>Acerca de esta clase</h2>
+        <div class="source-note">
+          <p><strong>Fuente principal:</strong> transcripción del video “Episode 64 — Luke: The Journey to Jerusalem 1”, conversación de Thread, con una duración aproximada de 38:48.</p>
+          <p>La estructura, las explicaciones y las aplicaciones de esta página reorganizan el contenido de esa conversación para estudiarlo. Las marcas de tiempo remiten a la transcripción proporcionada. Se eliminaron saludos, anuncios y repeticiones sin valor educativo.</p>
+          <p>La transcripción automática contiene algunos nombres académicos y términos griegos deformados. Cuando no podían recuperarse con seguridad, esta clase conservó la idea general o señaló la incertidumbre en lugar de inventar una forma exacta. Las interpretaciones —por ejemplo, las resonancias de “ser llevado arriba”, el simbolismo de los setenta y la lectura integrada de María y Marta— se presentan como argumentos de los participantes, no como datos indiscutibles.</p>
+        </div>
+        <button id="resetProgress" type="button" style="margin-top:20px;padding:11px 16px;border:1px solid var(--line);border-radius:10px;color:var(--green);background:var(--white);cursor:pointer">Restablecer progreso y tamaño de texto</button>
+      </section>
+    </div>
+  </main>
+
+  <button class="back-top" id="backTop" aria-label="Volver al principio">↑</button>
+
+  <script>
+    (() => {
+      const root = document.documentElement;
+      const body = document.body;
+      const sidebar = document.getElementById('sidebar');
+      const mobileMenu = document.getElementById('mobileMenu');
+      const scrim = document.getElementById('scrim');
+      const progressBar = document.getElementById('progressBar');
+      const backTop = document.getElementById('backTop');
+      const searchInput = document.getElementById('searchInput');
+      const searchStatus = document.getElementById('searchStatus');
+      const sections = [...document.querySelectorAll('.study-section')];
+      const tocLinks = [...document.querySelectorAll('.toc a')];
+      const details = [...document.querySelectorAll('details')];
+      const storage = {
+        get(key, fallback) {
+          try { return localStorage.getItem(key) ?? fallback; } catch { return fallback; }
+        },
+        set(key, value) {
+          try { localStorage.setItem(key, String(value)); } catch {}
+        },
+        remove(key) {
+          try { localStorage.removeItem(key); } catch {}
+        }
+      };
+
+      let scale = Number(storage.get('lucasReadingScale', '1')) || 1;
+      scale = Math.min(1.3, Math.max(.85, scale));
+      root.style.setProperty('--reading-scale', scale);
+
+      function setScale(next) {
+        scale = Math.min(1.3, Math.max(.85, next));
+        root.style.setProperty('--reading-scale', scale.toFixed(2));
+        storage.set('lucasReadingScale', scale.toFixed(2));
+      }
+
+      document.getElementById('largerText').addEventListener('click', () => setScale(scale + .08));
+      document.getElementById('smallerText').addEventListener('click', () => setScale(scale - .08));
+      document.getElementById('printPage').addEventListener('click', () => {
+        details.forEach(item => item.open = true);
+        window.print();
+      });
+
+      function closeMobileNav() {
+        sidebar.classList.remove('mobile-open');
+        scrim.classList.remove('show');
+        mobileMenu.setAttribute('aria-expanded', 'false');
+      }
+
+      mobileMenu.addEventListener('click', () => {
+        const open = !sidebar.classList.contains('mobile-open');
+        sidebar.classList.toggle('mobile-open', open);
+        scrim.classList.toggle('show', open);
+        mobileMenu.setAttribute('aria-expanded', String(open));
+      });
+      scrim.addEventListener('click', closeMobileNav);
+      tocLinks.forEach(link => link.addEventListener('click', closeMobileNav));
+
+      document.getElementById('collapseNav').addEventListener('click', () => {
+        body.classList.add('nav-collapsed');
+        storage.set('lucasNavCollapsed', 'true');
+      });
+      document.getElementById('reopenNav').addEventListener('click', () => {
+        body.classList.remove('nav-collapsed');
+        storage.set('lucasNavCollapsed', 'false');
+      });
+      if (storage.get('lucasNavCollapsed', 'false') === 'true' && window.innerWidth > 920) {
+        body.classList.add('nav-collapsed');
+      }
+
+      document.getElementById('openAll').addEventListener('click', () => details.forEach(item => item.open = true));
+      document.getElementById('closeAll').addEventListener('click', () => details.forEach(item => item.open = false));
+
+      const observer = new IntersectionObserver(entries => {
+        const visible = entries
+          .filter(entry => entry.isIntersecting)
+          .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+        if (!visible) return;
+        tocLinks.forEach(link => {
+          const active = link.getAttribute('href') === `#${visible.target.id}`;
+          link.classList.toggle('active', active);
+          if (active) link.setAttribute('aria-current', 'location');
+          else link.removeAttribute('aria-current');
+        });
+      }, { rootMargin: '-20% 0px -62% 0px', threshold: [0, .1, .4] });
+      sections.forEach(section => observer.observe(section));
+
+      let maxProgress = Number(storage.get('lucasMaxProgress', '0')) || 0;
+      function updateScroll() {
+        const scrollable = document.documentElement.scrollHeight - window.innerHeight;
+        const current = scrollable > 0 ? (window.scrollY / scrollable) * 100 : 0;
+        maxProgress = Math.max(maxProgress, current);
+        progressBar.style.width = `${current}%`;
+        backTop.classList.toggle('show', window.scrollY > 700);
+        storage.set('lucasMaxProgress', maxProgress.toFixed(1));
+      }
+      window.addEventListener('scroll', updateScroll, { passive: true });
+      window.addEventListener('resize', updateScroll);
+      updateScroll();
+
+      backTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+
+      let searchHits = [];
+      function runSearch() {
+        const query = searchInput.value.trim().toLocaleLowerCase('es');
+        sections.forEach(section => section.classList.remove('search-hit'));
+        if (query.length < 3) {
+          searchHits = [];
+          searchStatus.textContent = 'Escribe al menos 3 letras para buscar.';
+          return;
+        }
+        searchHits = sections.filter(section => section.textContent.toLocaleLowerCase('es').includes(query));
+        searchHits.forEach(section => {
+          section.classList.add('search-hit');
+          section.querySelectorAll('details').forEach(item => {
+            if (item.textContent.toLocaleLowerCase('es').includes(query)) item.open = true;
+          });
+        });
+        searchStatus.textContent = searchHits.length
+          ? `${searchHits.length} secciones encontradas. Presiona Enter para ir a la primera.`
+          : 'No se encontraron coincidencias.';
+      }
+      searchInput.addEventListener('input', runSearch);
+      searchInput.addEventListener('keydown', event => {
+        if (event.key === 'Enter' && searchHits[0]) {
+          event.preventDefault();
+          searchHits[0].scrollIntoView({ behavior: 'smooth', block: 'start' });
+          closeMobileNav();
+        }
+      });
+
+      document.getElementById('resetProgress').addEventListener('click', () => {
+        ['lucasMaxProgress', 'lucasReadingScale', 'lucasNavCollapsed'].forEach(key => storage.remove(key));
+        setScale(1);
+        body.classList.remove('nav-collapsed');
+        maxProgress = 0;
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      });
+
+      window.addEventListener('beforeprint', () => details.forEach(item => item.open = true));
+    })();
+  </script>
+</body>
+</html>
