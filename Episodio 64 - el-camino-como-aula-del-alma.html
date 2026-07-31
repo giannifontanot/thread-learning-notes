@@ -1,0 +1,2684 @@
+<!DOCTYPE html>
+
+<!-- Documento generado siguiendo las instrucciones proporcionadas en :contentReference[oaicite:0]{index=0} -->
+
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta
+    name="description"
+    content="Una experiencia de estudio sobre el viaje de Jesús a Jerusalén en Lucas 9–19 y la integración entre misión, contemplación e integridad espiritual."
+  >
+  <title>El camino como aula del alma | Lucas 9–19</title>
+
+  <style>
+    /* =========================================================
+       FUENTES Y VARIABLES
+       ========================================================= */
+
+    @import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Lora:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap');
+
+    :root {
+      --fondo-principal: #BDB5A7;
+      --fondo-menu: #BEB8AB;
+      --fondo-tarjeta: #C2BEB3;
+      --fondo-activo: #BAAC9E;
+
+      --texto-principal: #231E17;
+      --texto-secundario: #514A40;
+      --texto-suave: #6F6A60;
+
+      --terracota: #752F19;
+      --terracota-claro: #9E4321;
+      --verde-olivo: #5F6636;
+      --mostaza: #AC761D;
+      --ciruela: #5C294A;
+
+      --linea-suave: rgba(35, 30, 23, 0.12);
+      --linea-media: rgba(35, 30, 23, 0.2);
+      --sombra-suave: 0 5px 18px rgba(35, 30, 23, 0.06);
+
+      --fuente-titulos: "DM Serif Display", Georgia, serif;
+      --fuente-lectura: "Lora", Georgia, serif;
+
+      --radio-grande: 18px;
+      --radio-medio: 12px;
+      --transicion: 320ms ease;
+    }
+
+    /* =========================================================
+       BASE
+       ========================================================= */
+
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: 48px;
+    }
+
+    body {
+      margin: 0;
+      min-width: 320px;
+      overflow-x: hidden;
+      color: var(--texto-principal);
+      background:
+        linear-gradient(
+          145deg,
+          rgba(255, 255, 255, 0.025),
+          rgba(117, 47, 25, 0.018)
+        ),
+        var(--fondo-principal);
+      font-family: var(--fuente-lectura);
+      text-rendering: optimizeLegibility;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    body.menu-abierto {
+      overflow: hidden;
+    }
+
+    button,
+    a {
+      font: inherit;
+    }
+
+    button {
+      color: inherit;
+    }
+
+    a {
+      color: var(--terracota);
+      text-decoration-thickness: 1px;
+      text-underline-offset: 0.2em;
+    }
+
+    a:hover {
+      color: var(--terracota-claro);
+    }
+
+    button:focus-visible,
+    a:focus-visible,
+    [tabindex]:focus-visible {
+      outline: 3px solid rgba(117, 47, 25, 0.58);
+      outline-offset: 4px;
+    }
+
+    ::selection {
+      color: var(--texto-principal);
+      background: rgba(172, 118, 29, 0.25);
+    }
+
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
+    }
+
+    .titulo-principal {
+      max-width: 850px;
+      margin: 0;
+      font-family: var(--fuente-titulos);
+      font-size: clamp(4rem, 6vw, 6.4rem);
+      line-height: 0.98;
+      letter-spacing: -0.025em;
+      font-weight: 400;
+    }
+
+    .titulo-principal em {
+      color: var(--terracota);
+      font-weight: 400;
+    }
+
+    .titulo-seccion {
+      margin: 0;
+      font-family: var(--fuente-titulos);
+      font-size: clamp(2.4rem, 4vw, 3.25rem);
+      line-height: 1.08;
+      font-weight: 400;
+    }
+
+    .subtitulo {
+      font-size: clamp(1.35rem, 2vw, 1.7rem);
+      line-height: 1.55;
+    }
+
+    .texto-principal {
+      font-size: clamp(1.15rem, 1.5vw, 1.55rem);
+      line-height: 1.65;
+    }
+
+    .texto-tarjeta {
+      font-size: clamp(1rem, 1.2vw, 1.3rem);
+      line-height: 1.55;
+    }
+
+    .texto-menu {
+      font-size: 1.05rem;
+      line-height: 1.45;
+    }
+
+    p {
+      margin: 0 0 24px;
+      color: var(--texto-secundario);
+    }
+
+    strong {
+      color: var(--texto-principal);
+      font-weight: 600;
+    }
+
+    cite {
+      color: var(--texto-suave);
+    }
+
+    /* =========================================================
+       MENÚ LATERAL
+       ========================================================= */
+
+    .sidebar {
+      position: fixed;
+      z-index: 30;
+      inset: 0 auto 0 0;
+      width: 310px;
+      padding: 44px 28px 34px;
+      overflow-y: auto;
+      background: var(--fondo-menu);
+      border-right: 1px solid var(--linea-suave);
+    }
+
+    .marca {
+      margin-bottom: 48px;
+    }
+
+    .marca-superior {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 12px;
+    }
+
+    .marca-circulo {
+      flex: 0 0 auto;
+      width: 11px;
+      height: 11px;
+      background: var(--verde-olivo);
+      border-radius: 50%;
+      box-shadow: 0 0 0 5px rgba(95, 102, 54, 0.08);
+    }
+
+    .marca-nombre {
+      margin: 0;
+      font-size: 0.93rem;
+      font-weight: 600;
+      letter-spacing: 0.055em;
+      text-transform: uppercase;
+    }
+
+    .marca-frase {
+      margin: 0 0 0 23px;
+      color: var(--texto-suave);
+      font-size: 0.94rem;
+      line-height: 1.55;
+      font-style: italic;
+    }
+
+    .navegacion-titulo {
+      margin: 0 0 14px;
+      color: var(--texto-suave);
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .navegacion-lista {
+      display: grid;
+      gap: 9px;
+      padding: 0;
+      margin: 0;
+      list-style: none;
+    }
+
+    .navegacion-enlace {
+      position: relative;
+      display: grid;
+      grid-template-columns: 28px 1fr;
+      gap: 8px;
+      width: 100%;
+      padding: 13px 14px;
+      color: var(--texto-secundario);
+      background: transparent;
+      border: 0;
+      border-radius: 10px;
+      text-align: left;
+      cursor: pointer;
+      transition:
+        color var(--transicion),
+        background-color var(--transicion),
+        transform var(--transicion);
+    }
+
+    .navegacion-enlace::before {
+      position: absolute;
+      inset: 8px auto 8px 0;
+      width: 2px;
+      content: "";
+      background: transparent;
+      border-radius: 999px;
+      transition: background-color var(--transicion);
+    }
+
+    .navegacion-enlace:hover {
+      color: var(--terracota);
+      background: rgba(186, 172, 158, 0.42);
+    }
+
+    .navegacion-enlace.activo {
+      color: var(--terracota);
+      background: var(--fondo-activo);
+    }
+
+    .navegacion-enlace.activo::before {
+      background: var(--terracota);
+    }
+
+    .navegacion-romano {
+      color: inherit;
+      font-style: italic;
+    }
+
+    .sidebar-pie {
+      padding-top: 25px;
+      margin-top: 36px;
+      border-top: 1px solid var(--linea-suave);
+    }
+
+    .sidebar-pie a {
+      display: inline-block;
+      color: var(--texto-suave);
+      font-size: 0.9rem;
+      font-style: italic;
+    }
+
+    /* =========================================================
+       BARRA Y DRAWER MÓVIL
+       ========================================================= */
+
+    .barra-movil {
+      position: fixed;
+      z-index: 50;
+      inset: 0 0 auto;
+      display: none;
+      align-items: center;
+      justify-content: space-between;
+      min-height: 68px;
+      padding: 12px 18px;
+      background: rgba(190, 184, 171, 0.96);
+      border-bottom: 1px solid var(--linea-suave);
+      backdrop-filter: blur(8px);
+    }
+
+    .barra-movil-marca {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: var(--texto-principal);
+      font-size: 0.92rem;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+    }
+
+    .boton-menu,
+    .boton-cerrar {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 44px;
+      height: 44px;
+      padding: 0;
+      background: rgba(194, 190, 179, 0.72);
+      border: 1px solid var(--linea-suave);
+      border-radius: 50%;
+      cursor: pointer;
+    }
+
+    .icono-menu {
+      position: relative;
+      width: 19px;
+      height: 14px;
+    }
+
+    .icono-menu::before,
+    .icono-menu::after,
+    .icono-menu span {
+      position: absolute;
+      left: 0;
+      width: 100%;
+      height: 1.5px;
+      content: "";
+      background: var(--texto-principal);
+      border-radius: 999px;
+    }
+
+    .icono-menu::before {
+      top: 0;
+    }
+
+    .icono-menu span {
+      top: 6px;
+    }
+
+    .icono-menu::after {
+      bottom: 0;
+    }
+
+    .drawer-encabezado {
+      display: none;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 34px;
+    }
+
+    .drawer-encabezado strong {
+      font-size: 0.88rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .boton-cerrar {
+      font-family: Arial, sans-serif;
+      font-size: 1.55rem;
+      line-height: 1;
+    }
+
+    .overlay {
+      position: fixed;
+      z-index: 45;
+      inset: 0;
+      visibility: hidden;
+      opacity: 0;
+      background: rgba(35, 30, 23, 0.42);
+      transition:
+        opacity var(--transicion),
+        visibility var(--transicion);
+    }
+
+    .overlay.visible {
+      visibility: visible;
+      opacity: 1;
+    }
+
+    /* =========================================================
+       COLUMNA PRINCIPAL Y CABECERA
+       ========================================================= */
+
+    .main-content {
+      max-width: 910px;
+      padding: 100px 0 120px;
+      margin-left: 488px;
+    }
+
+    .hero {
+      padding-bottom: 90px;
+      border-bottom: 1px solid var(--linea-suave);
+    }
+
+    .eyebrow {
+      margin: 0 0 24px;
+      color: var(--terracota);
+      font-size: 1rem;
+      line-height: 1.4;
+      font-style: italic;
+      letter-spacing: 0.035em;
+    }
+
+    .hero-introduccion {
+      max-width: 810px;
+      margin-top: 34px;
+      margin-bottom: 0;
+      color: var(--texto-secundario);
+    }
+
+    .hero-introduccion strong {
+      display: inline;
+      color: var(--texto-principal);
+    }
+
+    .hero-preguntas {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 20px;
+      margin-top: 44px;
+    }
+
+    .pregunta-central {
+      padding: 26px 28px;
+      background: rgba(194, 190, 179, 0.55);
+      border: 1px solid var(--linea-suave);
+      border-radius: var(--radio-grande);
+    }
+
+    .pregunta-central span {
+      display: block;
+      margin-bottom: 8px;
+      color: var(--terracota);
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    .pregunta-central p {
+      margin: 0;
+      color: var(--texto-principal);
+      font-family: var(--fuente-titulos);
+      font-size: 1.42rem;
+      line-height: 1.3;
+    }
+
+    .controles-globales {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      padding: 34px 0 0;
+    }
+
+    .control-global {
+      padding: 10px 15px;
+      color: var(--texto-secundario);
+      background: transparent;
+      border: 1px solid var(--linea-media);
+      border-radius: 999px;
+      cursor: pointer;
+      transition:
+        color var(--transicion),
+        border-color var(--transicion),
+        background-color var(--transicion);
+    }
+
+    .control-global:hover {
+      color: var(--terracota);
+      background: rgba(194, 190, 179, 0.5);
+      border-color: rgba(117, 47, 25, 0.35);
+    }
+
+    /* =========================================================
+       ACORDEONES
+       ========================================================= */
+
+    .panel {
+      scroll-margin-top: 34px;
+      padding: 84px 0 0;
+    }
+
+    .panel + .panel {
+      margin-top: 18px;
+    }
+
+    .panel-encabezado {
+      width: 100%;
+      padding: 0 0 24px;
+      background: transparent;
+      border: 0;
+      border-bottom: 1px solid var(--linea-suave);
+      text-align: left;
+      cursor: pointer;
+    }
+
+    .panel-encabezado-interior {
+      display: grid;
+      grid-template-columns: 56px minmax(0, 1fr) 44px;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .panel-numero {
+      align-self: start;
+      padding-top: 7px;
+      color: var(--terracota);
+      font-family: var(--fuente-titulos);
+      font-size: 1.28rem;
+      font-style: italic;
+    }
+
+    .panel-indicador {
+      position: relative;
+      width: 36px;
+      height: 36px;
+      border: 1px solid var(--linea-media);
+      border-radius: 50%;
+      transition:
+        transform var(--transicion),
+        border-color var(--transicion),
+        background-color var(--transicion);
+    }
+
+    .panel-indicador::before,
+    .panel-indicador::after {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 14px;
+      height: 1.5px;
+      content: "";
+      background: var(--terracota);
+      border-radius: 999px;
+      transform: translate(-50%, -50%);
+      transition: transform var(--transicion);
+    }
+
+    .panel-indicador::after {
+      transform: translate(-50%, -50%) rotate(90deg);
+    }
+
+    .panel-encabezado[aria-expanded="true"] .panel-indicador {
+      background: rgba(186, 172, 158, 0.55);
+      border-color: rgba(117, 47, 25, 0.3);
+      transform: rotate(180deg);
+    }
+
+    .panel-encabezado[aria-expanded="true"] .panel-indicador::after {
+      transform: translate(-50%, -50%) rotate(0);
+    }
+
+    .panel-contenido {
+      max-height: 0;
+      overflow: hidden;
+      visibility: hidden;
+      opacity: 0;
+      transition:
+        max-height 650ms ease,
+        opacity 300ms ease,
+        visibility 300ms ease;
+    }
+
+    .panel.abierto .panel-contenido {
+      visibility: visible;
+      opacity: 1;
+    }
+
+    .panel-cuerpo {
+      padding: 42px 0 8px 76px;
+    }
+
+    .entrada-seccion {
+      max-width: 800px;
+      margin-bottom: 42px;
+      color: var(--texto-secundario);
+    }
+
+    .subencabezado {
+      margin: 50px 0 20px;
+      color: var(--texto-principal);
+      font-family: var(--fuente-titulos);
+      font-size: clamp(1.75rem, 3vw, 2.3rem);
+      line-height: 1.18;
+      font-weight: 400;
+    }
+
+    .subencabezado:first-child {
+      margin-top: 0;
+    }
+
+    .etiqueta {
+      display: inline-block;
+      margin-bottom: 10px;
+      color: var(--terracota);
+      font-size: 0.76rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    .separador {
+      width: 76px;
+      height: 1px;
+      margin: 46px 0;
+      background: var(--linea-media);
+    }
+
+    /* =========================================================
+       CAJAS, CITAS Y TARJETAS
+       ========================================================= */
+
+    .caja-destacada {
+      padding: 30px 32px;
+      margin: 36px 0;
+      background: var(--fondo-tarjeta);
+      border-left: 4px solid var(--mostaza);
+      border-radius: var(--radio-grande);
+      box-shadow: var(--sombra-suave);
+    }
+
+    .caja-destacada.terracota {
+      border-left-color: var(--terracota);
+    }
+
+    .caja-destacada.verde {
+      border-left-color: var(--verde-olivo);
+    }
+
+    .caja-destacada.ciruela {
+      border-left-color: var(--ciruela);
+    }
+
+    .caja-destacada p:last-child {
+      margin-bottom: 0;
+    }
+
+    .caja-titulo {
+      display: block;
+      margin-bottom: 11px;
+      color: var(--texto-principal);
+      font-family: var(--fuente-titulos);
+      font-size: 1.42rem;
+      font-weight: 400;
+    }
+
+    .frase-destacada {
+      padding: 12px 0 12px 30px;
+      margin: 42px 0;
+      border-left: 2px solid var(--terracota);
+    }
+
+    .frase-destacada blockquote {
+      margin: 0;
+      color: var(--texto-principal);
+      font-family: var(--fuente-titulos);
+      font-size: clamp(1.65rem, 3vw, 2.45rem);
+      line-height: 1.25;
+      font-style: italic;
+    }
+
+    .frase-destacada cite {
+      display: block;
+      margin-top: 16px;
+      font-size: 0.95rem;
+      font-style: normal;
+    }
+
+    .tarjetas {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 20px;
+      margin: 30px 0 44px;
+    }
+
+    .tarjeta {
+      min-height: 100%;
+      padding: 28px;
+      background: var(--fondo-tarjeta);
+      border: 1px solid rgba(35, 30, 23, 0.08);
+      border-radius: var(--radio-grande);
+      box-shadow: var(--sombra-suave);
+    }
+
+    .tarjeta-numero {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 34px;
+      height: 34px;
+      margin-bottom: 18px;
+      color: var(--fondo-principal);
+      border-radius: 50%;
+      font-size: 0.86rem;
+      font-weight: 600;
+    }
+
+    .tarjeta:nth-child(4n + 1) .tarjeta-numero {
+      background: var(--verde-olivo);
+    }
+
+    .tarjeta:nth-child(4n + 2) .tarjeta-numero {
+      background: var(--mostaza);
+    }
+
+    .tarjeta:nth-child(4n + 3) .tarjeta-numero {
+      background: var(--terracota);
+    }
+
+    .tarjeta:nth-child(4n + 4) .tarjeta-numero {
+      background: var(--ciruela);
+    }
+
+    .tarjeta h3,
+    .tarjeta h4 {
+      margin: 0 0 12px;
+      color: var(--texto-principal);
+      font-family: var(--fuente-titulos);
+      font-size: 1.55rem;
+      line-height: 1.2;
+      font-weight: 400;
+    }
+
+    .tarjeta p {
+      margin-bottom: 0;
+    }
+
+    .comparacion {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 60px minmax(0, 1fr);
+      align-items: stretch;
+      gap: 16px;
+      margin: 38px 0;
+    }
+
+    .comparacion-columna {
+      padding: 28px;
+      background: rgba(194, 190, 179, 0.63);
+      border: 1px solid var(--linea-suave);
+      border-radius: var(--radio-grande);
+    }
+
+    .comparacion-columna h3 {
+      margin: 0 0 12px;
+      color: var(--texto-principal);
+      font-family: var(--fuente-titulos);
+      font-size: 1.6rem;
+      font-weight: 400;
+    }
+
+    .comparacion-columna p:last-child {
+      margin-bottom: 0;
+    }
+
+    .comparacion-union {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--terracota);
+      font-family: var(--fuente-titulos);
+      font-size: 2.2rem;
+      font-style: italic;
+    }
+
+    /* =========================================================
+       SECUENCIAS, DEFINICIONES Y LISTAS
+       ========================================================= */
+
+    .secuencia {
+      position: relative;
+      display: grid;
+      gap: 0;
+      margin: 34px 0 46px;
+      padding-left: 8px;
+    }
+
+    .secuencia::before {
+      position: absolute;
+      top: 18px;
+      bottom: 18px;
+      left: 23px;
+      width: 1px;
+      content: "";
+      background: var(--linea-media);
+    }
+
+    .paso {
+      position: relative;
+      display: grid;
+      grid-template-columns: 48px minmax(0, 1fr);
+      gap: 20px;
+      padding-bottom: 32px;
+    }
+
+    .paso:last-child {
+      padding-bottom: 0;
+    }
+
+    .paso-marca {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 32px;
+      height: 32px;
+      margin-top: 2px;
+      color: var(--fondo-principal);
+      background: var(--terracota);
+      border: 5px solid var(--fondo-principal);
+      border-radius: 50%;
+      font-size: 0.78rem;
+      font-weight: 600;
+    }
+
+    .paso h3 {
+      margin: 0 0 8px;
+      color: var(--texto-principal);
+      font-family: var(--fuente-titulos);
+      font-size: 1.5rem;
+      font-weight: 400;
+    }
+
+    .paso p {
+      margin-bottom: 0;
+    }
+
+    .definiciones {
+      margin: 32px 0;
+    }
+
+    .definicion {
+      display: grid;
+      grid-template-columns: minmax(150px, 0.34fr) minmax(0, 1fr);
+      gap: 28px;
+      padding: 24px 0;
+      border-bottom: 1px solid var(--linea-suave);
+    }
+
+    .definicion:first-child {
+      border-top: 1px solid var(--linea-suave);
+    }
+
+    .definicion dt {
+      color: var(--terracota);
+      font-family: var(--fuente-titulos);
+      font-size: 1.4rem;
+      line-height: 1.25;
+    }
+
+    .definicion dd {
+      margin: 0;
+      color: var(--texto-secundario);
+      font-size: 1.08rem;
+      line-height: 1.65;
+    }
+
+    .lista-editorial {
+      padding: 0;
+      margin: 28px 0 42px;
+      list-style: none;
+      counter-reset: lista;
+    }
+
+    .lista-editorial li {
+      position: relative;
+      padding: 0 0 24px 42px;
+      color: var(--texto-secundario);
+      font-size: 1.09rem;
+      line-height: 1.65;
+      counter-increment: lista;
+    }
+
+    .lista-editorial li::before {
+      position: absolute;
+      top: 0.08em;
+      left: 0;
+      color: var(--terracota);
+      content: counter(lista, lower-roman) ".";
+      font-family: var(--fuente-titulos);
+      font-size: 1.2rem;
+      font-style: italic;
+    }
+
+    /* =========================================================
+       PREGUNTAS DE ESTUDIO
+       ========================================================= */
+
+    .preguntas-estudio {
+      display: grid;
+      gap: 14px;
+      margin-top: 32px;
+    }
+
+    details.pregunta {
+      overflow: hidden;
+      background: rgba(194, 190, 179, 0.6);
+      border: 1px solid var(--linea-suave);
+      border-radius: 14px;
+    }
+
+    details.pregunta summary {
+      position: relative;
+      padding: 22px 58px 22px 24px;
+      color: var(--texto-principal);
+      cursor: pointer;
+      list-style: none;
+      font-size: 1.07rem;
+      line-height: 1.5;
+      font-weight: 500;
+    }
+
+    details.pregunta summary::-webkit-details-marker {
+      display: none;
+    }
+
+    details.pregunta summary::after {
+      position: absolute;
+      top: 50%;
+      right: 24px;
+      color: var(--terracota);
+      content: "+";
+      font-family: var(--fuente-titulos);
+      font-size: 1.55rem;
+      transform: translateY(-50%);
+    }
+
+    details.pregunta[open] summary::after {
+      content: "−";
+    }
+
+    .respuesta-guia {
+      padding: 0 24px 24px;
+      color: var(--texto-secundario);
+      font-size: 1rem;
+      line-height: 1.65;
+    }
+
+    .respuesta-guia p:last-child {
+      margin-bottom: 0;
+    }
+
+    .pregunta-abierta {
+      padding: 28px 30px;
+      margin-top: 18px;
+      background: rgba(92, 41, 74, 0.065);
+      border-left: 4px solid var(--ciruela);
+      border-radius: var(--radio-grande);
+    }
+
+    .pregunta-abierta h3 {
+      margin: 0 0 10px;
+      color: var(--ciruela);
+      font-family: var(--fuente-titulos);
+      font-size: 1.5rem;
+      font-weight: 400;
+    }
+
+    .pregunta-abierta p:last-child {
+      margin-bottom: 0;
+    }
+
+    /* =========================================================
+       PIE
+       ========================================================= */
+
+    .pie-pagina {
+      padding: 84px 0 20px 76px;
+      margin-top: 68px;
+      border-top: 1px solid var(--linea-suave);
+    }
+
+    .pie-frase {
+      max-width: 700px;
+      margin: 0;
+      color: var(--texto-principal);
+      font-family: var(--fuente-titulos);
+      font-size: clamp(1.65rem, 3vw, 2.35rem);
+      line-height: 1.3;
+      font-style: italic;
+    }
+
+    .pie-nota {
+      margin-top: 18px;
+      color: var(--texto-suave);
+      font-size: 0.92rem;
+    }
+
+    /* =========================================================
+       RESPONSIVE
+       ========================================================= */
+
+    @media (max-width: 1260px) and (min-width: 1100px) {
+      .main-content {
+        max-width: 800px;
+        margin-left: 420px;
+        padding-right: 28px;
+      }
+    }
+
+    @media (max-width: 1099px) and (min-width: 850px) {
+      .sidebar {
+        width: 270px;
+        padding-inline: 22px;
+      }
+
+      .main-content {
+        max-width: none;
+        padding: 84px 42px 110px;
+        margin-left: 330px;
+      }
+
+      .panel-cuerpo,
+      .pie-pagina {
+        padding-left: 56px;
+      }
+    }
+
+    @media (max-width: 849px) {
+      html {
+        scroll-padding-top: 86px;
+      }
+
+      .barra-movil {
+        display: flex;
+      }
+
+      .sidebar {
+        z-index: 60;
+        width: min(88vw, 340px);
+        padding: 26px 24px 34px;
+        visibility: hidden;
+        transform: translateX(-102%);
+        box-shadow: 12px 0 35px rgba(35, 30, 23, 0.12);
+        transition:
+          transform var(--transicion),
+          visibility var(--transicion);
+      }
+
+      .sidebar.abierto {
+        visibility: visible;
+        transform: translateX(0);
+      }
+
+      .drawer-encabezado {
+        display: flex;
+      }
+
+      .marca {
+        margin-bottom: 36px;
+      }
+
+      .main-content {
+        width: 100%;
+        max-width: none;
+        padding: 128px 24px 90px;
+        margin-left: 0;
+      }
+
+      .hero {
+        padding-bottom: 64px;
+      }
+
+      .hero-preguntas,
+      .tarjetas {
+        grid-template-columns: 1fr;
+      }
+
+      .panel {
+        padding-top: 68px;
+      }
+
+      .panel-encabezado-interior {
+        grid-template-columns: 36px minmax(0, 1fr) 40px;
+        gap: 12px;
+      }
+
+      .panel-numero {
+        font-size: 1.05rem;
+      }
+
+      .panel-cuerpo,
+      .pie-pagina {
+        padding-left: 0;
+      }
+
+      .comparacion {
+        grid-template-columns: 1fr;
+      }
+
+      .comparacion-union {
+        min-height: 34px;
+      }
+
+      .definicion {
+        grid-template-columns: 1fr;
+        gap: 8px;
+      }
+
+      .pie-pagina {
+        padding-top: 64px;
+      }
+    }
+
+    @media (max-width: 540px) {
+      .main-content {
+        padding-inline: 18px;
+      }
+
+      .titulo-principal {
+        font-size: clamp(3.45rem, 17vw, 4.6rem);
+      }
+
+      .titulo-seccion {
+        font-size: clamp(2.15rem, 10vw, 2.75rem);
+      }
+
+      .hero-introduccion {
+        font-size: 1.15rem;
+      }
+
+      .panel-encabezado-interior {
+        grid-template-columns: 30px minmax(0, 1fr) 34px;
+        gap: 10px;
+      }
+
+      .panel-indicador {
+        width: 32px;
+        height: 32px;
+      }
+
+      .panel-cuerpo {
+        padding-top: 34px;
+      }
+
+      .caja-destacada,
+      .tarjeta,
+      .comparacion-columna,
+      .pregunta-central {
+        padding: 24px;
+      }
+
+      .frase-destacada {
+        padding-left: 22px;
+      }
+
+      .paso {
+        grid-template-columns: 42px minmax(0, 1fr);
+        gap: 14px;
+      }
+    }
+
+    /* =========================================================
+       MOVIMIENTO REDUCIDO
+       ========================================================= */
+
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        scroll-behavior: auto !important;
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+      }
+    }
+
+    /* =========================================================
+       IMPRESIÓN
+       ========================================================= */
+
+    @media print {
+      @page {
+        margin: 18mm;
+      }
+
+      body {
+        background: var(--fondo-principal);
+      }
+
+      .sidebar,
+      .barra-movil,
+      .overlay,
+      .controles-globales,
+      .panel-indicador {
+        display: none !important;
+      }
+
+      .main-content {
+        width: 100%;
+        max-width: none;
+        padding: 0;
+        margin: 0;
+      }
+
+      .hero {
+        padding-bottom: 34px;
+      }
+
+      .panel {
+        padding-top: 42px;
+        break-inside: avoid-page;
+      }
+
+      .panel-encabezado {
+        cursor: default;
+      }
+
+      .panel-contenido {
+        max-height: none !important;
+        overflow: visible !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+      }
+
+      .panel-cuerpo,
+      .pie-pagina {
+        padding-left: 0;
+      }
+
+      .tarjeta,
+      .caja-destacada,
+      .pregunta-central,
+      details.pregunta {
+        break-inside: avoid;
+        box-shadow: none;
+      }
+
+      details.pregunta > * {
+        display: block !important;
+      }
+
+      details.pregunta summary::after {
+        display: none;
+      }
+    }
+  </style>
+
+</head>
+
+<body>
+  <a class="sr-only" href="#contenido-principal">Saltar al contenido principal</a>
+
+  <!-- =======================================================
+       BARRA MÓVIL
+       ======================================================= -->
+
+  <header class="barra-movil" aria-label="Barra de navegación móvil">
+    <div class="barra-movil-marca">
+      <span class="marca-circulo" aria-hidden="true"></span>
+      <span>El camino como aula</span>
+    </div>
+
+```
+<button
+  class="boton-menu"
+  id="abrir-menu"
+  type="button"
+  aria-label="Abrir menú de secciones"
+  aria-controls="sidebar"
+  aria-expanded="false"
+>
+  <span class="icono-menu" aria-hidden="true"><span></span></span>
+</button>
+```
+
+  </header>
+
+  <div class="overlay" id="overlay" aria-hidden="true"></div>
+
+  <!-- =======================================================
+       MENÚ LATERAL
+       ======================================================= -->
+
+  <aside class="sidebar" id="sidebar" aria-label="Navegación del estudio">
+    <div class="drawer-encabezado">
+      <strong>Contenido</strong>
+      <button
+        class="boton-cerrar"
+        id="cerrar-menu"
+        type="button"
+        aria-label="Cerrar menú de secciones"
+      >
+        ×
+      </button>
+    </div>
+
+```
+<div class="marca">
+  <div class="marca-superior">
+    <span class="marca-circulo" aria-hidden="true"></span>
+    <p class="marca-nombre">Lucas 9–19</p>
+  </div>
+  <p class="marca-frase">Una anatomía espiritual del camino a Jerusalén.</p>
+</div>
+
+<nav aria-labelledby="navegacion-titulo">
+  <p class="navegacion-titulo" id="navegacion-titulo">Recorrido de estudio</p>
+
+  <ol class="navegacion-lista texto-menu">
+    <li>
+      <button class="navegacion-enlace activo" type="button" data-target="panorama">
+        <span class="navegacion-romano">i</span>
+        <span>El camino como formación</span>
+      </button>
+    </li>
+    <li>
+      <button class="navegacion-enlace" type="button" data-target="jerusalen">
+        <span class="navegacion-romano">ii</span>
+        <span>El rostro hacia Jerusalén</span>
+      </button>
+    </li>
+    <li>
+      <button class="navegacion-enlace" type="button" data-target="mision">
+        <span class="navegacion-romano">iii</span>
+        <span>Misión, rechazo y misericordia</span>
+      </button>
+    </li>
+    <li>
+      <button class="navegacion-enlace" type="button" data-target="integracion">
+        <span class="navegacion-romano">iv</span>
+        <span>Acción y contemplación</span>
+      </button>
+    </li>
+    <li>
+      <button class="navegacion-enlace" type="button" data-target="integridad">
+        <span class="navegacion-romano">v</span>
+        <span>El interior del discípulo</span>
+      </button>
+    </li>
+    <li>
+      <button class="navegacion-enlace" type="button" data-target="madurez">
+        <span class="navegacion-romano">vi</span>
+        <span>Madurez, práctica y reflexión</span>
+      </button>
+    </li>
+  </ol>
+</nav>
+
+<div class="sidebar-pie">
+  <a href="#inicio">Volver al comienzo</a>
+</div>
+```
+
+  </aside>
+
+  <!-- =======================================================
+       CONTENIDO PRINCIPAL
+       ======================================================= -->
+
+  <main class="main-content" id="contenido-principal">
+    <header class="hero" id="inicio">
+      <p class="eyebrow">El viaje de Jesús en el Evangelio de Lucas</p>
+
+```
+  <h1 class="titulo-principal">
+    El camino como <em>aula del alma</em>
+  </h1>
+
+  <p class="hero-introduccion texto-principal">
+    Lucas 9–19 presenta la vida cristiana como un viaje en el que
+    <strong>la misión exterior y la formación interior no compiten entre sí:
+    se necesitan mutuamente.</strong>
+    Mientras Jesús avanza hacia Jerusalén, el camino se convierte en un espacio
+    de enseñanza, confrontación, misericordia, discernimiento e integración.
+  </p>
+
+  <div class="hero-preguntas" aria-label="Preguntas centrales del estudio">
+    <article class="pregunta-central">
+      <span>Pregunta central</span>
+      <p>¿Cómo puede el discípulo servir activamente sin perder la atención a Jesús?</p>
+    </article>
+
+    <article class="pregunta-central">
+      <span>Tensión central</span>
+      <p>¿Cómo se sostiene una voluntad firme sin endurecer el corazón?</p>
+    </article>
+  </div>
+
+  <div class="controles-globales" aria-label="Controles de los paneles">
+    <button class="control-global" id="abrir-todos" type="button">Abrir todos</button>
+    <button class="control-global" id="cerrar-todos" type="button">Cerrar todos</button>
+  </div>
+</header>
+
+<!-- =====================================================
+     I. PANORAMA
+     ===================================================== -->
+
+<section class="panel abierto" id="panorama" data-section="panorama">
+  <button
+    class="panel-encabezado"
+    id="boton-panorama"
+    type="button"
+    aria-expanded="true"
+    aria-controls="contenido-panorama"
+  >
+    <span class="panel-encabezado-interior">
+      <span class="panel-numero">i</span>
+      <span class="titulo-seccion">El camino como formación</span>
+      <span class="panel-indicador" aria-hidden="true"></span>
+    </span>
+  </button>
+
+  <div
+    class="panel-contenido"
+    id="contenido-panorama"
+    role="region"
+    aria-labelledby="boton-panorama"
+  >
+    <div class="panel-cuerpo">
+      <p class="entrada-seccion subtitulo">
+        El viaje a Jerusalén no funciona solamente como una transición geográfica.
+        Es una escuela prolongada de discipulado en la que Jesús forma la mirada,
+        las acciones y el corazón de quienes lo acompañan.
+      </p>
+
+      <div class="caja-destacada">
+        <span class="etiqueta">Tesis principal</span>
+        <strong class="caja-titulo">La vida cristiana es una realidad de “ambos, no uno u otro”.</strong>
+        <p class="texto-tarjeta">
+          El discípulo no debe escoger entre misión y formación, servicio y escucha,
+          compromiso y contemplación. La madurez consiste en aprender a mantener estas
+          dimensiones unidas bajo la dirección de Jesús.
+        </p>
+      </div>
+
+      <h2 class="subencabezado">Por qué el viaje importa</h2>
+
+      <p class="texto-principal">
+        A partir de Lucas 9:51, el relato dedica aproximadamente un tercio del
+        Evangelio a un trayecto lento y aparentemente sinuoso. El avance geográfico
+        es menos importante que las conversaciones, parábolas, confrontaciones y
+        decisiones que surgen durante el recorrido.
+      </p>
+
+      <p class="texto-principal">
+        Esta estructura sugiere que el discipulado requiere tiempo. La formación
+        profunda no ocurre únicamente al llegar a una meta, sino mediante las
+        personas, resistencias, preguntas y responsabilidades encontradas en el camino.
+      </p>
+
+      <div class="frase-destacada">
+        <blockquote>
+          “El camino mismo se convierte en el aula del alma.”
+        </blockquote>
+        <cite>Síntesis de la enseñanza central</cite>
+      </div>
+
+      <h2 class="subencabezado">Una comparación ilustrativa</h2>
+
+      <div class="caja-destacada verde">
+        <span class="etiqueta">El Camino de Santiago</span>
+        <strong class="caja-titulo">La transformación ocurre mientras se avanza.</strong>
+        <p class="texto-tarjeta">
+          La experiencia de caminar durante 35 días por el Camino de Santiago sirve
+          como analogía: el peregrino no es formado solamente por el destino final,
+          sino por los paisajes, las personas, el cansancio y las decisiones cotidianas.
+          Del mismo modo, en Lucas, la carretera hacia Jerusalén es parte esencial de
+          la enseñanza de Jesús.
+        </p>
+      </div>
+
+      <h2 class="subencabezado">Conceptos fundamentales</h2>
+
+      <dl class="definiciones">
+        <div class="definicion">
+          <dt>Discipulado</dt>
+          <dd>
+            Proceso continuo mediante el cual una persona aprende a vivir, actuar y
+            relacionarse conforme al modelo y la enseñanza de Jesús.
+          </dd>
+        </div>
+
+        <div class="definicion">
+          <dt>Formación espiritual</dt>
+          <dd>
+            Transformación progresiva del carácter, los deseos, las motivaciones y la
+            vida interior del creyente.
+          </dd>
+        </div>
+
+        <div class="definicion">
+          <dt>Misión</dt>
+          <dd>
+            Participación activa en el anuncio y la manifestación del reino de Dios
+            mediante la presencia, el servicio, la proclamación y la misericordia.
+          </dd>
+        </div>
+
+        <div class="definicion">
+          <dt>Integración</dt>
+          <dd>
+            Capacidad de sostener juntas dimensiones que suelen separarse:
+            acción y contemplación, firmeza y ternura, identidad pública e integridad privada.
+          </dd>
+        </div>
+      </dl>
+
+      <h2 class="subencabezado">El razonamiento de la lección</h2>
+
+      <div class="secuencia">
+        <article class="paso">
+          <span class="paso-marca">1</span>
+          <div>
+            <h3>Orientación</h3>
+            <p>
+              Jesús adopta una resolución interior: fija su rostro hacia Jerusalén.
+              Esta decisión da dirección al resto del viaje.
+            </p>
+          </div>
+        </article>
+
+        <article class="paso">
+          <span class="paso-marca">2</span>
+          <div>
+            <h3>Expansión exterior</h3>
+            <p>
+              La misión avanza, pero no mediante la coerción. El rechazo samaritano y
+              el envío de los setenta muestran una misión amplia que respeta la agencia humana.
+            </p>
+          </div>
+        </article>
+
+        <article class="paso">
+          <span class="paso-marca">3</span>
+          <div>
+            <h3>Definición del amor</h3>
+            <p>
+              La misericordia debe ser concreta, costosa y capaz de cruzar fronteras,
+              como enseña la parábola del buen samaritano.
+            </p>
+          </div>
+        </article>
+
+        <article class="paso">
+          <span class="paso-marca">4</span>
+          <div>
+            <h3>Raíz interior</h3>
+            <p>
+              La acción necesita una fuente. María y Marta muestran que el servicio
+              saludable debe nacer de una atención profunda a Jesús.
+            </p>
+          </div>
+        </article>
+
+        <article class="paso">
+          <span class="paso-marca">5</span>
+          <div>
+            <h3>Madurez integrada</h3>
+            <p>
+              El viaje culmina en la imagen de Jesús: decidido a obedecer y, al mismo
+              tiempo, conmovido por una ciudad que lo rechaza.
+            </p>
+          </div>
+        </article>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- =====================================================
+     II. JERUSALÉN
+     ===================================================== -->
+
+<section class="panel" id="jerusalen" data-section="jerusalen">
+  <button
+    class="panel-encabezado"
+    id="boton-jerusalen"
+    type="button"
+    aria-expanded="false"
+    aria-controls="contenido-jerusalen"
+  >
+    <span class="panel-encabezado-interior">
+      <span class="panel-numero">ii</span>
+      <span class="titulo-seccion">El rostro hacia Jerusalén</span>
+      <span class="panel-indicador" aria-hidden="true"></span>
+    </span>
+  </button>
+
+  <div
+    class="panel-contenido"
+    id="contenido-jerusalen"
+    role="region"
+    aria-labelledby="boton-jerusalen"
+  >
+    <div class="panel-cuerpo">
+      <p class="entrada-seccion subtitulo">
+        Lucas 9:51 marca el gran giro estructural del Evangelio. Jesús comprende hacia
+        dónde se dirige y adopta una resolución que permanece firme hasta el final.
+      </p>
+
+      <h2 class="subencabezado">“Cuando se cumplió el tiempo…”</h2>
+
+      <p class="texto-principal">
+        El verbo relacionado con ser “recibido arriba” o “tomado arriba” corresponde
+        al término griego <em>analepsis</em>. La interpretación presentada descubre en
+        él una triple dirección:
+      </p>
+
+      <div class="tarjetas">
+        <article class="tarjeta">
+          <span class="tarjeta-numero">1</span>
+          <h3>Subir a Jerusalén</h3>
+          <p class="texto-tarjeta">
+            Jesús se encamina hacia la ciudad donde culminará públicamente su misión.
+          </p>
+        </article>
+
+        <article class="tarjeta">
+          <span class="tarjeta-numero">2</span>
+          <h3>Subir a la cruz</h3>
+          <p class="texto-tarjeta">
+            El viaje está atravesado por la expectativa del sufrimiento y la entrega.
+          </p>
+        </article>
+
+        <article class="tarjeta">
+          <span class="tarjeta-numero">3</span>
+          <h3>Subir al cielo</h3>
+          <p class="texto-tarjeta">
+            El horizonte incluye también la ascensión y la vindicación de Jesús.
+          </p>
+        </article>
+
+        <article class="tarjeta">
+          <span class="tarjeta-numero">4</span>
+          <h3>Un solo movimiento</h3>
+          <p class="texto-tarjeta">
+            Jerusalén, cruz y ascensión forman un recorrido inseparable de obediencia,
+            sufrimiento y glorificación.
+          </p>
+        </article>
+      </div>
+
+      <div class="caja-destacada terracota">
+        <span class="etiqueta">Imagen profética</span>
+        <strong class="caja-titulo">“Poner el rostro como pedernal”.</strong>
+        <p class="texto-tarjeta">
+          La expresión “fijó su rostro” recuerda al siervo sufriente de Isaías 50:7.
+          Comunica determinación, claridad y obediencia. No describe frialdad emocional,
+          sino una voluntad estable ante un camino costoso.
+        </p>
+      </div>
+
+      <h2 class="subencabezado">La firmeza que no se vuelve dureza</h2>
+
+      <p class="texto-principal">
+        Una de las tensiones más importantes de la enseñanza consiste en distinguir
+        entre resolución y rigidez. Jesús no abandona su misión cuando enfrenta
+        rechazo, pero tampoco permite que la frustración se convierta en violencia.
+      </p>
+
+      <div class="comparacion">
+        <article class="comparacion-columna">
+          <span class="etiqueta">Resolución santa</span>
+          <h3>Dirección firme</h3>
+          <p>
+            Conoce el propósito, acepta el costo y continúa obedeciendo incluso cuando
+            el camino se vuelve difícil.
+          </p>
+        </article>
+
+        <div class="comparacion-union" aria-hidden="true">y</div>
+
+        <article class="comparacion-columna">
+          <span class="etiqueta">Compasión viva</span>
+          <h3>Corazón sensible</h3>
+          <p>
+            No desprecia a quienes rechazan el mensaje. Mantiene abierta la capacidad
+            de lamentar, proteger y desear el bien del otro.
+          </p>
+        </article>
+      </div>
+
+      <div class="frase-destacada">
+        <blockquote>
+          Un rostro firme como pedernal y un corazón húmedo de lágrimas.
+        </blockquote>
+        <cite>La postura espiritual que modela Jesús</cite>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- =====================================================
+     III. MISIÓN
+     ===================================================== -->
+
+<section class="panel" id="mision" data-section="mision">
+  <button
+    class="panel-encabezado"
+    id="boton-mision"
+    type="button"
+    aria-expanded="false"
+    aria-controls="contenido-mision"
+  >
+    <span class="panel-encabezado-interior">
+      <span class="panel-numero">iii</span>
+      <span class="titulo-seccion">Misión, rechazo y misericordia</span>
+      <span class="panel-indicador" aria-hidden="true"></span>
+    </span>
+  </button>
+
+  <div
+    class="panel-contenido"
+    id="contenido-mision"
+    role="region"
+    aria-labelledby="boton-mision"
+  >
+    <div class="panel-cuerpo">
+      <p class="entrada-seccion subtitulo">
+        El primer desafío del camino no es una falta de estrategia, sino el rechazo.
+        Jesús enseña que la misión del reino debe ser urgente, amplia y valiente,
+        pero nunca coercitiva.
+      </p>
+
+      <h2 class="subencabezado">El rechazo de la aldea samaritana</h2>
+
+      <p class="texto-principal">
+        En Lucas 9:52–56, una aldea samaritana no recibe a Jesús. Santiago y Juan
+        reaccionan proponiendo que descienda fuego del cielo. Jesús los reprende.
+        Su respuesta establece una ética del reino: el rechazo no autoriza la
+        deshumanización ni la violencia.
+      </p>
+
+      <div class="caja-destacada ciruela">
+        <span class="etiqueta">Agencia humana</span>
+        <strong class="caja-titulo">El amor respeta la capacidad del otro para decidir.</strong>
+        <p class="texto-tarjeta">
+          Respetar la agencia no significa afirmar que toda decisión sea correcta.
+          Significa renunciar a la coerción y reconocer que la misión de Dios no
+          avanza destruyendo a quienes se resisten.
+        </p>
+      </div>
+
+      <h2 class="subencabezado">Los “hijos del trueno”</h2>
+
+      <p class="texto-principal">
+        La reacción de Santiago y Juan resulta casi cómica dentro del relato: poco antes,
+        los discípulos habían sido incapaces de expulsar un demonio, pero ahora se sienten
+        preparados para pedir fuego del cielo. La escena expone una tendencia humana:
+        cuando nos sentimos rechazados, podemos confundir el celo espiritual con el enojo.
+      </p>
+
+      <h2 class="subencabezado">El envío de los setenta</h2>
+
+      <p class="texto-principal">
+        En Lucas 10:1–12, Jesús designa y envía a setenta —o setenta y dos, según la
+        tradición textual— discípulos. El número se interpreta simbólicamente en
+        relación con la “tabla de las naciones”: la misión comienza a desbordar las
+        fronteras de Israel y se orienta hacia todos los pueblos.
+      </p>
+
+      <div class="tarjetas">
+        <article class="tarjeta">
+          <span class="tarjeta-numero">1</span>
+          <h3>Una misión compartida</h3>
+          <p class="texto-tarjeta">
+            Jesús los envía de dos en dos. La misión no se concibe como una empresa
+            solitaria, sino como una práctica comunitaria.
+          </p>
+        </article>
+
+        <article class="tarjeta">
+          <span class="tarjeta-numero">2</span>
+          <h3>Una cosecha urgente</h3>
+          <p class="texto-tarjeta">
+            La imagen de la mies abundante comunica oportunidad y necesidad:
+            hay mucho por hacer y pocos trabajadores.
+          </p>
+        </article>
+
+        <article class="tarjeta">
+          <span class="tarjeta-numero">3</span>
+          <h3>Una dependencia visible</h3>
+          <p class="texto-tarjeta">
+            Los enviados deben aprender a recibir hospitalidad y a confiar, no
+            solamente a controlar o proveer desde una posición de superioridad.
+          </p>
+        </article>
+
+        <article class="tarjeta">
+          <span class="tarjeta-numero">4</span>
+          <h3>Una respuesta no coercitiva</h3>
+          <p class="texto-tarjeta">
+            Cuando no son recibidos, deben seguir adelante. El rechazo no los convierte
+            en jueces violentos de la comunidad.
+          </p>
+        </article>
+      </div>
+
+      <h2 class="subencabezado">¿Quién es mi prójimo?</h2>
+
+      <p class="texto-principal">
+        En la parábola del buen samaritano, Lucas 10:25–37, Jesús transforma la
+        pregunta. El prójimo deja de ser una categoría basada en identidad, religión
+        o cercanía. Se convierte en una forma de actuar: prójimo es quien muestra misericordia.
+      </p>
+
+      <div class="caja-destacada">
+        <span class="etiqueta">El gran cambio de perspectiva</span>
+        <strong class="caja-titulo">La pregunta no es “¿quién pertenece a mi círculo?”, sino “¿de quién me haré prójimo?”.</strong>
+        <p class="texto-tarjeta">
+          El sacerdote y el levita representan personas reconocidas como santas, pero
+          sus acciones no reflejan el carácter de Dios. El samaritano, considerado enemigo,
+          cumple la intención de la ley al acercarse, cuidar y asumir el costo.
+        </p>
+      </div>
+
+      <h2 class="subencabezado">La misericordia atraviesa fronteras</h2>
+
+      <ol class="lista-editorial">
+        <li>
+          Se acerca a una persona herida cuando otros prefieren mantener distancia.
+        </li>
+        <li>
+          Interrumpe su propio itinerario para responder a una necesidad concreta.
+        </li>
+        <li>
+          Utiliza sus recursos para sostener el cuidado más allá del momento inicial.
+        </li>
+        <li>
+          Reconoce como digno de amor a alguien que podría ser considerado enemigo.
+        </li>
+      </ol>
+
+      <div class="frase-destacada">
+        <blockquote>
+          Amar al prójimo suele significar amar a quien resulta desordenado,
+          inconveniente o costoso.
+        </blockquote>
+      </div>
+
+      <h2 class="subencabezado">La gran inversión en Lucas</h2>
+
+      <p class="texto-principal">
+        La parábola forma parte de un patrón recurrente en Lucas: el extranjero se
+        convierte en prójimo, los últimos ocupan el primer lugar y quienes son rechazados
+        resultan honrados. Las etiquetas religiosas o sociales son examinadas a la luz
+        de la conducta misericordiosa.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- =====================================================
+     IV. INTEGRACIÓN
+     ===================================================== -->
+
+<section class="panel" id="integracion" data-section="integracion">
+  <button
+    class="panel-encabezado"
+    id="boton-integracion"
+    type="button"
+    aria-expanded="false"
+    aria-controls="contenido-integracion"
+  >
+    <span class="panel-encabezado-interior">
+      <span class="panel-numero">iv</span>
+      <span class="titulo-seccion">Acción y contemplación</span>
+      <span class="panel-indicador" aria-hidden="true"></span>
+    </span>
+  </button>
+
+  <div
+    class="panel-contenido"
+    id="contenido-integracion"
+    role="region"
+    aria-labelledby="boton-integracion"
+  >
+    <div class="panel-cuerpo">
+      <p class="entrada-seccion subtitulo">
+        Inmediatamente después de la enseñanza sobre el samaritano que “va y hace”,
+        Lucas presenta a María sentada a los pies de Jesús. La cercanía de ambos relatos
+        obliga a leerlos juntos.
+      </p>
+
+      <h2 class="subencabezado">María y Marta sin caricaturas</h2>
+
+      <p class="texto-principal">
+        Lucas 10:38–42 no debe leerse como una condena del servicio de Marta.
+        Su hospitalidad es valiosa. El problema aparece cuando la actividad se llena
+        de ansiedad, distracción y comparación. Jesús la invita a regresar a
+        “la única cosa necesaria”: una atención receptiva a su presencia y palabra.
+      </p>
+
+      <div class="comparacion">
+        <article class="comparacion-columna">
+          <span class="etiqueta">Marta</span>
+          <h3>La necesidad de servir</h3>
+          <p>
+            Representa la acción, la responsabilidad, la hospitalidad y el cuidado
+            concreto de las necesidades.
+          </p>
+        </article>
+
+        <div class="comparacion-union" aria-hidden="true">+</div>
+
+        <article class="comparacion-columna">
+          <span class="etiqueta">María</span>
+          <h3>La necesidad de escuchar</h3>
+          <p>
+            Representa la atención, la receptividad, el aprendizaje y la comunión
+            que dan profundidad al servicio.
+          </p>
+        </article>
+      </div>
+
+      <div class="caja-destacada terracota">
+        <span class="etiqueta">Principio de integración</span>
+        <strong class="caja-titulo">La escucha no reemplaza al servicio: lo enraíza.</strong>
+        <p class="texto-tarjeta">
+          El discípulo no es llamado a abandonar el “ir y hacer” del buen samaritano,
+          sino a evitar una actividad desconectada de la voz de Jesús. La presencia
+          prepara, corrige y orienta la acción.
+        </p>
+      </div>
+
+      <div class="frase-destacada">
+        <blockquote>
+          La acción sin contemplación es ciega; la contemplación sin acción es estéril.
+        </blockquote>
+      </div>
+
+      <h2 class="subencabezado">Dos desequilibrios espirituales</h2>
+
+      <div class="tarjetas">
+        <article class="tarjeta">
+          <span class="tarjeta-numero">1</span>
+          <h3>Actividad sin raíz</h3>
+          <p class="texto-tarjeta">
+            Se sirve mucho, pero sin escuchar. La persona puede volverse ansiosa,
+            resentida, controladora o incapaz de reconocer sus motivaciones.
+          </p>
+        </article>
+
+        <article class="tarjeta">
+          <span class="tarjeta-numero">2</span>
+          <h3>Reflexión sin fruto</h3>
+          <p class="texto-tarjeta">
+            Se aprende, se ora o se contempla, pero el encuentro con Dios no se traduce
+            en misericordia, obediencia ni cuidado del prójimo.
+          </p>
+        </article>
+
+        <article class="tarjeta">
+          <span class="tarjeta-numero">3</span>
+          <h3>Servicio integrado</h3>
+          <p class="texto-tarjeta">
+            La acción surge de la comunión, responde a una necesidad real y permanece
+            abierta a la corrección de Jesús.
+          </p>
+        </article>
+
+        <article class="tarjeta">
+          <span class="tarjeta-numero">4</span>
+          <h3>Contemplación fecunda</h3>
+          <p class="texto-tarjeta">
+            La escucha transforma la mirada y conduce a una presencia más compasiva,
+            atenta y responsable en el mundo.
+          </p>
+        </article>
+      </div>
+
+      <h2 class="subencabezado">El discernimiento de cada momento</h2>
+
+      <p class="texto-principal">
+        La enseñanza no ofrece una fórmula automática para decidir cuándo actuar y
+        cuándo detenerse. La aplicación exige discernimiento: hay momentos en que
+        la fidelidad requiere levantarse y servir; en otros, la actividad debe ceder
+        espacio a la escucha, la oración y el examen interior.
+      </p>
+
+      <div class="caja-destacada verde">
+        <span class="etiqueta">Preguntas de discernimiento</span>
+        <p class="texto-tarjeta">
+          ¿Mi acción responde al amor o a la ansiedad? ¿Estoy evitando una responsabilidad
+          bajo la apariencia de contemplación? ¿He escuchado antes de intentar resolver?
+          ¿Mi tiempo con Jesús está produciendo misericordia concreta?
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- =====================================================
+     V. INTEGRIDAD
+     ===================================================== -->
+
+<section class="panel" id="integridad" data-section="integridad">
+  <button
+    class="panel-encabezado"
+    id="boton-integridad"
+    type="button"
+    aria-expanded="false"
+    aria-controls="contenido-integridad"
+  >
+    <span class="panel-encabezado-interior">
+      <span class="panel-numero">v</span>
+      <span class="titulo-seccion">El interior del discípulo</span>
+      <span class="panel-indicador" aria-hidden="true"></span>
+    </span>
+  </button>
+
+  <div
+    class="panel-contenido"
+    id="contenido-integridad"
+    role="region"
+    aria-labelledby="boton-integridad"
+  >
+    <div class="panel-cuerpo">
+      <p class="entrada-seccion subtitulo">
+        El viaje exterior hacia Jerusalén incluye una exploración del mundo interior.
+        Jesús confronta la distancia que puede existir entre la identidad religiosa
+        visible y las motivaciones ocultas.
+      </p>
+
+      <h2 class="subencabezado">Limpiar el interior de la copa</h2>
+
+      <p class="texto-principal">
+        En Lucas 11:39–44, Jesús denuncia una religión preocupada por la apariencia
+        exterior mientras el interior permanece lleno de codicia y maldad. La imagen
+        de la copa señala la necesidad de una correspondencia real entre lo público
+        y lo privado.
+      </p>
+
+      <div class="caja-destacada">
+        <span class="etiqueta">Integridad</span>
+        <strong class="caja-titulo">Ser la misma persona ante Dios, en privado y en la plaza pública.</strong>
+        <p class="texto-tarjeta">
+          La integridad espiritual no consiste en perfección aparente. Consiste en
+          permitir que Dios examine y transforme pensamientos, deseos y motivos para
+          que la vida exterior exprese una realidad interior verdadera.
+        </p>
+      </div>
+
+      <h2 class="subencabezado">Identidad religiosa y conducta</h2>
+
+      <p class="texto-principal">
+        La enseñanza une la crítica a los fariseos con la parábola del buen samaritano.
+        Una identidad considerada “santa” no garantiza una conducta misericordiosa.
+        Del mismo modo, una persona despreciada por su etiqueta social puede revelar,
+        mediante sus actos, una comprensión más fiel del amor de Dios.
+      </p>
+
+      <div class="tarjetas">
+        <article class="tarjeta">
+          <span class="tarjeta-numero">1</span>
+          <h3>Apariencia</h3>
+          <p class="texto-tarjeta">
+            Actividades, lenguaje, reconocimiento y prácticas religiosas visibles.
+          </p>
+        </article>
+
+        <article class="tarjeta">
+          <span class="tarjeta-numero">2</span>
+          <h3>Motivación</h3>
+          <p class="texto-tarjeta">
+            Deseos, temores, ambiciones y razones internas que impulsan la conducta.
+          </p>
+        </article>
+
+        <article class="tarjeta">
+          <span class="tarjeta-numero">3</span>
+          <h3>Coherencia</h3>
+          <p class="texto-tarjeta">
+            Correspondencia creciente entre lo que se profesa, lo que se desea y lo que se hace.
+          </p>
+        </article>
+
+        <article class="tarjeta">
+          <span class="tarjeta-numero">4</span>
+          <h3>Misericordia</h3>
+          <p class="texto-tarjeta">
+            Evidencia concreta de que la vida interior está siendo formada por el carácter de Dios.
+          </p>
+        </article>
+      </div>
+
+      <h2 class="subencabezado">Fuego, paz y división</h2>
+
+      <p class="texto-principal">
+        En Lucas 12:49–53, Jesús habla de fuego y división, palabras que parecen estar
+        en tensión con su anuncio de paz. La interpretación presentada entiende el
+        fuego como urgencia de juicio: la presencia de Jesús exige una respuesta y
+        revela las disposiciones del corazón.
+      </p>
+
+      <div class="caja-destacada ciruela">
+        <span class="etiqueta">Una tensión sin resolución simple</span>
+        <strong class="caja-titulo">La paz del reino no equivale a evitar toda confrontación.</strong>
+        <p class="texto-tarjeta">
+          La verdad puede producir división cuando las personas responden de maneras
+          distintas. Sin embargo, esta tensión no autoriza al discípulo a demonizar,
+          humillar o violentar a quienes discrepan.
+        </p>
+      </div>
+
+      <h2 class="subencabezado">El corazón maternal de Dios</h2>
+
+      <p class="texto-principal">
+        En Lucas 13:34–35, Jesús lamenta sobre Jerusalén mediante la imagen de una
+        gallina que reúne a sus polluelos bajo sus alas. La escena revela una fuerza
+        protectora, nutridora y anhelante: el llamado “corazón maternal de Dios”.
+      </p>
+
+      <p class="texto-principal">
+        Jesús no contempla la resistencia de Jerusalén con indiferencia. Su lamento
+        sostiene simultáneamente expectativa y compasión, verdad y ternura. Como un
+        padre o una madre que desea el bien de sus hijos, mantiene el amor incluso
+        cuando ellos toman decisiones destructivas.
+      </p>
+
+      <div class="frase-destacada">
+        <blockquote>
+          La fuerza de Dios también se manifiesta como cuidado, protección y deseo de reunir.
+        </blockquote>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- =====================================================
+     VI. MADUREZ Y APLICACIÓN
+     ===================================================== -->
+
+<section class="panel" id="madurez" data-section="madurez">
+  <button
+    class="panel-encabezado"
+    id="boton-madurez"
+    type="button"
+    aria-expanded="false"
+    aria-controls="contenido-madurez"
+  >
+    <span class="panel-encabezado-interior">
+      <span class="panel-numero">vi</span>
+      <span class="titulo-seccion">Madurez, práctica y reflexión</span>
+      <span class="panel-indicador" aria-hidden="true"></span>
+    </span>
+  </button>
+
+  <div
+    class="panel-contenido"
+    id="contenido-madurez"
+    role="region"
+    aria-labelledby="boton-madurez"
+  >
+    <div class="panel-cuerpo">
+      <p class="entrada-seccion subtitulo">
+        La meta del viaje no es resolver toda tensión escogiendo un solo extremo.
+        La madurez cristiana consiste en aprender a sostener, bajo la dirección de
+        Jesús, realidades que se necesitan mutuamente.
+      </p>
+
+      <h2 class="subencabezado">Cuatro movimientos de una espiritualidad integrada</h2>
+
+      <div class="tarjetas">
+        <article class="tarjeta">
+          <span class="tarjeta-numero">1</span>
+          <h3>Escuchar</h3>
+          <p class="texto-tarjeta">
+            Sentarse a los pies de Jesús para recibir dirección, corrección y una
+            nueva manera de mirar.
+          </p>
+        </article>
+
+        <article class="tarjeta">
+          <span class="tarjeta-numero">2</span>
+          <h3>Actuar</h3>
+          <p class="texto-tarjeta">
+            Convertirse en prójimo mediante una misericordia práctica que acepta
+            interrupciones y costos.
+          </p>
+        </article>
+
+        <article class="tarjeta">
+          <span class="tarjeta-numero">3</span>
+          <h3>Examinar</h3>
+          <p class="texto-tarjeta">
+            Limpiar el interior de la copa, atendiendo motivos y contradicciones que
+            la apariencia religiosa puede ocultar.
+          </p>
+        </article>
+
+        <article class="tarjeta">
+          <span class="tarjeta-numero">4</span>
+          <h3>Perseverar</h3>
+          <p class="texto-tarjeta">
+            Mantener el rostro dirigido hacia la misión sin perder las lágrimas por
+            quienes rechazan o se alejan.
+          </p>
+        </article>
+      </div>
+
+      <h2 class="subencabezado">Aplicaciones prácticas</h2>
+
+      <ol class="lista-editorial">
+        <li>
+          <strong>Practicar el discernimiento:</strong> evaluar cuándo es necesario
+          actuar con prontitud y cuándo conviene detenerse para escuchar y reflexionar.
+        </li>
+        <li>
+          <strong>Aceptar la incomodidad del amor:</strong> ampliar el círculo de cuidado
+          hacia personas que parecen inconvenientes, costosas o difíciles de comprender.
+        </li>
+        <li>
+          <strong>Respetar la agencia:</strong> evitar la coerción y la demonización
+          de quienes rechazan, cuestionan o interpretan de otra manera.
+        </li>
+        <li>
+          <strong>Cultivar integridad:</strong> revisar si los pensamientos, motivos
+          y hábitos privados corresponden con la identidad espiritual que se expresa públicamente.
+        </li>
+        <li>
+          <strong>Servir desde la presencia:</strong> permitir que la comunión con
+          Jesús oriente el ritmo, la motivación y el contenido de la acción.
+        </li>
+        <li>
+          <strong>Conservar la ternura:</strong> avanzar con determinación sin convertir
+          la oposición en una excusa para endurecer el corazón.
+        </li>
+      </ol>
+
+      <div class="caja-destacada terracota">
+        <span class="etiqueta">Resumen final</span>
+        <strong class="caja-titulo">El modelo es un corazón fuerte para obedecer y tierno para compadecerse.</strong>
+        <p class="texto-tarjeta">
+          El viaje de Jesús a Jerusalén funciona como una plantilla de madurez
+          espiritual. No invita a escoger entre “salvar almas” y cultivar la vida
+          interior, entre servicio y oración o entre verdad y compasión. Invita a
+          luchar por una vida completa en la que cada dimensión corrija y fecunde a la otra.
+        </p>
+      </div>
+
+      <h2 class="subencabezado">Preguntas para repasar</h2>
+
+      <div class="preguntas-estudio">
+        <details class="pregunta">
+          <summary>¿Por qué el viaje es tan importante como Jerusalén?</summary>
+          <div class="respuesta-guia">
+            <p>
+              Porque Lucas concentra en el trayecto una gran cantidad de enseñanzas,
+              encuentros y confrontaciones. La lentitud del viaje crea el espacio
+              necesario para la formación de los discípulos.
+            </p>
+          </div>
+        </details>
+
+        <details class="pregunta">
+          <summary>¿Qué enseña Jesús ante el rechazo samaritano?</summary>
+          <div class="respuesta-guia">
+            <p>
+              Enseña que el celo por la misión no justifica la violencia. El reino
+              respeta la agencia de las personas y no avanza mediante la destrucción
+              de quienes se resisten.
+            </p>
+          </div>
+        </details>
+
+        <details class="pregunta">
+          <summary>¿Cómo redefine Jesús la palabra “prójimo”?</summary>
+          <div class="respuesta-guia">
+            <p>
+              La transforma de una categoría de identidad o proximidad en una categoría
+              de conducta. Prójimo es quien se acerca y muestra misericordia.
+            </p>
+          </div>
+        </details>
+
+        <details class="pregunta">
+          <summary>¿Qué relación existe entre el buen samaritano y María y Marta?</summary>
+          <div class="respuesta-guia">
+            <p>
+              El samaritano representa la acción misericordiosa; María representa la
+              escucha atenta. Juntos muestran que el discipulado necesita servicio y
+              contemplación, no uno a expensas del otro.
+            </p>
+          </div>
+        </details>
+
+        <details class="pregunta">
+          <summary>¿Qué significa limpiar el interior de la copa?</summary>
+          <div class="respuesta-guia">
+            <p>
+              Significa permitir que la transformación alcance pensamientos,
+              motivaciones y deseos, de modo que la vida privada y la identidad pública
+              sean coherentes.
+            </p>
+          </div>
+        </details>
+
+        <details class="pregunta">
+          <summary>¿Qué revela el lamento de Jesús sobre Jerusalén?</summary>
+          <div class="respuesta-guia">
+            <p>
+              Revela una compasión protectora y anhelante. Jesús mantiene la firmeza
+              de su misión y, al mismo tiempo, sufre por la resistencia de la ciudad.
+            </p>
+          </div>
+        </details>
+      </div>
+
+      <h2 class="subencabezado">Preguntas abiertas para reflexionar</h2>
+
+      <div class="pregunta-abierta">
+        <h3>El tiempo del discernimiento</h3>
+        <p>
+          ¿Qué señales permiten reconocer que este es un momento para “ir y hacer”,
+          y cuáles indican que es necesario detenerse, escuchar y revisar el corazón?
+        </p>
+      </div>
+
+      <div class="pregunta-abierta">
+        <h3>La navegación de los conflictos</h3>
+        <p>
+          ¿Cómo puede una persona permanecer fiel a convicciones que producen división
+          dentro de una familia o comunidad sin caer en desprecio, coerción o demonización?
+        </p>
+      </div>
+
+      <div class="pregunta-abierta">
+        <h3>La correspondencia interior</h3>
+        <p>
+          ¿En qué áreas existe una distancia entre la identidad espiritual que se
+          proyecta y los motivos, reacciones o hábitos que permanecen ocultos?
+        </p>
+      </div>
+
+      <div class="pregunta-abierta">
+        <h3>El prójimo inconveniente</h3>
+        <p>
+          ¿Qué persona o grupo queda actualmente fuera del círculo de misericordia,
+          y qué acción concreta permitiría convertirse en su prójimo?
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- =====================================================
+     PIE DE PÁGINA
+     ===================================================== -->
+
+<footer class="pie-pagina">
+  <p class="pie-frase">
+    La madurez no se encuentra al escapar de las tensiones, sino al permitir
+    que Jesús nos forme dentro de ellas.
+  </p>
+  <p class="pie-nota">
+    Estudio temático basado en el relato del viaje a Jerusalén en Lucas 9–19.
+  </p>
+</footer>
+```
+
+  </main>
+
+  <script>
+    /* =========================================================
+       REFERENCIAS PRINCIPALES
+       ========================================================= */
+
+    const paneles = Array.from(document.querySelectorAll(".panel"));
+    const enlacesNavegacion = Array.from(
+      document.querySelectorAll(".navegacion-enlace")
+    );
+
+    const sidebar = document.getElementById("sidebar");
+    const overlay = document.getElementById("overlay");
+    const botonAbrirMenu = document.getElementById("abrir-menu");
+    const botonCerrarMenu = document.getElementById("cerrar-menu");
+    const botonAbrirTodos = document.getElementById("abrir-todos");
+    const botonCerrarTodos = document.getElementById("cerrar-todos");
+
+    const movimientoReducido = window.matchMedia(
+      "(prefers-reduced-motion: reduce)"
+    ).matches;
+
+    let ultimoFocoAntesDelMenu = null;
+
+    /* =========================================================
+       ACORDEONES
+       ========================================================= */
+
+    function ajustarAltura(panel) {
+      const contenido = panel.querySelector(".panel-contenido");
+
+      if (!panel.classList.contains("abierto")) {
+        contenido.style.maxHeight = "0px";
+        return;
+      }
+
+      contenido.style.maxHeight = `${contenido.scrollHeight}px`;
+    }
+
+    function abrirPanel(panel) {
+      const boton = panel.querySelector(".panel-encabezado");
+      const contenido = panel.querySelector(".panel-contenido");
+
+      panel.classList.add("abierto");
+      boton.setAttribute("aria-expanded", "true");
+      contenido.style.maxHeight = `${contenido.scrollHeight}px`;
+    }
+
+    function cerrarPanel(panel) {
+      const boton = panel.querySelector(".panel-encabezado");
+      const contenido = panel.querySelector(".panel-contenido");
+
+      contenido.style.maxHeight = `${contenido.scrollHeight}px`;
+
+      requestAnimationFrame(() => {
+        panel.classList.remove("abierto");
+        boton.setAttribute("aria-expanded", "false");
+        contenido.style.maxHeight = "0px";
+      });
+    }
+
+    function alternarPanel(panel) {
+      if (panel.classList.contains("abierto")) {
+        cerrarPanel(panel);
+      } else {
+        abrirPanel(panel);
+      }
+    }
+
+    paneles.forEach((panel) => {
+      const boton = panel.querySelector(".panel-encabezado");
+
+      boton.addEventListener("click", () => {
+        alternarPanel(panel);
+      });
+    });
+
+    botonAbrirTodos.addEventListener("click", () => {
+      paneles.forEach(abrirPanel);
+    });
+
+    botonCerrarTodos.addEventListener("click", () => {
+      paneles.forEach(cerrarPanel);
+    });
+
+    /* =========================================================
+       NAVEGACIÓN ENTRE SECCIONES
+       ========================================================= */
+
+    function marcarEnlaceActivo(idSeccion) {
+      enlacesNavegacion.forEach((enlace) => {
+        const estaActivo = enlace.dataset.target === idSeccion;
+        enlace.classList.toggle("activo", estaActivo);
+
+        if (estaActivo) {
+          enlace.setAttribute("aria-current", "location");
+        } else {
+          enlace.removeAttribute("aria-current");
+        }
+      });
+    }
+
+    function desplazarseASeccion(panel) {
+      const encabezado = panel.querySelector(".panel-encabezado");
+      const espacioSuperior = window.innerWidth < 850 ? 82 : 28;
+      const posicion =
+        encabezado.getBoundingClientRect().top +
+        window.scrollY -
+        espacioSuperior;
+
+      window.scrollTo({
+        top: posicion,
+        behavior: movimientoReducido ? "auto" : "smooth"
+      });
+    }
+
+    enlacesNavegacion.forEach((enlace) => {
+      enlace.addEventListener("click", () => {
+        const panel = document.getElementById(enlace.dataset.target);
+
+        if (!panel) return;
+
+        abrirPanel(panel);
+        marcarEnlaceActivo(panel.id);
+        cerrarDrawer();
+        desplazarseASeccion(panel);
+      });
+    });
+
+    /* =========================================================
+       INTERSECTION OBSERVER
+       ========================================================= */
+
+    const observador = new IntersectionObserver(
+      (entradas) => {
+        const visibles = entradas
+          .filter((entrada) => entrada.isIntersecting)
+          .sort((a, b) => b.intersectionRatio - a.intersectionRatio);
+
+        if (visibles.length > 0) {
+          marcarEnlaceActivo(visibles[0].target.id);
+        }
+      },
+      {
+        root: null,
+        rootMargin: "-18% 0px -62% 0px",
+        threshold: [0.05, 0.2, 0.4, 0.65]
+      }
+    );
+
+    paneles.forEach((panel) => observador.observe(panel));
+
+    /* =========================================================
+       MENÚ MÓVIL
+       ========================================================= */
+
+    function obtenerElementosEnfocables() {
+      return Array.from(
+        sidebar.querySelectorAll(
+          'button:not([disabled]), a[href], [tabindex]:not([tabindex="-1"])'
+        )
+      );
+    }
+
+    function abrirDrawer() {
+      ultimoFocoAntesDelMenu = document.activeElement;
+
+      sidebar.classList.add("abierto");
+      overlay.classList.add("visible");
+      document.body.classList.add("menu-abierto");
+
+      botonAbrirMenu.setAttribute("aria-expanded", "true");
+      overlay.setAttribute("aria-hidden", "false");
+
+      const enfocables = obtenerElementosEnfocables();
+      if (enfocables.length) {
+        enfocables[0].focus();
+      }
+    }
+
+    function cerrarDrawer() {
+      if (!sidebar.classList.contains("abierto")) return;
+
+      sidebar.classList.remove("abierto");
+      overlay.classList.remove("visible");
+      document.body.classList.remove("menu-abierto");
+
+      botonAbrirMenu.setAttribute("aria-expanded", "false");
+      overlay.setAttribute("aria-hidden", "true");
+
+      if (
+        ultimoFocoAntesDelMenu &&
+        typeof ultimoFocoAntesDelMenu.focus === "function"
+      ) {
+        ultimoFocoAntesDelMenu.focus();
+      }
+    }
+
+    botonAbrirMenu.addEventListener("click", abrirDrawer);
+    botonCerrarMenu.addEventListener("click", cerrarDrawer);
+    overlay.addEventListener("click", cerrarDrawer);
+
+    document.addEventListener("keydown", (evento) => {
+      if (evento.key === "Escape") {
+        cerrarDrawer();
+        return;
+      }
+
+      if (
+        evento.key !== "Tab" ||
+        !sidebar.classList.contains("abierto") ||
+        window.innerWidth >= 850
+      ) {
+        return;
+      }
+
+      const enfocables = obtenerElementosEnfocables();
+      if (!enfocables.length) return;
+
+      const primero = enfocables[0];
+      const ultimo = enfocables[enfocables.length - 1];
+
+      if (evento.shiftKey && document.activeElement === primero) {
+        evento.preventDefault();
+        ultimo.focus();
+      } else if (!evento.shiftKey && document.activeElement === ultimo) {
+        evento.preventDefault();
+        primero.focus();
+      }
+    });
+
+    /* =========================================================
+       AJUSTES DE TAMAÑO
+       ========================================================= */
+
+    function recalcularPanelesAbiertos() {
+      paneles.forEach((panel) => {
+        if (panel.classList.contains("abierto")) {
+          ajustarAltura(panel);
+        }
+      });
+
+      if (window.innerWidth >= 850) {
+        cerrarDrawer();
+      }
+    }
+
+    let temporizadorRedimension;
+
+    window.addEventListener("resize", () => {
+      window.clearTimeout(temporizadorRedimension);
+      temporizadorRedimension = window.setTimeout(
+        recalcularPanelesAbiertos,
+        100
+      );
+    });
+
+    /* =========================================================
+       PREPARACIÓN PARA IMPRESIÓN
+       ========================================================= */
+
+    window.addEventListener("beforeprint", () => {
+      paneles.forEach(abrirPanel);
+    });
+
+    /* =========================================================
+       ESTADO INICIAL
+       ========================================================= */
+
+    window.addEventListener("load", () => {
+      paneles.forEach((panel) => {
+        const contenido = panel.querySelector(".panel-contenido");
+
+        if (panel.classList.contains("abierto")) {
+          abrirPanel(panel);
+        } else {
+          contenido.style.maxHeight = "0px";
+        }
+      });
+    });
+  </script>
+
+</body>
+</html>
