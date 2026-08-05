@@ -1,0 +1,3567 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta
+    name="description"
+    content="Estudio pedagógico de Lucas 18–19 basado en el episodio The Journey to Jerusalem III del pódcast Thread."
+  >
+  <title>Ver con claridad antes de Jerusalén | Lucas 18–19</title>
+
+  <script>
+    document.documentElement.classList.add("js");
+  </script>
+
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Lora:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap');
+
+    :root {
+      --fondo-pagina: #BCB3A5;
+      --fondo-sidebar: #BBB2A3;
+      --fondo-aclaracion: #C2BEB3;
+
+      --texto-principal: #231E17;
+      --texto-secundario-legible: #474036;
+      --terracota: #752F19;
+      --terracota-interactivo: #702B17;
+      --olivo-texto: #464B24;
+
+      --terracota-claro-decorativo: #9E4321;
+      --verde-olivo-decorativo: #5F6636;
+      --mostaza-decorativo: #AC761D;
+      --ciruela-decorativo: #5C294A;
+
+      --linea: rgba(93, 74, 44, 0.24);
+      --linea-tenue: rgba(35, 30, 23, 0.13);
+
+      --fuente-display: "DM Serif Display", Georgia, serif;
+      --fuente-lectura: "Lora", Georgia, serif;
+
+      --sidebar-ancho: clamp(340px, 30.75vw, 512px);
+      --columna-maxima: 850px;
+      --separacion-sidebar: clamp(64px, 5.5vw, 92px);
+    }
+
+    /* Base */
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+    }
+
+    html {
+      font-size: 100%;
+      scroll-behavior: smooth;
+      -webkit-text-size-adjust: 100%;
+      text-size-adjust: 100%;
+    }
+
+    body {
+      min-width: 320px;
+      margin: 0;
+      color: var(--texto-principal);
+      font-family: var(--fuente-lectura);
+      background:
+        linear-gradient(
+          90deg,
+          var(--fondo-sidebar) 0,
+          var(--fondo-sidebar) var(--sidebar-ancho),
+          var(--fondo-pagina) var(--sidebar-ancho),
+          var(--fondo-pagina) 100%
+        );
+    }
+
+    body.drawer-open {
+      width: 100%;
+    }
+
+    img,
+    svg {
+      display: block;
+      max-width: 100%;
+    }
+
+    button,
+    input,
+    textarea,
+    select {
+      font: inherit;
+    }
+
+    button,
+    a {
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    a {
+      color: var(--terracota-interactivo);
+      text-decoration-thickness: 1px;
+      text-underline-offset: 0.18em;
+      overflow-wrap: anywhere;
+    }
+
+    a:hover {
+      text-decoration-thickness: 2px;
+    }
+
+    button:focus-visible,
+    a:focus-visible,
+    [tabindex]:focus-visible {
+      outline: 3px solid var(--terracota-interactivo);
+      outline-offset: 4px;
+    }
+
+    p,
+    li {
+      text-wrap: pretty;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4 {
+      text-wrap: balance;
+    }
+
+    h2,
+    h3,
+    h4 {
+      break-after: avoid;
+    }
+
+    .sr-only {
+      position: absolute !important;
+      width: 1px !important;
+      height: 1px !important;
+      padding: 0 !important;
+      margin: -1px !important;
+      overflow: hidden !important;
+      clip: rect(0, 0, 0, 0) !important;
+      white-space: nowrap !important;
+      border: 0 !important;
+    }
+
+    .skip-link {
+      position: fixed;
+      z-index: 2000;
+      top: 12px;
+      left: 12px;
+      padding: 12px 16px;
+      color: var(--texto-principal);
+      background: #D4CABB;
+      border: 2px solid var(--terracota-interactivo);
+      transform: translateY(-180%);
+      transition: transform 160ms ease;
+    }
+
+    .skip-link:focus {
+      transform: translateY(0);
+    }
+
+    /* Barra móvil */
+    .mobile-bar {
+      display: none;
+    }
+
+    .menu-button,
+    .drawer-close {
+      min-width: 44px;
+      min-height: 44px;
+      color: var(--texto-principal);
+      background: transparent;
+      border: 1px solid var(--linea);
+      cursor: pointer;
+    }
+
+    .menu-button {
+      align-items: center;
+      justify-content: center;
+      gap: 5px;
+      padding: 10px;
+    }
+
+    .menu-button-lines {
+      display: grid;
+      gap: 4px;
+      width: 22px;
+    }
+
+    .menu-button-lines span {
+      display: block;
+      height: 2px;
+      background: currentColor;
+    }
+
+    .mobile-title {
+      margin: 0;
+      color: var(--terracota);
+      font-size: 0.92rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .backdrop {
+      position: fixed;
+      z-index: 850;
+      inset: 0;
+      display: none;
+      background: rgba(35, 30, 23, 0.52);
+    }
+
+    .backdrop.is-visible {
+      display: block;
+    }
+
+    /* Sidebar y drawer */
+    .sidebar {
+      position: fixed;
+      z-index: 900;
+      inset: 0 auto 0 0;
+      width: var(--sidebar-ancho);
+      overflow-y: auto;
+      color: var(--texto-secundario-legible);
+      background: var(--fondo-sidebar);
+      border-right: 1px solid var(--linea-tenue);
+    }
+
+    .sidebar-inner {
+      display: flex;
+      flex-direction: column;
+      width: min(282px, calc(100% - 72px));
+      min-height: 100%;
+      margin-right: 36px;
+      margin-left: auto;
+      padding: 54px 0 28px;
+    }
+
+    .drawer-close {
+      display: none;
+      align-self: flex-end;
+      width: 44px;
+      padding: 0;
+      font-size: 1.65rem;
+      line-height: 1;
+    }
+
+    .collection-name {
+      margin: 0 0 10px;
+      color: var(--terracota);
+      font-size: 0.94rem;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+    }
+
+    .collection-note {
+      margin: 0;
+      color: var(--texto-secundario-legible);
+      font-size: 0.96rem;
+      font-style: italic;
+      line-height: 1.55;
+    }
+
+    .sidebar-nav {
+      margin-top: 52px;
+    }
+
+    .sidebar-nav ol {
+      display: grid;
+      gap: 15px;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .sidebar-nav a {
+      display: grid;
+      grid-template-columns: 36px minmax(0, 1fr);
+      min-height: 44px;
+      align-items: start;
+      color: var(--texto-secundario-legible);
+      font-size: 1.0625rem;
+      line-height: 1.5;
+      text-decoration: none;
+      transition: color 140ms ease;
+    }
+
+    .sidebar-nav a:hover,
+    .sidebar-nav a[aria-current="true"] {
+      color: var(--terracota-interactivo);
+    }
+
+    .nav-number {
+      color: inherit;
+      font-size: 0.92rem;
+      letter-spacing: 0.08em;
+    }
+
+    .sidebar-controls {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-top: 44px;
+      padding-top: 22px;
+      border-top: 1px solid var(--linea-tenue);
+    }
+
+    .sidebar-controls button {
+      min-height: 44px;
+      padding: 8px 10px;
+      color: var(--terracota-interactivo);
+      background: transparent;
+      border: 1px solid var(--linea);
+      cursor: pointer;
+    }
+
+    .sidebar-footer {
+      margin-top: auto;
+      padding-top: 42px;
+      color: var(--texto-secundario-legible);
+      font-size: 0.86rem;
+      line-height: 1.55;
+    }
+
+    /* Scrollbar obligatorio */
+    .sidebar,
+    .mobile-drawer {
+      scrollbar-width: thin;
+      scrollbar-color: rgba(71, 64, 54, 0.28) transparent;
+    }
+
+    .sidebar::-webkit-scrollbar,
+    .mobile-drawer::-webkit-scrollbar {
+      width: 8px;
+    }
+
+    .sidebar::-webkit-scrollbar-track,
+    .mobile-drawer::-webkit-scrollbar-track {
+      background: var(--fondo-sidebar);
+    }
+
+    .sidebar::-webkit-scrollbar-thumb,
+    .mobile-drawer::-webkit-scrollbar-thumb {
+      background: rgba(71, 64, 54, 0.24);
+      border: 2px solid var(--fondo-sidebar);
+      border-radius: 999px;
+    }
+
+    .sidebar:hover::-webkit-scrollbar-thumb,
+    .mobile-drawer:hover::-webkit-scrollbar-thumb {
+      background: rgba(71, 64, 54, 0.42);
+    }
+
+    .sidebar::-webkit-scrollbar-button,
+    .mobile-drawer::-webkit-scrollbar-button {
+      display: none;
+      width: 0;
+      height: 0;
+    }
+
+    .sidebar::-webkit-scrollbar-corner,
+    .mobile-drawer::-webkit-scrollbar-corner {
+      background: var(--fondo-sidebar);
+    }
+
+    /* Contenido principal */
+    .main-content {
+      margin-left: var(--sidebar-ancho);
+      padding:
+        76px
+        clamp(48px, 9.5vw, 152px)
+        120px
+        var(--separacion-sidebar);
+    }
+
+    .content-column {
+      width: 100%;
+      max-width: var(--columna-maxima);
+    }
+
+    .hero {
+      padding-bottom: 10px;
+    }
+
+    .eyebrow {
+      margin: 0 0 24px;
+      color: var(--olivo-texto);
+      font-size: 0.98rem;
+      font-weight: 600;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+    }
+
+    .titulo-principal {
+      max-width: 820px;
+      margin: 0;
+      font-family: var(--fuente-display);
+      font-size: clamp(3.25rem, 4.9vw, 5rem);
+      font-weight: 400;
+      line-height: 1;
+      letter-spacing: -0.015em;
+    }
+
+    .titulo-principal em {
+      color: var(--terracota);
+      font-weight: 400;
+    }
+
+    .introduccion {
+      max-width: 68ch;
+      margin: 30px 0 0;
+      font-family: var(--fuente-lectura);
+      font-size: clamp(1.2rem, 1.4vw, 1.5rem);
+      font-style: italic;
+      line-height: 1.65;
+    }
+
+    .tesis {
+      max-width: 67ch;
+      margin-top: 40px;
+      padding-left: 28px;
+      border-left: 2px solid var(--mostaza-decorativo);
+      font-size: clamp(1.22rem, 1.3vw, 1.43rem);
+      line-height: 1.74;
+    }
+
+    .objetivos {
+      margin-top: 46px;
+      padding-top: 28px;
+      border-top: 1px solid var(--linea);
+    }
+
+    .objetivos h2 {
+      margin: 0 0 18px;
+      font-family: var(--fuente-display);
+      font-size: 1.7rem;
+      font-weight: 400;
+    }
+
+    .objetivos ul {
+      display: grid;
+      gap: 12px;
+      margin: 0;
+      padding-left: 1.25rem;
+      font-size: 1.08rem;
+      line-height: 1.65;
+    }
+
+    .caja-aclaracion {
+      margin: 34px 0;
+      padding: 26px 28px;
+      background: var(--fondo-aclaracion);
+      border-left: 3px solid var(--mostaza-decorativo);
+      border-radius: 4px;
+      box-shadow: none;
+    }
+
+    .caja-aclaracion h2,
+    .caja-aclaracion h3,
+    .caja-aclaracion h4 {
+      margin-top: 0;
+    }
+
+    .caja-aclaracion p:last-child {
+      margin-bottom: 0;
+    }
+
+    .study-separator {
+      display: grid;
+      grid-template-columns: minmax(30px, 1fr) auto minmax(30px, 1fr);
+      gap: 18px;
+      align-items: center;
+      margin: 72px 0 34px;
+      color: var(--texto-secundario-legible);
+      font-size: 0.94rem;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-align: center;
+      text-transform: uppercase;
+    }
+
+    .study-separator::before,
+    .study-separator::after {
+      content: "";
+      height: 1px;
+      background: var(--linea);
+    }
+
+    .inline-controls {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-bottom: 26px;
+    }
+
+    .inline-controls button {
+      min-height: 44px;
+      padding: 10px 16px;
+      color: var(--terracota-interactivo);
+      background: transparent;
+      border: 1px solid var(--linea);
+      cursor: pointer;
+    }
+
+    /* Persianas */
+    .study-unit {
+      scroll-margin-top: 24px;
+      border-top: 1px solid var(--linea);
+    }
+
+    .study-unit:last-of-type {
+      border-bottom: 1px solid var(--linea);
+    }
+
+    .accordion-trigger {
+      display: grid;
+      grid-template-columns: 54px minmax(0, 1fr) 34px;
+      gap: 16px;
+      width: 100%;
+      min-height: 92px;
+      align-items: center;
+      padding: 22px 0;
+      color: var(--texto-principal);
+      text-align: left;
+      background: transparent;
+      border: 0;
+      cursor: pointer;
+    }
+
+    .accordion-number {
+      color: var(--terracota-claro-decorativo);
+      font-size: 0.98rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+    }
+
+    .accordion-title {
+      font-family: var(--fuente-display);
+      font-size: clamp(1.75rem, 2vw, 2.2rem);
+      font-weight: 400;
+      line-height: 1.16;
+    }
+
+    .accordion-icon {
+      position: relative;
+      width: 30px;
+      height: 30px;
+      justify-self: end;
+    }
+
+    .accordion-icon::before,
+    .accordion-icon::after {
+      content: "";
+      position: absolute;
+      top: 14px;
+      left: 5px;
+      width: 20px;
+      height: 1.5px;
+      background: var(--terracota-interactivo);
+      transition: transform 180ms ease;
+    }
+
+    .accordion-icon::after {
+      transform: rotate(90deg);
+    }
+
+    .accordion-trigger[aria-expanded="true"] .accordion-icon::after {
+      transform: rotate(0);
+    }
+
+    .panel-body {
+      padding: 4px 0 68px 70px;
+      font-size: clamp(1.125rem, 1.2vw, 1.375rem);
+      line-height: 1.75;
+    }
+
+    .js .panel-body[hidden],
+    .js .answer[hidden] {
+      display: none;
+    }
+
+    .panel-body > :first-child {
+      margin-top: 0;
+    }
+
+    .panel-body p {
+      max-width: 67ch;
+      margin: 0 0 1.35em;
+    }
+
+    .panel-body ul,
+    .panel-body ol {
+      max-width: 64ch;
+      margin: 0 0 1.5em;
+      padding-left: 1.35em;
+    }
+
+    .panel-body li + li {
+      margin-top: 0.55em;
+    }
+
+    .question-guide {
+      margin-bottom: 32px;
+      color: var(--texto-secundario-legible);
+      font-size: 1.07rem;
+    }
+
+    .question-guide strong {
+      color: var(--texto-principal);
+    }
+
+    .section-heading {
+      margin: 48px 0 20px;
+      font-family: var(--fuente-display);
+      font-size: clamp(1.55rem, 1.8vw, 2rem);
+      font-weight: 400;
+      line-height: 1.2;
+    }
+
+    .minor-heading {
+      margin: 34px 0 15px;
+      color: var(--olivo-texto);
+      font-size: 1rem;
+      font-weight: 600;
+      letter-spacing: 0.11em;
+      text-transform: uppercase;
+    }
+
+    .idea-clave {
+      margin: 32px 0;
+      padding: 24px 0 24px 26px;
+      border-left: 3px solid var(--verde-olivo-decorativo);
+    }
+
+    .idea-clave .block-label,
+    .provenance .block-label,
+    .reflection .block-label {
+      display: block;
+      margin-bottom: 9px;
+      color: var(--olivo-texto);
+      font-size: 0.91rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .idea-clave p:last-child {
+      margin-bottom: 0;
+    }
+
+    .provenance {
+      margin: 34px 0;
+      padding: 22px 24px;
+      border-top: 1px solid var(--linea);
+      border-bottom: 1px solid var(--linea);
+    }
+
+    .provenance.podcast {
+      border-left: 3px solid var(--terracota-claro-decorativo);
+    }
+
+    .provenance.external {
+      border-left: 3px solid var(--verde-olivo-decorativo);
+    }
+
+    .provenance.disputed {
+      border-left: 3px solid var(--ciruela-decorativo);
+    }
+
+    .provenance.inference {
+      border-left: 3px solid var(--mostaza-decorativo);
+    }
+
+    .provenance.limitation {
+      background: rgba(194, 190, 179, 0.62);
+      border-left: 3px solid var(--texto-secundario-legible);
+    }
+
+    .provenance p:last-child {
+      margin-bottom: 0;
+    }
+
+    .comparison-grid,
+    .application-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 28px;
+      margin: 32px 0;
+      padding: 28px 0;
+      border-top: 1px solid var(--linea);
+      border-bottom: 1px solid var(--linea);
+    }
+
+    .comparison-grid h4,
+    .application-grid h4 {
+      margin: 0 0 12px;
+      font-family: var(--fuente-display);
+      font-size: 1.45rem;
+      font-weight: 400;
+    }
+
+    .comparison-grid p:last-child,
+    .application-grid p:last-child {
+      margin-bottom: 0;
+    }
+
+    blockquote {
+      max-width: 60ch;
+      margin: 32px 0;
+      padding: 6px 0 6px 26px;
+      color: var(--texto-secundario-legible);
+      font-size: 1.18em;
+      font-style: italic;
+      border-left: 2px solid var(--terracota-claro-decorativo);
+    }
+
+    blockquote p {
+      margin: 0;
+    }
+
+    /* Mesa de especialistas */
+    .expert-conversation {
+      margin: 52px 0;
+      padding: 34px 0 18px;
+      border-top: 2px solid var(--terracota-claro-decorativo);
+      border-bottom: 1px solid var(--linea);
+      break-inside: avoid;
+    }
+
+    .expert-conversation-header {
+      margin-bottom: 28px;
+    }
+
+    .expert-conversation-header .table-label {
+      display: block;
+      margin-bottom: 9px;
+      color: var(--terracota);
+      font-size: 0.92rem;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+    }
+
+    .expert-conversation-header h3 {
+      margin: 0 0 12px;
+      font-family: var(--fuente-display);
+      font-size: clamp(1.7rem, 2vw, 2.15rem);
+      font-weight: 400;
+      line-height: 1.2;
+    }
+
+    .expert-conversation-header p {
+      color: var(--texto-secundario-legible);
+      font-size: 1.03rem;
+    }
+
+    .transparency-note {
+      margin: 24px 0 30px;
+      padding: 20px 22px;
+      background: var(--fondo-aclaracion);
+      border-left: 3px solid var(--mostaza-decorativo);
+      font-size: 1rem;
+      line-height: 1.65;
+    }
+
+    .conversation-turn {
+      position: relative;
+      margin: 0 0 26px;
+      padding: 0 0 0 26px;
+      border-left: 1px solid var(--linea);
+    }
+
+    .conversation-turn::before {
+      content: "";
+      position: absolute;
+      top: 7px;
+      left: -4px;
+      width: 7px;
+      height: 7px;
+      background: var(--terracota-claro-decorativo);
+      border-radius: 50%;
+    }
+
+    .conversation-turn.moderator {
+      border-left-color: var(--mostaza-decorativo);
+    }
+
+    .conversation-turn.moderator::before {
+      background: var(--mostaza-decorativo);
+    }
+
+    .conversation-turn.synthesis {
+      margin-top: 34px;
+      padding-top: 22px;
+      border-top: 1px solid var(--linea);
+      border-left-width: 3px;
+    }
+
+    .speaker-role {
+      display: block;
+      margin-bottom: 7px;
+      color: var(--olivo-texto);
+      font-size: 1rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .conversation-turn p:last-child {
+      margin-bottom: 0;
+    }
+
+    /* Preguntas y respuestas */
+    .learning-check,
+    .reflection {
+      margin: 38px 0;
+      padding: 26px 0;
+      border-top: 1px solid var(--linea);
+      border-bottom: 1px solid var(--linea);
+    }
+
+    .learning-check h3,
+    .reflection h3 {
+      margin: 0 0 14px;
+      font-family: var(--fuente-display);
+      font-size: 1.55rem;
+      font-weight: 400;
+    }
+
+    .learning-check .question {
+      margin-bottom: 18px;
+      font-weight: 500;
+    }
+
+    .answer-toggle {
+      min-height: 44px;
+      padding: 10px 15px;
+      color: var(--terracota-interactivo);
+      background: transparent;
+      border: 1px solid var(--terracota-interactivo);
+      cursor: pointer;
+    }
+
+    .answer {
+      margin-top: 18px;
+      padding: 20px 22px;
+      background: rgba(194, 190, 179, 0.6);
+      border-left: 3px solid var(--verde-olivo-decorativo);
+    }
+
+    .answer p:last-child {
+      margin-bottom: 0;
+    }
+
+    .reflection ul {
+      margin-bottom: 0;
+    }
+
+    /* Repaso y fuentes */
+    .review-list {
+      display: grid;
+      gap: 28px;
+      margin: 30px 0;
+    }
+
+    .review-item {
+      padding-bottom: 28px;
+      border-bottom: 1px solid var(--linea);
+    }
+
+    .review-item h3 {
+      margin: 0 0 12px;
+      font-size: 1.12rem;
+      font-weight: 600;
+      line-height: 1.55;
+    }
+
+    .glossary {
+      margin: 30px 0;
+    }
+
+    .glossary div {
+      display: grid;
+      grid-template-columns: minmax(150px, 0.36fr) minmax(0, 1fr);
+      gap: 22px;
+      padding: 18px 0;
+      border-top: 1px solid var(--linea);
+    }
+
+    .glossary div:last-child {
+      border-bottom: 1px solid var(--linea);
+    }
+
+    .glossary dt {
+      color: var(--terracota);
+      font-weight: 600;
+    }
+
+    .glossary dd {
+      margin: 0;
+    }
+
+    .source-list {
+      display: grid;
+      gap: 22px;
+      margin: 30px 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .source-list li {
+      padding-left: 20px;
+      border-left: 2px solid var(--linea);
+    }
+
+    .source-list strong {
+      display: block;
+      margin-bottom: 5px;
+    }
+
+    .source-meta {
+      display: block;
+      color: var(--texto-secundario-legible);
+      font-size: 0.97rem;
+      line-height: 1.55;
+    }
+
+    .page-footer {
+      margin-top: 68px;
+      padding-top: 28px;
+      color: var(--texto-secundario-legible);
+      font-size: 0.96rem;
+      line-height: 1.65;
+      border-top: 1px solid var(--linea);
+    }
+
+    /* Escritorio compacto */
+    @media (min-width: 900px) and (max-width: 1279px) {
+      :root {
+        --sidebar-ancho: 280px;
+        --separacion-sidebar: clamp(52px, 6vw, 64px);
+        --columna-maxima: 760px;
+      }
+
+      .sidebar-inner {
+        width: 224px;
+        margin-right: 28px;
+        padding-top: 46px;
+      }
+
+      .sidebar-nav {
+        margin-top: 40px;
+      }
+
+      .main-content {
+        padding:
+          66px
+          36px
+          100px
+          var(--separacion-sidebar);
+      }
+
+      .titulo-principal {
+        font-size: clamp(3.75rem, 6vw, 4.5rem);
+      }
+
+      .panel-body {
+        padding-left: 54px;
+      }
+    }
+
+    /* Móvil y tableta */
+    @media (max-width: 899px) {
+      body {
+        padding-top: 62px;
+        background: var(--fondo-pagina);
+      }
+
+      .mobile-bar {
+        position: fixed;
+        z-index: 800;
+        top: 0;
+        right: 0;
+        left: 0;
+        display: grid;
+        grid-template-columns: 48px minmax(0, 1fr);
+        gap: 14px;
+        align-items: center;
+        height: 62px;
+        padding: 0 18px;
+        background: var(--fondo-sidebar);
+        border-bottom: 1px solid var(--linea-tenue);
+      }
+
+      .menu-button {
+        display: flex;
+      }
+
+      .sidebar {
+        width: min(340px, 88vw);
+        transform: translateX(-105%);
+        transition: transform 220ms ease;
+        box-shadow: none;
+      }
+
+      .sidebar.is-open {
+        transform: translateX(0);
+      }
+
+      .sidebar-inner {
+        width: auto;
+        min-height: 100%;
+        margin: 0;
+        padding: 18px 24px 28px;
+      }
+
+      .drawer-close {
+        display: block;
+        margin-bottom: 20px;
+      }
+
+      .sidebar-nav {
+        margin-top: 36px;
+      }
+
+      .main-content {
+        margin-left: 0;
+        padding: 48px 32px 92px;
+      }
+
+      .content-column {
+        max-width: none;
+      }
+
+      .study-unit {
+        scroll-margin-top: 78px;
+      }
+
+      .titulo-principal {
+        font-size: clamp(2.75rem, 10vw, 3.75rem);
+      }
+
+      .introduccion {
+        font-size: clamp(1.18rem, 3.4vw, 1.4rem);
+      }
+
+      .accordion-trigger {
+        grid-template-columns: 42px minmax(0, 1fr) 30px;
+        gap: 11px;
+        min-height: 86px;
+      }
+
+      .accordion-title {
+        font-size: clamp(1.65rem, 4.8vw, 2rem);
+      }
+
+      .panel-body {
+        padding-right: 0;
+        padding-bottom: 58px;
+        padding-left: 0;
+        font-size: 1.125rem;
+        line-height: 1.72;
+      }
+
+      .comparison-grid,
+      .application-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .conversation-turn {
+        padding-left: 19px;
+      }
+
+      .glossary div {
+        grid-template-columns: 1fr;
+        gap: 8px;
+      }
+    }
+
+    @media (max-width: 560px) {
+      .main-content {
+        padding: 38px 22px 78px;
+      }
+
+      .mobile-bar {
+        padding: 0 12px;
+      }
+
+      .mobile-title {
+        font-size: 0.78rem;
+      }
+
+      .titulo-principal {
+        font-size: clamp(2.68rem, 13.5vw, 3.45rem);
+      }
+
+      .tesis {
+        padding-left: 20px;
+      }
+
+      .study-separator {
+        grid-template-columns: 1fr;
+        gap: 12px;
+        text-align: left;
+      }
+
+      .study-separator::before {
+        display: none;
+      }
+
+      .accordion-trigger {
+        grid-template-columns: 34px minmax(0, 1fr) 28px;
+        gap: 8px;
+      }
+
+      .accordion-number {
+        font-size: 0.85rem;
+      }
+
+      .caja-aclaracion,
+      .provenance,
+      .transparency-note,
+      .answer {
+        padding-right: 18px;
+        padding-left: 18px;
+      }
+
+      .expert-conversation {
+        margin: 44px 0;
+      }
+    }
+
+    @media (max-width: 350px) {
+      .main-content {
+        padding-right: 18px;
+        padding-left: 18px;
+      }
+
+      .mobile-title {
+        letter-spacing: 0.08em;
+      }
+
+      .sidebar-inner {
+        padding-right: 18px;
+        padding-left: 18px;
+      }
+    }
+
+    /* Accesibilidad */
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
+      }
+
+      *,
+      *::before,
+      *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+      }
+    }
+
+    @media (prefers-contrast: more) {
+      :root {
+        --linea-tenue: rgba(35, 30, 23, 0.35);
+      }
+
+      a {
+        text-decoration-thickness: 2px;
+      }
+
+      .sidebar,
+      .mobile-drawer {
+        scrollbar-color: rgba(71, 64, 54, 0.72) transparent;
+      }
+
+      .sidebar::-webkit-scrollbar-thumb,
+      .mobile-drawer::-webkit-scrollbar-thumb {
+        background: rgba(71, 64, 54, 0.72);
+      }
+    }
+
+    /* Impresión */
+    @media print {
+      @page {
+        margin: 18mm;
+      }
+
+      html,
+      body {
+        color: #211D17;
+        background: #F3EEE5 !important;
+      }
+
+      body {
+        padding: 0;
+        font-size: 11pt;
+      }
+
+      .sidebar,
+      .mobile-bar,
+      .backdrop,
+      .inline-controls,
+      .answer-toggle,
+      .accordion-icon,
+      .skip-link {
+        display: none !important;
+      }
+
+      .main-content {
+        margin: 0;
+        padding: 0;
+      }
+
+      .content-column {
+        max-width: none;
+      }
+
+      .titulo-principal {
+        font-size: 34pt;
+      }
+
+      .panel-body,
+      .answer {
+        display: block !important;
+      }
+
+      .panel-body {
+        padding: 0 0 28px;
+      }
+
+      .accordion-trigger {
+        grid-template-columns: 44px 1fr;
+        min-height: auto;
+        padding: 20px 0 12px;
+        cursor: default;
+      }
+
+      .study-unit,
+      .expert-conversation,
+      .caja-aclaracion,
+      .provenance,
+      .learning-check,
+      .reflection {
+        break-inside: avoid;
+      }
+
+      a[href^="http"]::after {
+        content: " (" attr(href) ")";
+        font-size: 8pt;
+        overflow-wrap: anywhere;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <a class="skip-link" href="#contenido-principal">Saltar al contenido principal</a>
+
+  <!-- Barra móvil -->
+  <header class="mobile-bar" aria-label="Barra de navegación móvil">
+    <button
+      class="menu-button"
+      id="menu-button"
+      type="button"
+      aria-expanded="false"
+      aria-controls="sidebar"
+      aria-label="Abrir menú del estudio"
+    >
+      <span class="menu-button-lines" aria-hidden="true">
+        <span></span>
+        <span></span>
+        <span></span>
+      </span>
+    </button>
+    <p class="mobile-title">Antes de Jerusalén</p>
+  </header>
+
+  <div class="backdrop" id="backdrop" aria-hidden="true"></div>
+
+  <!-- Navegación lateral -->
+  <aside class="sidebar mobile-drawer" id="sidebar" aria-label="Navegación del estudio">
+    <div class="sidebar-inner">
+      <button
+        class="drawer-close"
+        id="drawer-close"
+        type="button"
+        aria-label="Cerrar menú"
+      >
+        ×
+      </button>
+
+      <div>
+        <p class="collection-name">Thread · Evangelio de Lucas</p>
+        <p class="collection-note">
+          Un recorrido por la última etapa del viaje de Jesús hacia Jerusalén.
+        </p>
+      </div>
+
+      <nav class="sidebar-nav" aria-label="Unidades del estudio">
+        <ol>
+          <li>
+            <a href="#oracion">
+              <span class="nav-number">I</span>
+              <span>Oración que insiste</span>
+            </a>
+          </li>
+          <li>
+            <a href="#humildad">
+              <span class="nav-number">II</span>
+              <span>Recibir sin currículum</span>
+            </a>
+          </li>
+          <li>
+            <a href="#riqueza">
+              <span class="nav-number">III</span>
+              <span>La seguridad que aprieta</span>
+            </a>
+          </li>
+          <li>
+            <a href="#zaqueo">
+              <span class="nav-number">IV</span>
+              <span>La gracia que busca y repara</span>
+            </a>
+          </li>
+          <li>
+            <a href="#minas">
+              <span class="nav-number">V</span>
+              <span>Lo confiado no se entierra</span>
+            </a>
+          </li>
+          <li>
+            <a href="#espejo">
+              <span class="nav-number">VI</span>
+              <span>El espejo antes de Jerusalén</span>
+            </a>
+          </li>
+          <li>
+            <a href="#repaso">
+              <span class="nav-number">VII</span>
+              <span>Repaso, glosario y fuentes</span>
+            </a>
+          </li>
+        </ol>
+      </nav>
+
+      <div class="sidebar-controls" aria-label="Controles de las unidades">
+        <button type="button" data-open-all>Abrir todas</button>
+        <button type="button" data-close-all>Cerrar todas</button>
+      </div>
+
+      <p class="sidebar-footer">
+        Adaptación pedagógica en español basada en la transcripción proporcionada
+        por el usuario. Las conversaciones del panel son reconstrucciones educativas.
+      </p>
+    </div>
+  </aside>
+
+  <!-- Contenido principal -->
+  <main class="main-content" id="contenido-principal">
+    <div class="content-column">
+      <header class="hero">
+        <p class="eyebrow">Lucas 18–19 · El viaje a Jerusalén, parte III</p>
+
+        <h1 class="titulo-principal">
+          Ver con claridad <em>antes de Jerusalén</em>
+        </h1>
+
+        <p class="introduccion">
+          En el último tramo del camino, Jesús no reúne admiradores pasivos.
+          Las escenas funcionan como un espejo: revelan quién reconoce su
+          necesidad, quién se aferra al control y quién se atreve a participar.
+        </p>
+
+        <div class="tesis">
+          <p>
+            La tesis del episodio es que el discipulado se reconoce menos por el
+            prestigio, la seguridad o el expediente religioso que por una postura
+            interior de humildad, confianza, arrepentimiento y disponibilidad.
+          </p>
+          <p>
+            La viuda insiste, el cobrador de impuestos admite su necesidad, los
+            niños reciben, Zaqueo responde y los siervos fieles actúan con lo que
+            se les confió. En contraste, la autosuficiencia, el miedo y el apego
+            pueden producir una forma de ceguera espiritual.
+          </p>
+        </div>
+
+        <section class="objetivos" aria-labelledby="objetivos-titulo">
+          <h2 id="objetivos-titulo">Al terminar este recorrido podrás</h2>
+          <ul>
+            <li>
+              Explicar cómo Lucas relaciona oración persistente, humildad y
+              receptividad.
+            </li>
+            <li>
+              Comparar las respuestas del gobernante rico y de Zaqueo sin
+              convertirlas en una fórmula mecánica.
+            </li>
+            <li>
+              Distinguir entre lo que afirma el episodio, el contexto añadido y
+              las cuestiones que continúan debatidas.
+            </li>
+            <li>
+              Interpretar la parábola de las minas como una enseñanza compleja
+              sobre expectativa, responsabilidad y miedo.
+            </li>
+            <li>
+              Formular una aplicación concreta que no se limite a admirar las
+              historias desde la distancia.
+            </li>
+          </ul>
+        </section>
+
+        <aside class="caja-aclaracion" aria-labelledby="nota-fuente-titulo">
+          <h2 id="nota-fuente-titulo" class="minor-heading">Limitación editorial</h2>
+          <p>
+            El nombre del archivo recibido dice “Episode 64”, pero dentro de la
+            grabación los anfitriones identifican el programa como el episodio 66.
+            Esta experiencia conserva la identificación pronunciada en el audio.
+          </p>
+          <p>
+            El episodio comenta una selección de escenas de Lucas 18–19; no
+            pretende explicar cada versículo de ambos capítulos.
+          </p>
+        </aside>
+      </header>
+
+      <div class="study-separator">
+        <span>Abre cada persiana a tu ritmo</span>
+      </div>
+
+      <div class="inline-controls" aria-label="Controles generales">
+        <button type="button" data-open-all>Abrir todas las unidades</button>
+        <button type="button" data-close-all>Cerrar todas las unidades</button>
+      </div>
+
+      <!-- Unidad I -->
+      <section class="study-unit" id="oracion" aria-labelledby="titulo-oracion">
+        <button
+          class="accordion-trigger"
+          type="button"
+          id="titulo-oracion"
+          aria-expanded="true"
+          aria-controls="panel-oracion"
+        >
+          <span class="accordion-number">I</span>
+          <span class="accordion-title">Oración que insiste: la viuda y el clamor por justicia</span>
+          <span class="accordion-icon" aria-hidden="true"></span>
+        </button>
+
+        <div class="panel-body" id="panel-oracion" role="region" aria-labelledby="titulo-oracion">
+          <p class="question-guide">
+            <strong>Pregunta guía:</strong>
+            ¿La persistencia sirve para vencer la resistencia de Dios o para
+            revelar la postura de quien ora?
+          </p>
+
+          <div class="idea-clave">
+            <span class="block-label">Idea esencial</span>
+            <p>
+              La parábola no presenta a Dios como una versión mejorada del juez
+              injusto. Construye un contraste: si hasta un juez indiferente termina
+              respondiendo, cuánto más puede confiar la comunidad en un Dios justo.
+            </p>
+          </div>
+
+          <h3 class="section-heading">Una fe que no desaparece cuando tarda la respuesta</h3>
+
+          <p>
+            En Lucas 18, una viuda vuelve una y otra vez ante un juez que no teme
+            a Dios ni respeta a las personas. Ella carece de la influencia social
+            que normalmente abriría puertas, pero se niega a desaparecer. Su
+            insistencia convierte una situación de impotencia en una demanda
+            pública de justicia.
+          </p>
+
+          <p>
+            El episodio observa que esta oración no es tranquila, pulida ni
+            decorativa. Puede parecerse a una protesta, a un dolor que insiste o a
+            una terquedad espiritual. La viuda no recibe una reprimenda por ser
+            “demasiado”; su persistencia es presentada como una expresión de fe.
+          </p>
+
+          <div class="provenance podcast">
+            <span class="block-label">Lo que sostiene el episodio</span>
+            <p>
+              La repetición no implica que Dios no haya escuchado la primera vez.
+              El énfasis recae en lo que la oración persistente reconoce: yo soy
+              humano, no controlo la justicia y necesito a Dios.
+            </p>
+          </div>
+
+          <div class="provenance external">
+            <span class="block-label">Contexto añadido</span>
+            <p>
+              La lógica de la parábola suele describirse como un razonamiento “de
+              lo menor a lo mayor”: el juez injusto no representa el carácter de
+              Dios, sino el punto de contraste que hace más fuerte la confianza en
+              la justicia divina.
+            </p>
+            <p>
+              Véase el texto de
+              <a
+                href="https://www.oca.org/readings/reference/luke/18"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Lucas 18 en Orthodox Church in America
+                <span class="sr-only">(se abre en una pestaña nueva)</span>
+              </a>.
+            </p>
+          </div>
+
+          <section class="expert-conversation" data-component="expert-conversation">
+            <header class="expert-conversation-header">
+              <span class="table-label">Conversación del panel</span>
+              <h3>¿Por qué seguir orando si Dios ya escuchó?</h3>
+              <p>
+                La mesa examina la diferencia entre insistir para manipular y
+                perseverar porque la justicia todavía importa.
+              </p>
+            </header>
+
+            <p class="transparency-note">
+              Esta conversación es una reconstrucción educativa generada por IA.
+              Los participantes representan áreas de conocimiento y no son personas
+              reales. Sus aportaciones se basan en el expediente y en las fuentes
+              allí citadas.
+            </p>
+
+            <div class="conversation-turn moderator">
+              <span class="speaker-role">MODERADOR</span>
+              <p>
+                Empecemos por la incomodidad obvia. Si la viuda tiene que golpear
+                tantas veces, ¿no parece que Dios necesita una alarma bastante
+                insistente?
+              </p>
+            </div>
+
+            <div class="conversation-turn">
+              <span class="speaker-role">ESPECIALISTA EN EXÉGESIS DE LUCAS</span>
+              <p>
+                Solo si confundimos al juez con Dios. El juez es precisamente el
+                personaje que no debemos copiar en la comparación. No ganaría el
+                premio a servidor público del año. La idea es: si incluso él
+                responde, cuánto más el Dios que sí se ocupa de la justicia.
+              </p>
+            </div>
+
+            <div class="conversation-turn">
+              <span class="speaker-role">HISTORIADORA DEL MUNDO ANTIGUO</span>
+              <p>
+                Además, la viuda aparece sin la red de poder que normalmente
+                protegía una reclamación. Su única herramienta visible es volver.
+                La historia dignifica esa voz socialmente pequeña en lugar de
+                pedirle que espere con modales impecables.
+              </p>
+            </div>
+
+            <div class="conversation-turn moderator">
+              <span class="speaker-role">MODERADOR</span>
+              <p>
+                Entonces la persistencia no compra atención divina. ¿Qué produce,
+                según el episodio, en la persona que ora?
+              </p>
+            </div>
+
+            <div class="conversation-turn">
+              <span class="speaker-role">TEÓLOGA DE ESPIRITUALIDAD CRISTIANA</span>
+              <p>
+                Mantiene vivo el reconocimiento de dependencia. La oración deja de
+                ser un informe que entregamos desde una posición de control y se
+                convierte en relación. Y esa relación no siempre llega con voz de
+                biblioteca; a veces llega respirando fuerte.
+              </p>
+            </div>
+
+            <div class="conversation-turn">
+              <span class="speaker-role">LECTOR CRÍTICO</span>
+              <p>
+                Pero hay que conservar una tensión: muchas personas claman y no ven
+                una resolución rápida. No deberíamos usar la parábola para acusarlas
+                de falta de fe ni para prometer calendarios que el texto no entrega.
+              </p>
+            </div>
+
+            <div class="conversation-turn">
+              <span class="speaker-role">ESPECIALISTA EN EXÉGESIS DE LUCAS</span>
+              <p>
+                Exacto. La pregunta final sobre si el Hijo del Hombre encontrará fe
+                desplaza la atención del cronómetro a la perseverancia. La historia
+                no trivializa la demora; pregunta qué clase de fe continúa buscando
+                justicia en medio de ella.
+              </p>
+            </div>
+
+            <div class="conversation-turn moderator synthesis">
+              <span class="speaker-role">MODERADOR · SÍNTESIS</span>
+              <p>
+                Podemos afirmar con seguridad que el juez y Dios funcionan por
+                contraste. La aplicación del episodio es que la oración persistente
+                expresa necesidad, relación y hambre de justicia. Lo que permanece
+                abierto es cómo experimentar la promesa de justicia cuando la demora
+                es dolorosamente real; por eso esta parábola debe acompañar el clamor,
+                no silenciarlo.
+              </p>
+            </div>
+          </section>
+
+          <section class="learning-check" aria-labelledby="pregunta-oracion">
+            <h3 id="pregunta-oracion">Comprueba tu comprensión</h3>
+            <p class="question">
+              ¿Cuál es el error principal de leer a Dios como si fuera el juez injusto?
+            </p>
+            <button
+              class="answer-toggle"
+              type="button"
+              aria-expanded="true"
+              aria-controls="respuesta-oracion"
+              data-answer-toggle
+            >
+              Ocultar respuesta
+            </button>
+            <div class="answer" id="respuesta-oracion">
+              <p>
+                El juez es el contraste, no el retrato de Dios. La parábola argumenta
+                que, si alguien indiferente puede responder, con mayor razón se puede
+                confiar en el Dios justo.
+              </p>
+            </div>
+          </section>
+
+          <section class="reflection">
+            <span class="block-label">Pregunta de reflexión</span>
+            <h3>¿Qué clamor has intentado volver “presentable” antes de expresarlo?</h3>
+            <p>
+              Considera qué cambiaría si la oración pudiera incluir honestamente
+              frustración, necesidad y deseo de justicia sin convertirse en una
+              actuación espiritual.
+            </p>
+          </section>
+        </div>
+      </section>
+
+      <!-- Unidad II -->
+      <section class="study-unit" id="humildad" aria-labelledby="titulo-humildad">
+        <button
+          class="accordion-trigger"
+          type="button"
+          id="titulo-humildad"
+          aria-expanded="true"
+          aria-controls="panel-humildad"
+        >
+          <span class="accordion-number">II</span>
+          <span class="accordion-title">Recibir sin currículum: el cobrador y los niños</span>
+          <span class="accordion-icon" aria-hidden="true"></span>
+        </button>
+
+        <div class="panel-body" id="panel-humildad" role="region" aria-labelledby="titulo-humildad">
+          <p class="question-guide">
+            <strong>Pregunta guía:</strong>
+            ¿Qué tienen en común un cobrador de impuestos arrepentido y un niño
+            dependiente?
+          </p>
+
+          <div class="idea-clave">
+            <span class="block-label">Idea esencial</span>
+            <p>
+              Ambos reciben sin apoyarse en prestigio. Uno admite su necesidad de
+              misericordia; los otros representan dependencia y una posición que
+              no exige ser tomada en serio por su rango.
+            </p>
+          </div>
+
+          <h3 class="section-heading">Dos oraciones, dos posturas</h3>
+
+          <p>
+            Jesús contrapone a un fariseo y a un cobrador de impuestos. El primero
+            enumera sus méritos y se compara favorablemente con otras personas. El
+            segundo ni siquiera levanta la mirada; pide misericordia y reconoce su
+            condición.
+          </p>
+
+          <p>
+            El episodio interpreta la escena como una de las grandes inversiones
+            de Lucas. El personaje religiosamente respetable no sale justificado
+            por su superioridad moral. Quien vuelve a casa justificado es la persona
+            que abandona la comparación y se presenta con honestidad.
+          </p>
+
+          <h3 class="section-heading">Recibir como un niño</h3>
+
+          <p>
+            La escena siguiente profundiza el mismo movimiento. Los discípulos
+            intentan apartar a quienes llevan niños pequeños hasta Jesús, pero él
+            los llama y afirma que el reino debe recibirse como ellos.
+          </p>
+
+          <p>
+            En la lectura del episodio, “como un niño” no significa ingenuidad
+            romántica ni ausencia de preguntas. Señala confianza, humildad y
+            dependencia. Lucas acentúa la imagen al hablar de bebés o infantes:
+            personas que no presentan una lista de logros para justificar su
+            recepción.
+          </p>
+
+          <div class="comparison-grid" aria-label="Comparación de posturas">
+            <div>
+              <h4>Postura de autosuficiencia</h4>
+              <p>
+                Se define mediante el rendimiento, compara su conducta con la de
+                otros y convierte la espiritualidad en prueba de superioridad.
+              </p>
+            </div>
+            <div>
+              <h4>Postura receptiva</h4>
+              <p>
+                Reconoce necesidad, depende de la misericordia y recibe el reino
+                como regalo antes de convertirlo en credencial.
+              </p>
+            </div>
+          </div>
+
+          <div class="provenance podcast">
+            <span class="block-label">Lo que sostiene el episodio</span>
+            <p>
+              La comunidad que Jesús forma no se construye alrededor del estatus,
+              la apariencia pulida, el logro o la religiosidad. Se construye
+              alrededor de necesidad, humildad, misericordia y confianza.
+            </p>
+          </div>
+
+          <div class="provenance external">
+            <span class="block-label">Contexto añadido: la llamada “Oración de Jesús”</span>
+            <p>
+              El episodio relaciona la petición del cobrador —pedir misericordia—
+              con la tradición contemplativa conocida como la Oración de Jesús. La
+              conexión es válida, pero la afirmación de que la práctica “se originó
+              en el siglo III” es demasiado precisa para sostenerla sin matices.
+              Las formas y fechas de desarrollo fueron graduales, y hay testimonio
+              claro de oraciones breves y repetidas en la tradición monástica
+              antigua, especialmente desde los siglos IV y V.
+            </p>
+            <p>
+              Consulta
+              <a
+                href="https://www.oca.org/orthodoxy/the-orthodox-faith/spirituality/prayer-fasting-and-almsgiving/the-jesus-prayer"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                The Jesus Prayer, Orthodox Church in America
+                <span class="sr-only">(se abre en una pestaña nueva)</span>
+              </a>.
+            </p>
+          </div>
+
+          <div class="provenance external">
+            <span class="block-label">Contexto añadido: infancia en el mundo antiguo</span>
+            <p>
+              La niñez no tenía una única condición social en todo el mundo
+              grecorromano; variaba según familia, sexo, ciudadanía y recursos. Aun
+              así, los niños dependían de adultos y rara vez ocupaban el centro de
+              la autoridad pública. Por eso resulta significativo que Jesús los
+              reciba como modelos de acceso al reino.
+            </p>
+            <p>
+              Véase
+              <a
+                href="https://www.bibleodyssey.org/articles/childhood-in-the-greco-roman-world/"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Childhood in the Greco-Roman World, Bible Odyssey
+                <span class="sr-only">(se abre en una pestaña nueva)</span>
+              </a>.
+            </p>
+          </div>
+
+          <section class="expert-conversation" data-component="expert-conversation">
+            <header class="expert-conversation-header">
+              <span class="table-label">Conversación del panel</span>
+              <h3>¿Por qué Jesús coloca a personas dependientes en el centro?</h3>
+              <p>
+                La mesa conecta al cobrador arrepentido con los niños que los
+                discípulos consideraban una interrupción.
+              </p>
+            </header>
+
+            <div class="conversation-turn moderator">
+              <span class="speaker-role">MODERADOR</span>
+              <p>
+                Tenemos a un adulto que deja de presumir y a bebés que todavía no
+                podrían presumir aunque quisieran. ¿Cuál es la conexión?
+              </p>
+            </div>
+
+            <div class="conversation-turn">
+              <span class="speaker-role">ESPECIALISTA EN EXÉGESIS DE LUCAS</span>
+              <p>
+                La recepción del reino no comienza con un inventario de méritos.
+                El cobrador pide misericordia; los niños simplemente son llevados.
+                Ninguno presenta un currículum espiritual laminado.
+              </p>
+            </div>
+
+            <div class="conversation-turn">
+              <span class="speaker-role">HISTORIADORA DEL MUNDO ANTIGUO</span>
+              <p>
+                Y no deberíamos imaginar que Jesús elige a los niños porque la
+                cultura ya los consideraba pequeños gurús de autenticidad. Su
+                dependencia y su limitada autoridad social hacen que el gesto de
+                recibirlos sea más provocador.
+              </p>
+            </div>
+
+            <div class="conversation-turn">
+              <span class="speaker-role">EDUCADOR BÍBLICO</span>
+              <p>
+                En términos pedagógicos, Jesús coloca en primera fila a quienes no
+                traen PowerPoint, referencias ni cinco pasos para dominar el reino.
+                Reciben antes de demostrar.
+              </p>
+            </div>
+
+            <div class="conversation-turn moderator">
+              <span class="speaker-role">MODERADOR</span>
+              <p>
+                Pero ¿recibir como niño significa aceptar todo sin pensar?
+              </p>
+            </div>
+
+            <div class="conversation-turn">
+              <span class="speaker-role">LECTOR CRÍTICO</span>
+              <p>
+                No. Esa lectura puede convertir la dependencia en obediencia ciega,
+                y el texto no lo exige. La comparación se refiere a cómo se recibe
+                el reino, no a renunciar para siempre al juicio, la madurez o las
+                preguntas.
+              </p>
+            </div>
+
+            <div class="conversation-turn">
+              <span class="speaker-role">ESPECIALISTA EN EXÉGESIS DE LUCAS</span>
+              <p>
+                De acuerdo. El hilo del episodio es la renuncia a la autosuficiencia.
+                El problema del fariseo no es que practique disciplinas, sino que las
+                usa como plataforma de comparación. Las disciplinas pueden formar
+                humildad; también pueden convertirse en una vitrina muy bien
+                iluminada.
+              </p>
+            </div>
+
+            <div class="conversation-turn moderator synthesis">
+              <span class="speaker-role">MODERADOR · SÍNTESIS</span>
+              <p>
+                Lo seguro es que Lucas contrasta la superioridad religiosa con la
+                receptividad humilde. El episodio relaciona al cobrador y a los
+                niños mediante necesidad, confianza y misericordia. Debemos matizar
+                cualquier generalización sobre la infancia antigua y evitar que
+                “como un niño” se convierta en una defensa de la credulidad.
+              </p>
+            </div>
+          </section>
+
+          <section class="learning-check" aria-labelledby="pregunta-humildad">
+            <h3 id="pregunta-humildad">Comprueba tu comprensión</h3>
+            <p class="question">
+              ¿Qué vuelve problemática la oración del fariseo, según el episodio?
+            </p>
+            <button
+              class="answer-toggle"
+              type="button"
+              aria-expanded="true"
+              aria-controls="respuesta-humildad"
+              data-answer-toggle
+            >
+              Ocultar respuesta
+            </button>
+            <div class="answer" id="respuesta-humildad">
+              <p>
+                No es simplemente que mencione prácticas religiosas, sino que las
+                convierte en fundamento de superioridad y se define comparándose
+                con otras personas.
+              </p>
+            </div>
+          </section>
+
+          <section class="reflection">
+            <span class="block-label">Pregunta de reflexión</span>
+            <h3>¿Dónde intentas probar tu valor en lugar de admitir tu necesidad?</h3>
+            <p>
+              La pregunta no exige despreciar los logros. Invita a observar cuándo
+              un logro deja de ser un recurso y se convierte en una barrera para
+              recibir misericordia.
+            </p>
+          </section>
+        </div>
+      </section>
+
+      <!-- Unidad III -->
+      <section class="study-unit" id="riqueza" aria-labelledby="titulo-riqueza">
+        <button
+          class="accordion-trigger"
+          type="button"
+          id="titulo-riqueza"
+          aria-expanded="true"
+          aria-controls="panel-riqueza"
+        >
+          <span class="accordion-number">III</span>
+          <span class="accordion-title">La seguridad que aprieta: riqueza, identidad y seguimiento</span>
+          <span class="accordion-icon" aria-hidden="true"></span>
+        </button>
+
+        <div class="panel-body" id="panel-riqueza" role="region" aria-labelledby="titulo-riqueza">
+          <p class="question-guide">
+            <strong>Pregunta guía:</strong>
+            ¿Por qué una persona moral y religiosa puede encontrarse incapaz de
+            seguir cuando Jesús toca su seguridad?
+          </p>
+
+          <div class="idea-clave">
+            <span class="block-label">Idea esencial</span>
+            <p>
+              El problema central no se reduce a poseer dinero. La escena revela
+              aquello que sostiene la identidad y produce la ilusión de no necesitar
+              misericordia.
+            </p>
+          </div>
+
+          <h3 class="section-heading">Una pregunta correcta y una respuesta dolorosa</h3>
+
+          <p>
+            Un gobernante rico pregunta qué debe hacer para heredar la vida eterna.
+            Es presentado como una persona moral y religiosamente seria. Jesús le
+            señala una carencia: vender lo que posee, distribuirlo entre los pobres
+            y seguirlo. El hombre se entristece porque es muy rico.
+          </p>
+
+          <p>
+            El episodio insiste en que Lucas no permite reducir el seguimiento a
+            sostener ideas correctas o pertenecer al sistema religioso adecuado.
+            La invitación alcanza aquello que proporciona control, seguridad e
+            identidad.
+          </p>
+
+          <p>
+            Los discípulos también quedan inquietos. Pedro recuerda que ellos han
+            dejado sus posesiones y vínculos. Jesús responde que la renuncia por el
+            reino no queda sin una nueva forma de pertenencia y promesa, tanto en el
+            presente como en la edad venidera.
+          </p>
+
+          <div class="provenance podcast">
+            <span class="block-label">Lo que sostiene el episodio</span>
+            <p>
+              La riqueza no es descrita automáticamente como maldad, pero sí como
+              peligro espiritual. Puede persuadir a una persona de que no necesita
+              ayuda, gracia o misericordia y debilitar la misma hambre que Lucas
+              presenta como receptiva.
+            </p>
+          </div>
+
+          <div class="provenance disputed">
+            <span class="block-label">Una cuestión que requiere cuidado</span>
+            <p>
+              El episodio afirma que Jesús no formula exactamente la misma exigencia
+              económica a todas las personas. Esto evita convertir la escena en una
+              regla idéntica para cada caso, pero tampoco debería usarse para
+              neutralizar su crítica a la acumulación, la desigualdad y el poder que
+              la riqueza puede ejercer sobre el corazón.
+            </p>
+          </div>
+
+          <section class="expert-conversation" data-component="expert-conversation">
+            <header class="expert-conversation-header">
+              <span class="table-label">Conversación del panel</span>
+              <h3>¿Es el dinero el problema o es algo más profundo?</h3>
+              <p>
+                La mesa evita dos atajos: declarar toda posesión intrínsecamente
+                mala o convertir la escena en una metáfora tan suave que ya no
+                cuestione nada.
+              </p>
+            </header>
+
+            <div class="conversation-turn moderator">
+              <span class="speaker-role">MODERADOR</span>
+              <p>
+                El gobernante parece serio, moral y dispuesto a conversar. ¿Por qué
+                termina marchándose triste?
+              </p>
+            </div>
+
+            <div class="conversation-turn">
+              <span class="speaker-role">ESPECIALISTA EN EXÉGESIS DE LUCAS</span>
+              <p>
+                Porque la conversación pasa del cumplimiento general al apego
+                concreto. Él puede enumerar lo que ha hecho, pero Jesús toca lo que
+                todavía organiza su seguridad. Es el botón que esperaba dejar sin
+                actualizar.
+              </p>
+            </div>
+
+            <div class="conversation-turn">
+              <span class="speaker-role">LECTOR CRÍTICO</span>
+              <p>
+                Ahora bien, decir “todo es cuestión del corazón” puede convertirse
+                en una salida demasiado cómoda. El texto sí habla de vender, dar a
+                los pobres y redistribuir recursos. La interioridad no borra la
+                dimensión material.
+              </p>
+            </div>
+
+            <div class="conversation-turn">
+              <span class="speaker-role">HISTORIADORA DEL MUNDO ANTIGUO</span>
+              <p>
+                Exactamente. En sociedades donde la riqueza, la tierra y el estatus
+                estaban estrechamente vinculados, desprenderse de posesiones no era
+                solo ajustar un presupuesto. Era alterar posición, relaciones y
+                expectativas públicas.
+              </p>
+            </div>
+
+            <div class="conversation-turn moderator">
+              <span class="speaker-role">MODERADOR</span>
+              <p>
+                Entonces, ¿cómo entendemos la afirmación del episodio de que la
+                riqueza puede disminuir el hambre espiritual?
+              </p>
+            </div>
+
+            <div class="conversation-turn">
+              <span class="speaker-role">TEÓLOGA DE ESPIRITUALIDAD CRISTIANA</span>
+              <p>
+                Como una advertencia sobre la autosuficiencia. Los recursos pueden
+                ser buenos instrumentos, pero son pésimos directores espirituales.
+                Cuando prometen invulnerabilidad, la persona deja de recibir y solo
+                administra su propia fortaleza.
+              </p>
+            </div>
+
+            <div class="conversation-turn">
+              <span class="speaker-role">ESPECIALISTA EN EXÉGESIS DE LUCAS</span>
+              <p>
+                Y el contraste con Zaqueo impedirá dos simplificaciones. Zaqueo
+                también es rico, pero responde con generosidad y reparación. Lucas
+                no pregunta únicamente cuánto posee alguien, sino qué ocurre cuando
+                el encuentro con Jesús alcanza sus bienes y su poder.
+              </p>
+            </div>
+
+            <div class="conversation-turn moderator synthesis">
+              <span class="speaker-role">MODERADOR · SÍNTESIS</span>
+              <p>
+                Podemos afirmar que la escena confronta un apego material real y
+                una identidad sostenida por la autosuficiencia. El episodio evita
+                declarar toda riqueza intrínsecamente mala, pero conserva su peligro.
+                La cuestión abierta no es si el dinero importa —claramente importa—,
+                sino cómo discernir cuándo se ha convertido en señor de la vida.
+              </p>
+            </div>
+          </section>
+
+          <section class="learning-check" aria-labelledby="pregunta-riqueza">
+            <h3 id="pregunta-riqueza">Comprueba tu comprensión</h3>
+            <p class="question">
+              ¿Por qué el episodio describe la riqueza como espiritualmente peligrosa?
+            </p>
+            <button
+              class="answer-toggle"
+              type="button"
+              aria-expanded="true"
+              aria-controls="respuesta-riqueza"
+              data-answer-toggle
+            >
+              Ocultar respuesta
+            </button>
+            <div class="answer" id="respuesta-riqueza">
+              <p>
+                Porque puede sostener una sensación de autosuficiencia que reduce
+                la conciencia de necesidad, misericordia y dependencia.
+              </p>
+            </div>
+          </section>
+
+          <section class="reflection">
+            <span class="block-label">Pregunta de reflexión</span>
+            <h3>¿Qué pérdida te haría sentir que ya no sabes quién eres?</h3>
+            <p>
+              La respuesta puede involucrar dinero, pero también reputación,
+              control, productividad, pertenencia o capacidad.
+            </p>
+          </section>
+        </div>
+      </section>
+
+      <!-- Unidad IV -->
+      <section class="study-unit" id="zaqueo" aria-labelledby="titulo-zaqueo">
+        <button
+          class="accordion-trigger"
+          type="button"
+          id="titulo-zaqueo"
+          aria-expanded="true"
+          aria-controls="panel-zaqueo"
+        >
+          <span class="accordion-number">IV</span>
+          <span class="accordion-title">La gracia que busca y repara: Zaqueo en Jericó</span>
+          <span class="accordion-icon" aria-hidden="true"></span>
+        </button>
+
+        <div class="panel-body" id="panel-zaqueo" role="region" aria-labelledby="titulo-zaqueo">
+          <p class="question-guide">
+            <strong>Pregunta guía:</strong>
+            ¿Qué ocurre cuando ser visto por Jesús produce una respuesta que afecta
+            el dinero, el daño y las relaciones?
+          </p>
+
+          <div class="idea-clave">
+            <span class="block-label">Idea esencial</span>
+            <p>
+              En Zaqueo, la acogida precede a la reparación y la reparación hace
+              visible el arrepentimiento. La gracia no ignora el daño; crea una
+              respuesta capaz de enfrentarlo.
+            </p>
+          </div>
+
+          <h3 class="section-heading">Un hombre que quiere ver y termina siendo visto</h3>
+
+          <p>
+            Jesús atraviesa Jericó. Zaqueo, jefe de cobradores de impuestos y hombre
+            rico, quiere verlo, pero la multitud y su baja estatura se lo impiden.
+            Corre, se adelanta y sube a un sicómoro. La narración lo describe con
+            verbos de movimiento: busca, corre, sube, mira y luego baja con prisa.
+          </p>
+
+          <p>
+            Jesús se detiene, lo llama por nombre y anuncia que se hospedará en su
+            casa. El episodio destaca el orden: la iniciativa de Jesús y la mesa
+            compartida aparecen antes de la declaración pública de Zaqueo.
+          </p>
+
+          <p>
+            Zaqueo responde ofreciendo la mitad de sus bienes a los pobres y
+            prometiendo una restitución multiplicada a quienes haya defraudado.
+            Jesús declara que la salvación ha llegado a esa casa y conecta la
+            escena con la misión de buscar y salvar lo perdido.
+          </p>
+
+          <div class="provenance external">
+            <span class="block-label">Contexto añadido: cobradores de impuestos</span>
+            <p>
+              Los cobradores locales trabajaban dentro de sistemas fiscales
+              vinculados al poder gobernante y podían ser vistos como colaboradores
+              o beneficiarios de prácticas abusivas. Lucas identifica a Zaqueo no
+              solo como cobrador, sino como jefe de cobradores, lo que intensifica
+              su vínculo con el sistema.
+            </p>
+            <p>
+              Consulta
+              <a
+                href="https://www.bibleodyssey.org/dictionary/tax-collectors/"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Tax Collectors, Bible Odyssey
+                <span class="sr-only">(se abre en una pestaña nueva)</span>
+              </a>
+              y
+              <a
+                href="https://www.bibleodyssey.org/articles/taxes-in-first-century-palestine/"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Taxes in First-Century Palestine
+                <span class="sr-only">(se abre en una pestaña nueva)</span>
+              </a>.
+            </p>
+          </div>
+
+          <div class="provenance podcast">
+            <span class="block-label">Lo que sostiene el episodio</span>
+            <p>
+              En Lucas, el arrepentimiento no se limita a decir “lo siento”. Puede
+              reordenar el uso del dinero y del poder, reconocer el perjuicio y
+              emprender acciones de reparación.
+            </p>
+          </div>
+
+          <div class="provenance disputed">
+            <span class="block-label">Una interpretación mencionada, pero no demostrada</span>
+            <p>
+              El episodio recuerda una lectura optimista según la cual el gobernante
+              rico y Zaqueo podrían ser la misma persona después de cambiar. La idea
+              sirve como imagen creativa, pero Lucas no identifica a ambos personajes
+              ni ofrece evidencia narrativa suficiente para afirmarlo.
+            </p>
+          </div>
+
+          <section class="expert-conversation" data-component="expert-conversation">
+            <header class="expert-conversation-header">
+              <span class="table-label">Conversación del panel</span>
+              <h3>¿La aceptación viene antes o después del cambio?</h3>
+              <p>
+                La mesa estudia el orden de la escena: Jesús llama, comparte mesa y
+                luego Zaqueo anuncia una respuesta económica concreta.
+              </p>
+            </header>
+
+            <div class="conversation-turn moderator">
+              <span class="speaker-role">MODERADOR</span>
+              <p>
+                Zaqueo todavía no ha prometido reparar nada cuando Jesús decide ir
+                a su casa. ¿Qué importancia tiene ese orden?
+              </p>
+            </div>
+
+            <div class="conversation-turn">
+              <span class="speaker-role">HISTORIADORA DEL MUNDO ANTIGUO</span>
+              <p>
+                Compartir mesa comunicaba reconocimiento social y relación. Para
+                una multitud que veía a Zaqueo como parte del problema, la visita
+                no era un gesto neutral. Y subir al árbol tampoco era precisamente
+                el protocolo VIP de un funcionario rico.
+              </p>
+            </div>
+
+            <div class="conversation-turn">
+              <span class="speaker-role">ESPECIALISTA EN EXÉGESIS DE LUCAS</span>
+              <p>
+                El orden muestra iniciativa de Jesús, pero la historia no termina en
+                una aceptación abstracta. Zaqueo responde de forma visible. La
+                gracia abre la puerta y el arrepentimiento reorganiza lo que pasa
+                dentro de la casa.
+              </p>
+            </div>
+
+            <div class="conversation-turn">
+              <span class="speaker-role">LECTOR CRÍTICO</span>
+              <p>
+                Conviene decirlo con cuidado: aceptar a una persona no significa
+                declarar irrelevante el daño. Si Zaqueo hubiera celebrado la visita
+                y conservado intactas las prácticas abusivas, la escena tendría un
+                desenlace muy diferente.
+              </p>
+            </div>
+
+            <div class="conversation-turn moderator">
+              <span class="speaker-role">MODERADOR</span>
+              <p>
+                ¿Y qué hacemos con la multitud que murmura?
+              </p>
+            </div>
+
+            <div class="conversation-turn">
+              <span class="speaker-role">EDUCADOR BÍBLICO</span>
+              <p>
+                Funciona como un comité de admisiones que ya había cerrado la lista.
+                El detalle incómodo es que Jesús no pide permiso al comité. Ve en
+                Zaqueo una posibilidad que la multitud ha decidido no considerar.
+              </p>
+            </div>
+
+            <div class="conversation-turn">
+              <span class="speaker-role">ESPECIALISTA EN EXÉGESIS DE LUCAS</span>
+              <p>
+                Eso también explica el contraste con el gobernante rico. Uno se
+                marcha triste cuando su seguridad es tocada; el otro recibe con
+                alegría y convierte su riqueza en generosidad y restitución. No es
+                una fórmula idéntica, pero sí una prueba narrativa del apego.
+              </p>
+            </div>
+
+            <div class="conversation-turn moderator synthesis">
+              <span class="speaker-role">MODERADOR · SÍNTESIS</span>
+              <p>
+                Lo seguro es que Jesús inicia la relación antes de que Zaqueo
+                presente una reforma, y que la respuesta posterior afecta bienes,
+                pobres y víctimas. El episodio interpreta esto como arrepentimiento
+                reparador. No podemos afirmar que Zaqueo sea el mismo personaje que
+                el gobernante rico; sí podemos reconocer que Lucas construye un
+                contraste deliberado entre sus respuestas.
+              </p>
+            </div>
+          </section>
+
+          <section class="learning-check" aria-labelledby="pregunta-zaqueo">
+            <h3 id="pregunta-zaqueo">Comprueba tu comprensión</h3>
+            <p class="question">
+              ¿Por qué la respuesta de Zaqueo es más que una emoción privada?
+            </p>
+            <button
+              class="answer-toggle"
+              type="button"
+              aria-expanded="true"
+              aria-controls="respuesta-zaqueo"
+              data-answer-toggle
+            >
+              Ocultar respuesta
+            </button>
+            <div class="answer" id="respuesta-zaqueo">
+              <p>
+                Porque su respuesta cambia el uso de sus posesiones y contempla
+                restitución para quienes hayan sufrido fraude. El cambio interior
+                adquiere consecuencias económicas y relacionales.
+              </p>
+            </div>
+          </section>
+
+          <section class="reflection">
+            <span class="block-label">Pregunta de reflexión</span>
+            <h3>¿Qué forma de reparación sería coherente con una disculpa real?</h3>
+            <p>
+              No toda situación puede restaurarse de la misma manera, pero la
+              historia invita a distinguir entre lamentar una acción y asumir sus
+              consecuencias.
+            </p>
+          </section>
+        </div>
+      </section>
+
+      <!-- Unidad V -->
+      <section class="study-unit" id="minas" aria-labelledby="titulo-minas">
+        <button
+          class="accordion-trigger"
+          type="button"
+          id="titulo-minas"
+          aria-expanded="true"
+          aria-controls="panel-minas"
+        >
+          <span class="accordion-number">V</span>
+          <span class="accordion-title">Lo confiado no se entierra: la parábola de las minas</span>
+          <span class="accordion-icon" aria-hidden="true"></span>
+        </button>
+
+        <div class="panel-body" id="panel-minas" role="region" aria-labelledby="titulo-minas">
+          <p class="question-guide">
+            <strong>Pregunta guía:</strong>
+            ¿Cómo leemos una parábola que combina demora, responsabilidad, miedo y
+            un final violentamente incómodo?
+          </p>
+
+          <div class="idea-clave">
+            <span class="block-label">Idea esencial</span>
+            <p>
+              El episodio interpreta la parábola como una advertencia para el tiempo
+              entre la partida y el regreso: los seguidores reciben una misión y no
+              deben esconderla por miedo. Sin embargo, el carácter severo del noble
+              y el final violento exigen conservar otras preguntas interpretativas.
+            </p>
+          </div>
+
+          <h3 class="section-heading">Una corrección a la expectativa de un reino inmediato</h3>
+
+          <p>
+            Lucas introduce la parábola porque Jesús está cerca de Jerusalén y la
+            gente supone que el reino aparecerá inmediatamente. Un noble viaja para
+            recibir autoridad real, entrega dinero a sus siervos y les encarga
+            trabajar con él durante su ausencia.
+          </p>
+
+          <p>
+            Al regresar, pide cuentas. Algunos siervos han producido resultados;
+            otro ha guardado la cantidad en un paño porque teme a su señor. También
+            aparecen ciudadanos que rechazan el gobierno del noble, y la parábola
+            termina con una orden de violencia contra sus enemigos.
+          </p>
+
+          <p>
+            Los anfitriones reconocen abiertamente que se trata de una historia
+            dura. Su lectura principal se concentra en la responsabilidad de los
+            siervos durante la ausencia: han recibido misericordia, justicia, buenas
+            noticias y misión; ahora deben participar en su difusión.
+          </p>
+
+          <blockquote>
+            <p>
+              La enseñanza central del episodio puede resumirse así: lo recibido no
+              fue entregado para permanecer oculto por miedo.
+            </p>
+          </blockquote>
+
+          <div class="provenance podcast">
+            <span class="block-label">Lo que sostiene el episodio</span>
+            <p>
+              La moneda funciona simbólicamente como aquello que se ha confiado a
+              los seguidores de Jesús: el mensaje, el amor, la misericordia, la
+              justicia y la misión. La parábola no se interpreta como una clase
+              literal sobre rentabilidad financiera.
+            </p>
+          </div>
+
+          <div class="provenance inference">
+            <span class="block-label">Una conexión propuesta por el episodio</span>
+            <p>
+              La partida y el regreso preparan narrativamente la continuación en
+              Hechos. Jesús no estará físicamente junto a los discípulos del mismo
+              modo, pero la obra continuará mediante ellos. Lucas y Hechos forman
+              una narración en dos partes que conecta el ministerio de Jesús con el
+              testimonio de sus seguidores.
+            </p>
+            <p>
+              Consulta
+              <a
+                href="https://bibleproject.com/guides/book-of-luke/"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Guide to the Book of Luke, BibleProject
+                <span class="sr-only">(se abre en una pestaña nueva)</span>
+              </a>.
+            </p>
+          </div>
+
+          <div class="provenance disputed">
+            <span class="block-label">Punto disputado: ¿el noble representa directamente a Jesús?</span>
+            <p>
+              La lectura del episodio asocia al noble que parte y regresa con Jesús
+              y centra la parábola en la responsabilidad de los siervos. Otros
+              intérpretes advierten que el noble se describe como duro, enfrenta
+              oposición política y termina ejerciendo violencia. Desde esa
+              perspectiva, la historia también puede funcionar como crítica de las
+              élites, del miedo y de los sistemas de explotación.
+            </p>
+            <p>
+              Una lectura alternativa puede consultarse en
+              <a
+                href="https://scielo.org.za/scielo.php?pid=S0259-94222011000300032&amp;script=sci_arttext"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Ernest van Eck, “When patrons are patrons: A social-scientific and
+                realistic reading of the parable of the pounds”
+                <span class="sr-only">(se abre en una pestaña nueva)</span>
+              </a>.
+            </p>
+          </div>
+
+          <div class="provenance limitation">
+            <span class="block-label">Lo que no conviene simplificar</span>
+            <p>
+              Reconocer la interpretación misionera del episodio no obliga a tratar
+              cada acción del noble como modelo del carácter de Jesús. La violencia
+              final debe permanecer visible y no convertirse en un detalle
+              decorativo ni en una autorización para ejercer violencia religiosa.
+            </p>
+          </div>
+
+          <section class="expert-conversation" data-component="expert-conversation">
+            <header class="expert-conversation-header">
+              <span class="table-label">Conversación del panel</span>
+              <h3>¿Qué hacemos con el miedo, las minas y el final violento?</h3>
+              <p>
+                La mesa distingue la aplicación del episodio de otras lecturas
+                responsables de la parábola.
+              </p>
+            </header>
+
+            <div class="conversation-turn moderator">
+              <span class="speaker-role">MODERADOR</span>
+              <p>
+                El episodio dice que esto no es una lección sobre dinero. Entonces,
+                ¿por qué la historia habla de ganancias, bancos y ciudades?
+              </p>
+            </div>
+
+            <div class="conversation-turn">
+              <span class="speaker-role">ESPECIALISTA EN EXÉGESIS DE LUCAS</span>
+              <p>
+                Porque la economía de la historia comunica responsabilidad durante
+                una ausencia. El resultado no es “hazte rico y recibe diez ciudades
+                de bonificación”. La pregunta narrativa es qué se hace con lo que
+                fue confiado mientras el rey no está presente.
+              </p>
+            </div>
+
+            <div class="conversation-turn">
+              <span class="speaker-role">LECTOR CRÍTICO</span>
+              <p>
+                Pero el tercer siervo afirma que el señor es duro y toma lo que no
+                depositó. Guardar la mina en un paño —la versión antigua de archivar
+                un mensaje sin abrir— puede ser miedo, protesta o ambas cosas. El
+                texto no es cómodo.
+              </p>
+            </div>
+
+            <div class="conversation-turn">
+              <span class="speaker-role">HISTORIADORA DEL MUNDO ANTIGUO</span>
+              <p>
+                También hay una dimensión política: un noble viaja para recibir
+                autoridad y ciudadanos rechazan su gobierno. Ese escenario evocaba
+                realidades reconocibles de poder delegado, patronazgo y conflicto.
+                La audiencia no escucharía únicamente una historia doméstica.
+              </p>
+            </div>
+
+            <div class="conversation-turn moderator">
+              <span class="speaker-role">MODERADOR</span>
+              <p>
+                ¿Podemos conservar la aplicación misionera sin convertir la
+                violencia del final en una descripción de lo que los discípulos
+                deben hacer?
+              </p>
+            </div>
+
+            <div class="conversation-turn">
+              <span class="speaker-role">EDUCADOR BÍBLICO</span>
+              <p>
+                Sí, si mantenemos las categorías separadas. El episodio pregunta
+                qué hacemos con la misericordia y las buenas noticias recibidas. Esa
+                aplicación no requiere imitar el castigo del noble ni usarlo para
+                intimidar a la audiencia.
+              </p>
+            </div>
+
+            <div class="conversation-turn">
+              <span class="speaker-role">ESPECIALISTA EN EXÉGESIS DE LUCAS</span>
+              <p>
+                Además, Lucas explica que la parábola responde a la expectativa de
+                un reino inmediato. Hay demora, tarea y rendición de cuentas. La
+                interpretación exacta de cada personaje sigue debatida, pero esa
+                corrección temporal está explícita en la introducción.
+              </p>
+            </div>
+
+            <div class="conversation-turn moderator synthesis">
+              <span class="speaker-role">MODERADOR · SÍNTESIS</span>
+              <p>
+                Podemos afirmar que la parábola corrige expectativas de inmediatez
+                y plantea responsabilidad durante una ausencia. El episodio la
+                aplica a la misión confiada a los seguidores. Continúa debatido
+                cuánto debe identificarse al noble con Jesús y cómo entender al
+                tercer siervo. El final violento no debe ocultarse ni transformarse
+                en permiso para la violencia.
+              </p>
+            </div>
+          </section>
+
+          <section class="learning-check" aria-labelledby="pregunta-minas">
+            <h3 id="pregunta-minas">Comprueba tu comprensión</h3>
+            <p class="question">
+              ¿Qué expectativa corrige explícitamente Lucas al introducir la parábola?
+            </p>
+            <button
+              class="answer-toggle"
+              type="button"
+              aria-expanded="true"
+              aria-controls="respuesta-minas"
+              data-answer-toggle
+            >
+              Ocultar respuesta
+            </button>
+            <div class="answer" id="respuesta-minas">
+              <p>
+                Corrige la expectativa de que el reino de Dios aparecería de manera
+                inmediata cuando Jesús llegara a Jerusalén. La parábola introduce
+                ausencia, espera, tarea y rendición de cuentas.
+              </p>
+            </div>
+          </section>
+
+          <section class="reflection">
+            <span class="block-label">Pregunta de reflexión</span>
+            <h3>¿Qué responsabilidad has confundido con una invitación opcional?</h3>
+            <p>
+              La pregunta no exige medir valor personal por resultados. Examina si
+              el miedo, la comodidad o el aislamiento han convertido un regalo
+              recibido en algo que nunca circula.
+            </p>
+          </section>
+        </div>
+      </section>
+
+      <!-- Unidad VI -->
+      <section class="study-unit" id="espejo" aria-labelledby="titulo-espejo">
+        <button
+          class="accordion-trigger"
+          type="button"
+          id="titulo-espejo"
+          aria-expanded="true"
+          aria-controls="panel-espejo"
+        >
+          <span class="accordion-number">VI</span>
+          <span class="accordion-title">El espejo antes de Jerusalén</span>
+          <span class="accordion-icon" aria-hidden="true"></span>
+        </button>
+
+        <div class="panel-body" id="panel-espejo" role="region" aria-labelledby="titulo-espejo">
+          <p class="question-guide">
+            <strong>Pregunta guía:</strong>
+            ¿Qué imagen del discípulo surge cuando todas las escenas se leen juntas?
+          </p>
+
+          <div class="idea-clave">
+            <span class="block-label">Síntesis esencial</span>
+            <p>
+              El recorrido no entrega una sola prueba externa. Presenta una
+              constelación de posturas: clamar, admitir necesidad, recibir, soltar,
+              reparar, cuidar lo confiado y participar.
+            </p>
+          </div>
+
+          <h3 class="section-heading">Quién escucha, quién comprende y quién continúa</h3>
+
+          <p>
+            En el cierre del episodio, los anfitriones agrupan las escenas mediante
+            tres preguntas. ¿Quién es escuchado? La viuda y el cobrador que reconocen
+            necesidad. ¿Quién comprende? No el gobernante que no puede soltar, sino
+            Zaqueo, que responde con alegría y reparación. ¿Quién lleva adelante lo
+            recibido? Los siervos que no esconden por miedo lo que se les confió.
+          </p>
+
+          <p>
+            Los niños completan el retrato: el reino se recibe, no se conquista como
+            una insignia de prestigio. La comunidad de Jesús se forma alrededor de
+            personas que pueden dejar de demostrar autosuficiencia y comenzar a
+            confiar.
+          </p>
+
+          <p>
+            Hannah conecta este recorrido con la pérdida del “primer amor”: la
+            posibilidad de conservar una identidad religiosa mientras disminuyen
+            el hambre, la curiosidad y la disponibilidad iniciales. La pregunta no
+            es solo cómo comenzó la fe, sino qué postura se está cultivando ahora.
+          </p>
+
+          <section class="expert-conversation" data-component="expert-conversation">
+            <header class="expert-conversation-header">
+              <span class="table-label">Conversación integradora del panel</span>
+              <h3>¿Cuál es el hilo que une a la viuda, el niño, el rico, Zaqueo y los siervos?</h3>
+              <p>
+                La mesa reúne los hallazgos sin convertir a los personajes en una
+                lista de héroes perfectos y villanos simples.
+              </p>
+            </header>
+
+            <div class="conversation-turn moderator">
+              <span class="speaker-role">MODERADOR</span>
+              <p>
+                Después de tantas escenas, ¿Lucas nos entrega una lista de personas
+                buenas y malas o algo más incómodo?
+              </p>
+            </div>
+
+            <div class="conversation-turn">
+              <span class="speaker-role">EDUCADOR BÍBLICO</span>
+              <p>
+                Algo más incómodo: un espejo. La viuda pregunta si todavía insistimos;
+                el cobrador, si todavía podemos admitir necesidad; el niño, si aún
+                sabemos recibir. Lucas ha vaciado bastante nuestro gabinete de
+                trofeos.
+              </p>
+            </div>
+
+            <div class="conversation-turn">
+              <span class="speaker-role">ESPECIALISTA EN EXÉGESIS DE LUCAS</span>
+              <p>
+                Y los contrastes no dependen simplemente de categorías sociales. Hay
+                un cobrador de impuestos humilde en una parábola y un jefe de
+                cobradores transformado en Jericó. Lucas observa respuestas, no
+                etiquetas fijas.
+              </p>
+            </div>
+
+            <div class="conversation-turn">
+              <span class="speaker-role">LECTOR CRÍTICO</span>
+              <p>
+                También debemos evitar que “postura del corazón” borre las acciones.
+                La viuda reclama justicia, el gobernante enfrenta sus bienes,
+                Zaqueo repara y los siervos actúan. El interior lucano suele terminar
+                moviendo pies, mesas y monedas.
+              </p>
+            </div>
+
+            <div class="conversation-turn">
+              <span class="speaker-role">TEÓLOGA DE ESPIRITUALIDAD CRISTIANA</span>
+              <p>
+                Eso explica la preocupación por recuperar la primera disposición.
+                No se trata de fabricar entusiasmo permanente, como si la fe tuviera
+                que vivir tomando café triple. Se trata de cultivar prácticas que
+                mantengan abierta la receptividad.
+              </p>
+            </div>
+
+            <div class="conversation-turn moderator">
+              <span class="speaker-role">MODERADOR</span>
+              <p>
+                ¿Y cómo distinguimos participación de presión por rendir?
+              </p>
+            </div>
+
+            <div class="conversation-turn">
+              <span class="speaker-role">HISTORIADORA DEL MUNDO ANTIGUO</span>
+              <p>
+                Mirando el conjunto. Los modelos principales son personas de poca
+                fuerza social: una viuda, un cobrador despreciado, bebés. La
+                participación no comienza con poder impresionante. A veces comienza
+                con un clamor, una petición de misericordia o la poco elegante
+                decisión de subir a un árbol.
+              </p>
+            </div>
+
+            <div class="conversation-turn moderator synthesis">
+              <span class="speaker-role">MODERADOR · SÍNTESIS</span>
+              <p>
+                El hilo común es una receptividad que produce movimiento: orar,
+                recibir, soltar, reparar y compartir. El episodio entiende estas
+                escenas como preparación para la misión que continuará después de
+                Jerusalén. La aplicación debe evitar tanto la pasividad como la
+                obsesión por el rendimiento; participar no es demostrar valor, sino
+                responder a lo recibido.
+              </p>
+            </div>
+          </section>
+
+          <h3 class="section-heading">Aplicaciones diferenciadas por procedencia</h3>
+
+          <div class="application-grid">
+            <div>
+              <h4>Aplicaciones explícitas del episodio</h4>
+              <ul>
+                <li>Perseverar en la oración sin ocultar la necesidad.</li>
+                <li>Dejar de probar el propio valor mediante comparación religiosa.</li>
+                <li>Examinar qué seguridad impide responder al llamado.</li>
+                <li>Recuperar prácticas que alimenten hambre y receptividad.</li>
+                <li>No esconder por miedo la misericordia y las buenas noticias recibidas.</li>
+              </ul>
+            </div>
+            <div>
+              <h4>Aplicaciones propuestas por la adaptación</h4>
+              <ul>
+                <li>Nombrar una situación donde una disculpa necesita reparación.</li>
+                <li>Revisar cómo el poder económico afecta relaciones y decisiones.</li>
+                <li>Escuchar el clamor de quienes tienen menos acceso institucional.</li>
+                <li>Distinguir una disciplina formativa de una práctica usada para compararse.</li>
+                <li>Compartir una capacidad concreta sin convertirla en espectáculo.</li>
+              </ul>
+            </div>
+          </div>
+
+          <section class="reflection">
+            <span class="block-label">Preguntas para reflexión personal o grupal</span>
+            <h3>Detente ante el espejo</h3>
+            <ul>
+              <li>¿Qué personaje te resulta más fácil admirar desde lejos?</li>
+              <li>¿Qué personaje expone una resistencia que reconoces en ti?</li>
+              <li>¿Qué has recibido que podría convertirse en servicio para otra persona?</li>
+              <li>¿Dónde necesitas persistir sin fingir que la demora no duele?</li>
+              <li>¿Qué práctica sencilla podría ayudarte a recuperar receptividad?</li>
+            </ul>
+          </section>
+        </div>
+      </section>
+
+      <!-- Unidad VII -->
+      <section class="study-unit" id="repaso" aria-labelledby="titulo-repaso">
+        <button
+          class="accordion-trigger"
+          type="button"
+          id="titulo-repaso"
+          aria-expanded="true"
+          aria-controls="panel-repaso"
+        >
+          <span class="accordion-number">VII</span>
+          <span class="accordion-title">Repaso, glosario y fuentes</span>
+          <span class="accordion-icon" aria-hidden="true"></span>
+        </button>
+
+        <div class="panel-body" id="panel-repaso" role="region" aria-labelledby="titulo-repaso">
+          <h3 class="section-heading">Repaso acumulativo</h3>
+
+          <div class="review-list">
+            <article class="review-item">
+              <h3>
+                1. ¿Cómo se relacionan la viuda persistente y el cobrador de
+                impuestos?
+              </h3>
+              <button
+                class="answer-toggle"
+                type="button"
+                aria-expanded="true"
+                aria-controls="repaso-respuesta-1"
+                data-answer-toggle
+              >
+                Ocultar respuesta
+              </button>
+              <div class="answer" id="repaso-respuesta-1">
+                <p>
+                  Ambos reconocen una necesidad que no pueden resolver mediante
+                  prestigio o autosuficiencia. La viuda clama por justicia y el
+                  cobrador pide misericordia.
+                </p>
+              </div>
+            </article>
+
+            <article class="review-item">
+              <h3>
+                2. ¿Qué diferencia principal establece el episodio entre recibir
+                como un niño y actuar con ingenuidad?
+              </h3>
+              <button
+                class="answer-toggle"
+                type="button"
+                aria-expanded="true"
+                aria-controls="repaso-respuesta-2"
+                data-answer-toggle
+              >
+                Ocultar respuesta
+              </button>
+              <div class="answer" id="repaso-respuesta-2">
+                <p>
+                  Recibir como un niño señala dependencia, confianza y humildad; no
+                  exige renunciar al pensamiento, al discernimiento o a las preguntas.
+                </p>
+              </div>
+            </article>
+
+            <article class="review-item">
+              <h3>
+                3. Compara las respuestas del gobernante rico y de Zaqueo.
+              </h3>
+              <button
+                class="answer-toggle"
+                type="button"
+                aria-expanded="true"
+                aria-controls="repaso-respuesta-3"
+                data-answer-toggle
+              >
+                Ocultar respuesta
+              </button>
+              <div class="answer" id="repaso-respuesta-3">
+                <p>
+                  Ambos poseen riqueza. El gobernante se entristece cuando Jesús
+                  toca su seguridad; Zaqueo recibe con alegría y responde mediante
+                  generosidad y restitución. La diferencia narrativa se encuentra en
+                  su respuesta al desafío, no simplemente en la posesión de bienes.
+                </p>
+              </div>
+            </article>
+
+            <article class="review-item">
+              <h3>
+                4. ¿Qué expectativa corrige la parábola de las minas?
+              </h3>
+              <button
+                class="answer-toggle"
+                type="button"
+                aria-expanded="true"
+                aria-controls="repaso-respuesta-4"
+                data-answer-toggle
+              >
+                Ocultar respuesta
+              </button>
+              <div class="answer" id="repaso-respuesta-4">
+                <p>
+                  La expectativa de que el reino aparecería inmediatamente al llegar
+                  Jesús a Jerusalén. La parábola introduce una ausencia, una tarea y
+                  una futura rendición de cuentas.
+                </p>
+              </div>
+            </article>
+
+            <article class="review-item">
+              <h3>
+                5. ¿Por qué no debe presentarse una sola interpretación de la
+                parábola de las minas como indiscutible?
+              </h3>
+              <button
+                class="answer-toggle"
+                type="button"
+                aria-expanded="true"
+                aria-controls="repaso-respuesta-5"
+                data-answer-toggle
+              >
+                Ocultar respuesta
+              </button>
+              <div class="answer" id="repaso-respuesta-5">
+                <p>
+                  Porque el noble es descrito de manera severa, existe un conflicto
+                  político y el final es violento. El episodio ofrece una lectura de
+                  responsabilidad misionera, mientras otros intérpretes ven también
+                  crítica del poder, explotación o protesta.
+                </p>
+              </div>
+            </article>
+
+            <article class="review-item">
+              <h3>
+                6. Aplicación abierta: ¿qué parte del recorrido debería producir
+                una acción concreta en tu contexto?
+              </h3>
+              <p>
+                Esta pregunta no tiene una única respuesta modelo. Una respuesta
+                responsable debe identificar una escena, explicar la conexión y
+                proponer una acción proporcionada que no convierta una interpretación
+                personal en regla universal.
+              </p>
+            </article>
+          </div>
+
+          <h3 class="section-heading">Glosario</h3>
+
+          <dl class="glossary">
+            <div>
+              <dt>Discipulado</dt>
+              <dd>
+                Vida de aprendizaje y seguimiento de Jesús que incluye postura,
+                práctica, pertenencia y participación.
+              </dd>
+            </div>
+            <div>
+              <dt>Justificación</dt>
+              <dd>
+                En la parábola del fariseo y el cobrador, la declaración de que una
+                persona sale aceptada o puesta en relación correcta con Dios.
+              </dd>
+            </div>
+            <div>
+              <dt>Misericordia</dt>
+              <dd>
+                Compasión activa hacia quien reconoce necesidad; en el episodio se
+                opone a la superioridad y a la autosuficiencia.
+              </dd>
+            </div>
+            <div>
+              <dt>Arrepentimiento</dt>
+              <dd>
+                Cambio de dirección que puede incluir reconocimiento, transformación
+                de conducta, restitución y reparación.
+              </dd>
+            </div>
+            <div>
+              <dt>Restitución</dt>
+              <dd>
+                Acción orientada a devolver, compensar o reparar un perjuicio causado.
+              </dd>
+            </div>
+            <div>
+              <dt>Autosuficiencia</dt>
+              <dd>
+                Confianza cerrada en los propios recursos, logros o estatus que
+                reduce la conciencia de necesidad y dependencia.
+              </dd>
+            </div>
+            <div>
+              <dt>Parábola</dt>
+              <dd>
+                Relato figurado que provoca interpretación. Sus personajes no deben
+                identificarse automáticamente con referentes teológicos en cada
+                detalle.
+              </dd>
+            </div>
+            <div>
+              <dt>Procedencia</dt>
+              <dd>
+                Identificación del origen de una afirmación: episodio, inferencia,
+                investigación externa, punto disputado o limitación.
+              </dd>
+            </div>
+          </dl>
+
+          <h3 class="section-heading">Procedencia y límites</h3>
+
+          <div class="provenance podcast">
+            <span class="block-label">Fuente primaria del estudio</span>
+            <p>
+              Transcripción proporcionada por el usuario del episodio identificado
+              dentro del audio como “Episode 66: Luke — The Journey to Jerusalem,
+              Part III”, conducido por Hannah y David.
+            </p>
+          </div>
+
+          <div class="provenance limitation">
+            <span class="block-label">Limitaciones de la transcripción</span>
+            <ul>
+              <li>
+                El nombre del archivo y el número pronunciado en el episodio no
+                coinciden.
+              </li>
+              <li>
+                La transcripción contiene errores propios del reconocimiento del
+                habla, repeticiones y nombres con grafías variables.
+              </li>
+              <li>
+                No siempre permite identificar qué comentario externo específico
+                consultaron los anfitriones.
+              </li>
+              <li>
+                La experiencia reconstruye las ideas principales y los razonamientos,
+                no cada muletilla o tropiezo verbal.
+              </li>
+            </ul>
+          </div>
+
+          <div class="provenance disputed">
+            <span class="block-label">Puntos que permanecen abiertos</span>
+            <ul>
+              <li>La fecha exacta de origen de la forma desarrollada de la Oración de Jesús.</li>
+              <li>El alcance preciso de las generalizaciones sobre la condición de los niños en la antigüedad.</li>
+              <li>La posible relación literaria entre la llegada de Jesús a Jericó y la historia de Jericó en Josué.</li>
+              <li>La interpretación del noble, el tercer siervo y la violencia en la parábola de las minas.</li>
+              <li>La especulación de que el gobernante rico y Zaqueo sean la misma persona.</li>
+            </ul>
+          </div>
+
+          <h3 class="section-heading">Fuentes externas consultadas</h3>
+
+          <ul class="source-list">
+            <li>
+              <strong>Orthodox Church in America — Luke 18</strong>
+              <a
+                href="https://www.oca.org/readings/reference/luke/18"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Leer la referencia
+                <span class="sr-only">(se abre en una pestaña nueva)</span>
+              </a>
+              <span class="source-meta">
+                Apoya la consulta del texto primario relacionado con la viuda,
+                el fariseo, el cobrador, los niños y el gobernante.
+              </span>
+            </li>
+
+            <li>
+              <strong>Orthodox Church in America — Luke 19</strong>
+              <a
+                href="https://www.oca.org/readings/reference/luke/19"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Leer la referencia
+                <span class="sr-only">(se abre en una pestaña nueva)</span>
+              </a>
+              <span class="source-meta">
+                Apoya la consulta del texto primario sobre Zaqueo y la parábola de
+                las minas.
+              </span>
+            </li>
+
+            <li>
+              <strong>Orthodox Church in America — The Jesus Prayer</strong>
+              <a
+                href="https://www.oca.org/orthodoxy/the-orthodox-faith/spirituality/prayer-fasting-and-almsgiving/the-jesus-prayer"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Consultar la introducción
+                <span class="sr-only">(se abre en una pestaña nueva)</span>
+              </a>
+              <span class="source-meta">
+                Apoya la relación entre la petición de misericordia y la tradición
+                de la Oración de Jesús.
+              </span>
+            </li>
+
+            <li>
+              <strong>Bible Odyssey — Childhood in the Greco-Roman World</strong>
+              <a
+                href="https://www.bibleodyssey.org/articles/childhood-in-the-greco-roman-world/"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Consultar el artículo
+                <span class="sr-only">(se abre en una pestaña nueva)</span>
+              </a>
+              <span class="source-meta">
+                Matiza las afirmaciones generales sobre la condición social de la
+                infancia en el mundo antiguo.
+              </span>
+            </li>
+
+            <li>
+              <strong>Bible Odyssey — Tax Collectors</strong>
+              <a
+                href="https://www.bibleodyssey.org/dictionary/tax-collectors/"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Consultar la entrada
+                <span class="sr-only">(se abre en una pestaña nueva)</span>
+              </a>
+              <span class="source-meta">
+                Ofrece contexto para la función y reputación de los cobradores de
+                impuestos.
+              </span>
+            </li>
+
+            <li>
+              <strong>Bible Odyssey — Taxes in First-Century Palestine</strong>
+              <a
+                href="https://www.bibleodyssey.org/articles/taxes-in-first-century-palestine/"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Consultar el artículo
+                <span class="sr-only">(se abre en una pestaña nueva)</span>
+              </a>
+              <span class="source-meta">
+                Aporta contexto sobre las cargas y estructuras fiscales del período.
+              </span>
+            </li>
+
+            <li>
+              <strong>BibleProject — Guide to the Book of Luke</strong>
+              <a
+                href="https://bibleproject.com/guides/book-of-luke/"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Consultar la guía
+                <span class="sr-only">(se abre en una pestaña nueva)</span>
+              </a>
+              <span class="source-meta">
+                Apoya la comprensión de Lucas y Hechos como partes de una narración
+                conectada.
+              </span>
+            </li>
+
+            <li>
+              <strong>
+                Ernest van Eck — lectura social de la parábola de las minas
+              </strong>
+              <a
+                href="https://scielo.org.za/scielo.php?pid=S0259-94222011000300032&amp;script=sci_arttext"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Consultar el artículo académico
+                <span class="sr-only">(se abre en una pestaña nueva)</span>
+              </a>
+              <span class="source-meta">
+                Representa una interpretación alternativa que examina poder,
+                patronazgo, explotación y resistencia.
+              </span>
+            </li>
+          </ul>
+
+          <footer class="page-footer">
+            <p>
+              Esta página distingue entre la interpretación expresada por el
+              episodio, el contexto añadido, las inferencias pedagógicas, los
+              puntos disputados y las limitaciones. El panel de especialistas es
+              una simulación educativa y no representa declaraciones de personas
+              reales.
+            </p>
+          </footer>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <script>
+    (() => {
+      "use strict";
+
+      const sections = Array.from(document.querySelectorAll(".study-unit"));
+      const navigationLinks = Array.from(
+        document.querySelectorAll(".sidebar-nav a[href^='#']")
+      );
+      const answerButtons = Array.from(
+        document.querySelectorAll("[data-answer-toggle]")
+      );
+      const openAllButtons = Array.from(
+        document.querySelectorAll("[data-open-all]")
+      );
+      const closeAllButtons = Array.from(
+        document.querySelectorAll("[data-close-all]")
+      );
+
+      const sidebar = document.getElementById("sidebar");
+      const menuButton = document.getElementById("menu-button");
+      const closeButton = document.getElementById("drawer-close");
+      const backdrop = document.getElementById("backdrop");
+      const mainContent = document.getElementById("contenido-principal");
+
+      const mobileQuery = window.matchMedia("(max-width: 899px)");
+      const reducedMotionQuery = window.matchMedia(
+        "(prefers-reduced-motion: reduce)"
+      );
+
+      let storedScrollY = 0;
+      let drawerIsOpen = false;
+
+      function getPanelParts(section) {
+        const trigger = section.querySelector(".accordion-trigger");
+        const panelId = trigger ? trigger.getAttribute("aria-controls") : "";
+        const panel = panelId ? document.getElementById(panelId) : null;
+        return { trigger, panel };
+      }
+
+      function setPanelState(section, open) {
+        const { trigger, panel } = getPanelParts(section);
+        if (!trigger || !panel) return;
+
+        trigger.setAttribute("aria-expanded", String(open));
+        panel.hidden = !open;
+      }
+
+      function openPanelForTarget(targetId) {
+        const section = document.getElementById(targetId);
+        if (!section || !section.classList.contains("study-unit")) return null;
+
+        setPanelState(section, true);
+        return section;
+      }
+
+      function setActiveNavigation(targetId) {
+        navigationLinks.forEach((link) => {
+          const isCurrent = link.getAttribute("href") === `#${targetId}`;
+
+          if (isCurrent) {
+            link.setAttribute("aria-current", "true");
+          } else {
+            link.removeAttribute("aria-current");
+          }
+        });
+      }
+
+      function scrollToSection(section, focusHeading = false) {
+        if (!section) return;
+
+        const { trigger } = getPanelParts(section);
+
+        requestAnimationFrame(() => {
+          requestAnimationFrame(() => {
+            section.scrollIntoView({
+              behavior: reducedMotionQuery.matches ? "auto" : "smooth",
+              block: "start"
+            });
+
+            if (focusHeading && trigger) {
+              window.setTimeout(() => {
+                trigger.focus({ preventScroll: true });
+              }, reducedMotionQuery.matches ? 0 : 260);
+            }
+          });
+        });
+      }
+
+      function updateHash(targetId) {
+        if (!targetId) return;
+
+        const newHash = `#${targetId}`;
+        if (window.location.hash !== newHash) {
+          window.history.replaceState(null, "", newHash);
+        }
+      }
+
+      function initialisePanels() {
+        const hashId = window.location.hash
+          ? decodeURIComponent(window.location.hash.slice(1))
+          : "";
+
+        const validHash = sections.some((section) => section.id === hashId);
+
+        sections.forEach((section, index) => {
+          const shouldOpen = validHash ? section.id === hashId : index === 0;
+          setPanelState(section, shouldOpen);
+        });
+
+        const initialId = validHash ? hashId : sections[0]?.id;
+        if (initialId) {
+          setActiveNavigation(initialId);
+        }
+
+        if (validHash) {
+          const target = document.getElementById(hashId);
+          scrollToSection(target, false);
+        }
+      }
+
+      function initialiseAnswers() {
+        answerButtons.forEach((button) => {
+          const answerId = button.getAttribute("aria-controls");
+          const answer = answerId ? document.getElementById(answerId) : null;
+          if (!answer) return;
+
+          answer.hidden = true;
+          button.setAttribute("aria-expanded", "false");
+          button.textContent = "Ver respuesta";
+        });
+      }
+
+      function getDrawerFocusableElements() {
+        if (!sidebar) return [];
+
+        return Array.from(
+          sidebar.querySelectorAll(
+            'a[href], button:not([disabled]), input:not([disabled]), ' +
+            'select:not([disabled]), textarea:not([disabled]), ' +
+            '[tabindex]:not([tabindex="-1"])'
+          )
+        ).filter((element) => {
+          return element.offsetParent !== null;
+        });
+      }
+
+      function lockDocumentScroll() {
+        storedScrollY = window.scrollY;
+        document.body.style.position = "fixed";
+        document.body.style.top = `-${storedScrollY}px`;
+        document.body.style.right = "0";
+        document.body.style.left = "0";
+      }
+
+      function unlockDocumentScroll() {
+        const currentStoredScroll = storedScrollY;
+
+        document.body.style.position = "";
+        document.body.style.top = "";
+        document.body.style.right = "";
+        document.body.style.left = "";
+
+        window.scrollTo(0, currentStoredScroll);
+      }
+
+      function openDrawer() {
+        if (!mobileQuery.matches || !sidebar || !menuButton || !backdrop) {
+          return;
+        }
+
+        drawerIsOpen = true;
+        lockDocumentScroll();
+
+        document.body.classList.add("drawer-open");
+        sidebar.classList.add("is-open");
+        sidebar.setAttribute("aria-hidden", "false");
+        menuButton.setAttribute("aria-expanded", "true");
+
+        backdrop.classList.add("is-visible");
+        backdrop.setAttribute("aria-hidden", "false");
+
+        if ("inert" in mainContent) {
+          mainContent.inert = true;
+        } else {
+          mainContent.setAttribute("aria-hidden", "true");
+        }
+
+        const focusable = getDrawerFocusableElements();
+        const preferredFocus = closeButton || focusable[0];
+
+        window.setTimeout(() => {
+          preferredFocus?.focus();
+        }, 0);
+      }
+
+      function closeDrawer(options = {}) {
+        const {
+          restoreFocus = true,
+          restoreScroll = true
+        } = options;
+
+        if (!sidebar || !menuButton || !backdrop) return;
+
+        drawerIsOpen = false;
+
+        document.body.classList.remove("drawer-open");
+        sidebar.classList.remove("is-open");
+        menuButton.setAttribute("aria-expanded", "false");
+
+        backdrop.classList.remove("is-visible");
+        backdrop.setAttribute("aria-hidden", "true");
+
+        if ("inert" in mainContent) {
+          mainContent.inert = false;
+        }
+        mainContent.removeAttribute("aria-hidden");
+
+        if (mobileQuery.matches) {
+          sidebar.setAttribute("aria-hidden", "true");
+        } else {
+          sidebar.removeAttribute("aria-hidden");
+        }
+
+        if (restoreScroll) {
+          unlockDocumentScroll();
+        } else {
+          document.body.style.position = "";
+          document.body.style.top = "";
+          document.body.style.right = "";
+          document.body.style.left = "";
+        }
+
+        if (restoreFocus) {
+          menuButton.focus();
+        }
+      }
+
+      function handleDrawerFocusTrap(event) {
+        if (!drawerIsOpen || event.key !== "Tab") return;
+
+        const focusable = getDrawerFocusableElements();
+        if (!focusable.length) return;
+
+        const first = focusable[0];
+        const last = focusable[focusable.length - 1];
+
+        if (event.shiftKey && document.activeElement === first) {
+          event.preventDefault();
+          last.focus();
+        } else if (!event.shiftKey && document.activeElement === last) {
+          event.preventDefault();
+          first.focus();
+        }
+      }
+
+      function syncDrawerForViewport() {
+        if (!sidebar) return;
+
+        if (mobileQuery.matches) {
+          if (!drawerIsOpen) {
+            sidebar.setAttribute("aria-hidden", "true");
+          }
+        } else {
+          if (drawerIsOpen) {
+            closeDrawer({ restoreFocus: false });
+          }
+
+          sidebar.removeAttribute("aria-hidden");
+          sidebar.classList.remove("is-open");
+        }
+      }
+
+      sections.forEach((section) => {
+        const { trigger } = getPanelParts(section);
+        if (!trigger) return;
+
+        trigger.addEventListener("click", () => {
+          const currentlyOpen =
+            trigger.getAttribute("aria-expanded") === "true";
+
+          setPanelState(section, !currentlyOpen);
+
+          if (!currentlyOpen) {
+            setActiveNavigation(section.id);
+            updateHash(section.id);
+          }
+        });
+      });
+
+      navigationLinks.forEach((link) => {
+        link.addEventListener("click", (event) => {
+          const rawTarget = link.getAttribute("href");
+          if (!rawTarget || !rawTarget.startsWith("#")) return;
+
+          const targetId = decodeURIComponent(rawTarget.slice(1));
+          const targetSection = openPanelForTarget(targetId);
+          if (!targetSection) return;
+
+          event.preventDefault();
+
+          setActiveNavigation(targetId);
+          updateHash(targetId);
+
+          if (mobileQuery.matches && drawerIsOpen) {
+            closeDrawer({
+              restoreFocus: false,
+              restoreScroll: true
+            });
+          }
+
+          scrollToSection(targetSection, true);
+        });
+      });
+
+      answerButtons.forEach((button) => {
+        button.addEventListener("click", () => {
+          const answerId = button.getAttribute("aria-controls");
+          const answer = answerId ? document.getElementById(answerId) : null;
+          if (!answer) return;
+
+          const isOpen = button.getAttribute("aria-expanded") === "true";
+          const nextOpen = !isOpen;
+
+          answer.hidden = !nextOpen;
+          button.setAttribute("aria-expanded", String(nextOpen));
+          button.textContent = nextOpen
+            ? "Ocultar respuesta"
+            : "Ver respuesta";
+        });
+      });
+
+      openAllButtons.forEach((button) => {
+        button.addEventListener("click", () => {
+          sections.forEach((section) => setPanelState(section, true));
+        });
+      });
+
+      closeAllButtons.forEach((button) => {
+        button.addEventListener("click", () => {
+          sections.forEach((section) => setPanelState(section, false));
+        });
+      });
+
+      menuButton?.addEventListener("click", () => {
+        if (drawerIsOpen) {
+          closeDrawer();
+        } else {
+          openDrawer();
+        }
+      });
+
+      closeButton?.addEventListener("click", () => {
+        closeDrawer();
+      });
+
+      backdrop?.addEventListener("click", () => {
+        closeDrawer();
+      });
+
+      document.addEventListener("keydown", (event) => {
+        if (event.key === "Escape" && drawerIsOpen) {
+          closeDrawer();
+          return;
+        }
+
+        handleDrawerFocusTrap(event);
+      });
+
+      window.addEventListener("hashchange", () => {
+        const targetId = decodeURIComponent(
+          window.location.hash.replace(/^#/, "")
+        );
+
+        const targetSection = openPanelForTarget(targetId);
+        if (!targetSection) return;
+
+        setActiveNavigation(targetId);
+        scrollToSection(targetSection, false);
+      });
+
+      if ("IntersectionObserver" in window) {
+        const observer = new IntersectionObserver(
+          (entries) => {
+            const visibleEntries = entries
+              .filter((entry) => entry.isIntersecting)
+              .sort((a, b) => b.intersectionRatio - a.intersectionRatio);
+
+            if (!visibleEntries.length) return;
+
+            const currentSection = visibleEntries[0].target;
+            setActiveNavigation(currentSection.id);
+          },
+          {
+            rootMargin: "-20% 0px -65% 0px",
+            threshold: [0, 0.05, 0.2, 0.5]
+          }
+        );
+
+        sections.forEach((section) => observer.observe(section));
+      }
+
+      if (typeof mobileQuery.addEventListener === "function") {
+        mobileQuery.addEventListener("change", syncDrawerForViewport);
+      } else if (typeof mobileQuery.addListener === "function") {
+        mobileQuery.addListener(syncDrawerForViewport);
+      }
+
+      initialisePanels();
+      initialiseAnswers();
+      syncDrawerForViewport();
+    })();
+  </script>
+</body>
+</html>

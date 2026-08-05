@@ -1,0 +1,1556 @@
+<!DOCTYPE html> <html lang="es"> <head> <meta charset="utf-8"> <meta name="viewport" content="width=device-width, initial-scale=1"> <meta name="description" content="Experiencia educativa sobre Lucas 14–15, la mesa, la búsqueda de lo perdido y la gracia escandalosa." > <title>La gracia toma asiento | Lucas 14–15</title> <script> document.documentElement.classList.add("js"); </script> <style> @import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Lora:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap'); :root { --fondo-pagina: #BCB3A5; --fondo-sidebar: #BBB2A3; --fondo-aclaracion: #C2BEB3; --texto-principal: #231E17; --texto-secundario-legible: #474036; --terracota: #752F19; --terracota-interactivo: #702B17; --olivo-texto: #464B24; --terracota-claro-decorativo: #9E4321; --verde-olivo-decorativo: #5F6636; --mostaza-decorativo: #AC761D; --ciruela-decorativo: #5C294A; --linea: rgba(93, 74, 44, 0.24); --linea-tenue: rgba(35, 30, 23, 0.13); --fuente-display: "DM Serif Display", Georgia, serif; --fuente-lectura: "Lora", Georgia, serif; --sidebar-ancho: clamp(340px, 30.75vw, 512px); --columna-maxima: 850px; --separacion-sidebar: clamp(64px, 5.5vw, 92px); } * { box-sizing: border-box; } html { font-size: 100%; scroll-behavior: smooth; -webkit-text-size-adjust: 100%; text-size-adjust: 100%; } body { min-width: 0; margin: 0; color: var(--texto-principal); font-family: var(--fuente-lectura); background: linear-gradient( 90deg, var(--fondo-sidebar) 0, var(--fondo-sidebar) var(--sidebar-ancho), var(--fondo-pagina) var(--sidebar-ancho), var(--fondo-pagina) 100% ); } body.menu-abierto { overflow: hidden; } p, li, dd { text-wrap: pretty; } h1, h2, h3, h4 { text-wrap: balance; } a { color: var(--terracota-interactivo); text-decoration-thickness: 1px; text-underline-offset: 0.16em; overflow-wrap: anywhere; } a:hover { text-decoration-thickness: 2px; } button { font: inherit; } button, a { -webkit-tap-highlight-color: transparent; } button:focus-visible, a:focus-visible, summary:focus-visible { outline: 3px solid var(--ciruela-decorativo); outline-offset: 4px; } .skip-link { position: fixed; z-index: 1000; top: 12px; left: 12px; padding: 12px 16px; color: var(--texto-principal); background: var(--fondo-aclaracion); border: 2px solid var(--terracota); transform: translateY(-180%); } .skip-link:focus { transform: translateY(0); } /* Barra móvil */ .mobile-bar { display: none; } .mobile-overlay[hidden] { display: none; } /* Menú lateral */ .sidebar { position: fixed; z-index: 50; inset: 0 auto 0 0; width: var(--sidebar-ancho); overflow-y: auto; background: var(--fondo-sidebar); border-right: 1px solid var(--linea-tenue); } .sidebar-inner { display: flex; flex-direction: column; width: min(282px, calc(100% - 72px)); min-height: 100%; margin-left: auto; margin-right: 36px; padding: 54px 0 28px; } .sidebar-header { display: flex; gap: 20px; align-items: flex-start; justify-content: space-between; } .sidebar-identity { margin: 0; color: var(--terracota); font-size: 0.94rem; font-weight: 600; letter-spacing: 0.17em; text-transform: uppercase; } .sidebar-tagline { max-width: 25ch; margin: 11px 0 0; color: var(--texto-secundario-legible); font-size: 0.96rem; font-style: italic; line-height: 1.55; } .sidebar-close { display: none; } .sidebar-nav { margin-top: 49px; } .sidebar-nav ol { display: grid; gap: 14px; margin: 0; padding: 0; list-style: none; } .sidebar-nav a { display: grid; grid-template-columns: 36px minmax(0, 1fr); min-height: 44px; align-items: start; padding: 6px 0; color: var(--texto-secundario-legible); font-size: 1.0625rem; line-height: 1.5; text-decoration: none; } .sidebar-nav .nav-number { color: var(--terracota); font-size: 0.97rem; letter-spacing: 0.06em; } .sidebar-nav a[aria-current="location"] { color: var(--terracota-interactivo); } .sidebar-nav a[aria-current="location"] .nav-number { color: var(--mostaza-decorativo); font-weight: 600; } .sidebar-note { margin-top: auto; padding-top: 30px; color: var(--texto-secundario-legible); font-size: 0.87rem; line-height: 1.65; } .sidebar-note::before { display: block; height: 1px; margin-bottom: 20px; background: var(--linea-tenue); content: ""; } /* Scrollbar del menú lateral */ .sidebar { scrollbar-width: thin; scrollbar-color: rgba(71, 64, 54, 0.38) transparent; } .sidebar::-webkit-scrollbar { width: 9px; } .sidebar::-webkit-scrollbar-track { background: var(--fondo-sidebar); } .sidebar::-webkit-scrollbar-thumb { background: rgba(71, 64, 54, 0.32); border: 2px solid var(--fondo-sidebar); border-radius: 999px; } .sidebar:hover::-webkit-scrollbar-thumb { background: rgba(71, 64, 54, 0.5); } .sidebar::-webkit-scrollbar-button { display: none; width: 0; height: 0; } .sidebar::-webkit-scrollbar-corner { background: var(--fondo-sidebar); } /* Contenido principal */ .main-content { margin-left: var(--sidebar-ancho); padding: 76px clamp(48px, 9.5vw, 152px) 120px var(--separacion-sidebar); } .content-column { width: 100%; max-width: var(--columna-maxima); } .eyebrow { margin: 0 0 22px; color: var(--olivo-texto); font-size: clamp(0.94rem, 1vw, 1.05rem); font-weight: 600; letter-spacing: 0.16em; line-height: 1.45; text-transform: uppercase; } .titulo-principal { max-width: 14ch; margin: 0; font-family: var(--fuente-display); font-size: clamp(3.25rem, 4.9vw, 5rem); font-weight: 400; line-height: 1; letter-spacing: -0.015em; } .titulo-principal em { color: var(--terracota); font-weight: 400; } .metadata { max-width: 65ch; margin: 25px 0 0; color: var(--texto-secundario-legible); font-size: 1rem; line-height: 1.65; } .introduccion { max-width: 64ch; margin: 31px 0 0; font-size: clamp(1.2rem, 1.4vw, 1.5rem); font-style: italic; line-height: 1.65; } .tesis { max-width: 67ch; margin: 38px 0 0; padding-left: 28px; border-left: 2px solid var(--mostaza-decorativo); font-size: clamp(1.18rem, 1.3vw, 1.42rem); line-height: 1.72; } .tesis p:last-child { margin-bottom: 0; } .provenance { display: inline-block; margin-bottom: 8px; color: var(--olivo-texto); font-size: 0.76em; font-weight: 600; letter-spacing: 0.11em; text-transform: uppercase; } .learning-objectives { max-width: 67ch; margin: 38px 0 0; } .learning-objectives h2 { margin: 0 0 14px; font-family: var(--fuente-display); font-size: 1.55rem; font-weight: 400; } .learning-objectives ul { margin: 0; padding-left: 1.3em; font-size: 1.07rem; line-height: 1.72; } .learning-objectives li + li { margin-top: 7px; } .study-separator { display: grid; grid-template-columns: 1fr auto 1fr; gap: 18px; align-items: center; margin: 70px 0 22px; color: var(--texto-secundario-legible); font-size: 0.95rem; font-weight: 600; letter-spacing: 0.17em; text-align: center; text-transform: uppercase; } .study-separator::before, .study-separator::after { height: 1px; background: var(--linea); content: ""; } .global-controls { display: flex; flex-wrap: wrap; gap: 12px 24px; justify-content: flex-end; margin-bottom: 14px; } .global-controls button, .answer-toggle { min-height: 44px; padding: 8px 2px; color: var(--terracota-interactivo); background: transparent; border: 0; border-bottom: 1px solid currentColor; cursor: pointer; } /* Unidades desplegables */ .study-unit { scroll-margin-top: 28px; border-top: 1px solid var(--linea); } .study-unit:last-of-type { border-bottom: 1px solid var(--linea); } .unit-summary { display: grid; grid-template-columns: 52px minmax(0, 1fr) auto; gap: 18px; width: 100%; min-height: 92px; align-items: center; padding: 22px 0; color: var(--texto-principal); cursor: pointer; list-style: none; } .unit-summary::-webkit-details-marker { display: none; } .unit-number { align-self: start; padding-top: 8px; color: var(--terracota); font-size: 1.02rem; letter-spacing: 0.06em; } .unit-title { font-family: var(--fuente-display); font-size: clamp(1.75rem, 2vw, 2.2rem); font-weight: 400; line-height: 1.16; } .unit-state { min-width: 68px; color: var(--texto-secundario-legible); font-size: 0.82rem; letter-spacing: 0.08em; text-align: right; text-transform: uppercase; } details[open] .unit-state::before { content: "Abierto"; } details:not([open]) .unit-state::before { content: "Cerrado"; } .unit-content { padding: 4px 0 72px 70px; font-size: clamp(1.125rem, 1.2vw, 1.375rem); line-height: 1.75; } .unit-content > *:first-child { margin-top: 0; } .unit-content p { max-width: 67ch; margin: 0 0 1.25em; } .unit-content h3 { max-width: 29ch; margin: 2.15em 0 0.72em; font-family: var(--fuente-display); font-size: clamp(1.55rem, 1.8vw, 1.95rem); font-weight: 400; line-height: 1.18; } .unit-content h4 { margin: 1.8em 0 0.55em; color: var(--terracota); font-size: 0.92rem; font-weight: 600; letter-spacing: 0.13em; text-transform: uppercase; } .guiding-question { max-width: 58ch; margin: 0 0 28px; color: var(--terracota); font-family: var(--fuente-display); font-size: clamp(1.35rem, 1.6vw, 1.7rem); line-height: 1.3; } .key-idea { max-width: 65ch; margin: 32px 0; padding: 4px 0 4px 26px; border-left: 3px solid var(--mostaza-decorativo); font-size: 1.08em; line-height: 1.7; } .clarification { max-width: 67ch; margin: 34px 0; padding: 26px 28px; background: var(--fondo-aclaracion); border-left: 3px solid var(--mostaza-decorativo); } .clarification h3 { margin-top: 0; } .clarification p:last-child { margin-bottom: 0; } .comparison { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 34px; max-width: 67ch; margin: 30px 0; border-top: 1px solid var(--linea); border-bottom: 1px solid var(--linea); } .comparison > div { padding: 24px 0; } .comparison > div:nth-child(odd) { padding-right: 20px; border-right: 1px solid var(--linea-tenue); } .comparison h4 { margin-top: 0; } .comparison p:last-child { margin-bottom: 0; } /* Panel de expertos */ .expert-conversation { max-width: 67ch; margin: 48px 0; padding: 34px 0 18px; border-top: 2px solid var(--terracota); border-bottom: 1px solid var(--linea); } .conversation-kicker { margin: 0 0 9px; color: var(--olivo-texto); font-size: 0.78em; font-weight: 600; letter-spacing: 0.13em; text-transform: uppercase; } .expert-conversation h3 { max-width: 28ch; margin: 0 0 20px; } .transparency-note { margin: 0 0 29px; padding: 18px 0 18px 22px; color: var(--texto-secundario-legible); border-left: 2px solid var(--ciruela-decorativo); font-size: 0.88em; line-height: 1.65; } .conversation-turn { display: grid; grid-template-columns: minmax(145px, 0.32fr) minmax(0, 1fr); gap: 24px; padding: 20px 0; border-top: 1px solid var(--linea-tenue); } .speaker { color: var(--terracota); font-size: 0.75em; font-weight: 600; letter-spacing: 0.09em; line-height: 1.45; text-transform: uppercase; } .conversation-turn p { margin: 0; } .humor-turn .speaker::after { display: block; margin-top: 4px; color: var(--olivo-texto); font-size: 0.83em; font-weight: 500; letter-spacing: 0.03em; text-transform: none; content: "réplica ligera"; } .moderator-summary { margin: 22px 0 4px; padding: 23px 0 5px 24px; border-left: 3px solid var(--mostaza-decorativo); } .moderator-summary .speaker { display: block; margin-bottom: 7px; } /* Preguntas y respuestas */ .learning-question { max-width: 67ch; margin: 38px 0; padding: 26px 0; border-top: 1px solid var(--linea); border-bottom: 1px solid var(--linea); } .learning-question h4 { margin-top: 0; } .question-text { margin-bottom: 14px; font-size: 1.05em; } .model-answer { margin-top: 18px; padding-left: 22px; border-left: 2px solid var(--verde-olivo-decorativo); } .model-answer p:last-child { margin-bottom: 0; } /* Aplicaciones y fuentes */ .application-list { max-width: 67ch; margin: 24px 0 38px; padding: 0; list-style: none; } .application-list li { padding: 20px 0; border-top: 1px solid var(--linea-tenue); } .application-list li:last-child { border-bottom: 1px solid var(--linea-tenue); } .application-list strong { display: block; margin-bottom: 6px; color: var(--terracota); } .glossary { max-width: 67ch; margin: 24px 0; } .glossary div { padding: 18px 0; border-top: 1px solid var(--linea-tenue); } .glossary div:last-child { border-bottom: 1px solid var(--linea-tenue); } .glossary dt { color: var(--terracota); font-weight: 600; } .glossary dd { margin: 5px 0 0; } .sources { max-width: 67ch; margin: 24px 0 0; padding-left: 1.25em; } .sources li { margin-bottom: 15px; } .source-note { color: var(--texto-secundario-legible); font-size: 0.88em; } .closing-line { max-width: 60ch; margin-top: 45px; color: var(--terracota); font-family: var(--fuente-display); font-size: 1.5em; line-height: 1.35; } @media (min-width: 900px) and (max-width: 1279px) { :root { --sidebar-ancho: 280px; --separacion-sidebar: 58px; --columna-maxima: 760px; } .sidebar-inner { width: 224px; margin-right: 28px; padding-top: 46px; } .main-content { padding: 66px 36px 100px var(--separacion-sidebar); } .titulo-principal { font-size: clamp(3.75rem, 6vw, 4.5rem); } .unit-content { padding-left: 58px; } } @media (max-width: 899px) { body { background: var(--fondo-pagina); } .mobile-bar { position: fixed; z-index: 60; inset: 0 0 auto; display: flex; min-height: 62px; align-items: center; gap: 14px; padding: 8px 22px; background: var(--fondo-sidebar); border-bottom: 1px solid var(--linea-tenue); } .mobile-menu-button, .sidebar-close { min-width: 44px; min-height: 44px; padding: 8px; color: var(--texto-principal); background: transparent; border: 1px solid var(--linea); cursor: pointer; } .mobile-menu-button { display: grid; place-items: center; } .menu-lines, .menu-lines::before, .menu-lines::after { display: block; width: 22px; height: 2px; background: currentColor; content: ""; } .menu-lines { position: relative; } .menu-lines::before { position: absolute; top: -7px; } .menu-lines::after { position: absolute; top: 7px; } .mobile-title { color: var(--terracota); font-size: 0.8rem; font-weight: 600; letter-spacing: 0.13em; line-height: 1.35; text-transform: uppercase; } .mobile-overlay { position: fixed; z-index: 45; inset: 0; background: rgba(35, 30, 23, 0.48); } .sidebar { z-index: 70; width: min(340px, 88vw); transform: translateX(-104%); transition: transform 280ms ease; } .sidebar.is-open { transform: translateX(0); } .sidebar-inner { width: auto; min-height: 100%; margin: 0; padding: 22px 26px 32px; } .sidebar-close { display: block; flex: 0 0 auto; } .sidebar-nav { margin-top: 40px; } .main-content { margin-left: 0; padding: 104px 32px 90px; } .titulo-principal { max-width: 13ch; font-size: clamp(2.75rem, 11vw, 3.75rem); } .study-separator { grid-template-columns: 1fr; gap: 13px; margin-top: 58px; } .global-controls { justify-content: flex-start; } .study-unit { scroll-margin-top: 78px; } .unit-summary { grid-template-columns: 38px minmax(0, 1fr); gap: 12px; min-height: 84px; } .unit-state { grid-column: 2; min-width: 0; text-align: left; } .unit-content { padding: 7px 0 62px; font-size: 1.125rem; line-height: 1.72; } .conversation-turn { grid-template-columns: 1fr; gap: 8px; padding: 18px 0; } .comparison { grid-template-columns: 1fr; } .comparison > div:nth-child(odd) { padding-right: 0; border-right: 0; } .comparison > div + div { border-top: 1px solid var(--linea-tenue); } } @media (max-width: 480px) { .mobile-bar { padding-right: 18px; padding-left: 18px; } .main-content { padding: 98px 22px 76px; } .titulo-principal { font-size: clamp(2.65rem, 13vw, 3.35rem); } .tesis { padding-left: 20px; } .clarification { padding: 23px 20px; } .unit-title { font-size: 1.75rem; } } @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; } } @media print { body { color: #241f18; background: #f4efe5; } .sidebar, .mobile-bar, .mobile-overlay, .global-controls, .answer-toggle, .skip-link, .unit-state { display: none !important; } .main-content { margin: 0; padding: 24px; } .content-column { max-width: none; } details, details:not([open]) { display: block; } details > .unit-content, .model-answer, [hidden] { display: block !important; } .study-unit, .expert-conversation, .clarification, .learning-question { break-inside: avoid; } h1, h2, h3, h4 { break-after: avoid; } } </style> </head> <body> <a class="skip-link" href="#contenido-principal"> Saltar al contenido principal </a> <header class="mobile-bar" aria-label="Navegación móvil"> <button class="mobile-menu-button" id="mobile-menu-button" type="button" aria-expanded="false" aria-controls="sidebar" aria-label="Abrir menú del estudio" > <span class="menu-lines" aria-hidden="true"></span> </button>
+<div class="mobile-title">La gracia toma asiento</div>
+</header> <div class="mobile-overlay" id="mobile-overlay" hidden></div> <aside class="sidebar" id="sidebar" aria-label="Menú del estudio"> <div class="sidebar-inner"> <div class="sidebar-header"> <div> <p class="sidebar-identity">Thread · Evangelio de Lucas</p> <p class="sidebar-tagline"> Una mesa abierta en el camino hacia Jerusalén. </p> </div>
+    <button
+      class="sidebar-close"
+      id="sidebar-close"
+      type="button"
+      aria-label="Cerrar menú"
+    >
+      Cerrar
+    </button>
+  </div>
+
+  <nav class="sidebar-nav" aria-label="Unidades del estudio">
+    <ol>
+      <li>
+        <a href="#unidad-mesa" data-section-link="unidad-mesa" aria-current="location">
+          <span class="nav-number">I</span>
+          <span>Jesús, las mesas y su supuesta afición por la buena comida</span>
+        </a>
+      </li>
+
+      <li>
+        <a href="#unidad-compasion" data-section-link="unidad-compasion">
+          <span class="nav-number">II</span>
+          <span>Compasión que altera el protocolo</span>
+        </a>
+      </li>
+
+      <li>
+        <a href="#unidad-busqueda" data-section-link="unidad-busqueda">
+          <span class="nav-number">III</span>
+          <span>Ovejas, monedas y fiestas excesivas</span>
+        </a>
+      </li>
+
+      <li>
+        <a href="#unidad-hijos" data-section-link="unidad-hijos">
+          <span class="nav-number">IV</span>
+          <span>Dos hijos, dos maneras de perderse</span>
+        </a>
+      </li>
+
+      <li>
+        <a href="#unidad-fiesta" data-section-link="unidad-fiesta">
+          <span class="nav-number">V</span>
+          <span>La puerta, la fiesta y el hermano gruñón</span>
+        </a>
+      </li>
+    </ol>
+  </nav>
+
+  <p class="sidebar-note">
+    El humor de los paneles es blanco, pedagógico y generado para esta
+    adaptación. No se presenta como una cita literal de los anfitriones ni
+    se utiliza a costa del sufrimiento de los personajes.
+  </p>
+</div>
+</aside> <main class="main-content" id="contenido-principal"> <div class="content-column"> <header> <p class="eyebrow"> Estudio bíblico · Lucas 14–15 · Viaje a Jerusalén II </p>
+    <h1 class="titulo-principal">
+      En el camino, <em>la gracia toma asiento</em>
+    </h1>
+
+    <p class="metadata">
+      Adaptación educativa del episodio identificado en la transcripción
+      como episodio 65 de <em>Thread</em>. El nombre del archivo dice episodio
+      64, pero la transcripción lo identifica como episodio 65. Dejamos
+      constancia de esta diferencia para no ocultarla.
+    </p>
+
+    <p class="introduccion">
+      Jesús convierte una carretera, varias comidas y tres historias sobre
+      lo perdido en una escuela de discipulado. Allí la misericordia incomoda,
+      el prestigio pierde su silla reservada y la gracia organiza fiestas con
+      un entusiasmo que claramente no consultó primero al departamento de
+      contabilidad.
+    </p>
+
+    <div class="tesis">
+      <span class="provenance">Lo que sostiene el episodio</span>
+
+      <p>
+        Lucas presenta una gracia que atraviesa fronteras sociales y
+        religiosas. Jesús sana cuando la compasión entra en tensión con una
+        aplicación rígida de las normas, pide escoger el lugar más bajo,
+        propone invitar a quienes no pueden devolver el favor y cuenta
+        historias donde Dios busca, recibe y celebra.
+      </p>
+
+      <p>
+        La pregunta final no es solamente quién estaba perdido. También es
+        quién está dispuesto a entrar en la fiesta. El hijo que se marchó y
+        el hijo que nunca salió de la propiedad pueden estar igualmente lejos
+        del corazón del padre.
+      </p>
+    </div>
+
+    <section
+      class="learning-objectives"
+      aria-labelledby="objetivos-titulo"
+    >
+      <h2 id="objetivos-titulo">Al terminar este recorrido podrás</h2>
+
+      <ul>
+        <li>
+          explicar por qué las comidas tienen una función central en Lucas;
+        </li>
+        <li>
+          explicar cómo Jesús relaciona la compasión, la humildad y una
+          hospitalidad que no espera nada a cambio;
+        </li>
+        <li>
+          relacionar la oveja, la moneda y los dos hijos mediante el patrón
+          de pérdida, búsqueda y celebración;
+        </li>
+        <li>
+          reconocer las dos formas diferentes de extravío representadas por
+          los hermanos;
+        </li>
+        <li>
+          identificar qué ideas vienen del podcast y cuáles fueron añadidas
+          como aclaraciones, interpretaciones o conversaciones educativas.
+        </li>
+      </ul>
+    </section>
+  </header>
+
+  <div class="study-separator" aria-hidden="true">
+    <span>Abre cada sección a tu ritmo</span>
+  </div>
+
+  <div class="global-controls" aria-label="Controles de las unidades">
+    <button id="open-all" type="button">Abrir todas</button>
+    <button id="close-all" type="button">Cerrar todas</button>
+  </div>
+
+  <!-- Unidad I -->
+
+  <details class="study-unit" id="unidad-mesa" open>
+    <summary class="unit-summary">
+      <span class="unit-number">I</span>
+      <span class="unit-title">
+        Jesús, las mesas y su supuesta afición por la buena comida
+      </span>
+      <span class="unit-state" aria-hidden="true"></span>
+    </summary>
+
+    <div class="unit-content">
+      <p class="guiding-question">
+        ¿Por qué Lucas utiliza tantas comidas para enseñar qué clase de
+        comunidad está formando Jesús?
+      </p>
+
+      <span class="provenance">Lo que sostiene el episodio</span>
+
+      <p>
+        El episodio continúa el viaje iniciado en Lucas 9. El camino funciona
+        como un salón de clase: cada paso, comida, pregunta y parábola ayuda a
+        formar la manera de pensar y vivir de los discípulos. Hannah lo explica
+        mediante un juego de palabras del inglés: así como Jesús dirige su
+        rostro hacia Jerusalén, también va dando forma al carácter de sus
+        discípulos. Después
+        celebra discretamente su propia frase porque, como recuerda, estudió
+        inglés. David le concede el punto. La teología avanza y el diploma
+        también recibe un pequeño momento de gloria.
+      </p>
+
+      <p>
+        Los anfitriones observan que Lucas presenta a Jesús comiendo con
+        personas muy distintas. Entra en casas de dirigentes religiosos,
+        pero también comparte mesa con recaudadores de impuestos y otras
+        personas despreciadas o rechazadas por la sociedad. En medio del
+        recuento aparece una pregunta espontánea del podcast: ¿era Jesús un
+        <em>foodie</em>, es decir, un aficionado a la buena comida? La
+        conversación no ofrece un estudio arqueológico del menú, pero sí
+        concluye que Lucas presenta muchas comidas reales y también banquetes
+        descritos en historias y parábolas. Casi podría decirse que sus
+        parábolas llegan con mantel incluido.
+      </p>
+
+      <div class="key-idea">
+        <span class="provenance">Idea clave</span>
+
+        <p>
+          La mesa no es decoración narrativa. Revela quién puede acercarse,
+          quién recibe reconocimiento y qué cree esa comunidad acerca de Dios.
+        </p>
+      </div>
+
+      <p>
+        David relaciona esta mesa con la vida comunitaria. Cuando las personas
+        permanecen separadas, las diferencias doctrinales, institucionales o
+        personales pueden parecer más importantes que todo lo demás. Al
+        sentarse frente a frente, recordamos que detrás de cada idea hay una
+        persona con nombre, rostro e historia. No todos
+        los desacuerdos desaparecen por arte del pan, pero suelen perder un
+        poco de su afición por el dramatismo.
+      </p>
+
+      <section
+        class="expert-conversation"
+        data-component="expert-conversation"
+      >
+        <p class="conversation-kicker">Mesa editorial I</p>
+
+        <h3>
+          ¿Qué enseña una mesa que un discurso no consigue enseñar?
+        </h3>
+
+        <p class="transparency-note">
+          Esta conversación es una reconstrucción educativa generada por IA.
+          Los participantes representan áreas de conocimiento y no son
+          personas reales. Sus aportaciones se basan en la transcripción y
+          en el contenido documentado para esta experiencia.
+        </p>
+
+        <div class="conversation-turn">
+          <div class="speaker">MODERADOR</div>
+          <p>
+            Lucas presenta tantas comidas que uno empieza a preguntarse si
+            el viaje a Jerusalén incluía un programa de fidelidad para
+            comensales frecuentes. ¿La mesa es solo el escenario o forma parte
+            de la enseñanza?
+          </p>
+        </div>
+
+        <div class="conversation-turn">
+          <div class="speaker">EXÉGETA DE LUCAS</div>
+          <p>
+            Forma parte de la enseñanza. Comer juntos expresaba proximidad,
+            reconocimiento y pertenencia. Jesús no ofrece una charla sobre
+            inclusión desde la acera; cruza la puerta, se sienta y pide cubiertos.
+          </p>
+        </div>
+
+        <div class="conversation-turn humor-turn">
+          <div class="speaker">EDUCADOR BÍBLICO</div>
+          <p>
+            En otras palabras, no dice: “Los amo a todos; les enviaré un
+            boletín informativo”. Se queda a cenar. La cercanía tiene vajilla.
+          </p>
+        </div>
+
+        <div class="conversation-turn">
+          <div class="speaker">HISTORIADORA DEL MUNDO ANTIGUO</div>
+          <p>
+            Además, la posición en una comida podía expresar rango, honor y
+            reciprocidad. La lista de invitados comunicaba tanto como el
+            discurso del anfitrión.
+          </p>
+        </div>
+
+        <div class="conversation-turn humor-turn">
+          <div class="speaker">MODERADOR</div>
+          <p>
+            Así que la mesa era una especie de red social antigua: uno miraba
+            quién estaba cerca del anfitrión, solo que en vez de contar
+            seguidores contaba cojines.
+          </p>
+        </div>
+
+        <div class="conversation-turn">
+          <div class="speaker">TEÓLOGA DE LA GRACIA</div>
+          <p>
+            La comparación ayuda. Jesús altera esa red de reconocimiento al
+            sentarse con personas que otros preferían mantener fuera. La mesa
+            se convierte en una declaración práctica sobre la amplitud de la
+            gracia.
+          </p>
+        </div>
+
+        <div class="conversation-turn humor-turn">
+          <div class="speaker">EDUCADOR BÍBLICO</div>
+          <p>
+            Y alrededor de una mesa no hay púlpito, como observa el podcast.
+            Es difícil predicar desde arriba cuando alguien te está pidiendo
+            que le pases las aceitunas.
+          </p>
+        </div>
+
+        <div class="conversation-turn">
+          <div class="speaker">EXÉGETA DE LUCAS</div>
+          <p>
+            Precisamente. La relación no sustituye la verdad, pero cambia el
+            modo de comunicarla. La persona deja de ser un problema remoto y
+            vuelve a ser un prójimo presente.
+          </p>
+        </div>
+
+        <div class="conversation-turn humor-turn">
+          <div class="speaker">HISTORIADORA DEL MUNDO ANTIGUO</div>
+          <p>
+            Tampoco debemos concluir que toda comida resolvía automáticamente
+            los conflictos. Dos personas podían compartir pan y continuar en
+            desacuerdo. El pan no tenía poderes diplomáticos certificados.
+          </p>
+        </div>
+
+        <div class="moderator-summary">
+          <span class="speaker">SÍNTESIS DEL MODERADOR</span>
+
+          <p>
+            La mesa funciona como espacio de revelación y formación. Hace
+            visible quién pertenece, reduce algunas distancias sociales y
+            convierte una enseñanza abstracta sobre la gracia en una práctica
+            compartida. El episodio utiliza humor porque la convivencia real
+            también lo necesita: a veces una sonrisa abre espacio para una
+            verdad difícil.
+          </p>
+        </div>
+      </section>
+
+      <div class="learning-question">
+        <h4>Comprueba tu comprensión</h4>
+
+        <p class="question-text">
+          ¿Qué dos funciones cumple la mesa en la lectura propuesta por el
+          episodio?
+        </p>
+
+        <button
+          class="answer-toggle"
+          type="button"
+          aria-expanded="false"
+          aria-controls="respuesta-mesa"
+        >
+          Ver respuesta
+        </button>
+
+        <div class="model-answer" id="respuesta-mesa" hidden>
+          <p>
+            Sirve como espacio de conexión humana y como demostración visible
+            de la amplitud de la gracia. Quién recibe asiento revela qué cree
+            una comunidad acerca de Dios y de las demás personas.
+          </p>
+        </div>
+      </div>
+
+      <p>
+        La relación entre mesa y pertenencia prepara la siguiente escena.
+        Jesús entra en la casa de un dirigente fariseo, pero no permite que la
+        cortesía del anfitrión silencie la necesidad de una persona enferma.
+      </p>
+    </div>
+  </details>
+
+  <!-- Unidad II -->
+
+  <details class="study-unit" id="unidad-compasion" open>
+    <summary class="unit-summary">
+      <span class="unit-number">II</span>
+      <span class="unit-title">
+        Compasión que altera el protocolo
+      </span>
+      <span class="unit-state" aria-hidden="true"></span>
+    </summary>
+
+    <div class="unit-content">
+      <p class="guiding-question">
+        ¿Qué sucede cuando proteger una norma parece más urgente que aliviar
+        el sufrimiento de una persona?
+      </p>
+
+      <span class="provenance">Lo que sostiene el episodio</span>
+
+      <p>
+        Lucas 14 presenta a Jesús en una comida de sábado en la casa de un
+        dirigente fariseo. Frente a él hay un hombre con edema. Esta vez es
+        Jesús quien formula la pregunta: ¿es lícito sanar en sábado? Ante el
+        silencio de los expertos, sana al hombre y luego pregunta si ellos no
+        rescatarían inmediatamente a un hijo o a un animal que hubiera caído
+        en un pozo.
+      </p>
+
+      <div class="clarification">
+        <span class="provenance">Aclaración terminológica</span>
+
+        <h3>Edema y el doctor que no trae estetoscopio</h3>
+
+        <p>
+          El término inglés <em>dropsy</em> corresponde a una denominación
+          antigua del edema: una hinchazón producida por acumulación de
+          líquido. La transcripción reconoce que los anfitriones no son
+          médicos. David tiene un doctorado relacionado con espiritualidad,
+          pero, como él mismo explica, no es “la clase de doctor” que resuelve
+          una emergencia clínica. El título queda muy bien en una biblioteca;
+          en una sala de urgencias necesita refuerzos.
+        </p>
+      </div>
+
+      <p>
+        Hannah explica que los observadores entienden el sábado como un límite
+        que no debe cruzarse para conservar la santidad del día. Jesús muestra
+        que respetar el sábado también significa practicar la compasión. David
+        añade que la indignación de Jesús aparece con
+        especial fuerza cuando una estructura religiosa bloquea el acceso de
+        otras personas a Dios.
+      </p>
+
+      <div class="clarification">
+        <span class="provenance">Precaución interpretativa</span>
+
+        <p>
+          El episodio critica una aplicación concreta de la norma dentro de
+          la narración. Esa crítica no debe convertirse en una caricatura de
+          todo el judaísmo, de todos los fariseos ni de toda observancia del
+          sábado. La escena enfrenta una manera de interpretar la ley con la
+          necesidad del hombre enfermo que está frente a ellos.
+        </p>
+      </div>
+
+      <h3>Del cuerpo herido a los lugares de honor</h3>
+
+      <p>
+        Jesús continúa observando cómo los invitados eligen los lugares de
+        honor. Les aconseja ocupar el lugar más bajo, porque la grandeza del
+        reino no consiste en reclamar reconocimiento. Después se dirige al
+        anfitrión: cuando ofrezca una comida, no debe limitarse a familiares,
+        amistades y vecinos capaces de devolver la invitación. Debe recibir a
+        quienes no pueden corresponder con otra invitación.
+      </p>
+
+      <div class="key-idea">
+        <span class="provenance">Idea clave</span>
+
+        <p>
+          La misericordia atiende a quien sufre, la humildad deja de buscar
+          reconocimiento y la hospitalidad no calcula qué recibirá a cambio.
+        </p>
+      </div>
+
+      <section
+        class="expert-conversation"
+        data-component="expert-conversation"
+      >
+        <p class="conversation-kicker">Mesa editorial II</p>
+
+        <h3>
+          ¿Por qué una acción amorosa puede resultar ofensiva?
+        </h3>
+
+        <div class="conversation-turn">
+          <div class="speaker">MODERADOR</div>
+          <p>
+            El episodio propone el subtítulo “el amor que ofende”. ¿Cómo puede
+            el amor incomodar sin convertirse simplemente en mala educación?
+          </p>
+        </div>
+
+        <div class="conversation-turn">
+          <div class="speaker">TEÓLOGA DE LA GRACIA</div>
+          <p>
+            Incomoda cuando deja al descubierto una prioridad deformada. La
+            curación no ofende al hombre enfermo; incomoda a quienes han
+            organizado la situación de manera que la norma ocupa el centro y
+            la persona queda en el margen.
+          </p>
+        </div>
+
+        <div class="conversation-turn humor-turn">
+          <div class="speaker">EDUCADOR BÍBLICO</div>
+          <p>
+            El sábado no necesitaba primeros auxilios; el hombre sí. A veces
+            nuestras reglas llegan perfectamente saludables a la reunión
+            mientras una persona entra cojeando.
+          </p>
+        </div>
+
+        <div class="conversation-turn">
+          <div class="speaker">EXÉGETA DE LUCAS</div>
+          <p>
+            También importa que Jesús formule la pregunta. No responde
+            solamente a una trampa ajena. Conduce deliberadamente la
+            conversación hacia una pregunta: ¿la manera de aplicar esa regla
+            está ayudando a las personas o está aumentando su sufrimiento?
+          </p>
+        </div>
+
+        <div class="conversation-turn humor-turn">
+          <div class="speaker">MODERADOR</div>
+          <p>
+            Después observa a los invitados buscando los mejores asientos.
+            Evidentemente, el antiguo mundo ya conocía la técnica de caminar
+            despacio hacia la silla mientras uno finge que no la había visto.
+          </p>
+        </div>
+
+        <div class="conversation-turn">
+          <div class="speaker">HISTORIADORA DEL MUNDO ANTIGUO</div>
+          <p>
+            La posición expresaba rango. Jesús cuestiona esa búsqueda de honor
+            y propone escoger voluntariamente el lugar menos importante, en vez
+            de diseñar la propia ceremonia de reconocimiento.
+          </p>
+        </div>
+
+        <div class="conversation-turn humor-turn">
+          <div class="speaker">TEÓLOGA DE LA GRACIA</div>
+          <p>
+            Porque si uno se sienta en el último lugar mirando constantemente
+            quién lo observa, la humildad ya contrató un publicista.
+          </p>
+        </div>
+
+        <div class="conversation-turn">
+          <div class="speaker">MODERADOR</div>
+          <p>
+            ¿Qué relación existe entre esa humildad y la orden de invitar a
+            quienes no pueden devolver el favor?
+          </p>
+        </div>
+
+        <div class="conversation-turn">
+          <div class="speaker">HISTORIADORA DEL MUNDO ANTIGUO</div>
+          <p>
+            Ambas cambian un sistema basado en el prestigio y en el intercambio
+            de favores. El invitado deja de promocionarse y el anfitrión deja
+            de construir una red de obligaciones mutuas.
+          </p>
+        </div>
+
+        <div class="conversation-turn humor-turn">
+          <div class="speaker">EDUCADOR BÍBLICO</div>
+          <p>
+            Jesús retira la calculadora del comedor. Si invito únicamente a
+            quien pagará la próxima cena, quizá no organicé un acto de
+            generosidad; organicé una inversión con mantel.
+          </p>
+        </div>
+
+        <div class="conversation-turn">
+          <div class="speaker">EXÉGETA DE LUCAS</div>
+          <p>
+            Ese es el vínculo entre las escenas. La compasión pone la necesidad
+            humana por encima del deseo de controlar el cumplimiento externo;
+            la humildad supera la autopromoción y la acogida supera el
+            intercambio interesado.
+          </p>
+        </div>
+
+        <div class="moderator-summary">
+          <span class="speaker">SÍNTESIS DEL MODERADOR</span>
+
+          <p>
+            El amor resulta ofensivo cuando desafía un orden que confunde
+            santidad con control, grandeza con posición y hospitalidad con
+            reembolso. Jesús no provoca por capricho; restaura a la persona como
+            prioridad y deja la calculadora buscando otra mesa.
+          </p>
+        </div>
+      </section>
+
+      <div class="learning-question">
+        <h4>Comprueba tu comprensión</h4>
+
+        <p class="question-text">
+          ¿Qué tres dimensiones del reino redefine Jesús durante esta comida?
+        </p>
+
+        <button
+          class="answer-toggle"
+          type="button"
+          aria-expanded="false"
+          aria-controls="respuesta-compasion"
+        >
+          Ver respuesta
+        </button>
+
+        <div class="model-answer" id="respuesta-compasion" hidden>
+          <p>
+            Redefine la santidad mediante la compasión, la grandeza mediante
+            la humildad y la hospitalidad mediante una generosidad que no exige
+            devolución.
+          </p>
+        </div>
+      </div>
+
+      <p>
+        La comida de Lucas 14 abre una pregunta mayor: ¿qué hace Dios con las
+        personas que ya están fuera, lejos o perdidas? Lucas 15 responde con
+        tres historias unidas por búsqueda y celebración.
+      </p>
+    </div>
+  </details>
+
+  <!-- Unidad III -->
+
+  <details class="study-unit" id="unidad-busqueda" open>
+    <summary class="unit-summary">
+      <span class="unit-number">III</span>
+      <span class="unit-title">
+        Ovejas, monedas y fiestas excesivas
+      </span>
+      <span class="unit-state" aria-hidden="true"></span>
+    </summary>
+
+    <div class="unit-content">
+      <p class="guiding-question">
+        ¿Qué revelan la oveja, la moneda y la celebración acerca de la
+        iniciativa de Dios?
+      </p>
+
+      <span class="provenance">Lo que sostiene el episodio</span>
+
+      <p>
+        Lucas 15 comienza con recaudadores de impuestos y personas calificadas
+        como pecadoras acercándose a Jesús. Algunos fariseos y escribas
+        murmuran porque él recibe a esas personas y come con ellas. Mientras
+        introduce el texto, Hannah le pide a “Jesús” que lea el versículo y
+        enseguida se corrige: quería decir David. David confirma, con prudencia
+        histórica y personal, que definitivamente no es Jesús. El pasaje puede
+        continuar sin aumentar sus expectativas laborales.
+      </p>
+
+      <p>
+        Las tres parábolas responden a la protesta. En la primera, un pastor
+        busca una oveja perdida y, al encontrarla, la carga y convoca una
+        celebración. En la segunda, una mujer enciende una lámpara, barre la
+        casa y busca una moneda hasta recuperarla. También reúne a otras
+        personas para compartir su alegría.
+      </p>
+
+      <div class="comparison" aria-label="Comparación de la oveja y la moneda">
+        <div>
+          <h4>La oveja</h4>
+          <p>
+            Está fuera del rebaño. La historia destaca al pastor que busca,
+            encuentra, carga y regresa celebrando.
+          </p>
+        </div>
+
+        <div>
+          <h4>La moneda</h4>
+          <p>
+            Está perdida dentro de una casa. La mujer ilumina, barre y busca
+            cuidadosamente hasta recuperarla.
+          </p>
+        </div>
+
+        <div>
+          <h4>Elemento común</h4>
+          <p>
+            La pérdida provoca una búsqueda activa; el hallazgo produce una
+            alegría que no se guarda en privado.
+          </p>
+        </div>
+
+        <div>
+          <h4>Diferencia importante</h4>
+          <p>
+            La oveja puede alejarse, la moneda no puede decidir nada y los hijos
+            sí toman decisiones. Por eso cada parábola muestra una manera
+            diferente de estar perdido.
+          </p>
+        </div>
+      </div>
+
+      <div class="key-idea">
+        <span class="provenance">Idea clave</span>
+
+        <p>
+          Antes de describir el regreso de un hijo, Jesús presenta a un Dios
+          cuya respuesta a la pérdida es buscar y cuya respuesta al hallazgo
+          es celebrar.
+        </p>
+      </div>
+
+      <section
+        class="expert-conversation"
+        data-component="expert-conversation"
+      >
+        <p class="conversation-kicker">Mesa editorial III</p>
+
+        <h3>
+          ¿Por qué Jesús cuenta dos búsquedas antes de hablar de los hijos?
+        </h3>
+
+        <div class="conversation-turn">
+          <div class="speaker">MODERADOR</div>
+          <p>
+            Antes de comenzar, ¿alguien quiere leer el texto? Prometo llamar
+            a cada especialista por su nombre correcto. El estándar parece
+            bajo, pero después del episodio conviene declararlo.
+          </p>
+        </div>
+
+        <div class="conversation-turn humor-turn">
+          <div class="speaker">EDUCADOR BÍBLICO</div>
+          <p>
+            Gracias. Acepto leer, siempre que nadie me confunda con Jesús.
+            Puedo manejar una diapositiva; los milagros quedan fuera de mi
+            descripción de puesto.
+          </p>
+        </div>
+
+        <div class="conversation-turn">
+          <div class="speaker">EXÉGETA DE LUCAS</div>
+          <p>
+            Las dos primeras historias añaden movimiento a la idea del perdón.
+            Las figuras no permanecen inmóviles esperando una solicitud
+            correctamente redactada: salen, iluminan, barren, cargan y convocan
+            una celebración.
+          </p>
+        </div>
+
+        <div class="conversation-turn humor-turn">
+          <div class="speaker">MODERADOR</div>
+          <p>
+            La oveja tampoco recibe un recordatorio del calendario: “Tu regreso
+            está programado para el martes a las cuatro”. El peso de la escena
+            recae en quien busca.
+          </p>
+        </div>
+
+        <div class="conversation-turn">
+          <div class="speaker">TEÓLOGA DE LA GRACIA</div>
+          <p>
+            También cambia el centro emocional. Quienes murmuran concentran su
+            atención en la indignidad de los invitados; las parábolas concentran
+            la atención en la alegría de recuperar algo valioso.
+          </p>
+        </div>
+
+        <div class="conversation-turn humor-turn">
+          <div class="speaker">HISTORIADORA DEL MUNDO ANTIGUO</div>
+          <p>
+            La mujer encuentra una moneda y organiza una celebración. Es una
+            reacción deliberadamente abundante. Desde una perspectiva contable,
+            la fiesta quizá cuesta más que la moneda. La parábola no parece
+            angustiada por ese presupuesto.
+          </p>
+        </div>
+
+        <div class="conversation-turn">
+          <div class="speaker">LECTOR CRÍTICO</div>
+          <p>
+            Esa exageración cumple una función, pero no debemos suponer que
+            todas las parábolas describen de la misma manera cómo se pierde una
+            persona ni que eliminan su responsabilidad por las decisiones que
+            toma.
+          </p>
+        </div>
+
+        <div class="conversation-turn">
+          <div class="speaker">EXÉGETA DE LUCAS</div>
+          <p>
+            Correcto. La tercera historia introducirá decisiones, relaciones
+            rotas, resentimiento y una invitación que puede aceptarse o
+            rechazarse.
+          </p>
+        </div>
+
+        <div class="conversation-turn humor-turn">
+          <div class="speaker">EDUCADOR BÍBLICO</div>
+          <p>
+            Dicho de otro modo: la oveja no redacta una disculpa, la moneda no
+            puede cambiar, arrepentirse ni reparar relaciones, y el hijo sí
+            tendrá que enfrentar decisiones, culpa y muchos problemas
+            familiares. Y no todo cabe en una parábola de ocho minutos.
+          </p>
+        </div>
+
+        <div class="conversation-turn">
+          <div class="speaker">TEÓLOGA DE LA GRACIA</div>
+          <p>
+            Sin embargo, el patrón queda establecido: pérdida, búsqueda,
+            hallazgo y alegría. La tercera historia añadirá la responsabilidad
+            humana, pero mantendrá el énfasis en un amor que toma la iniciativa.
+          </p>
+        </div>
+
+        <div class="moderator-summary">
+          <span class="speaker">SÍNTESIS DEL MODERADOR</span>
+
+          <p>
+            La oveja y la moneda preparan el relato familiar al mostrar un amor
+            que busca y una alegría que se comparte. No eliminan la
+            responsabilidad humana, pero impiden leer el regreso como si Dios
+            fuera un funcionario distante que simplemente estampa la solicitud.
+          </p>
+        </div>
+      </section>
+
+      <div class="learning-question">
+        <h4>Compara</h4>
+
+        <p class="question-text">
+          ¿Qué elemento se repite en las historias de la oveja y la moneda,
+          y qué diferencia impide tratarlas como copias exactas?
+        </p>
+
+        <button
+          class="answer-toggle"
+          type="button"
+          aria-expanded="false"
+          aria-controls="respuesta-busqueda"
+        >
+          Ver respuesta
+        </button>
+
+        <div class="model-answer" id="respuesta-busqueda" hidden>
+          <p>
+            Se repiten la pérdida, la búsqueda diligente, el hallazgo y la
+            alegría compartida. Se diferencian el escenario, la figura que
+            busca y la naturaleza de lo perdido; por eso no explican toda
+            pérdida humana de una única manera.
+          </p>
+        </div>
+      </div>
+
+      <p>
+        La tercera parábola conserva la alegría, pero complica la escena. Lo
+        perdido ya no es un animal o un objeto, sino dos hijos capaces de
+        hablar, marcharse, obedecer, resentirse y responder a una invitación.
+        Aquí comienzan los asuntos familiares, y nadie ha conocido todavía una
+        familia que pueda resumirse únicamente con una tabla comparativa.
+      </p>
+    </div>
+  </details>
+
+  <!-- Unidad IV -->
+
+  <details class="study-unit" id="unidad-hijos" open>
+    <summary class="unit-summary">
+      <span class="unit-number">IV</span>
+      <span class="unit-title">
+        Dos hijos, dos maneras de perderse
+      </span>
+      <span class="unit-state" aria-hidden="true"></span>
+    </summary>
+
+    <div class="unit-content">
+      <p class="guiding-question">
+        ¿Cómo pueden estar lejos del padre tanto quien abandona la casa como
+        quien nunca se marcha?
+      </p>
+
+      <span class="provenance">Lo que sostiene el episodio</span>
+
+      <p>
+        El hijo menor pide por adelantado la parte de la propiedad que le
+        correspondería. El padre divide los bienes. El joven vende lo que
+        recibió, se lleva el dinero, viaja a un país distante y lo dilapida.
+        Cuando llega una hambruna, termina cuidando cerdos y deseando la comida
+        de los animales.
+      </p>
+
+      <p>
+        Cuando reconoce lo mal que está y comienza a pensar con claridad,
+        prepara un discurso: reconocerá su pecado y pedirá ser tratado como
+        trabajador. Sin embargo, el padre lo ve cuando todavía está lejos,
+        siente compasión, corre, lo abraza y lo besa. El padre muestra
+        públicamente que lo recibe nuevamente como hijo: ordena que le den
+        ropa, un anillo y sandalias, y organiza un banquete.
+      </p>
+
+      <div class="clarification">
+        <span class="provenance">Punto debatido</span>
+
+        <h3>¿Arrepentimiento profundo o estrategia de supervivencia?</h3>
+
+        <p>
+          La expresión “vuelve en sí” puede entenderse de varias maneras. Quizá
+          el hijo está verdaderamente arrepentido, quizá solo actúa porque tiene
+          hambre o quizá siente ambas cosas. El episodio enfatiza que el padre
+          lo recibe sin exigirle primero que demuestre durante mucho tiempo que
+          su arrepentimiento es completamente sincero.
+        </p>
+      </div>
+
+      <div class="clarification">
+        <span class="provenance">Contexto añadido con cautela</span>
+
+        <h3>Herencia, vergüenza y dignidad pública</h3>
+
+        <p>
+          Pedir la herencia y vender los bienes antes de la muerte del padre
+          representa una ruptura familiar muy grave. Algunas explicaciones lo
+          resumen como si el hijo hubiera deseado la muerte del padre. Esa frase
+          comunica la gravedad, pero sigue siendo una interpretación cultural,
+          no una cita del hijo.
+        </p>
+
+        <p>
+          También suele decirse que un patriarca respetable no habría corrido
+          en público y que el padre estuvo dispuesto a exponerse a la vergüenza
+          para llegar hasta su hijo. El texto sí dice que corrió y tomó la
+          iniciativa; sin embargo, debemos hablar con cautela al reconstruir
+          todas las costumbres sociales de aquella época.
+        </p>
+      </div>
+
+      <h3>¿Quién es realmente pródigo?</h3>
+
+      <p>
+        La palabra inglesa <em>prodigal</em>, traducida al español como
+        <em>pródigo</em>, puede referirse a alguien que gasta o da con exceso.
+        El hijo derrocha sus bienes; el padre, en sentido positivo, derrama amor
+        sin medida. David anticipa la idea y Hannah responde “sin
+        spoilers”. La conversación bíblica conserva así una regla básica de
+        toda buena serie: se puede anunciar el giro teológico, pero no antes de
+        que el público llegue al minuto correspondiente.
+      </p>
+
+      <div class="comparison" aria-label="Comparación de los dos hijos">
+        <div>
+          <h4>Hijo menor</h4>
+          <p>
+            Busca libertad mediante la distancia. Rompe la relación, consume
+            los bienes y regresa sin poder reclamar méritos.
+          </p>
+        </div>
+
+        <div>
+          <h4>Hijo mayor</h4>
+          <p>
+            Permanece físicamente cerca, pero cree que ha trabajado como un
+            sirviente sin recibir la recompensa que merece y se niega a
+            compartir la alegría.
+          </p>
+        </div>
+
+        <div>
+          <h4>Forma de extravío</h4>
+          <p>
+            Rebelión visible, distancia, ruina y vergüenza.
+          </p>
+        </div>
+
+        <div>
+          <h4>Forma de extravío</h4>
+          <p>
+            Resentimiento, superioridad moral y una relación basada en la idea:
+            “yo obedezco y tú me recompensas”.
+          </p>
+        </div>
+      </div>
+
+      <section
+        class="expert-conversation"
+        data-component="expert-conversation"
+      >
+        <p class="conversation-kicker">Mesa editorial IV</p>
+
+        <h3>
+          ¿La bienvenida del padre ignora la responsabilidad?
+        </h3>
+
+        <div class="conversation-turn">
+          <div class="speaker">MODERADOR</div>
+          <p>
+            Una objeción frecuente afirma que el padre recompensa una conducta
+            destructiva. ¿La parábola presenta una gracia irresponsable?
+          </p>
+        </div>
+
+        <div class="conversation-turn">
+          <div class="speaker">LECTOR CRÍTICO</div>
+          <p>
+            La objeción merece atención. El hijo ha causado daño y el relato no
+            describe reparación económica, reconstrucción de confianza ni
+            todas las consecuencias domésticas posteriores.
+          </p>
+        </div>
+
+        <div class="conversation-turn humor-turn">
+          <div class="speaker">EDUCADOR BÍBLICO</div>
+          <p>
+            Tampoco presenta un formulario de reincorporación de doce páginas.
+            La túnica aparece antes que el currículum y el ternero no solicita
+            tres referencias.
+          </p>
+        </div>
+
+        <div class="conversation-turn">
+          <div class="speaker">EXÉGETA DE LUCAS</div>
+          <p>
+            Porque la parábola no pretende explicar paso a paso cómo resolver
+            un conflicto familiar. Su foco inmediato es la protesta por recibir
+            y comer con personas consideradas pecadoras. La fiesta responde a
+            esa protesta.
+          </p>
+        </div>
+
+        <div class="conversation-turn humor-turn">
+          <div class="speaker">MODERADOR</div>
+          <p>
+            El episodio señala además que el padre lo abraza antes de pedirle
+            que se bañe, a pesar de que viene de trabajar con cerdos. La gracia
+            se muestra hospitalaria, aunque probablemente después alguien abrió
+            discretamente una ventana.
+          </p>
+        </div>
+
+        <div class="conversation-turn">
+          <div class="speaker">TEÓLOGA DE LA GRACIA</div>
+          <p>
+            La observación es graciosa porque comunica algo serio: el padre no
+            exige que el hijo se vuelva presentable antes de restaurar la
+            relación. El abrazo antecede a la demostración de respetabilidad.
+          </p>
+        </div>
+
+        <div class="conversation-turn">
+          <div class="speaker">HISTORIADORA DEL MUNDO ANTIGUO</div>
+          <p>
+            Además, el padre hace pública la restauración de su hijo. No es una
+            recepción secreta junto al cobertizo: permite que toda la casa
+            participe en la celebración.
+          </p>
+        </div>
+
+        <div class="conversation-turn humor-turn">
+          <div class="speaker">EDUCADOR BÍBLICO</div>
+          <p>
+            Eso explica por qué el hijo mayor escucha música antes de recibir
+            una explicación. La familia ha organizado el evento con el mismo
+            método de muchos grupos de mensajería: primero aparece la foto de la
+            fiesta y después alguien pregunta quién había sido invitado.
+          </p>
+        </div>
+
+        <div class="conversation-turn">
+          <div class="speaker">MODERADOR</div>
+          <p>
+            ¿Qué añade entonces la expresión “padre pródigo”?
+          </p>
+        </div>
+
+        <div class="conversation-turn">
+          <div class="speaker">TEÓLOGA DE LA GRACIA</div>
+          <p>
+            Permite ver una extravagancia diferente. El hijo derrocha bienes;
+            el padre desborda compasión. No son moralmente equivalentes, pero
+            el juego verbal desplaza la atención hacia la abundancia del amor.
+          </p>
+        </div>
+
+        <div class="conversation-turn humor-turn">
+          <div class="speaker">EXÉGETA DE LUCAS</div>
+          <p>
+            Y justo cuando creemos que la historia terminó con abrazo, música
+            y ternero, la cámara gira hacia el hermano mayor. Jesús conoce muy
+            bien el arte del “sin spoilers”: guarda el conflicto más incómodo
+            para la última escena.
+          </p>
+        </div>
+
+        <div class="moderator-summary">
+          <span class="speaker">SÍNTESIS DEL MODERADOR</span>
+
+          <p>
+            La parábola no elimina la responsabilidad ni responde cada pregunta
+            sobre reparación. Su énfasis es que la restauración comienza con la
+            iniciativa compasiva del padre. Esa misma iniciativa se dirigirá
+            ahora al hijo que parece obediente, pero no puede celebrar.
+          </p>
+        </div>
+      </section>
+
+      <div class="learning-question">
+        <h4>Corrige un malentendido</h4>
+
+        <p class="question-text">
+          ¿Por qué el título “parábola de los dos hijos perdidos” puede ser más
+          útil que “parábola del hijo pródigo”?
+        </p>
+
+        <button
+          class="answer-toggle"
+          type="button"
+          aria-expanded="false"
+          aria-controls="respuesta-hijos"
+        >
+          Ver respuesta
+        </button>
+
+        <div class="model-answer" id="respuesta-hijos" hidden>
+          <p>
+            Porque la segunda mitad revela que el hijo mayor también está
+            separado del padre. Permanece en la propiedad, pero se relaciona
+            desde el resentimiento, la comparación y el cálculo.
+          </p>
+        </div>
+      </div>
+
+      <p>
+        La recuperación del hijo menor no es el cierre. La narración queda
+        suspendida frente a un hijo mayor que debe decidir si la gracia del
+        padre le parece motivo de alegría o una injusticia intolerable.
+      </p>
+    </div>
+  </details>
+
+  <!-- Unidad V -->
+
+  <details class="study-unit" id="unidad-fiesta" open>
+    <summary class="unit-summary">
+      <span class="unit-number">V</span>
+      <span class="unit-title">
+        La puerta, la fiesta y el hermano gruñón
+      </span>
+      <span class="unit-state" aria-hidden="true"></span>
+    </summary>
+
+    <div class="unit-content">
+      <p class="guiding-question">
+        ¿Entrará el hijo mayor en la fiesta, y qué exige esa pregunta a quienes
+        se consideran fieles?
+      </p>
+
+      <span class="provenance">Lo que sostiene el episodio</span>
+
+      <p>
+        Al acercarse a la casa, el hijo mayor oye música y baile. Cuando conoce
+        la razón de la fiesta, se enoja y se niega a entrar. El padre vuelve a
+        salir, esta vez para rogarle. El hijo responde con el lenguaje de un
+        trabajador agraviado: ha servido durante años, nunca ha desobedecido y
+        no ha recibido una celebración comparable.
+      </p>
+
+      <p>
+        También se distancia de su hermano: no dice “mi hermano”, sino “ese
+        hijo tuyo”. Acusa al menor de haber consumido los bienes de la familia,
+        añade detalles que la historia no había mencionado y supone lo peor de
+        su hermano. Cuando estamos resentidos, solemos llenar lo que no sabemos
+        con suposiciones negativas.
+      </p>
+
+      <p>
+        El padre lo llama hijo, le recuerda que siempre está con él y que todo
+        lo restante le pertenece. Sin embargo, insiste en que celebrar era
+        necesario: su hermano estaba muerto y ha vuelto a vivir; estaba perdido
+        y ha sido hallado.
+      </p>
+
+      <div class="key-idea">
+        <span class="provenance">Idea clave</span>
+
+        <p>
+          La parábola termina sin informar si el hijo mayor entra. El silencio
+          convierte a los oyentes —incluidos quienes murmuraban contra Jesús—
+          en participantes de la decisión.
+        </p>
+      </div>
+
+      <h3>La espiritualidad malhumorada</h3>
+
+      <p>
+        El episodio aplica la escena a quienes han permanecido mucho tiempo
+        dentro de una comunidad religiosa. La cercanía, el servicio y la
+        obediencia pueden volverse dañinos cuando se utilizan para llevar una
+        cuenta de todo lo que Dios supuestamente nos debe. Entonces, la
+        restauración de otra persona parece reducir el valor de la propia
+        fidelidad.
+      </p>
+
+      <p>
+        David reconoce la facilidad con que los líderes y creyentes de larga
+        trayectoria pueden volverse protectores, rígidos y “gruñones”. La
+        palabra del podcast no se utiliza para burlarse de la edad, sino para
+        describir un corazón concentrado en sus propios derechos, que ha dejado
+        de sentir compasión por quienes están fuera. Uno puede tener muchos años
+        de servicio y, sin darse cuenta, comenzar a tratar la gracia como una
+        membresía con beneficios acumulados.
+      </p>
+
+      <section
+        class="expert-conversation"
+        data-component="expert-conversation"
+      >
+        <p class="conversation-kicker">Mesa editorial integradora</p>
+
+        <h3>
+          ¿Cómo se unen la mesa, la búsqueda y los dos hijos?
+        </h3>
+
+        <div class="conversation-turn">
+          <div class="speaker">MODERADOR</div>
+          <p>
+            Llegamos al final sin saber si el hijo mayor entra. ¿Qué reúne ese
+            final de todo lo estudiado?
+          </p>
+        </div>
+
+        <div class="conversation-turn">
+          <div class="speaker">EXÉGETA DE LUCAS</div>
+          <p>
+            Reúne el conflicto inicial de Lucas 15. Jesús recibe y come con
+            personas desacreditadas; algunos dirigentes murmuran. La fiesta
+            del padre reproduce esa mesa, y el hijo mayor representa la
+            dificultad de aceptar su lista de invitados.
+          </p>
+        </div>
+
+        <div class="conversation-turn humor-turn">
+          <div class="speaker">EDUCADOR BÍBLICO</div>
+          <p>
+            El hijo mayor ha marcado “no asistiré” en la invitación, aunque vive
+            junto al salón. Es posible estar a pocos metros de la música y a
+            varios kilómetros de la alegría.
+          </p>
+        </div>
+
+        <div class="conversation-turn">
+          <div class="speaker">TEÓLOGA DE LA GRACIA</div>
+          <p>
+            También se conecta con Lucas 14. Allí Jesús pedía invitar sin
+            esperar devolución. Aquí el padre celebra a quien no puede devolver
+            la herencia. La hospitalidad deja de ser un premio reservado para
+            quien ha demostrado suficientes méritos.
+          </p>
+        </div>
+
+        <div class="conversation-turn humor-turn">
+          <div class="speaker">MODERADOR</div>
+          <p>
+            Parece que el hijo mayor encontró la calculadora que Jesús había
+            retirado de la mesa. Lleva años registrando cada acto de obediencia
+            y ahora presenta la factura durante la fiesta.
+          </p>
+        </div>
+
+        <div class="conversation-turn">
+          <div class="speaker">LECTOR CRÍTICO</div>
+          <p>
+            Su dolor no debe ridiculizarse. Ha permanecido, trabajado y visto
+            cómo se reducía la propiedad familiar. La parábola no exige negar
+            esos hechos; cuestiona la conclusión de que el hermano ya no merece
+            ser llamado hermano.
+          </p>
+        </div>
+
+        <div class="conversation-turn humor-turn">
+          <div class="speaker">HISTORIADORA DEL MUNDO ANTIGUO</div>
+          <p>
+            El padre, mientras tanto, sale por segunda vez. Corre hacia el menor
+            y ruega al mayor. Es el único personaje de la historia que parece
+            cumplir su meta diaria de pasos por razones enteramente compasivas.
+          </p>
+        </div>
+
+        <div class="conversation-turn">
+          <div class="speaker">TEÓLOGA DE LA GRACIA</div>
+          <p>
+            Esa doble salida es esencial. La iniciativa del padre cruza tanto
+            la distancia geográfica como la frontera del resentimiento. No busca
+            solamente al rebelde evidente; también busca al obediente incapaz de
+            amar.
+          </p>
+        </div>
+
+        <div class="conversation-turn humor-turn">
+          <div class="speaker">EDUCADOR BÍBLICO</div>
+          <p>
+            A veces la iglesia utiliza la parábola para localizar al hijo menor
+            en algún país lejano y no nota al hermano mayor sentado en la junta,
+            con una carpeta perfectamente ordenada y una queja preparada.
+          </p>
+        </div>
+
+        <div class="conversation-turn">
+          <div class="speaker">MODERADOR</div>
+          <p>
+            ¿No resulta injusto pedirle que celebre antes de que se resuelvan
+            todas sus preguntas?
+          </p>
+        </div>
+
+        <div class="conversation-turn">
+          <div class="speaker">LECTOR CRÍTICO</div>
+          <p>
+            La parábola no responde todas las preguntas sobre cómo reparar el
+            daño, asumir las consecuencias y reconstruir las relaciones. Su
+            punto inmediato es que restaurar a una persona no le quita valor ni
+            dignidad a otra.
+          </p>
+        </div>
+
+        <div class="conversation-turn humor-turn">
+          <div class="speaker">TEÓLOGA DE LA GRACIA</div>
+          <p>
+            La gracia no siempre coincide con nuestra idea de lo que es justo,
+            pero tampoco ignora el daño ni la verdad. Nombra la pérdida, el daño
+            y la muerte simbólica; después insiste en que la vida recuperada
+            merece alegría.
+          </p>
+        </div>
+
+        <div class="conversation-turn">
+          <div class="speaker">EXÉGETA DE LUCAS</div>
+          <p>
+            El final abierto evita que observemos al hermano mayor desde una
+            silla segura. La pregunta pasa a nosotros: cuando la gracia beneficia
+            a alguien cuya historia nos incomoda, ¿entramos o permanecemos fuera?
+          </p>
+        </div>
+
+        <div class="conversation-turn humor-turn">
+          <div class="speaker">EDUCADOR BÍBLICO</div>
+          <p>
+            Y la pregunta final del episodio funciona como una pequeña trampa:
+            “¿Ama Dios más al perdido que al justo?”. La respuesta es que nadie
+            debería apresurarse a colocarse en la categoría de “los justos”. El
+            hermano mayor parecía pertenecer a ella… hasta que comenzó la
+            fiesta.
+          </p>
+        </div>
+
+        <div class="moderator-summary">
+          <span class="speaker">SÍNTESIS DEL MODERADOR</span>
+
+          <p>
+            La mesa, la curación, los lugares de honor y las historias de lo
+            perdido convergen en una misma invitación: recibir la compasión de
+            Dios y participar en ella. La gracia sale hacia ambos hijos. El
+            relato no fuerza una respuesta; deja abierta la puerta y permite
+            que cada oyente decida si entrará o seguirá revisando su hoja de
+            méritos en el porche.
+          </p>
+        </div>
+      </section>
+
+      <h3>Aplicaciones según su origen</h3>
+
+      <ul class="application-list">
+        <li>
+          <strong>Aplicación explícita del podcast</strong>
+          Recuperar la práctica de sentarse frente a frente con personas
+          diferentes, porque la conexión personal puede cambiar la manera en
+          que tratamos los desacuerdos.
+        </li>
+
+        <li>
+          <strong>Aplicación explícita del podcast</strong>
+          Examinar si una comunidad religiosa está facilitando el acceso a Dios
+          o levantando barreras para proteger prestigio, comodidad o control.
+        </li>
+
+        <li>
+          <strong>Inferencia de la adaptación</strong>
+          Revisar las listas de invitados, los lugares de honor y las relaciones
+          donde la generosidad depende casi siempre de recibir algo equivalente.
+        </li>
+
+        <li>
+          <strong>Aplicación propuesta por el panel</strong>
+          Identificar una situación donde la restauración de otra persona
+          despierta comparación o resentimiento, y distinguir entre una
+          preocupación legítima por el daño y una resistencia a la gracia.
+        </li>
+
+        <li>
+          <strong>Aplicación propuesta por el panel</strong>
+          Pasar de preguntar únicamente “¿cuál de los hijos soy?” a preguntar
+          “¿cómo puedo practicar una acogida responsable, compasiva y no
+          humillante?”.
+        </li>
+      </ul>
+
+      <h3>Preguntas para reflexión personal o grupal</h3>
+
+      <div class="learning-question">
+        <h4>Reflexión abierta</h4>
+
+        <p class="question-text">
+          ¿Quiénes suelen quedar fuera de nuestras mesas reales o simbólicas,
+          y qué razones utilizamos para mantenerlos allí?
+        </p>
+      </div>
+
+      <div class="learning-question">
+        <h4>Reflexión abierta</h4>
+
+        <p class="question-text">
+          ¿En qué situaciones tu sentido de justicia se parece a la protesta
+          del hermano mayor? ¿Qué parte de esa protesta es legítima y qué parte
+          podría esconder una comparación resentida?
+        </p>
+      </div>
+
+      <div class="learning-question">
+        <h4>Repaso acumulativo</h4>
+
+        <p class="question-text">
+          ¿Cuál es el hilo que conecta la curación en sábado, el lugar más bajo,
+          la invitación a quienes no pueden corresponder y la fiesta por el hijo?
+        </p>
+
+        <button
+          class="answer-toggle"
+          type="button"
+          aria-expanded="false"
+          aria-controls="respuesta-final-uno"
+        >
+          Ver respuesta
+        </button>
+
+        <div class="model-answer" id="respuesta-final-uno" hidden>
+          <p>
+            Todas las escenas cuestionan sistemas de mérito, rango o control
+            que dejan personas fuera. Jesús coloca la compasión, la humildad,
+            la acogida y la alegría de la restauración en el centro.
+          </p>
+        </div>
+      </div>
+
+      <div class="learning-question">
+        <h4>Repaso acumulativo</h4>
+
+        <p class="question-text">
+          ¿De qué maneras distintas están perdidos el hijo menor y el mayor?
+        </p>
+
+        <button
+          class="answer-toggle"
+          type="button"
+          aria-expanded="false"
+          aria-controls="respuesta-final-dos"
+        >
+          Ver respuesta
+        </button>
+
+        <div class="model-answer" id="respuesta-final-dos" hidden>
+          <p>
+            El menor se pierde mediante ruptura y distancia; el mayor, mediante
+            resentimiento, superioridad y una relación entendida como contrato.
+            Ambos necesitan que el padre salga hacia ellos.
+          </p>
+        </div>
+      </div>
+
+      <h3>Glosario breve</h3>
+
+      <dl class="glossary">
+        <div>
+          <dt>Edema</dt>
+          <dd>
+            Hinchazón ocasionada por acumulación de líquido en los tejidos.
+            <em>Dropsy</em> es una denominación antigua relacionada.
+          </dd>
+        </div>
+
+        <div>
+          <dt>Hospitalidad no transaccional</dt>
+          <dd>
+            Acogida que no depende de recibir prestigio, devolución o una
+            ventaja equivalente.
+          </dd>
+        </div>
+
+        <div>
+          <dt>Pródigo</dt>
+          <dd>
+            Término asociado con despilfarro, extravagancia o abundancia. El
+            episodio lo aplica al hijo que derrocha y, metafóricamente, al amor
+            abundante del padre.
+          </dd>
+        </div>
+
+        <div>
+          <dt>Humor blanco pedagógico</dt>
+          <dd>
+            Humor ligero que vuelve memorable una idea sin burlarse del dolor,
+            de la enfermedad, de la pobreza ni de una persona vulnerable.
+          </dd>
+        </div>
+
+        <div>
+          <dt>Procedencia</dt>
+          <dd>
+            Identificación del origen de una afirmación: podcast, inferencia,
+            contexto añadido, punto debatido o limitación.
+          </dd>
+        </div>
+      </dl>
+
+      <h3>Procedencia y limitaciones</h3>
+
+      <div class="clarification">
+        <span class="provenance">Limitación de la fuente</span>
+
+        <p>
+          El archivo recibido lleva “Episode 64” en el nombre, mientras la
+          introducción de la transcripción identifica el programa como episodio
+          65. Esta experiencia adopta la identificación expresada dentro del
+          episodio y conserva la discrepancia como limitación.
+        </p>
+
+        <p>
+          La transcripción contiene tropiezos verbales, posibles errores de
+          reconocimiento automático y cambios de hablante poco marcados. Por
+          eso el contenido se presenta principalmente mediante paráfrasis
+          claras y no como una colección de citas literales.
+        </p>
+      </div>
+
+      <div class="clarification">
+        <span class="provenance">Transparencia sobre el humor</span>
+
+        <p>
+          Algunas bromas proceden de la conversación original, como la pregunta
+          sobre Jesús como <em>foodie</em>, el “doctor del alma”, la confusión
+          momentánea entre David y Jesús y la advertencia “sin spoilers”.
+        </p>
+
+        <p>
+          Otras réplicas humorísticas fueron creadas para el panel educativo,
+          como la calculadora en el comedor, la humildad con publicista, el
+          formulario de reincorporación y la hoja de méritos en el porche. Esas
+          frases no se atribuyen a los anfitriones ni a especialistas reales.
+          Su forma es nueva, pero las ideas que explican proceden del episodio.
+        </p>
+      </div>
+
+      <h3>Fuentes y base documental</h3>
+
+      <ol class="sources">
+        <li>
+          <strong>Transcripción principal:</strong>
+          <em>Episode 64 - Luke - The Journey to Jerusalem II</em>.
+          <span class="source-note">
+            Base para reconstruir los temas, argumentos, ejemplos y momentos de
+            humor del episodio.
+          </span>
+        </li>
+
+        <li>
+          <strong>Textos bíblicos discutidos:</strong>
+          Lucas 14:1–24 y Lucas 15.
+          <span class="source-note">
+            Base narrativa para la comida del sábado, los lugares de honor, la
+            hospitalidad, la oveja, la moneda y los dos hijos.
+          </span>
+        </li>
+
+        <li>
+          <strong>Autores mencionados en el episodio:</strong>
+          Timothy Keller, Henri Nouwen, Richard Foster y Ronald Rolheiser.
+          <span class="source-note">
+            Se conservan como referencias mencionadas por los participantes;
+            las frases del panel no se presentan como citas de estos autores.
+          </span>
+        </li>
+      </ol>
+
+      <p class="closing-line">
+        La gracia del relato no solo recibe a quien regresa desde lejos.
+        También sale al encuentro de quien permanece junto a la casa, pero aún
+        no ha aprendido a celebrar. Y, por fortuna, la puerta sigue abierta
+        aunque alguien haya escondido la calculadora.
+      </p>
+    </div>
+  </details>
+</div>
+</main> <script> (() => { "use strict"; const mobileQuery = window.matchMedia("(max-width: 899px)"); const reducedMotion = window.matchMedia( "(prefers-reduced-motion: reduce)" ); const sidebar = document.getElementById("sidebar"); const menuButton = document.getElementById("mobile-menu-button"); const closeButton = document.getElementById("sidebar-close"); const overlay = document.getElementById("mobile-overlay"); const openAllButton = document.getElementById("open-all"); const closeAllButton = document.getElementById("close-all"); const detailsElements = Array.from( document.querySelectorAll(".study-unit") ); const sectionLinks = Array.from( document.querySelectorAll("[data-section-link]") ); let menuIsOpen = false; function setActiveLink(sectionId) { sectionLinks.forEach((link) => { if (link.dataset.sectionLink === sectionId) { link.setAttribute("aria-current", "location"); } else { link.removeAttribute("aria-current"); } }); } function openMenu() { if (!mobileQuery.matches || menuIsOpen) { return; } menuIsOpen = true; sidebar.classList.add("is-open"); sidebar.setAttribute("aria-hidden", "false"); menuButton.setAttribute("aria-expanded", "true"); overlay.hidden = false; document.body.classList.add("menu-abierto"); closeButton.focus(); } function closeMenu(returnFocus = true) { if (!menuIsOpen) { return; } menuIsOpen = false; sidebar.classList.remove("is-open"); sidebar.setAttribute("aria-hidden", "true"); menuButton.setAttribute("aria-expanded", "false"); overlay.hidden = true; document.body.classList.remove("menu-abierto"); if (returnFocus) { menuButton.focus(); } } function syncMenuMode() { if (mobileQuery.matches) { if (!menuIsOpen) { sidebar.setAttribute("aria-hidden", "true"); } } else { menuIsOpen = false; sidebar.classList.remove("is-open"); sidebar.setAttribute("aria-hidden", "false"); overlay.hidden = true; menuButton.setAttribute("aria-expanded", "false"); document.body.classList.remove("menu-abierto"); } } function revealSection(sectionId) { const section = document.getElementById(sectionId); if (!section) { return; } section.open = true; requestAnimationFrame(() => { section.scrollIntoView({ behavior: reducedMotion.matches ? "auto" : "smooth", block: "start" }); }); setActiveLink(sectionId); history.replaceState(null, "", `#${sectionId}`); } menuButton.addEventListener("click", openMenu); closeButton.addEventListener("click", () => closeMenu(true)); overlay.addEventListener("click", () => closeMenu(true)); document.addEventListener("keydown", (event) => { if (event.key === "Escape" && menuIsOpen) { closeMenu(true); } }); sectionLinks.forEach((link) => { link.addEventListener("click", (event) => { event.preventDefault(); const sectionId = link.dataset.sectionLink; if (mobileQuery.matches && menuIsOpen) { closeMenu(false); } revealSection(sectionId); }); }); openAllButton.addEventListener("click", () => { detailsElements.forEach((element) => { element.open = true; }); }); closeAllButton.addEventListener("click", () => { detailsElements.forEach((element) => { element.open = false; }); }); document.querySelectorAll(".answer-toggle").forEach((button) => { const answer = document.getElementById( button.getAttribute("aria-controls") ); if (!answer) { return; } button.addEventListener("click", () => { const expanded = button.getAttribute("aria-expanded") === "true"; button.setAttribute("aria-expanded", String(!expanded)); button.textContent = expanded ? "Ver respuesta" : "Ocultar respuesta"; answer.hidden = expanded; }); }); if ("IntersectionObserver" in window) { const observer = new IntersectionObserver( (entries) => { const visibleEntries = entries .filter((entry) => entry.isIntersecting) .sort( (first, second) => second.intersectionRatio - first.intersectionRatio ); if (visibleEntries[0]) { setActiveLink(visibleEntries[0].target.id); } }, { rootMargin: "-20% 0px -65% 0px", threshold: [0, 0.15, 0.35, 0.6] } ); detailsElements.forEach((element) => observer.observe(element)); } const initialId = decodeURIComponent( window.location.hash.replace("#", "") ); if (initialId && document.getElementById(initialId)) { document.getElementById(initialId).open = true; setActiveLink(initialId); } if (typeof mobileQuery.addEventListener === "function") { mobileQuery.addEventListener("change", syncMenuMode); } else { mobileQuery.addListener(syncMenuMode); } syncMenuMode(); })(); </script> </body> </html>
