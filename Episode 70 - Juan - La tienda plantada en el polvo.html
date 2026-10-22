@@ -1,0 +1,452 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>La tienda plantada en el polvo</title>
+<meta name="description" content="Thread-Learning-Notes · Juan 1: un Dios que planta su tienda entre nosotros y pregunta «¿Qué buscan?»">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..800;1,9..144,300..700&family=Spectral:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+:root{
+  --pergamino:#f4ecdc; --pergamino-2:#ebe0c9; --papel:#fbf7ee;
+  --tinta:#2b2118; --tinta-suave:#5b4a3a; --linea:#d8c8a8;
+  --terracota:#b4532a; --oliva:#6b7a3a; --ciruela:#7a3e63; --acero:#4a6278; --ambar:#c08a2b;
+  --sombra:0 1px 2px rgba(60,40,20,.08),0 6px 18px rgba(60,40,20,.06);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --pergamino:#1d1813; --pergamino-2:#261f18; --papel:#231c16;
+    --tinta:#efe4cf; --tinta-suave:#c2b196; --linea:#3d3226;
+    --terracota:#e07a4c; --oliva:#a5b56a; --ciruela:#c98ab1; --acero:#8fb0cc; --ambar:#e2b25a;
+    --sombra:0 1px 2px rgba(0,0,0,.3),0 6px 18px rgba(0,0,0,.25);
+  }
+}
+:root[data-theme="dark"]{
+  --pergamino:#1d1813; --pergamino-2:#261f18; --papel:#231c16;
+  --tinta:#efe4cf; --tinta-suave:#c2b196; --linea:#3d3226;
+  --terracota:#e07a4c; --oliva:#a5b56a; --ciruela:#c98ab1; --acero:#8fb0cc; --ambar:#e2b25a;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:24px}
+body{margin:0;background:var(--pergamino);color:var(--tinta);font-family:"Spectral",Georgia,serif;font-size:1.08rem;line-height:1.72}
+a{color:var(--terracota)}
+h1,h2,h3,.fr{font-family:"Fraunces",Georgia,serif}
+
+/* Barra lateral */
+.lateral{position:fixed;top:0;left:0;bottom:0;width:84px;background:var(--pergamino-2);border-right:1px solid var(--linea);display:flex;flex-direction:column;align-items:center;padding:18px 0;gap:6px;z-index:10}
+.volver{font-family:"Fraunces",serif;background:none;border:1px solid var(--linea);color:var(--tinta-suave);border-radius:999px;width:44px;height:44px;cursor:pointer;font-size:1.1rem;margin-bottom:14px}
+.volver:hover{color:var(--terracota);border-color:var(--terracota)}
+.lateral nav{display:flex;flex-direction:column;gap:4px;align-items:center;overflow-y:auto}
+.lateral nav a{font-family:"Fraunces",serif;text-decoration:none;color:var(--tinta-suave);font-size:.95rem;width:52px;padding:6px 0;text-align:center;border-radius:8px;transition:all .2s}
+.lateral nav a:hover{color:var(--tinta);background:var(--papel)}
+.lateral nav a.activo{color:var(--papel);background:var(--terracota);font-weight:600}
+.lateral nav a.extra{font-size:.75rem;letter-spacing:.04em}
+
+main{margin-left:84px;padding:0 20px 80px}
+.columna{max-width:760px;margin:0 auto}
+
+/* Portada */
+.portada{padding:72px 0 40px;border-bottom:1px solid var(--linea)}
+.serie{font-family:"Fraunces",serif;letter-spacing:.18em;text-transform:uppercase;font-size:.78rem;color:var(--terracota)}
+.portada h1{font-size:clamp(2.3rem,6vw,3.6rem);line-height:1.05;margin:.3em 0 .25em;font-weight:500;font-variation-settings:"opsz" 144}
+.portada .sub{font-size:1.25rem;font-style:italic;color:var(--tinta-suave);margin:0 0 1.4em}
+.ficha{display:grid;grid-template-columns:auto 1fr;gap:6px 18px;font-size:.98rem;background:var(--papel);border:1px solid var(--linea);border-radius:12px;padding:16px 20px;box-shadow:var(--sombra)}
+.ficha dt{font-family:"Fraunces",serif;color:var(--tinta-suave);font-size:.85rem;text-transform:uppercase;letter-spacing:.08em;padding-top:3px}
+.ficha dd{margin:0}
+.tesis{margin:28px 0 0;padding:18px 22px;border-left:4px solid var(--terracota);font-family:"Fraunces",serif;font-size:1.22rem;line-height:1.45;font-style:italic}
+
+/* Panel */
+.voces{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:12px;margin:24px 0}
+.voz{background:var(--papel);border:1px solid var(--linea);border-top:4px solid var(--c);border-radius:10px;padding:12px 14px;font-size:.93rem;line-height:1.5}
+.voz b{display:block;font-family:"Fraunces",serif;color:var(--c);font-size:1rem;margin-bottom:2px}
+.exe{--c:var(--terracota)} .his{--c:var(--oliva)} .psi{--c:var(--ciruela)} .esc{--c:var(--acero)}
+
+/* Secciones */
+section.parte{padding:56px 0 8px;border-bottom:1px solid var(--linea)}
+.num{font-family:"Fraunces",serif;color:var(--terracota);font-size:1rem;letter-spacing:.12em}
+section.parte h2{font-size:clamp(1.7rem,4vw,2.3rem);line-height:1.15;margin:.15em 0 .6em;font-weight:500}
+blockquote.cita{margin:1.4em 0;padding:4px 0 4px 20px;border-left:2px solid var(--ambar);font-family:"Fraunces",serif;font-style:italic;font-size:1.15rem;color:var(--tinta)}
+blockquote.cita small{display:block;font-family:"Spectral",serif;font-style:normal;font-size:.82rem;color:var(--tinta-suave);margin-top:4px}
+.amp{font-size:.72rem;font-family:"Fraunces",serif;letter-spacing:.06em;text-transform:uppercase;color:var(--ambar);border:1px solid var(--ambar);border-radius:4px;padding:0 5px;margin-left:4px;white-space:nowrap;vertical-align:2px}
+.ver{font-size:.72rem;font-family:"Fraunces",serif;letter-spacing:.04em;color:var(--acero);border:1px dashed var(--acero);border-radius:4px;padding:0 5px;margin-left:6px;white-space:nowrap}
+
+/* Persianas */
+details.persiana{background:var(--papel);border:1px solid var(--linea);border-radius:12px;margin:16px 0;box-shadow:var(--sombra);overflow:hidden}
+details.persiana>summary{cursor:pointer;list-style:none;padding:14px 18px;font-family:"Fraunces",serif;font-size:1.05rem;display:flex;justify-content:space-between;align-items:center;gap:12px}
+details.persiana>summary::-webkit-details-marker{display:none}
+details.persiana>summary::after{content:"+";font-size:1.4rem;color:var(--terracota);transition:transform .25s}
+details.persiana[open]>summary::after{transform:rotate(45deg)}
+details.persiana>summary:hover{background:var(--pergamino-2)}
+.dentro{padding:4px 20px 18px}
+ul.versos{list-style:none;padding:0;margin:0}
+ul.versos li{padding:8px 0;border-bottom:1px dotted var(--linea)}
+ul.versos li:last-child{border:0}
+ul.versos .ref{font-family:"Fraunces",serif;font-weight:600}
+ul.versos .tema{color:var(--tinta-suave);font-style:italic}
+.dialogo p{margin:0;padding:12px 0 12px 16px;border-left:3px solid var(--c);margin-bottom:10px}
+.dialogo p b{font-family:"Fraunces",serif;color:var(--c)}
+.fuentes{font-size:.92rem;color:var(--tinta-suave);margin:14px 0 0}
+.fuentes b{font-family:"Fraunces",serif;color:var(--tinta)}
+
+/* Glosario */
+table.glosario{width:100%;border-collapse:collapse;font-size:.95rem}
+table.glosario th{text-align:left;font-family:"Fraunces",serif;font-weight:500;color:var(--tinta-suave);border-bottom:2px solid var(--linea);padding:8px 6px;font-size:.82rem;text-transform:uppercase;letter-spacing:.06em}
+table.glosario td{border-bottom:1px solid var(--linea);padding:10px 6px;vertical-align:top}
+table.glosario .gr{font-size:1.1rem}
+.tabla-scroll{overflow-x:auto}
+
+ol.preguntas{padding-left:1.3em}
+ol.preguntas li{margin:.6em 0;font-family:"Fraunces",serif;font-size:1.12rem;line-height:1.45}
+
+/* Persiana-semilla */
+.semilla{border-color:var(--oliva)}
+.semilla>summary{color:var(--oliva)}
+.dias{list-style:none;padding:0;margin:0;counter-reset:d}
+.dias li{display:grid;grid-template-columns:72px 1fr;gap:12px;padding:12px 0;border-bottom:1px dotted var(--linea)}
+.dias li:last-child{border:0}
+.dias .dia{font-family:"Fraunces",serif;color:var(--oliva);font-weight:600}
+.notas li{margin:.45em 0;font-size:.95rem}
+.notas h4{font-family:"Fraunces",serif;margin:1.2em 0 .3em;font-weight:500}
+
+footer{max-width:760px;margin:40px auto 0;font-size:.88rem;color:var(--tinta-suave);text-align:center;line-height:1.6}
+
+@media (max-width:760px){
+  .lateral{top:auto;bottom:0;right:0;width:auto;height:58px;flex-direction:row;padding:0 8px;border-right:0;border-top:1px solid var(--linea)}
+  .volver{margin:0 6px 0 0;width:40px;height:40px;flex:none}
+  .lateral nav{flex-direction:row;overflow-x:auto;overflow-y:hidden}
+  .lateral nav a{width:auto;padding:6px 10px;flex:none}
+  main{margin-left:0;padding:0 16px 90px}
+  .portada{padding-top:40px}
+  .ficha{grid-template-columns:1fr;gap:2px}
+  .ficha dd{margin-bottom:8px}
+  .dias li{grid-template-columns:1fr;gap:2px}
+}
+</style>
+</head>
+<body>
+
+<aside class="lateral" aria-label="Navegación">
+  <button class="volver" onclick="history.back()" title="Volver" aria-label="Volver">←</button>
+  <nav id="indice">
+    <a href="#i">I</a><a href="#ii">II</a><a href="#iii">III</a><a href="#iv">IV</a>
+    <a href="#v">V</a><a href="#vi">VI</a><a href="#vii">VII</a><a href="#viii">VIII</a>
+    <a href="#claves" class="extra">Claves</a><a href="#semilla" class="extra">Semilla</a>
+  </nav>
+</aside>
+
+<main>
+<div class="columna">
+
+<header class="portada">
+  <div class="serie">Thread-Learning-Notes · Juan</div>
+  <h1>La tienda plantada en el polvo</h1>
+  <p class="sub">Juan 1 como obertura de un evangelio escrito para gente que perdió su templo y necesita saber dónde vive Dios ahora.</p>
+  <dl class="ficha">
+    <dt>Pasaje</dt><dd>Juan 1:1–51 (énfasis en 1:1–14 y 1:35–39)</dd>
+    <dt>Fuente</dt><dd>Thread Podcast, episodio 70, «John – In the Beginning»</dd>
+    <dt>Traducción</dt><dd>DHH (Dios Habla Hoy)</dd>
+  </dl>
+  <p class="tesis">Juan abre su evangelio no con una genealogía ni con una misión, sino con un Dios que planta su tienda entre nosotros y pregunta «¿Qué buscan?», porque lo que quiere es relación, presencia y permanencia.</p>
+
+  <div class="voces" aria-label="Voces del panel">
+    <div class="voz exe"><b>El Exégeta</b>Lee el griego y las conexiones con el Antiguo Testamento: tabernáculo, Génesis, fiestas.</div>
+    <div class="voz his"><b>La Historiadora</b>Sitúa el texto en su crisis: un pueblo sin templo, comunidades expulsadas.</div>
+    <div class="voz psi"><b>La Psicóloga</b>Pregunta qué pasa dentro de quien pierde su lugar sagrado.</div>
+    <div class="voz esc"><b>El Escéptico</b>Desconfía de las espiritualizaciones fáciles y de las hipótesis presentadas como hechos.</div>
+  </div>
+</header>
+
+<!-- I -->
+<section class="parte" id="i">
+  <div class="num">I</div>
+  <h2>El águila: un evangelio que empieza desde arriba</h2>
+  <p>Mateo, Marcos y Lucas se llaman <em>sinópticos</em> porque se pueden «ver juntos»: comparten material, orden y a veces redacción. Juan es otro mundo. Los sinópticos cuentan la historia «desde abajo»: genealogías, aldeas, pesebres. Mateo arranca a Jesús desde Abraham y David; Marcos lo presenta viniendo de Nazaret; Lucas lo remonta hasta Adán. Juan, en cambio, lo hace venir desde antes del tiempo. No ofrece una genealogía de sangre sino una genealogía espiritual.</p>
+  <p>Por eso la iglesia antigua lo llamó «el evangelio espiritual», y la tradición le asignó el águila (Mateo el hombre, Marcos el león, Lucas el buey): el animal que vuela más alto. Esa altura no es evasión, sino una clave de lectura: Juan enseña a mirar lo físico para ver a través de ello lo espiritual.</p>
+
+  <details class="persiana"><summary>Versículos</summary><div class="dentro"><ul class="versos">
+    <li><span class="ref">Juan 1:1–2</span> <span class="ver">verificar DHH</span><br><span class="tema">La Palabra existía en el principio.</span></li>
+    <li><span class="ref">Mateo 1:1; Lucas 3:23–38</span> <span class="ver">verificar DHH</span><br><span class="tema">Contraste con las genealogías.</span></li>
+  </ul></div></details>
+
+  <details class="persiana"><summary>Diálogo del panel</summary><div class="dentro dialogo">
+    <p class="exe"><b>El Exégeta:</b> «Sinóptico» viene de <em>syn</em> (juntos) y <em>opsis</em> (visión). Juan no se deja poner en la misma mesa; su primera escena es la eternidad.</p>
+    <p class="his"><b>La Historiadora:</b> La etiqueta «evangelio espiritual» se remonta a Clemente de Alejandría, a finales del siglo II, según la transmite Eusebio.<span class="amp">ampliación</span></p>
+    <p class="psi"><b>La Psicóloga:</b> Empezar «desde arriba» puede ser una forma de consuelo: si tu historia terrenal se rompió, alguien te recuerda que hay una historia que empezó antes de tu ruina.</p>
+    <p class="esc"><b>El Escéptico:</b> Cuidado con convertir «espiritual» en «menos real». Juan es también el evangelio con más detalles concretos de horas, lugares y fiestas.</p>
+  </div></details>
+  <p class="fuentes"><b>Fuentes:</b> Tradición de los cuatro símbolos de los evangelistas (Ireneo, Jerónimo); Clemente de Alejandría en Eusebio, <em>Historia eclesiástica</em> 6.14.7.<span class="amp">ampliación</span></p>
+</section>
+
+<!-- II -->
+<section class="parte" id="ii">
+  <div class="num">II</div>
+  <h2>¿Dónde está Dios ahora?</h2>
+  <p>Cada evangelio responde a una crisis. Marcos habla a una iglesia perseguida que pregunta si Jesús sigue siendo Señor cuando seguirlo trae sufrimiento. Mateo, escrito poco después de la caída del templo (año 70), ayuda a los judíos creyentes a entender su identidad: Jesús como nuevo legislador, nuevo Moisés. Lucas mira a una iglesia de segunda generación, ya entre gentiles, que se pregunta cómo ser fiel en el camino largo si Jesús no ha vuelto.</p>
+  <p>Juan llega décadas después. Su comunidad ha perdido el espacio sagrado y además ha sido rechazada por su propia gente. La pregunta ya no es «¿qué hacemos?» sino «¿dónde está Dios ahora, si ya no tenemos templo ni sinagoga?». Es la misma pregunta de los exiliados del Antiguo Testamento: cómo adorar sin Jerusalén. Y es, también, la pregunta de cualquiera cuya vida no salió como esperaba y que perdió no solo un edificio, sino su sentido de pertenencia.</p>
+
+  <details class="persiana"><summary>Versículos</summary><div class="dentro"><ul class="versos">
+    <li><span class="ref">Juan 9:22; 12:42; 16:2</span> <span class="ver">verificar DHH</span><span class="amp">ampliación</span><br><span class="tema">La expulsión de la sinagoga.</span></li>
+    <li><span class="ref">Salmo 137:4</span> <span class="ver">verificar DHH</span><span class="amp">ampliación</span><br><span class="tema">Cómo cantar en tierra extraña.</span></li>
+  </ul></div></details>
+
+  <details class="persiana"><summary>Diálogo del panel</summary><div class="dentro dialogo">
+    <p class="his"><b>La Historiadora:</b> La idea de un evangelio «post-templo, post-sinagoga» es una lectura respetable pero hipotética; depende de cómo fechemos el texto y de cómo leamos la expulsión de la sinagoga.</p>
+    <p class="psi"><b>La Psicóloga:</b> Perder el templo es perder el lugar donde sabías encontrarte con Dios. El duelo no es solo por un edificio, es por un mapa interior que deja de funcionar.</p>
+    <p class="esc"><b>El Escéptico:</b> Si cada evangelio «responde a una crisis», corremos el riesgo de reducirlos a terapia comunitaria. También afirman cosas sobre Jesús, no solo sobre sus lectores.</p>
+    <p class="exe"><b>El Exégeta:</b> Por eso la respuesta de Juan no es «consuélense», sino una cristología: el lugar de Dios ahora es una persona.</p>
+  </div></details>
+</section>
+
+<!-- III -->
+<section class="parte" id="iii">
+  <div class="num">III</div>
+  <h2>El templo que respira</h2>
+  <p>La clave hermenéutica de Juan aparece pronto: en Juan 2, Jesús dice que si destruyen «este templo» él lo levantará en tres días. Los oyentes piensan en los 46 años de construcción; el narrador aclara que hablaba de su cuerpo. Juan anuncia desde el inicio el traslado: de un lugar sagrado de piedra a una presencia viva.</p>
+  <p>El versículo que los maestros dicen haber estado esperando es Juan 1:14. Las traducciones dicen que la Palabra «vivió» o «habitó» entre nosotros, pero el verbo griego evoca plantar una tienda, acampar: el tabernáculo. Así como la tienda del encuentro estaba en medio del campamento, a la vista de todos, ahora la presencia de Dios acampa en carne humana. Y lo que Moisés no pudo ver, su gloria, ahora «la hemos visto».</p>
+  <p>El arco se cierra en la cruz: el «Todo está cumplido» de Juan 19 se lee como obra terminada, encarnación consumada y templo plenamente realizado en Jesús.</p>
+  <blockquote class="cita">«Esto no es teología abstracta.»<small>El maestro, sobre Juan 1:14 como respuesta a un mundo sin templo (traducción).</small></blockquote>
+
+  <details class="persiana"><summary>Versículos</summary><div class="dentro"><ul class="versos">
+    <li><span class="ref">Juan 2:19–21</span> <span class="ver">verificar DHH</span><br><span class="tema">«Destruyan este templo…»</span></li>
+    <li><span class="ref">Juan 1:14</span> <span class="ver">verificar DHH</span><br><span class="tema">La Palabra se hizo carne y acampó entre nosotros.</span></li>
+    <li><span class="ref">Éxodo 33:18–23</span> <span class="ver">verificar DHH</span><br><span class="tema">Moisés no puede ver la gloria de Dios.</span></li>
+    <li><span class="ref">Éxodo 25:8–9</span> <span class="ver">verificar DHH</span><span class="amp">ampliación</span><br><span class="tema">La tienda en medio del pueblo.</span></li>
+    <li><span class="ref">Juan 19:30</span> <span class="ver">verificar DHH</span><br><span class="tema">«Todo está cumplido.»</span></li>
+  </ul></div></details>
+
+  <details class="persiana"><summary>Diálogo del panel</summary><div class="dentro dialogo">
+    <p class="exe"><b>El Exégeta:</b> El verbo es <em>eskēnōsen</em>, de <em>skēnoō</em>, emparentado con <em>skēnē</em>, «tienda». En la Septuaginta <em>skēnē</em> es la palabra para el tabernáculo. Juan elige el vocabulario de campamento, no de palacio.</p>
+    <p class="psi"><b>La Psicóloga:</b> Una tienda es una morada vulnerable: se moja, se rasga, se instala en el polvo. Dios no elige un refugio blindado para estar con nosotros.</p>
+    <p class="esc"><b>El Escéptico:</b> La palabra «Shekinah» que mencionan no aparece en la Biblia; es un término rabínico posterior. Sirve como ilustración, no como prueba de lo que Juan pensaba.</p>
+    <p class="his"><b>La Historiadora:</b> Para una comunidad sin templo, decir «la gloria ya no está en Jerusalén, está en Jesús» era consuelo y también ruptura.</p>
+  </div></details>
+</section>
+
+<!-- IV -->
+<section class="parte" id="iv">
+  <div class="num">IV</div>
+  <h2>Señales que llegan a su realidad</h2>
+  <p>El paso de lo físico a lo espiritual se repite en todo Juan. El Bautista llama a Jesús «el Cordero de Dios», evocando el cordero pascual. Jesús encarna las fiestas judías: pan de vida (Pascua), agua viva y luz del mundo (Tabernáculos), y aparece en la fiesta de la Dedicación. En Caná, el agua de las tinajas de purificación se convierte en vino; en sábado, Jesús devuelve la vida, mostrando para qué era el sábado.</p>
+  <p>Los maestros insisten en un matiz: Juan no es anti-judío. Las prácticas de Israel no se desechan; se cumplen. Eran señales que apuntaban hacia adelante, y ahora llega la realidad a la que señalaban.</p>
+  <p>Esto se enmarca en la «teología reflexiva» de Juan: no es reportaje temprano sino memoria teológica madurada tras décadas de culto, persecución y lectura de las Escrituras. De ahí una cristología más desarrollada: preexistencia, identidad divina explícita, los siete «Yo soy» (pan de vida, luz del mundo, puerta, buen pastor, resurrección y vida, camino-verdad-vida, vid verdadera) y largos discursos en lugar de escenas breves. En Juan, Natanael confiesa a Jesús como Hijo de Dios en el capítulo 1; en Marcos, esa confesión humana llega con el centurión en el capítulo 15.</p>
+  <blockquote class="cita">«Juan es memoria teológica, no reportaje temprano.»<small>El maestro (traducción).</small></blockquote>
+
+  <details class="persiana"><summary>Versículos</summary><div class="dentro"><ul class="versos">
+    <li><span class="ref">Juan 1:29, 36</span> <span class="ver">verificar DHH</span><br><span class="tema">«El Cordero de Dios.»</span></li>
+    <li><span class="ref">Juan 2:1–11</span> <span class="ver">verificar DHH</span><br><span class="tema">Las bodas de Caná.</span></li>
+    <li><span class="ref">Juan 6:35; 8:12; 10:7, 11; 11:25; 14:6; 15:1</span> <span class="ver">verificar DHH</span><br><span class="tema">Los siete «Yo soy».</span></li>
+    <li><span class="ref">Juan 1:49 · Marcos 15:39</span> <span class="ver">verificar DHH</span><br><span class="tema">Natanael y el centurión.</span></li>
+    <li><span class="ref">Juan 14:10</span> <span class="ver">verificar DHH</span><br><span class="tema">«Yo estoy en el Padre y el Padre está en mí.»</span></li>
+  </ul></div></details>
+
+  <details class="persiana"><summary>Diálogo del panel</summary><div class="dentro dialogo">
+    <p class="exe"><b>El Exégeta:</b> La fórmula <em>egō eimi</em> resuena con Éxodo 3:14. Pero donde Juan hace explícita esa conexión es en 8:58, más que en 14:10, que habla de la mutua inhabitación entre Padre e Hijo.</p>
+    <p class="esc"><b>El Escéptico:</b> Decir que «no es anti-judío» está bien, pero el texto incomoda: Juan usa «los judíos» de manera polémica, y esa lectura ha alimentado violencia en la historia. «Cumplimiento, no rechazo» no borra esa tensión; hay que nombrarla.</p>
+    <p class="psi"><b>La Psicóloga:</b> Que el símbolo se cumpla y no se destruya es una manera sana de tratar el pasado: no te piden odiar lo que amaste, sino descubrir hacia dónde apuntaba.</p>
+    <p class="his"><b>La Historiadora:</b> Llamar a Juan «memoria teológica» no significa «inventado»; significa interpretado. La pregunta abierta es cuánto hay de cada cosa.</p>
+  </div></details>
+</section>
+
+<!-- V -->
+<section class="parte" id="v">
+  <div class="num">V</div>
+  <h2>La Palabra: Dios en comunicación</h2>
+  <p>«En el principio era la Palabra» retoma deliberadamente Génesis 1. Donde Génesis dice que en el principio Dios creó, Juan dice que antes de toda creación la Palabra, el <em>logos</em>, ya existía. Para el maestro, la Palabra es la autoexpresión de Dios al mundo: su poder creador, su verdad que revela y su presencia que busca relación. Cita un comentario que la describe como «Dios en comunicación».</p>
+  <p>La copresentadora, que enseña cultura griega, explica la doble provocación. Para los griegos, que sus dioses tuvieran rasgos humanos no era raro, pero el <em>logos</em> era la razón y el orden detrás de todo: jamás podría encarnarse ni ser vulnerable. Para los judíos, Dios era trascendente, demasiado santo para tomar carne. Juan dice que ambos se quedan cortos.</p>
+  <blockquote class="cita">«Dios es más santo de lo que imaginabas y más cercano de lo que te atrevías a esperar.»<small>La copresentadora (traducción).</small></blockquote>
+  <p>La segunda mitad del prólogo tiene un tono de duelo: el Creador vino al mundo y el mundo no lo reconoció; vino a los suyos y los suyos no lo recibieron. Aun así, a los que lo recibieron les dio poder de ser hijos de Dios. La encarnación, Dios en la carne, muestra a alguien lleno de gracia y de verdad: una tensión sostenida que el maestro compara con las dos verdades de Génesis, imagen de Dios y polvo de la tierra. Su palabra griega favorita aquí es <em>plērōma</em>, plenitud.</p>
+
+  <details class="persiana"><summary>Versículos</summary><div class="dentro"><ul class="versos">
+    <li><span class="ref">Juan 1:1–5</span> <span class="ver">verificar DHH</span><br><span class="tema">La Palabra, la vida y la luz que la oscuridad no vence.</span></li>
+    <li><span class="ref">Génesis 1:1</span> <span class="ver">verificar DHH</span><br><span class="tema">«En el comienzo de todo…»</span></li>
+    <li><span class="ref">Juan 1:10–13</span> <span class="ver">verificar DHH</span><br><span class="tema">Los suyos no lo recibieron; a los que lo recibieron, hijos de Dios.</span></li>
+    <li><span class="ref">Juan 1:14, 16</span> <span class="ver">verificar DHH</span><br><span class="tema">Gracia y verdad; de su plenitud todos recibimos.</span></li>
+  </ul></div></details>
+
+  <details class="persiana"><summary>Diálogo del panel</summary><div class="dentro dialogo">
+    <p class="exe"><b>El Exégeta:</b> Precisión: en 1:14 la palabra es <em>plērēs</em>, «lleno». El sustantivo <em>plērōma</em>, «plenitud», aparece en 1:16. Mismo campo de sentido, distinto versículo.</p>
+    <p class="his"><b>La Historiadora:</b> El trasfondo del <em>logos</em> incluye a Heráclito, a los estoicos y a Filón de Alejandría, que ya unía el <em>logos</em> griego con la Palabra creadora del Génesis. Juan no inventa el término; lo lleva adonde nadie lo había llevado: a la carne.<span class="amp">ampliación</span></p>
+    <p class="psi"><b>La Psicóloga:</b> «Vino a los suyos y no lo recibieron» es una de las frases más solitarias de la Biblia. Antes de hablar de gloria, Juan habla de rechazo. La intimidad que propone este evangelio no ignora la herida de no ser reconocido.</p>
+    <p class="esc"><b>El Escéptico:</b> Decir que los griegos no verían raro un dios en carne es demasiado amplio. Los mitos sí, pero buena parte de la filosofía griega despreciaba la materia. Justamente por eso el escándalo era mayor.</p>
+  </div></details>
+  <p class="fuentes"><b>Fuentes:</b> William Loader, <em>The New Testament with Imagination</em> (por verificar).</p>
+</section>
+
+<!-- VI -->
+<section class="parte" id="vi">
+  <div class="num">VI</div>
+  <h2>El testigo que sabe quién no es</h2>
+  <p>En Juan 1:19–34 el Bautista marca la transición. Él bautiza con agua; el que viene bautizará con el Espíritu Santo. De nuevo, el paso de un rito sagrado a una transformación: no solo agua de purificación, sino vida. Ese hilo seguirá con el agua viva de Juan 4 y con lo que brota del interior en Juan 7.</p>
+  <p>Hay algo psicológicamente fino en este personaje: Juan sabe quién es y quién no es. Hijo de sacerdote, respetado, con seguidores propios, aun así responde sin rodeos que no es el Mesías. Es testigo. Eso le permite tener las manos abiertas con su propio ministerio: no compite con Jesús y deja ir a sus discípulos tras él. El capítulo 3 lo dirá así: él debe crecer y yo menguar.</p>
+
+  <details class="persiana"><summary>Versículos</summary><div class="dentro"><ul class="versos">
+    <li><span class="ref">Juan 1:19–28</span> <span class="ver">verificar DHH</span><br><span class="tema">«Yo no soy el Mesías.»</span></li>
+    <li><span class="ref">Juan 1:33</span> <span class="ver">verificar DHH</span><br><span class="tema">Bautizar con el Espíritu Santo.</span></li>
+    <li><span class="ref">Juan 3:30</span> <span class="ver">verificar DHH</span><br><span class="tema">Él debe crecer; yo, menguar.</span></li>
+  </ul></div></details>
+
+  <details class="persiana"><summary>Diálogo del panel</summary><div class="dentro dialogo">
+    <p class="psi"><b>La Psicóloga:</b> Saber lo que no eres es una forma de libertad. El que necesita ser el centro no puede soltar a nadie; Juan puede, porque su identidad no depende de ser indispensable.</p>
+    <p class="exe"><b>El Exégeta:</b> En el cuarto evangelio nunca se le llama «el Bautista»; su papel se define como <em>martyria</em>, testimonio. Su función es señalar.<span class="amp">ampliación</span></p>
+    <p class="esc"><b>El Escéptico:</b> Hay una lectura menos idílica: el evangelio podría estar poniendo al Bautista en su lugar ante grupos que lo veneraban demasiado. La humildad del personaje también puede ser polémica del autor.<span class="amp">ampliación</span></p>
+    <p class="his"><b>La Historiadora:</b> Que su padre fuera sacerdote hace la escena más fuerte: alguien del linaje del templo apunta a quien sustituye al templo.</p>
+  </div></details>
+</section>
+
+<!-- VII -->
+<section class="parte" id="vii">
+  <div class="num">VII</div>
+  <h2>«¿Qué buscan?» — «Vengan a ver»</h2>
+  <p>Este es el corazón de la clase. Si Jesús es divino en Juan, lo que muestra de entrada es que Dios quiere relación. No empieza con teología, ni con llamado a la misión, ni con «pescadores de hombres», sino con estar juntos. Las primeras palabras de Jesús en este evangelio son una pregunta: «¿Qué buscan?». Los dos discípulos responden con otra: «Rabí, ¿dónde vives?». Y él: «Vengan a ver». Se quedaron con él aquel día; eran como las cuatro de la tarde.</p>
+  <p>Los maestros comparan las primeras palabras de Jesús en cada evangelio: en Mateo, el arrepentimiento ante el reino que se acerca; en Marcos, el tiempo cumplido; en Lucas, la lectura de Isaías 61 sobre los oprimidos. En Juan, una invitación a pasar el día. Citan a Ron Rolheiser: todo el evangelio de Juan sería Dios mostrándonos dónde vive, a través de Jesús.</p>
+  <p>La invitación se contagia. Felipe responde al escepticismo de Natanael («¿De Nazaret puede salir algo bueno?») con las mismas palabras: «Ven a ver». El maestro reconoce que para cristianos de tradición evangélica, centrados en la conversión, el llamado y la misión, este comienzo es un correctivo: aquí lo primero es estar con él.</p>
+  <blockquote class="cita">«Se trata de estar juntos. Se trata de relación.»<small>El maestro (traducción).</small></blockquote>
+
+  <details class="persiana"><summary>Versículos</summary><div class="dentro"><ul class="versos">
+    <li><span class="ref">Juan 1:35–39</span> <span class="ver">verificar DHH</span><br><span class="tema">«¿Qué buscan?» · «Vengan a ver.»</span></li>
+    <li><span class="ref">Juan 1:43–49</span> <span class="ver">verificar DHH</span><br><span class="tema">Felipe y Natanael.</span></li>
+    <li><span class="ref">Mateo 4:17 · Marcos 1:15 · Lucas 4:18–19</span> <span class="ver">verificar DHH</span><br><span class="tema">Las primeras palabras en los sinópticos.</span></li>
+  </ul></div></details>
+
+  <details class="persiana"><summary>Diálogo del panel</summary><div class="dentro dialogo">
+    <p class="psi"><b>La Psicóloga:</b> Jesús no les dice qué buscar; les pregunta qué buscan. Es una pregunta que obliga a mirar el propio deseo. Mucha gente sigue algo durante años sin haberse hecho nunca esa pregunta.</p>
+    <p class="exe"><b>El Exégeta:</b> Ellos preguntan «¿dónde <em>permaneces</em>?» y el texto dice que «<em>permanecieron</em> con él». Es el verbo <em>menō</em>, el mismo de «permanezcan en mí» en Juan 15. La primera escena ya contiene el final del evangelio.<span class="amp">ampliación</span></p>
+    <p class="esc"><b>El Escéptico:</b> «Vengan a ver» suena hermoso, pero no responde la pregunta. Jesús no da una dirección; exige que lo acompañen. Es una invitación sin garantías previas.</p>
+    <p class="his"><b>La Historiadora:</b> El detalle de «las cuatro de la tarde» tiene sabor a recuerdo de testigo. Es el tipo de dato que nadie inventa para hacer teología.</p>
+  </div></details>
+  <p class="fuentes"><b>Fuentes:</b> Ron Rolheiser (comentario oral en una clase); la serie <em>The Chosen</em>, que usa «Vengan a ver» como lema.</p>
+</section>
+
+<!-- VIII -->
+<section class="parte" id="viii">
+  <div class="num">VIII</div>
+  <h2>Nacer de arriba y permanecer en el amor</h2>
+  <p>Al comparar espiritualidades: Mateo forma por la obediencia y la enseñanza; Marcos por la urgencia y el sufrimiento; Lucas por un camino guiado por el Espíritu. Juan forma por la relación. Su primer eje es nacer: más nacimiento que conducta. El bautismo en agua es real, pero señala una transformación más profunda del Espíritu. El agua viva sustituye al agua de purificación: Caná, el pozo de Samaría, los ríos que brotan del interior, el agua y la sangre del costado abierto, el Espíritu soplado sobre los discípulos.</p>
+  <p>El segundo eje es el amor. Juan apenas tiene ética explícita: no hay Sermón del Monte. El maestro traza una trayectoria: el amor del Padre al mundo (3:16), del Padre al Hijo (10:17), del Hijo al Padre (14:31), del Padre a los creyentes como ama al Hijo (17:22–23), y finalmente el mandamiento de amarnos unos a otros como él nos amó (15:12). La ética nace de la relación. Y no es sentimentalismo: el llamado a una vida disciplinada, valiente y moral nace de amar a Dios y a los demás. Estar en la vid da fruto; separarse de ella sale mal.</p>
+  <p>La recomendación final es sencilla y exigente: leer Juan entero, de un tirón, para captar el movimiento. Lo que viene en los capítulos 2 al 4 es ese paso de lo físico a lo espiritual en tres imágenes: vino, agua y viento.</p>
+  <blockquote class="cita">«Más nacimiento que conducta.»<small>El maestro (traducción).</small></blockquote>
+
+  <details class="persiana"><summary>Versículos</summary><div class="dentro"><ul class="versos">
+    <li><span class="ref">Juan 3:3–8</span> <span class="ver">verificar DHH</span><br><span class="tema">Nacer de arriba, del agua y del Espíritu.</span></li>
+    <li><span class="ref">Juan 4:13–14; 7:37–39</span> <span class="ver">verificar DHH</span><br><span class="tema">El agua viva.</span></li>
+    <li><span class="ref">Juan 19:34; 20:22</span> <span class="ver">verificar DHH</span><br><span class="tema">Agua y sangre; el Espíritu soplado.</span></li>
+    <li><span class="ref">Juan 3:16; 10:17; 14:31; 17:22–23</span> <span class="ver">verificar DHH</span><br><span class="tema">La trayectoria del amor.</span></li>
+    <li><span class="ref">Juan 13:34; 15:1–12</span> <span class="ver">verificar DHH</span><br><span class="tema">El mandamiento nuevo y la vid.</span></li>
+  </ul></div></details>
+
+  <details class="persiana"><summary>Diálogo del panel</summary><div class="dentro dialogo">
+    <p class="psi"><b>La Psicóloga:</b> «Más nacimiento que conducta» cambia el orden del esfuerzo. No te piden fabricar una vida nueva; te piden dejar que nazca. Eso libera y también inquieta: nadie controla su propio nacimiento.</p>
+    <p class="exe"><b>El Exégeta:</b> «Nacer de nuevo» en 3:3 es <em>gennēthē anōthen</em>, y <em>anōthen</em> significa a la vez «de nuevo» y «de arriba». Nicodemo entiende lo primero; Jesús dice lo segundo.<span class="amp">ampliación</span></p>
+    <p class="esc"><b>El Escéptico:</b> Decir que el amor es «el único mandamiento» en Juan es una exageración útil. También hay mandatos de guardar sus palabras (14:15, 21). La ética no desaparece; se concentra.</p>
+    <p class="his"><b>La Historiadora:</b> Un amor «unos a otros» para una comunidad expulsada no es abstracto: es la forma de sobrevivir sin templo. El nuevo templo es también la comunidad que se ama.</p>
+  </div></details>
+  <p class="fuentes"><b>Fuentes:</b> Comentario no identificado cuya tesis es que Juan es «el evangelio íntimo», todo sobre el amor.</p>
+</section>
+
+<!-- Claves -->
+<section class="parte" id="claves">
+  <div class="num">Claves</div>
+  <h2>Palabras clave</h2>
+  <div class="tabla-scroll">
+  <table class="glosario">
+    <thead><tr><th>Término</th><th>Transliteración</th><th>Sentido</th><th>Dónde</th></tr></thead>
+    <tbody>
+      <tr><td class="gr">συνοπτικός</td><td><em>synoptikós</em></td><td>Que se ve en conjunto</td><td>Mateo, Marcos, Lucas · I</td></tr>
+      <tr><td class="gr">λόγος</td><td><em>lógos</em></td><td>Palabra, razón; autoexpresión de Dios</td><td>Juan 1:1, 14 · V</td></tr>
+      <tr><td class="gr">ἐσκήνωσεν</td><td><em>eskḗnōsen</em></td><td>Plantó su tienda, acampó</td><td>Juan 1:14 · III</td></tr>
+      <tr><td class="gr">πλήρωμα / πλήρης</td><td><em>plḗrōma / plḗrēs</em></td><td>Plenitud / lleno</td><td>Juan 1:16 / 1:14 · V</td></tr>
+      <tr><td class="gr">κόλπος</td><td><em>kólpos</em></td><td>Seno, regazo del Padre</td><td>Juan 1:18 · V</td></tr>
+      <tr><td class="gr">ἐγώ εἰμι</td><td><em>egṓ eimí</em></td><td>«Yo soy»; eco de Éxodo 3:14</td><td>Los siete «Yo soy» · IV</td></tr>
+      <tr><td class="gr">ῥαββί</td><td><em>rhabbí</em></td><td>Maestro</td><td>Juan 1:38 · VII</td></tr>
+      <tr><td class="gr">μένω</td><td><em>ménō</em></td><td>Permanecer, morar <span class="amp">ampliación</span></td><td>Juan 1:38–39; 15:4–10 · VII</td></tr>
+      <tr><td class="gr">ἄνωθεν</td><td><em>ánōthen</em></td><td>De nuevo / de arriba <span class="amp">ampliación</span></td><td>Juan 3:3 · VIII</td></tr>
+      <tr><td class="gr">שְׁכִינָה</td><td><em>shekhináh</em></td><td>Presencia de Dios que mora (término rabínico)</td><td>III</td></tr>
+      <tr><td class="gr">מִשְׁכָּן</td><td><em>mishkán</em></td><td>Tabernáculo, morada <span class="amp">ampliación</span></td><td>Éxodo 25:9 · III</td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <h2 style="margin-top:48px">Preguntas para pensar</h2>
+  <ol class="preguntas">
+    <li>Si hoy Jesús te preguntara «¿Qué buscas?», ¿qué respondería tu agenda y qué respondería tu deseo más honesto?</li>
+    <li>¿Qué «templo» perdiste —una iglesia, una certeza, una etapa— y dónde has estado buscando a Dios desde entonces?</li>
+    <li>¿Qué cambia en tu manera de seguir a Jesús si lo primero no es la misión sino pasar el día con él?</li>
+    <li>¿En qué áreas de tu vida necesitas, como el Bautista, decir con paz «yo no soy eso»?</li>
+    <li>Si la ética nace de permanecer, ¿qué dice tu conducta reciente sobre dónde has estado permaneciendo?</li>
+  </ol>
+</section>
+
+<!-- Semilla -->
+<section class="parte" id="semilla" style="border-bottom:0">
+  <div class="num">Semilla</div>
+  <h2>Persiana-semilla</h2>
+  <details class="persiana semilla" open>
+    <summary>«Vengan a ver»: siete días de lectura lenta de Juan 1</summary>
+    <div class="dentro">
+      <p>Cada día, lee el pasaje despacio, dos veces, al estilo de la <em>lectio divina</em>, y termina escribiendo una línea que responda a: <strong>«¿Qué busco hoy?»</strong></p>
+      <ul class="dias">
+        <li><span class="dia">Día 1</span><span><b>Juan 1:1–5.</b> Quédate con una palabra del texto y repítela en silencio durante cinco minutos.</span></li>
+        <li><span class="dia">Día 2</span><span><b>Juan 1:6–13.</b> Detente en «los suyos no lo recibieron». ¿Dónde has cerrado tú la puerta?</span></li>
+        <li><span class="dia">Día 3</span><span><b>Juan 1:14–18.</b> Imagina la tienda plantada en medio de tu casa. ¿En qué rincón la pondría Dios?</span></li>
+        <li><span class="dia">Día 4</span><span><b>Juan 1:19–28.</b> Escribe tres cosas que no eres y que has intentado ser.</span></li>
+        <li><span class="dia">Día 5</span><span><b>Juan 1:29–34.</b> Identifica un ritual tuyo que hoy necesita volver a ser vida y no solo forma.</span></li>
+        <li><span class="dia">Día 6</span><span><b>Juan 1:35–39.</b> Aparta una hora sin tarea, como «las cuatro de la tarde», solo para estar con él.</span></li>
+        <li><span class="dia">Día 7</span><span><b>Juan 1:40–51.</b> Invita a alguien a «venir y ver» contigo: a leer, a orar o a compartir lo que viviste esta semana.</span></li>
+      </ul>
+    </div>
+  </details>
+
+  <details class="persiana">
+    <summary>Notas críticas del editor</summary>
+    <div class="dentro notas">
+      <h4>Afirmaciones discutibles</h4>
+      <ul>
+        <li><em>Plērōma</em> está en Juan 1:16; en 1:14 la palabra es <em>plērēs</em> («lleno»).</li>
+        <li>La conexión explícita con el «Yo soy» de la zarza (Éxodo 3:14) se ve mejor en Juan 8:58 que en 14:10.</li>
+        <li>«En Marcos no se reconoce a Jesús como Hijo de Dios hasta el capítulo 15»: vale para la confesión humana; el narrador lo afirma en Marcos 1:1 y los espíritus lo proclaman en 3:11 y 5:7.</li>
+        <li>«El amor es el único mandamiento» en Juan: hipérbole (véanse 14:15, 21).</li>
+        <li>La «comunidad joánica» y el contexto «post-sinagoga» son hipótesis académicas influyentes (J. L. Martyn, R. E. Brown) pero debatidas.</li>
+        <li>«Para los griegos un dios en carne no sería extraño»: cierto para la mitología, impreciso para la filosofía, que solía despreciar la materia.</li>
+        <li>«Dos relatos de la creación» en Génesis: lectura crítica común, no compartida por todos.</li>
+        <li>El uso polémico de «los judíos» en Juan merece reconocerse, más allá de la tesis del cumplimiento.</li>
+        <li>«Shekinah» es un término rabínico posterior, no bíblico.</li>
+      </ul>
+      <h4>Texto bíblico</h4>
+      <ul>
+        <li>Las referencias con la marca <span class="ver">verificar DHH</span> deben cotejarse con el texto oficial de Dios Habla Hoy antes de publicar.</li>
+      </ul>
+    </div>
+  </details>
+</section>
+
+</div>
+
+<footer>
+  Thread-Learning-Notes · Basado en Thread Podcast, episodio 70, «John – In the Beginning».<br>
+  Síntesis y panel en español elaborados con Claude Opus 5.5 (Anthropic). Traducción bíblica de referencia: Dios Habla Hoy (DHH).
+</footer>
+</main>
+
+<script>
+(function(){
+  var enlaces = document.querySelectorAll('#indice a');
+  var mapa = {};
+  enlaces.forEach(function(a){ mapa[a.getAttribute('href').slice(1)] = a; });
+  var secciones = document.querySelectorAll('section.parte');
+  if (!('IntersectionObserver' in window)) return;
+  var obs = new IntersectionObserver(function(entradas){
+    entradas.forEach(function(e){
+      if (e.isIntersecting){
+        enlaces.forEach(function(a){ a.classList.remove('activo'); });
+        var a = mapa[e.target.id];
+        if (a){ a.classList.add('activo'); a.scrollIntoView({block:'nearest',inline:'center'}); }
+      }
+    });
+  }, {rootMargin:'-35% 0px -55% 0px'});
+  secciones.forEach(function(s){ obs.observe(s); });
+})();
+</script>
+</body>
+</html>
