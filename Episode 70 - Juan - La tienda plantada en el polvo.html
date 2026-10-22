@@ -15,6 +15,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400&family=Spectral:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,400;0,600;1,400&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
 
 <style>
 :root{
@@ -32,13 +33,17 @@
   --fs-base:1.16rem;
   --display:"Fraunces",Georgia,serif;
   --body:"Spectral",Georgia,serif;
+
+  --scale:1;
+  --track:0em;
 }
 
 *{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth}
+html{scroll-behavior:smooth;font-size:calc(16px * var(--scale))}
 body{
-  font-family:var(--body);
+  font-family:var(--reader,var(--body));
   font-size:var(--fs-base);
+  letter-spacing:var(--track);
   line-height:1.72;
   color:var(--ink);
   background:var(--cream);
@@ -108,6 +113,47 @@ nav.toc a.active .num{color:var(--terracotta)}
   letter-spacing:.02em;transition:color .2s ease;
 }
 .rail-tools a.home:hover{color:var(--terracotta)}
+
+/* ---- ajustes de lectura (basados en «Cautivados por Jesús») ---- */
+.ajustes{
+  border-top:1px solid var(--rule);margin-top:1.1rem;padding-top:1.1rem;
+  display:grid;gap:.9rem;letter-spacing:0;font-family:var(--body);
+}
+.ajustes .aj-titulo{
+  font-family:var(--display);font-size:.72rem;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--terracotta);
+}
+.fonts{border:0;margin:0;padding:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px}
+.fonts legend{grid-column:1/-1;font-size:.8rem;color:var(--ink-soft);margin-bottom:6px;padding:0}
+label.fo[hidden]{display:none}
+.fo{
+  display:grid;justify-items:center;text-align:center;gap:2px;padding:8px 4px;
+  border:1px solid var(--rule);border-radius:6px;cursor:pointer;background:var(--paper);
+  position:relative;
+}
+.fo:hover{border-color:var(--amber)}
+.fo:has(input:checked){border-color:var(--terracotta);background:var(--paper-deep)}
+.fo input{position:absolute;opacity:0;pointer-events:none}
+.fo:has(input:focus-visible){outline:2px solid var(--amber);outline-offset:2px}
+.fo .aa{font-size:1.5rem;line-height:1.1;color:var(--terracotta)}
+.fo b{font-size:.74rem;font-weight:600;color:var(--ink)}
+.fo small{font-size:.66rem;color:var(--ink-soft);line-height:1.25}
+.aj-fila{display:flex;align-items:center;justify-content:space-between;gap:.6rem}
+.aj-fila > span{font-size:.8rem;color:var(--ink-soft)}
+.step{display:flex;align-items:center;border:1px solid var(--rule);border-radius:6px;background:var(--paper)}
+.step button{
+  border:0;background:transparent;color:var(--ink);cursor:pointer;
+  padding:5px 10px;font-family:var(--display);font-weight:600;font-size:.86rem;line-height:1;
+}
+.step button:hover:not(:disabled){color:var(--terracotta)}
+.step button:disabled{opacity:.35;cursor:default}
+.step output{font-size:.74rem;color:var(--ink-soft);min-width:4.2em;text-align:center;font-variant-numeric:tabular-nums}
+.aj-reset{
+  justify-self:start;background:none;border:none;cursor:pointer;padding:0;
+  font-family:var(--body);font-size:.78rem;color:var(--ink-soft);
+  border-bottom:1px dotted var(--rule);
+}
+.aj-reset:hover{color:var(--terracotta);border-color:var(--terracotta)}
 
 /* ---- contenido ---- */
 main{padding:3.4rem 4.2rem 6rem;max-width:760px}
@@ -415,6 +461,20 @@ body.menu-open .hamburger span::after{top:0;transform:rotate(-45deg)}
 
     <div class="rail-tools">
       <a class="home" href="index.html" onclick="if(history.length>1){history.back();return false;}">← Volver a la sala</a>
+    </div>
+
+    <div class="ajustes" id="ajustes" role="group" aria-labelledby="ajT">
+      <div class="aj-titulo" id="ajT">Ajustes de lectura</div>
+      <fieldset class="fonts" id="fontSel"><legend>Tipo de letra</legend>
+        <label class="fo" data-k="" title="Con serif. Lectura larga y pausada; es la letra de la sala."><input type="radio" name="fuente" value="" checked><span class="aa" style="font-family:'Spectral',Georgia,serif">Aa</span><b>Spectral</b><small>Con serif</small></label>
+        <label class="fo" data-k="nunito" title="Sin serif, redondeada. Limpia y amable, cansa menos la vista."><input type="radio" name="fuente" value="nunito"><span class="aa" style="font-family:'Nunito',Arial,sans-serif">Aa</span><b>Nunito</b><small>Redondeada</small></label>
+        <label class="fo" data-k="atkinson" title="Para baja visión: cada letra es inconfundible (I l 1, b d, O 0)."><input type="radio" name="fuente" value="atkinson"><span class="aa" style="font-family:'Atkinson Hyperlegible',Verdana,sans-serif">Aa</span><b>Atkinson</b><small>Baja visión</small></label>
+      </fieldset>
+      <div class="aj-fila"><span id="fsL">Tamaño</span><div class="step" role="group" aria-labelledby="fsL">
+        <button type="button" id="fsDown" aria-label="Disminuir tamaño de letra">A−</button><output id="fsVal" aria-live="polite">14 pt</output><button type="button" id="fsUp" aria-label="Aumentar tamaño de letra">A+</button></div></div>
+      <div class="aj-fila"><span id="lsL">Espacio entre letras</span><div class="step" role="group" aria-labelledby="lsL">
+        <button type="button" id="lsDown" aria-label="Reducir espacio entre letras">−</button><output id="lsVal" aria-live="polite">Normal</output><button type="button" id="lsUp" aria-label="Aumentar espacio entre letras">+</button></div></div>
+      <button type="button" class="aj-reset" id="setReset">Restablecer</button>
     </div>
   </aside>
 
@@ -844,7 +904,48 @@ function onScroll(){
 window.addEventListener('scroll', onScroll, {passive:true});
 onScroll();
 
-/* ---- 5 · menú móvil ---- */
+/* ---- 5 · ajustes de lectura (misma lógica que «Cautivados por Jesús») ---- */
+(function(){
+  function ls(k,v){try{if(v===undefined)return localStorage.getItem(k);localStorage.setItem(k,v)}catch(e){return null}}
+  var root=document.documentElement;
+  var PTS=[10,11,12,13,14,15,16,17,18,19,20,21,22,23,24],PDEF=4,i=PDEF; /* 14 pt = tamaño original de la sala */
+  var tracks=[-0.02,-0.01,0,0.02,0.04,0.06,0.08,0.1],TDEF=2,j=TDEF;
+  var sel=document.getElementById('fontSel'),font='';
+  var FONTS={nunito:{f:'"Nunito",Arial,sans-serif',web:'Nunito'},atkinson:{f:'"Atkinson Hyperlegible",Verdana,sans-serif',web:'Atkinson Hyperlegible'}};
+  var n=PTS.indexOf(parseInt(ls('thread-notes-puntos'),10));if(n>=0)i=n;
+  n=parseInt(ls('thread-notes-espacio'),10);if(n>=0&&n<tracks.length)j=n;
+  var f=ls('thread-notes-fuente');if(f&&FONTS[f])font=f;
+  var fsUp=document.getElementById('fsUp'),fsDown=document.getElementById('fsDown'),fsVal=document.getElementById('fsVal');
+  var lsUp=document.getElementById('lsUp'),lsDown=document.getElementById('lsDown'),lsVal=document.getElementById('lsVal');
+  function apply(){
+    root.style.setProperty('--scale',(PTS[i]/PTS[PDEF]).toFixed(4));
+    root.style.setProperty('--track',tracks[j]+'em');
+    if(font&&FONTS[font])root.style.setProperty('--reader',FONTS[font].f);else root.style.removeProperty('--reader');
+    [].forEach.call(sel.querySelectorAll('input'),function(r){r.checked=(r.value===font)});
+    fsVal.textContent=PTS[i]+' pt';fsDown.disabled=i===0;fsUp.disabled=i===PTS.length-1;
+    var d=j-TDEF;lsVal.textContent=d===0?'Normal':(d>0?'+'+d:'−'+(-d));lsDown.disabled=j===0;lsUp.disabled=j===tracks.length-1;
+    ls('thread-notes-puntos',String(PTS[i]));ls('thread-notes-espacio',String(j));ls('thread-notes-fuente',font);
+    onScroll();
+  }
+  function checkFonts(){
+    if(!document.fonts||!document.fonts.load)return;
+    Object.keys(FONTS).forEach(function(k){
+      document.fonts.load('400 24px "'+FONTS[k].web+'"','Aa').then(function(l){
+        if(!l.length){var el=sel.querySelector('[data-k="'+k+'"]');if(el)el.hidden=true;if(font===k){font='';apply()}}
+      }).catch(function(){});
+    });
+  }
+  fsUp.addEventListener('click',function(){if(i<PTS.length-1){i++;apply()}});
+  fsDown.addEventListener('click',function(){if(i>0){i--;apply()}});
+  lsUp.addEventListener('click',function(){if(j<tracks.length-1){j++;apply()}});
+  lsDown.addEventListener('click',function(){if(j>0){j--;apply()}});
+  sel.addEventListener('change',function(e){if(e.target.name==='fuente'){font=e.target.value;apply()}});
+  document.getElementById('setReset').addEventListener('click',function(){i=PDEF;j=TDEF;font='';apply()});
+  apply();
+  if(document.readyState==='complete')checkFonts();else window.addEventListener('load',checkFonts);
+})();
+
+/* ---- 6 · menú móvil ---- */
 var ham = document.getElementById('hamburger');
 var scrim = document.getElementById('scrim');
 ham.addEventListener('click', function(){ document.body.classList.toggle('menu-open'); });
