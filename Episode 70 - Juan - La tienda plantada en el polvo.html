@@ -409,7 +409,7 @@ button.amp:hover{background:rgba(207,145,54,.14)}
 
 /* ---- bloc de notas flotante ---- */
 .notas-btn{
-  position:fixed;top:1rem;right:1rem;z-index:56;
+  position:fixed;bottom:calc(1rem + env(safe-area-inset-bottom,0px));right:calc(1rem + env(safe-area-inset-right,0px));z-index:56;
   width:46px;height:46px;border-radius:50%;
   background:var(--paper);border:1px solid var(--rule);color:var(--ink);
   display:flex;align-items:center;justify-content:center;cursor:pointer;
@@ -424,12 +424,12 @@ button.amp:hover{background:rgba(207,145,54,.14)}
 }
 .notas-btn.tiene .punto{display:block}
 .notas{
-  position:fixed;top:1rem;right:1rem;z-index:66;
+  position:fixed;bottom:calc(1rem + env(safe-area-inset-bottom,0px));right:calc(1rem + env(safe-area-inset-right,0px));z-index:66;
   width:min(430px,calc(100vw - 2rem));height:min(72vh,600px);
   display:grid;grid-template-rows:auto 1fr auto;
   background:var(--paper);color:var(--ink);border:1px solid var(--rule);border-radius:12px;
   box-shadow:0 18px 50px rgba(45,38,29,.28);overflow:hidden;
-  transform-origin:calc(100% - 23px) 23px;
+  transform-origin:calc(100% - 23px) calc(100% - 23px);
   transform:scale(.06);opacity:0;visibility:hidden;
   transition:transform .42s cubic-bezier(.2,.8,.2,1),opacity .3s ease,visibility 0s linear .42s;
   letter-spacing:0;
@@ -467,23 +467,25 @@ button.amp:hover{background:rgba(207,145,54,.14)}
 .separadores button:focus-visible{outline:2px solid var(--amber);outline-offset:2px}
 .cinta-ico{display:inline-block;width:10px;height:15px;background:var(--terracotta);clip-path:polygon(0 0,100% 0,100% 100%,50% 75%,0 100%)}
 .marcable{position:relative}
-.marcado{position:relative}
-.marcado::after{
-  content:"";position:absolute;left:-1.55rem;top:-.35rem;width:13px;height:34px;
-  background:var(--terracotta);clip-path:polygon(0 0,100% 0,100% 100%,50% 78%,0 100%);
-  box-shadow:0 2px 4px rgba(45,38,29,.25);pointer-events:none;
+.marcado{position:relative;background:linear-gradient(90deg,rgba(176,78,41,.07),transparent 75%);border-radius:4px}
+.separador-marca{
+  display:flex;align-items:center;gap:.55rem;margin:0 0 .5rem;padding-top:.15rem;
+  font-family:var(--display);font-style:normal;font-weight:500;font-size:.74rem;
+  letter-spacing:.12em;text-transform:uppercase;color:var(--terracotta);line-height:1.2;
 }
+.separador-marca::after{content:"";flex:1;border-top:1.5px solid var(--terracotta);opacity:.55}
 body.marcando .marcable{cursor:copy;border-radius:4px;transition:background .15s,box-shadow .15s}
 body.marcando .marcable:hover{background:rgba(176,78,41,.08);box-shadow:0 0 0 6px rgba(176,78,41,.08)}
 .aviso-marcar{
   position:fixed;left:50%;top:1rem;z-index:64;transform:translate(-50%,-160%);
-  background:var(--ink);color:var(--cream);border-radius:999px;padding:.55rem .6rem .55rem 1.1rem;
-  display:flex;align-items:center;gap:.8rem;font-size:.92rem;box-shadow:0 8px 24px rgba(45,38,29,.3);
-  transition:transform .3s ease;max-width:calc(100vw - 7.5rem);letter-spacing:0;
+  background:var(--paper);color:var(--ink);border:1px solid var(--terracotta);border-left-width:4px;border-radius:8px;
+  padding:.7rem .8rem .7rem 1rem;display:flex;align-items:center;justify-content:space-between;gap:1rem;
+  font-size:.98rem;line-height:1.4;box-shadow:0 8px 24px rgba(45,38,29,.22);
+  transition:transform .3s ease;width:max-content;max-width:min(560px,calc(100vw - 2rem));letter-spacing:0;
 }
 body.marcando .aviso-marcar{transform:translate(-50%,0)}
 .aviso-marcar button,.toast button{border:0;cursor:pointer;border-radius:999px;padding:.3rem .8rem;font-family:var(--display);font-size:.8rem}
-.aviso-marcar button{background:var(--cream);color:var(--ink)}
+.aviso-marcar button{background:var(--terracotta);color:var(--paper);flex-shrink:0}
 .toast{
   position:fixed;left:50%;bottom:1.2rem;z-index:64;transform:translate(-50%,180%);
   background:var(--paper);color:var(--ink);border:1px solid var(--rule);border-radius:12px;
@@ -499,7 +501,11 @@ body.marcando .aviso-marcar{transform:translate(-50%,0)}
 @keyframes destello{0%,35%{background:rgba(207,145,54,.22)}100%{background:transparent}}
 
 @media(max-width:600px){
-  .notas{top:.6rem;right:.6rem;width:calc(100vw - 1.2rem);height:calc(100dvh - 1.2rem)}
+  .notas{bottom:.6rem;right:.6rem;width:calc(100vw - 1.2rem);height:calc(100dvh - 1.2rem)}
+  .toast{left:.8rem;right:4.6rem;width:auto;max-width:none;transform:translateY(180%)}
+  .toast.on{transform:none}
+  .aviso-marcar{left:.6rem;right:.6rem;top:.6rem;width:auto;max-width:none;transform:translateY(-160%)}
+  body.marcando .aviso-marcar{transform:none}
   .marcado::after{left:-1.1rem}
 }
 @media(prefers-reduced-motion:reduce){.notas{transition:opacity .15s ease,visibility 0s}.destello{animation:none}}
@@ -606,7 +612,7 @@ body.menu-open .hamburger span::after{top:0;transform:rotate(-45deg)}
 </section>
 
 <!-- Separadores -->
-<div class="aviso-marcar" id="avisoMarcar" role="status"><span>Toca el párrafo donde quieres poner la cinta</span><button type="button" id="marcarCancel">Cancelar</button></div>
+<div class="aviso-marcar" id="avisoMarcar" role="status"><span>Toca el párrafo donde quieres poner tu separador.</span><button type="button" id="marcarCancel">Cancelar</button></div>
 <div class="toast" id="toast" role="status" aria-live="polite"><div id="toastTxt"></div><button type="button" class="ir" id="toastIr">Seguir</button><button type="button" class="no" id="toastNo" aria-label="Cerrar aviso">×</button></div>
 
 <div class="wrap">
@@ -637,9 +643,9 @@ body.menu-open .hamburger span::after{top:0;transform:rotate(-45deg)}
 
     <div class="separadores" role="group" aria-labelledby="sepT">
       <div class="aj-titulo" id="sepT">Separadores</div>
-      <button type="button" id="cintaPoner"><span class="cinta-ico" aria-hidden="true"></span>Poner mi cinta en un párrafo</button>
-      <button type="button" id="cintaIr" disabled>→ Ir a mi cinta</button>
-      <button type="button" id="cintaQuitar" disabled>× Quitar la cinta</button>
+      <button type="button" id="cintaPoner"><span class="cinta-ico" aria-hidden="true"></span>Poner mi separador en un párrafo</button>
+      <button type="button" id="cintaIr" disabled>→ Ir a mi separador</button>
+      <button type="button" id="cintaQuitar" disabled>× Quitar el separador</button>
       <button type="button" id="autoIr" disabled>↻ Seguir donde quedé</button>
     </div>
 
@@ -1227,16 +1233,17 @@ function nombreSeccion(sec){
   var pars=[].slice.call(document.querySelectorAll('.hero p, .panel-body > p, .panel-body li, .panel-body blockquote, .panel-voces .voz, .facet'));
   pars=pars.filter(function(p){return !pars.some(function(q){return q!==p&&q.contains(p)})});
   pars.forEach(function(p){p.classList.add('marcable')});
+  function txt(p){var c=p.cloneNode(true),m=c.querySelector('.separador-marca');if(m)m.remove();return c.textContent.trim().slice(0,50)}
   function ubic(p){
     var sec=p.closest('.persiana'),hermanos=pars.filter(function(q){return q.closest('.persiana')===sec});
-    return {s:sec?sec.id:'',i:hermanos.indexOf(p),t:p.textContent.trim().slice(0,50)};
+    return {s:sec?sec.id:'',i:hermanos.indexOf(p),t:txt(p)};
   }
   function buscar(u){
     if(!u)return null;
     var hermanos=pars.filter(function(q){var sec=q.closest('.persiana');return (sec?sec.id:'')===u.s});
     var p=hermanos[u.i];
-    if(p&&p.textContent.trim().slice(0,50)===u.t)return p;
-    return pars.filter(function(q){return q.textContent.trim().slice(0,50)===u.t})[0]||p||null;
+    if(p&&txt(p)===u.t)return p;
+    return pars.filter(function(q){return txt(q)===u.t})[0]||p||null;
   }
   function etiqueta(p){var sec=p.closest('.persiana');return sec?nombreSeccion(sec):'Inicio de la página'}
   function irA(p){
@@ -1253,9 +1260,15 @@ function nombreSeccion(sec){
       bAuto=document.getElementById('autoIr');
   var cinta=null;try{cinta=JSON.parse(leer(KC)||'null')}catch(e){}
   function pintar(){
-    pars.forEach(function(p){p.classList.remove('marcado');p.removeAttribute('title')});
+    [].forEach.call(document.querySelectorAll('.separador-marca'),function(m){m.remove()});
+    pars.forEach(function(p){p.classList.remove('marcado')});
     var p=buscar(cinta);
-    if(p){p.classList.add('marcado');p.title='Tu cinta'}
+    if(p){
+      p.classList.add('marcado');
+      var m=document.createElement('span');m.className='separador-marca';
+      m.innerHTML='<span class="cinta-ico" aria-hidden="true"></span>Mi separador';
+      p.insertBefore(m,p.firstChild);
+    }
     bIr.disabled=bQuitar.disabled=!p;
   }
   pintar();
