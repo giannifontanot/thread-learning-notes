@@ -459,6 +459,19 @@ body.menu-open .hamburger span::after{top:0;transform:rotate(-45deg)}
   }
   body.menu-open .rail{transform:translateX(0)}
   body.menu-open .scrim{display:block}
+}
+
+/* teléfono: el menú ocupa todo el ancho de la pantalla */
+@media(max-width:600px){
+  .rail{
+    width:100vw;height:100dvh;border-right:none;box-shadow:none;
+    padding:5rem max(1.4rem,env(safe-area-inset-right,0px)) calc(2rem + env(safe-area-inset-bottom,0px)) max(1.4rem,env(safe-area-inset-left,0px));
+    overscroll-behavior:contain;
+  }
+  .rail > *{width:100%;max-width:520px;margin-left:auto;margin-right:auto}
+  nav.toc a{padding:.55rem 0;font-size:1rem}
+  body.menu-open{overflow:hidden}
+  body.menu-open .scrim{display:none}
   main{padding:4.4rem 1.6rem 4rem}
   .panel-body{padding-left:0}
   .lever .roman{min-width:2em}
