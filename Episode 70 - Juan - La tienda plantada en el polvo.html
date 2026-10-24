@@ -1563,18 +1563,35 @@ function nombreSeccion(sec){
   function cancelar(){trazo=null;CSS.highlights.delete('pintando')}
   function enLectura(t){return t&&t.closest&&!t.closest('.notas,.pop,.lever,.tiradores,.toast,.aviso-marcar,nav,aside')&&t.closest('.marcable')}
 
-  /* dedo: toque sostenido y arrastre */
-  var lp=null,sinClic=0;
+  /* dedo: toque sostenido y arrastre.
+     Para no confundir un desplazamiento con un resaltado, el dedo tiene que:
+     · tocar con la página quieta (si venía deslizándose, ese toque es para frenarla);
+     · quedarse quieto medio segundo, medido desde donde se apoyó (no desde el último instante);
+     · y la página no debe haberse movido mientras tanto. */
+  var lp=null,sinClic=0,ultimoScroll=0,ESPERA=500,QUIETO=7;
+  window.addEventListener('scroll',function(){ultimoScroll=Date.now();if(lp&&!lp.on){clearTimeout(lp.tm);lp=null}},{passive:true});
   document.addEventListener('touchstart',function(e){
-    if(e.touches.length!==1||B.classList.contains('marcando')){lp=null;return}
+    if(lp&&!lp.on){clearTimeout(lp.tm);lp=null}
+    if(e.touches.length!==1||B.classList.contains('marcando'))return;
+    if(Date.now()-ultimoScroll<400)return; /* la página se estaba moviendo */
     var p=enLectura(e.target);if(!p)return;
     var t=e.touches[0];
-    lp={p:p,x:t.clientX,y:t.clientY,on:false};
-    lp.tm=setTimeout(function(){if(lp&&empezar(lp.p,lp.x,lp.y))lp.on=true;else lp=null},330);
+    lp={p:p,x0:t.clientX,y0:t.clientY,x:t.clientX,y:t.clientY,sy:window.scrollY,on:false};
+    lp.tm=setTimeout(function(){
+      if(!lp)return;
+      if(window.scrollY!==lp.sy||Date.now()-ultimoScroll<ESPERA){lp=null;return}
+      if(empezar(lp.p,lp.x,lp.y))lp.on=true;else lp=null;
+    },ESPERA);
   },{passive:true});
   document.addEventListener('touchmove',function(e){
-    if(!lp)return;var t=e.touches[0];
-    if(!lp.on){if(Math.abs(t.clientX-lp.x)+Math.abs(t.clientY-lp.y)>9){clearTimeout(lp.tm);lp=null}else{lp.x=t.clientX;lp.y=t.clientY}return}
+    if(!lp)return;
+    if(e.touches.length!==1){clearTimeout(lp.tm);if(lp.on)cancelar();lp=null;return}
+    var t=e.touches[0];
+    if(!lp.on){
+      if(Math.hypot(t.clientX-lp.x0,t.clientY-lp.y0)>QUIETO){clearTimeout(lp.tm);lp=null}
+      else{lp.x=t.clientX;lp.y=t.clientY}
+      return;
+    }
     if(e.cancelable)e.preventDefault();mover(t.clientX,t.clientY);
   },{passive:false});
   document.addEventListener('touchend',function(e){
@@ -1682,7 +1699,7 @@ function nombreSeccion(sec){
     if(!vivos.length){
       resumen.textContent='';
       var v=document.createElement('article');v.className='sep-card';
-      v.innerHTML='<div class="sep-ico" aria-hidden="true"><span class="hl-ico"></span></div><div class="sep-body"><h3>Aún no has resaltado nada</h3><p class="sep-donde">En el teléfono, deja el dedo quieto un momento sobre una palabra y arrástralo para pintar de amarillo. En la computadora, haz clic y arrastra. Para quitar un resaltado, tócalo.</p></div>';
+      v.innerHTML='<div class="sep-ico" aria-hidden="true"><span class="hl-ico"></span></div><div class="sep-body"><h3>Aún no has resaltado nada</h3><p class="sep-donde">En el teléfono, deja el dedo quieto medio segundo sobre una palabra (con la página quieta) y arrástralo para pintar de amarillo. En la computadora, haz clic y arrastra. Para quitar un resaltado, tócalo.</p></div>';
       caja.appendChild(v);return;
     }
     resumen.textContent=vivos.length===1?'Tienes 1 resaltado en este episodio.':'Tienes '+vivos.length+' resaltados en este episodio, en el orden en que aparecen.';
