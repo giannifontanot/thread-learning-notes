@@ -1397,7 +1397,7 @@ function nombreSeccion(sec){
     if(sec&&sec.getAttribute('data-open')!=='true'){sec.setAttribute('data-open','true');sec.querySelector('.lever').setAttribute('aria-expanded','true');espera=460}
     document.body.classList.remove('menu-open');
     setTimeout(function(){
-      p.scrollIntoView({behavior:'smooth',block:'center'});
+      window.scrollTo({top:Math.max(0,p.getBoundingClientRect().top+window.scrollY-innerHeight*.2),behavior:'smooth'});
       p.classList.remove('destello');void p.offsetWidth;p.classList.add('destello');
     },espera);
   }
@@ -1447,27 +1447,31 @@ function nombreSeccion(sec){
   document.getElementById('autoDonde').textContent=pPrevio?etiqueta(pPrevio):'Aún no hay lectura guardada.';
   document.getElementById('autoFrase').textContent=pPrevio?frase(pPrevio):'';
   bAuto.addEventListener('click',function(){cerrarLibretaY(function(){irA(pPrevio)})});
-  var tid=null,movido=false;
+  /* Solo cuenta como lectura una posición donde la vista se queda quieta un
+     rato. Así no se guarda el viaje rápido hacia arriba que hace falta para
+     refrescar deslizando, ni la portada, ni el salto que da el navegador al
+     recargar. */
+  if('scrollRestoration' in history)history.scrollRestoration='manual';
+  var tid=null,PAUSA=2500,primera=document.querySelector('.persiana');
   function registrar(){
+    if(document.hidden)return;
+    if(primera&&primera.getBoundingClientRect().top>innerHeight*.5)return; /* todavía en la portada */
     var y=innerHeight*.25,el=null;
     for(var k=0;k<pars.length;k++){
       var p=pars[k],sec=p.closest('.persiana');
-      if(sec&&sec.getAttribute('data-open')!=='true')continue;
+      if(!sec)continue; /* la portada no es «donde quedé» */
+      if(sec.getAttribute('data-open')!=='true')continue;
       var r=p.getBoundingClientRect();
       if(r.height>0&&r.bottom>y){el=p;break}
     }
     if(el){guardar(KA,JSON.stringify(ubic(el)))}
   }
-  window.addEventListener('scroll',function(){
-    if(!movido){movido=true;return}
-    clearTimeout(tid);tid=setTimeout(registrar,600);
-  },{passive:true});
-  window.addEventListener('pagehide',function(){if(movido)registrar()});
+  window.addEventListener('scroll',function(){clearTimeout(tid);tid=setTimeout(registrar,PAUSA)},{passive:true});
 
   /* aviso al volver */
   var toast=document.getElementById('toast');
   function cerrarToast(){toast.classList.remove('on')}
-  if(pPrevio&&pars.indexOf(pPrevio)>2){
+  if(pPrevio&&pPrevio.closest('.persiana')){
     document.getElementById('toastTxt').innerHTML='¿Seguir donde quedaste?<small></small>';
     toast.querySelector('small').textContent=etiqueta(pPrevio);
     setTimeout(function(){toast.classList.add('on')},700);
